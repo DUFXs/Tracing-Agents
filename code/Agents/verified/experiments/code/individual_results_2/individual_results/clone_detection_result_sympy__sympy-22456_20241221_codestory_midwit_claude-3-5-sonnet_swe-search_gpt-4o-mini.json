@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-22456",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "sympy/codegen/ast.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they involve different classes and contexts within the SymPy library. Code sample 1 deals specifically with the instantiation and functionality of the String class in relation to argument invariance tests, while code sample 2 defines the String class itself along with its attributes and other functionalities. The latter includes class definitions and methods that are syntactically different from the functional testing shown in code sample 1.\"}"
+}

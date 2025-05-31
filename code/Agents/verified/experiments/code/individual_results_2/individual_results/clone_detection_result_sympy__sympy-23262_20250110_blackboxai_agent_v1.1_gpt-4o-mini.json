@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-23262",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": ".gitignore",
+    "ground_truth_patch_file": "sympy/utilities/lambdify.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are from entirely different contexts and serve different purposes. The first code sample is a `.gitignore` file related to configuration for pytest, while the second sample is a Python function implementation using conditional statements and type checking. There is no syntactical or functional similarity between the two.\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "pydata__xarray-6461",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "xarray/core/computation.py": "index 2ac1578..aa6b9c1 100644\n     if keep_attrs is True:\n         # keep the attributes of x, the second parameter, by default to\n         # be consistent with the `where` method of `DataArray` and `Dataset`\nkeep_attrs = lambda attrs, context: attrs[1] if len(attrs) > 1 else {}\n \n     # alignment for three arguments is complicated, so don't support it yet\n     return apply_ufunc(\n"
+    },
+    "ground_truth_patch": {
+        "xarray/core/computation.py": "     \"\"\"\n     if keep_attrs is None:\n         keep_attrs = _get_keep_attrs(default=False)\n     if keep_attrs is True:\n         # keep the attributes of x, the second parameter, by default to\n         # be consistent with the `where` method of `DataArray` and `Dataset`\nkeep_attrs = lambda attrs, context: getattr(x, \"attrs\", {})\n \n     # alignment for three arguments is complicated, so don't support it yet\n     return apply_ufunc(\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 defines a keep_attrs lambda function that takes attrs and context parameters and returns the second element (index 1) from the attrs list if the list has more than one element, otherwise returns an empty dictionary. While the code in code sample 2 defines a similar keep_attrs lambda function but instead returns the attrs attribute of variable x using getattr, defaulting to an empty dictionary if the attribute doesn't exist. Both code samples appear to be part of a larger function that uses apply_ufunc.\", \n\"is_clone\": true, \n\"classification\": \"type-3\", \n\"reasoning\": \"These code samples are type-3 clones because they have similar syntactic structure (both define a keep_attrs lambda function and both have the same comment about keeping attributes) but have modified statements. The key difference is in how they retrieve the attributes: sample 1 uses list indexing (attrs[1] if len(attrs) > 1 else {}), while sample 2 uses getattr (getattr(x, 'attrs', {})). Additionally, sample 2 has extra code at the beginning checking if keep_attrs is None. The core functionality appears to be similar (getting attributes with a fallback to empty dict), but the implementation details differ.\"\n}"
+}

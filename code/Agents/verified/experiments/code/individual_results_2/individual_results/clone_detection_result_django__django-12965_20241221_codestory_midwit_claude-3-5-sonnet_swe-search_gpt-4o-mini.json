@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-12965",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "django/db/models/sql/compiler.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve entirely different purposes. The first code sample demonstrates generating and displaying SQL for DELETE operations on a Django model, whereas the second code sample is part of a class definition related to SQL compilation in Django. Their syntactic structures and functional intents are dissimilar.\"}"
+}

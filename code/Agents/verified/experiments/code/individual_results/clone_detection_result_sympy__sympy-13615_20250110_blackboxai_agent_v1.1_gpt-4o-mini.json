@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-13615",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 13ee70ccae..4b6ee33b52 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/sets/sets.py": "index 917717bb74..96d667b6d8 100644\n         if isinstance(B, Union):\n             return Intersection(s.complement(A) for s in B.args)\n \n# Handle FiniteSet complements with Intervals\nif A.is_FiniteSet and B.is_Interval:\n# Split elements into numeric and symbolic\nnums = [x for x in A.args if not x.has(Symbol)]\nsyms = [x for x in A.args if x.has(Symbol)]\n\n# Keep only numbers outside the interval\noutside_nums = [n for n in nums if n not in B]\n\nif not syms:\nreturn FiniteSet(*outside_nums)\nelif not outside_nums:\nreturn Complement(FiniteSet(*syms), B, evaluate=False)\nelse:\nreturn Union(FiniteSet(*outside_nums), \nComplement(FiniteSet(*syms), B, evaluate=False))\n\n         result = B._complement(A)\n         if result != None:\n             return result\n"
+    },
+    "ground_truth_patch": {
+        "sympy/sets/sets.py": "             return S.EmptySet\n \n         elif isinstance(other, FiniteSet):\nfrom sympy.utilities.iterables import sift\n\ndef ternary_sift(el):\ncontains = self.contains(el)\nreturn contains if contains in [True, False] else None\n\nsifted = sift(other, ternary_sift)\n# ignore those that are contained in self\nreturn Union(FiniteSet(*(sifted[False])),\nComplement(FiniteSet(*(sifted[None])), self, evaluate=False)\nif sifted[None] else S.EmptySet)\n \n     def symmetric_difference(self, other):\n         \"\"\"\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they differ significantly in logic and structure. The first sample focuses on set operations with intervals and complements, while the second sample involves a different set operation, 'symmetric_difference', and a filtering mechanism using 'sift'. The key functions and their implementations are distinct, indicating they are not functionally equivalent.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-14711",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 13ee70ccae..4b6ee33b52 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/physics/vector/vector.py": "index a048ee57f1..e334257a0b 100644\n \n     def __add__(self, other):\n         \"\"\"The add operator for Vector. \"\"\"\nif other == 0:\nreturn self\n         other = _check_vector(other)\n         return Vector(self.args + other.args)\n \ndef __radd__(self, other):\n\"\"\"The right add operator for Vector. \"\"\"\nif other == 0:\nreturn self\nreturn self.__add__(other)\n\n     def __and__(self, other):\n         \"\"\"Dot product of two vectors.\n"
+    },
+    "ground_truth_patch": {
+        "sympy/physics/vector/vector.py": " \n     def __add__(self, other):\n         \"\"\"The add operator for Vector. \"\"\"\nif other == 0:\nreturn self\n         other = _check_vector(other)\n         return Vector(self.args + other.args)\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines the __add__ and __radd__ methods for a Vector class, implementing the addition operator for vectors, and a method for right-side addition. It also includes an __and__ method for the dot product of two vectors, although this method isn't fully visible in the patch. The portion shown handles checking if another vector is zero and calls another function to validate the vector before performing the addition. In code sample 2, only the __add__ method is visible and it contains the same logic as in code sample 1 without the context of the other methods or extra comments. It also includes an identical docstring for the __add__ method. Therefore, the portions of code visible in both samples are syntactically and semantically similar.\", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for changes in whitespace and possibly layout, with other differences being the complete absence of additional methods or comments in code sample 2.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-20590",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "sympy/core/_print_helpers.py",
+    "ground_truth_patch_file": "sympy/core/_print_helpers.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are nearly identical except for differences in comments and whitespace. The content of the code within the `__str__` method is the same, but comments have been changed in sample 2, which distinguishes them as type-2 clones.\"}"
+}

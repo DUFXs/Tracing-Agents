@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15277",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/models/fields/__init__.py": "index f30b523346..ef07d1d2d5 100644\n     def __init__(self, *args, db_collation=None, **kwargs):\n         super().__init__(*args, **kwargs)\n         self.db_collation = db_collation\nif self.max_length is not None:\nself.validators.append(validators.MaxLengthValidator(self.max_length))\n\n \n     def check(self, **kwargs):\n         databases = kwargs.get('databases') or []\n \n     def rel_db_type(self, connection):\n         return SmallIntegerField().db_type(connection=connection)\n\n",
+        "reproduce.py": "new file mode 100644\nindex 0000000000..0c86bf868e\nfrom django.db.models import Value\nimport timeit\n\ndef test_resolve():\nx = Value('test')\ny = x._resolve_output_field()\nprint(\"Validators:\", y.validators)\ntry:\ny.clean('1', model_instance=None)\nexcept TypeError as e:\nprint(\"TypeError as expected:\", e)\n\nif __name__ == '__main__':\nprint(\"Running test_resolve():\")\ntest_resolve()\n\nprint(\"\\nTiming _resolve_output_field():\")\nsetup = \"from django.db.models import Value; x = Value('test')\"\nstmt = \"x._resolve_output_field()\"\ntiming = timeit.timeit(stmt, setup=setup, number=100000)\nprint(f\"Average time: {timing/100000*1e6:.2f} \u00b5s per loop\")\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/__init__.py": "     def __init__(self, *args, db_collation=None, **kwargs):\n         super().__init__(*args, **kwargs)\n         self.db_collation = db_collation\nif self.max_length is not None:\nself.validators.append(validators.MaxLengthValidator(self.max_length))\n \n     def check(self, **kwargs):\n         databases = kwargs.get('databases') or []\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for minor differences in whitespace. The functionality and structure of the code in both samples are the same without any changes in identifiers or semantics.\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-13406",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/db/models/query.py": "index 3533127..489946f 100644\n     @query.setter\n     def query(self, value):\n         self._query = value\n# Preserve values/values_list attributes when setting a new query\nif value.values_select:\nself._fields = list(value.values_select)\nself._iterable_class = ValuesIterable\nif getattr(value, 'annotation_select', None):\nself.annotation_select = value.annotation_select\n \n     def as_manager(cls):\n         # Address the circular dependency between `Queryset` and `Manager`.\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/query.py": " \n     @query.setter\n     def query(self, value):\nif value.values_select:\nself._iterable_class = ValuesIterable\n         self._query = value\n \n     def as_manager(cls):\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 is a query setter method that sets a new query value and preserves values/values_list attributes. When setting a new query, it checks if the value has values_select and annotation_select attributes, and updates the corresponding instance attributes (_fields, _iterable_class, and annotation_select). The code in code sample 2 is also a query setter method but with simplified logic - it only sets the _iterable_class if values_select exists and then sets the query value.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they share the same basic structure (query setter method) and some identical statements, but code sample 1 has additional statements and logic. Specifically:\n1. Both have the @query.setter decorator and basic query setting functionality\n2. Both check for values_select and set _iterable_class\n3. However, code sample 1 has additional functionality:\n   - Sets self._fields with the values_select list\n   - Checks for and sets annotation_select\nThe differences are modifications and additions to the basic functionality, making this a type-3 clone.\"\n}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-24970",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 7d0e549e01..ec3b38b71a 100644\n lib/matplotlib/backends/web_backend/package-lock.json\n \n LICENSE/LICENSE_QHULL\n.aider/\n",
+        "lib/matplotlib/colors.py": "index 2d3072da04..bb5ed559a7 100644\n         xa = np.array(X, copy=True)\n         if mask_bad is None:\n             mask_bad = np.isnan(xa)\n# Ensure we have an integer type that can handle out-of-bounds values\nif xa.dtype.kind in ['u', 'i']:\nxa = xa.astype(np.int32)\n         if not xa.dtype.isnative:\n             xa = xa.byteswap().newbyteorder()  # Native byteorder is faster.\n         if xa.dtype.kind == \"f\":\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/colors.py": "         if not xa.dtype.isnative:\n             xa = xa.byteswap().newbyteorder()  # Native byteorder is faster.\n         if xa.dtype.kind == \"f\":\nxa *= self.N\n# Negative values are out of range, but astype(int) would\n# truncate them towards zero.\nxa[xa < 0] = -1\n# xa == 1 (== N after multiplication) is not out of range.\nxa[xa == self.N] = self.N - 1\n# Avoid converting large positive values to negative integers.\nnp.clip(xa, -1, self.N, out=xa)\nwith np.errstate(invalid=\"ignore\"):\n# We need this cast for unsigned ints as well as floats\nxa = xa.astype(int)\n         # Set the over-range indices before the under-range;\n         # otherwise the under-range values get converted to over-range.\n         xa[xa > self.N - 1] = self._i_over\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically and functionally different. While they share some similar operations related to numpy arrays, the logic implemented in each sample diverges significantly, especially with distinct operations applied to the array 'xa' in the second sample involving multiplication, clipping, and conditions that don't appear in the first sample. Thus, they do not fall under any of the defined clone types.\"}"
+}

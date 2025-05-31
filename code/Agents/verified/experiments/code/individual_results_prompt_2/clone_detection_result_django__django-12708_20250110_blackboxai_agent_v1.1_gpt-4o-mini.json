@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12708",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/backends/base/schema.py": "index 61f88401ab..4801c59a00 100644\n         meta_constraint_names = {constraint.name for constraint in model._meta.constraints}\n         meta_index_names = {constraint.name for constraint in model._meta.indexes}\n         columns = [model._meta.get_field(field).column for field in fields]\n\n# When removing an index, exclude unique constraints to avoid counting them\nkwargs = constraint_kwargs.copy()\nif kwargs.get('index') and 'unique' not in kwargs:\nkwargs['unique'] = False\n\n         constraint_names = self._constraint_names(\n             model, columns, exclude=meta_constraint_names | meta_index_names,\n**kwargs\n         )\n         if len(constraint_names) != 1:\n             raise ValueError(\"Found wrong number (%s) of constraints for %s(%s)\" % (\n"
+    },
+    "ground_truth_patch": {
+        "django/db/backends/base/schema.py": "         news = {tuple(fields) for fields in new_index_together}\n         # Deleted indexes\n         for fields in olds.difference(news):\nself._delete_composed_index(\nmodel,\nfields,\n{'index': True, 'unique': False},\nself.sql_delete_index,\n)\n         # Created indexes\n         for field_names in news.difference(olds):\n             fields = [model._meta.get_field(field) for field in field_names]\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 constructs a set of names for constraints and indexes from a Django model, checks for unique constraints when modifying them, and raises an error if the number of constraints found is not one. The code in code sample 2 processes indexes related to a Django model, identifying deleted and created indexes, and carries out the deletion of old indexes while preparing new ones based on specific field names.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes: one is concerned with managing constraints and their validations, while the other focuses on handling index creation and deletion in relation to a database model.\"}"
+}

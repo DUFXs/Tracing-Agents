@@ -1,0 +1,7 @@
+{
+    "instance_id": "matplotlib__matplotlib-23412",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "lib/matplotlib/patches.py",
+    "ground_truth_patch_file": "lib/matplotlib/patches.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit similar syntactical structures, but there are additional expressions in the second sample, specifically the context manager with cbook._setattr_cm, which modifies the functionality of the code.\"}"
+}

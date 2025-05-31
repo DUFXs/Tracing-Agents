@@ -1,0 +1,7 @@
+{
+    "instance_id": "sphinx-doc__sphinx-11445",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_docs/_build/_static/language_data.js",
+    "ground_truth_patch_file": "sphinx/util/rst.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

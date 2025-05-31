@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-14309",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index aad550ae53..826d8acebb 100644\n \n # Files generated if figure tests are run\n results\n.aider/\n",
+        "astropy/io/fits/connect.py": "index 4b6150f4ac..132d57fd6d 100644\n             (\".fits\", \".fits.gz\", \".fit\", \".fit.gz\", \".fts\", \".fts.gz\")\n         ):\n             return True\n# If no fileobj or filepath match, and args is empty, it's not a FITS file\nif not args:\nreturn False\n     return isinstance(args[0], (HDUList, TableHDU, BinTableHDU, GroupsHDU))\n"
+    },
+    "ground_truth_patch": {
+        "astropy/io/fits/connect.py": "         fileobj.seek(pos)\n         return sig == FITS_SIGNATURE\n     elif filepath is not None:\nreturn filepath.lower().endswith(\n             (\".fits\", \".fits.gz\", \".fit\", \".fit.gz\", \".fts\", \".fts.gz\")\n)\n     return isinstance(args[0], (HDUList, TableHDU, BinTableHDU, GroupsHDU))\n \n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but contain additions and modifications in structure, such as the arrangement of return statements and whitespace differences, which alter the layout of the original code.\"}"
+}

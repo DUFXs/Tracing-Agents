@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-6599",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "xarray/core/computation.py",
+    "ground_truth_patch_file": "xarray/core/computation.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share a similar structure and functionality, but have differences such as added and modified statements in the 'to_floatable' function, including changes to the logic for handling DataArray types and the return statements.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-20859",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index a334bf2874..b052ddac06 100644\n lib/matplotlib/backends/web_backend/package-lock.json\n \n LICENSE/LICENSE_QHULL\n.aider/\n",
+        "lib/matplotlib/legend.py": "index 44ab024698..a6cff3cf4d 100644\n         \"\"\"\n         # local import only to avoid circularity\n         from matplotlib.axes import Axes\nfrom matplotlib.figure import FigureBase\n \n         super().__init__()\n \n             self.isaxes = True\n             self.axes = parent\n             self.set_figure(parent.figure)\nelif isinstance(parent, FigureBase):\n             self.isaxes = False\n             self.set_figure(parent)\n         else:\nraise TypeError(\"Legend needs either Axes or FigureBase as parent\")\n         self.parent = parent\n \n         self._loc_used_default = loc is None\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/legend.py": "         \"\"\"\n         # local import only to avoid circularity\n         from matplotlib.axes import Axes\nfrom matplotlib.figure import FigureBase\n \n         super().__init__()\n \n             self.isaxes = True\n             self.axes = parent\n             self.set_figure(parent.figure)\nelif isinstance(parent, FigureBase):\n             self.isaxes = False\n             self.set_figure(parent)\n         else:\nraise TypeError(\n\"Legend needs either Axes or FigureBase as parent\"\n)\n         self.parent = parent\n \n         self._loc_used_default = loc is None\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 is part of a patch for the `lib/matplotlib/legend.py` file, which includes an implementation for handling the parent of a legend in matplotlib figures. It checks if the parent is an instance of `Axes` or `FigureBase` and sets the legend's properties accordingly. The code involves handling a `TypeError` if the parent is neither. The code in code sample 2 represents a similar content patch for the same file. It contains essentially the same logic but has a slight difference regarding the line continuation of the error message in the `TypeError` exception which is broken up across two lines. Both samples have the same overall logic and structure.\", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for the differences in whitespace, layout, and the way the literal string in the `TypeError` is formatted.\"}"
+}

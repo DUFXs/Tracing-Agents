@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16662",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/migrations/writer.py": "index a59f0c8dcb..b6ed211492 100644\n         else:\n             imports.add(\"from django.db import migrations\")\n \n# Sort imports with \"import\" statements before \"from\" imports,\n# then by the package/module name\ndef import_sort_key(imp):\nparts = imp.split()\n# Group by import type (import=0, from=1) then by module name\nreturn (1 if parts[0] == \"from\" else 0, parts[1])\n\nsorted_imports = sorted(imports, key=import_sort_key)\n         items[\"imports\"] = \"\\n\".join(sorted_imports) + \"\\n\" if imports else \"\"\n         if migration_imports:\n             items[\"imports\"] += (\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/writer.py": " \n         # Sort imports by the package / module to be imported (the part after\n         # \"from\" in \"from ... import ...\" or after \"import\" in \"import ...\").\n# First group the \"import\" statements, then \"from ... import ...\".\nsorted_imports = sorted(\nimports, key=lambda i: (i.split()[0] == \"from\", i.split()[1])\n)\n         items[\"imports\"] = \"\\n\".join(sorted_imports) + \"\\n\" if imports else \"\"\n         if migration_imports:\n             items[\"imports\"] += (\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but contain modifications in statements. The first code sample uses a custom function 'import_sort_key' while the second uses a lambda function directly within the sorted call. Additionally, the comments vary slightly in wording, indicating changes in statements.\"}"
+}

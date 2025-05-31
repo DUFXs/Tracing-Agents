@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15741",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/utils/formats.py": "index 3f38322d84..10a5b195bc 100644\n     If use_l10n is provided and is not None, it forces the value to\n     be localized (or not), overriding the value of settings.USE_L10N.\n     \"\"\"\n# Handle lazy strings by converting to string\nif hasattr(format_type, '__str__'):\nformat_type = str(format_type)\n     if use_l10n is None:\n         try:\n             use_l10n = settings._USE_L10N_INTERNAL\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..7f95ae93d3\nimport django\nfrom django.utils.translation import gettext_lazy as _\nfrom django.utils import formats\nfrom django.conf import settings\n\n# Configure minimal Django settings\nsettings.configure(\nUSE_I18N=True,\nLANGUAGES=[('en', 'English')],\nLANGUAGE_CODE='en',\nUSE_L10N=True,\nINSTALLED_APPS=[],\n)\n\n# Initialize Django\ndjango.setup()\n\n# Try to use get_format with a lazy string\nformat_string = _('Y-m-d')  # This creates a lazy string\ntry:\nresult = formats.get_format(format_string)\nexcept TypeError as e:\nprint(f\"Error occurred as expected: {e}\")\n# The error occurs because getattr() in get_format can't handle lazy strings\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/formats.py": "             use_l10n = settings.USE_L10N\n     if use_l10n and lang is None:\n         lang = get_language()\nformat_type = str(format_type)  # format_type may be lazy.\n     cache_key = (format_type, lang)\n     try:\n         return _format_cache[cache_key]\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain different functionality and context. The first sample discusses the behavior of a localization setting in Django, while the second sample focuses on the caching of a format type based on localization conditions. They do not share sufficient syntactic or functional similarity to be classified as clones.\"}"
+}

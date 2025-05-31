@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13158",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/query.py": "index 07d6ffd4ca..f87bf46187 100644\n     def none(self):\n         \"\"\"Return an empty QuerySet.\"\"\"\n         clone = self._chain()\nif getattr(clone.query, 'combined_queries', None):\n# For combined queries, we need to create a new empty query\n# without any combinators\nnew_query = clone.query.__class__(clone.query.model)\nnew_query.set_empty()\nclone.query = new_query\nelse:\nclone.query.set_empty()\n         return clone\n \n     ##################################################################\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/sql/query.py": "             obj.annotation_select_mask = None\n         else:\n             obj.annotation_select_mask = self.annotation_select_mask.copy()\nobj.combined_queries = tuple(query.clone() for query in self.combined_queries)\n         # _annotation_select_cache cannot be copied, as doing so breaks the\n         # (necessary) state in which both annotations and\n         # _annotation_select_cache point to the same underlying objects.\n \n     def set_empty(self):\n         self.where.add(NothingNode(), AND)\nfor query in self.combined_queries:\nquery.set_empty()\n \n     def is_empty(self):\n         return any(isinstance(c, NothingNode) for c in self.where.children)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a method called 'none' that returns an empty QuerySet in Django, handling combined queries by checking if 'combined_queries' exists and creating a new empty query appropriately. The handling of combined queries and setting the new query as empty is central to this method. In contrast, code sample 2 includes parts that deal with annotations and their masks, along with methods 'set_empty' and 'is_empty' that modify the query state and check if a query is empty by inspecting its conditions. The focus here is on managing annotations and their related query states, not on providing an empty QuerySet directly.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they address different functionalities related to Django's query management and have different method implementations with no syntactical or functional similarity.\"}"
+}

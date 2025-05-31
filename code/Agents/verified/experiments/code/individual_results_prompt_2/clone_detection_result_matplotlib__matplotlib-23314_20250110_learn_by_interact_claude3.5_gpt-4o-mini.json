@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-23314",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "lib/mpl_toolkits/mplot3d/axes3d.py": "index 9db44b7994..7b3b842625 100644\n         self._axis3don = True\n         self.stale = True\n \ndef set_visible(self, b):\n\"\"\"\nSet the artist's visibility.\n\nParameters\n----------\nb : bool\n\"\"\"\n# Call the base class\nsuper().set_visible(b)\n# Make all contained artists invisible too\nfor artist in self._children:\nartist.set_visible(b)\n# Special handling for axis visibility\nif hasattr(self, '_axis3don'):\nself._axis3don = b\nself.stale = True\n\n     def convert_zunits(self, z):\n         \"\"\"\n         For artists in an Axes, if the zaxis has units support,\n     Y = Y * 10\n     Z = Z * 500\n     return X, Y, Z\n\n",
+        "test_visible_3d.py": "new file mode 100644\nindex 0000000000..e65499ee53\nimport matplotlib.pyplot as plt\nfrom matplotlib.gridspec import GridSpec\n\nfig, (ax1, ax2) = plt.subplots(1, 2, subplot_kw={'projection': '3d'})\nax1.scatter(1,1,1)\nax2.scatter(1,1,1, c='r')\nax1.set_visible(False)\n\nplt.show()\n"
+    },
+    "ground_truth_patch": {
+        "lib/mpl_toolkits/mplot3d/axes3d.py": " \n     @martist.allow_rasterization\n     def draw(self, renderer):\nif not self.get_visible():\nreturn\n         self._unstale_viewLim()\n \n         # draw the background patch\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines visibility behavior for artists in a 3D plot using matplotlib. It includes methods to set visibility, making all child artists invisible, and handling axis visibility. The second code sample contains a method for drawing that checks if the artist is visible and returns early if it is not, along with background patch drawing. This suggests a visual rendering functionality in the context of a 3D plot.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes; the first is focused on visibility management of 3D artists, while the second focuses on the rendering process and does not share any significant structure or logic with the first.\"}"
+}

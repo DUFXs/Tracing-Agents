@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-13757",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 0000000000..a3b3e4c8f0\nfrom sympy import Poly, Symbol, S\n\nx = Symbol('x')\ny = Symbol('y')\n\nprint(\"Test 1: Poly(x)*x\")\nprint(Poly(x)*x)\nprint(\"\\nTest 2: x*Poly(x)\")\nprint(x*Poly(x))\nprint(\"\\nTest 3: -2*Poly(x)\")\nprint(-2*Poly(x))\nprint(\"\\nTest 4: S(-2)*Poly(x)\")\nprint(S(-2)*Poly(x))\nprint(\"\\nTest 5: Poly(x)*S(-2)\")\nprint(Poly(x)*S(-2))\nprint(\"\\nEdge case - multivariate: y*Poly(x + y)\")\nprint(y*Poly(x + y, x, y))\n\n",
+        "sympy/core/expr.py": "index 72728c44ef..aa753e4c25 100644\n     @_sympifyit('other', NotImplemented)\n     @call_highest_priority('__rmul__')\n     def __mul__(self, other):\nfrom sympy.polys.polytools import Poly\nif isinstance(other, Poly):\nreturn other * Poly(self, *other.gens)\n         return Mul(self, other)\n \n\n     @_sympifyit('other', NotImplemented)\n     @call_highest_priority('__mul__')\n     def __rmul__(self, other):\n from .mod import Mod\n from .exprtools import factor_terms\n from .numbers import Integer, Rational\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/polys/polytools.py": " \n     is_commutative = True\n     is_Poly = True\n_op_priority = 10.001\n \n     def __new__(cls, rep, *gens, **args):\n         \"\"\"Create a new polynomial instance out of something useful. \"\"\"\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines polynomial operations using the SymPy library, creating polynomial instances and testing various multiplication scenarios with single and multivariate polynomials. The operations include standard multiplication as well as multiplication with SymPy's symbolic numeric support. The second code sample appears to be part of a class defining constants related to polynomial properties and includes a method for creating polynomial instances from various representations. It is part of the Poly class and defines its constructor. \", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes within the SymPy library: one is focused on testing polynomial multiplication, while the other defines attributes and a constructor for a polynomial class.\"}"
+}

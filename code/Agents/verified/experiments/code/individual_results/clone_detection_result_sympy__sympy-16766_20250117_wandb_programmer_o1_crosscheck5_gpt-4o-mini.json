@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-16766",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "sympy/printing/pycode.py": "index a3f0310735..8ad0b69978 100644\n     def _print_Not(self, expr):\n         PREC = precedence(expr)\n         return self._operators['not'] + self.parenthesize(expr.args[0], PREC)\ndef _print_Indexed(self, expr):\nbase, *index = expr.args\nreturn \"{}[{}]\".format(str(base), \", \".join(self._print(ind) for ind in index))\n\n \n \n for k in PythonCodePrinter._kf:\n",
+        "test_indexed_printer.py": "new file mode 100644\nindex 0000000000..84c63febfa\nprint(\"Starting test_indexed_printer.py\")\nfrom sympy.printing.pycode import pycode\nfrom sympy import IndexedBase\n\np = IndexedBase(\"p\")\nresult = pycode(p[0])\nprint(f\"pycode(p[0]) returned: {result}\")\n\nexpected = \"p[0]\"\nif result != expected:\nprint(f\"Test FAILED: expected '{expected}' but got '{result}'\")\nexit(1)\nprint(\"Test PASSED: pycode(p[0]) returned the expected string\")\nexit(0)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/printing/pycode.py": "         PREC = precedence(expr)\n         return self._operators['not'] + self.parenthesize(expr.args[0], PREC)\n \ndef _print_Indexed(self, expr):\nbase = expr.args[0]\nindex = expr.args[1:]\nreturn \"{}[{}]\".format(str(base), \", \".join([self._print(ind) for ind in index]))\n\n \n for k in PythonCodePrinter._kf:\n     setattr(PythonCodePrinter, '_print_%s' % k, _print_known_func)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they show syntactic similarities but with modifications. For instance, in sample 1, the unpacking of the index is done using 'base, *index = expr.args', while in sample 2, it is done with 'base = expr.args[0]; index = expr.args[1:]'. Additionally, there are slight differences in the structure of how the return statement is constructed with slight modifications in the list comprehension for printing the indices.\"}"
+}

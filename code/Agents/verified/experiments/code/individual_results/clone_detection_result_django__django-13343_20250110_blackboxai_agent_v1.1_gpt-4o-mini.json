@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13343",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/fields/files.py": "index e10a5bb6d9..6a4a65aa2a 100644\n     def __init__(self, verbose_name=None, name=None, upload_to='', storage=None, **kwargs):\n         self._primary_key_set_explicitly = 'primary_key' in kwargs\n \nself._storage_arg = storage\n         self.storage = storage or default_storage\n         if callable(self.storage):\n             self.storage = self.storage()\n         if kwargs.get(\"max_length\") == 100:\n             del kwargs[\"max_length\"]\n         kwargs['upload_to'] = self.upload_to\nif self._storage_arg is not None:\nkwargs['storage'] = self._storage_arg\nelif self.storage is not default_storage:\n             kwargs['storage'] = self.storage\n         return name, path, args, kwargs\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/files.py": " \n         self.storage = storage or default_storage\n         if callable(self.storage):\n# Hold a reference to the callable for deconstruct().\nself._storage_callable = self.storage\n             self.storage = self.storage()\n             if not isinstance(self.storage, Storage):\n                 raise TypeError(\n             del kwargs[\"max_length\"]\n         kwargs['upload_to'] = self.upload_to\n         if self.storage is not default_storage:\nkwargs['storage'] = getattr(self, '_storage_callable', self.storage)\n         return name, path, args, kwargs\n \n     def get_internal_type(self):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities with modifications. While they share a common structure and logical flow, Code Sample 1 emphasizes the handling of storage as a primary operation, whereas Code Sample 2 introduces a reference to the callable storage and checks its type, creating functional differences, and consequently, the statements have been added or modified.\"}"
+}

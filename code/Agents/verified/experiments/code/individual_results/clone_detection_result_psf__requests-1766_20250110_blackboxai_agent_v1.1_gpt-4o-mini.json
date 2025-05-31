@@ -1,0 +1,12 @@
+{
+    "instance_id": "psf__requests-1766",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 60eb6c67..c72ef58b 100644\n t.py\n \n t2.py\n.aider/\n",
+        "requests/auth.py": "index a3de123d..48416e5f 100644\n         if entdig:\n             base += ', digest=\"%s\"' % entdig\n         if qop:\nbase += ', qop=\"auth\", nc=%s, cnonce=\"%s\"' % (ncvalue, cnonce)\n \n         return 'Digest %s' % (base)\n"
+    },
+    "ground_truth_patch": {
+        "requests/auth.py": " \n         A1 = '%s:%s:%s' % (self.username, realm, self.password)\n         A2 = '%s:%s' % (method, path)\n\n         HA1 = hash_utf8(A1)\n         HA2 = hash_utf8(A2)\n \n         if entdig:\n             base += ', digest=\"%s\"' % entdig\n         if qop:\nbase += ', qop=\"auth\", nc=%s, cnonce=\"%s\"' % (ncvalue, cnonce)\n \n         return 'Digest %s' % (base)\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactic similarity but have added or modified statements. Code sample 2 introduces variables A1 and A2 and modifies the context of the `if entdig:` and `if qop:` blocks but retains the structure and functionality related to digest authentication.\"}"
+}

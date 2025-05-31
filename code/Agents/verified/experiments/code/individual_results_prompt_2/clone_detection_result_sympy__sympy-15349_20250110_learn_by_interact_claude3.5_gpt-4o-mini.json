@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-15349",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sympy/algebras/quaternion.py": "index b84e7cb95a..0d2ae374d8 100644\n \n         m10 = 2*s*(q.b*q.c + q.d*q.a)\n         m11 = 1 - 2*s*(q.b**2 + q.d**2)\nm12 = 2*s*(q.c*q.d - q.b*q.a)\n\n \n         m20 = 2*s*(q.b*q.d - q.c*q.a)\n         m21 = 2*s*(q.c*q.d + q.b*q.a)\n \n             return Matrix([[m00, m01, m02, m03], [m10, m11, m12, m13],\n                           [m20, m21, m22, m23], [m30, m31, m32, m33]])\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/algebras/quaternion.py": " \n         m10 = 2*s*(q.b*q.c + q.d*q.a)\n         m11 = 1 - 2*s*(q.b**2 + q.d**2)\nm12 = 2*s*(q.c*q.d - q.b*q.a)\n \n         m20 = 2*s*(q.b*q.d - q.c*q.a)\n         m21 = 2*s*(q.c*q.d + q.b*q.a)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 calculates multiple elements (m10, m11, m12, m20, m21) based on some quaternion values (q.a, q.b, q.c, q.d) and returns a Matrix with these computed values included along with others (m00, m01, m02, m03, m20, m21, m22, m23, m30, m31, m32, m33). Code sample 2 performs similar calculations for the same elements (m10, m11, m12, m20, m21) but does not include the return statement for the Matrix. \", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactic similarity but differ in their statements; code sample 1 includes a return statement while code sample 2 does not.\"}"
+}

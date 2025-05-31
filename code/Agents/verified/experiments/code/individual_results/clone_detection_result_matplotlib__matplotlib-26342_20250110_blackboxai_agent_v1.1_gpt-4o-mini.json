@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-26342",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 74080f6c50..b5390c6ac2 100644\n lib/matplotlib/backends/web_backend/package-lock.json\n \n LICENSE/LICENSE_QHULL\n.aider/\n",
+        "lib/matplotlib/contour.py": "index 3f84250b64..26d6f930be 100644\n             self._transform = self._transform._as_mpl_transform(self.axes)\n         return self._transform\n \ndef set_paths(self, paths):\n\"\"\"\nSet the paths of this ContourSet to the given list of paths.\n\nThis is useful when modifying the paths after creation, such as when \ntransforming contours to a different coordinate system.\n\nParameters\n----------\npaths : list of `~matplotlib.path.Path`\nThe new paths for the ContourSet.\n\"\"\"\nself._paths = paths\n# Clear the cached old-style collections if they exist\nif hasattr(self, '_old_style_split_collections'):\nfor col in self._old_style_split_collections:\nself.axes.collections.remove(col)\ndel self._old_style_split_collections\nself.changed()\n\n     def __getstate__(self):\n         state = self.__dict__.copy()\n         # the C object _contour_generator cannot currently be pickled. This\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/collections.py": "         return self._paths\n \n     def set_paths(self, paths):\nself._paths = paths\nself.stale = True\n \n     def get_transforms(self):\n         return self._transforms\n         self.set_sizes(sizes)\n         self.stale = True\n \n     def get_paths(self):\n         return self._paths\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they do not exhibit syntactical similarity or functional equivalence. They contain different methods and functionalities, and there is no resemblance in their structure or logic.\"}"
+}

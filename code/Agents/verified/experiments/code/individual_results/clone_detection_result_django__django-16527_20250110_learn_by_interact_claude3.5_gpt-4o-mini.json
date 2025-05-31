@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16527",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/contrib/admin/templatetags/admin_modify.py": "index 9df4b7aadb..822aeae6fb 100644\n             ),\n             \"show_save_as_new\": not is_popup\n             and has_change_permission\nand has_add_permission\n             and change\n             and save_as,\n\n             \"show_save_and_add_another\": can_save_and_add_another,\n             \"show_save_and_continue\": can_save_and_continue,\n             \"show_save\": show_save and can_save,\n         # Delete checkbox\n         count += 1\n     return count\n\n",
+        "reproduce.py": "new file mode 100644\nindex 0000000000..1d47de4f26\nfrom django.contrib.admin.templatetags.admin_modify import submit_row\nfrom django.template.context import Context\n\n# Mock context with all required fields\ncontext = {\n\"add\": False,\n\"change\": True,\n\"is_popup\": False,\n\"save_as\": True,\n\"show_save\": True,\n\"show_save_and_add_another\": True,\n\"show_save_and_continue\": True,\n\"has_add_permission\": False,  # User does not have add permission\n\"has_change_permission\": True,\n\"has_view_permission\": True,\n\"has_delete_permission\": True,\n\"has_editable_inline_admin_formsets\": False,\n}\n\nresult = submit_row(Context(context))\nprint(\"Can show save as new without add permission:\", result[\"show_save_as_new\"])\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/templatetags/admin_modify.py": "                 and context.get(\"show_delete\", True)\n             ),\n             \"show_save_as_new\": not is_popup\nand has_add_permission\n             and change\n             and save_as,\n             \"show_save_and_add_another\": can_save_and_add_another,\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they have similar structures and functionality, but there are differences in whitespace, layout, and possibly identifier names or literal values.\"}"
+}

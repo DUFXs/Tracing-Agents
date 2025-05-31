@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-22914",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index db4a22815e..2450c37630 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/printing/pycode.py": "index 3a72ab606c..4c80ae4110 100644\n     def _print_Pow(self, expr, rational=False):\n         return self._hprint_Pow(expr, rational=rational)\n \ndef _print_Min(self, expr):\nreturn \"min({})\".format(\", \".join(self._print(arg) for arg in expr.args))\n\ndef _print_Max(self, expr):\nreturn \"max({})\".format(\", \".join(self._print(arg) for arg in expr.args))\n\n\n     def _print_Rational(self, expr):\n         return '{}/{}'.format(expr.p, expr.q)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/printing/pycode.py": " \n _known_functions = {\n     'Abs': 'abs',\n'Min': 'min',\n'Max': 'max',\n }\n _known_functions_math = {\n     'acos': 'acos',\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines several printing functions for the symbolic computation library SymPy. Specifically, it includes functions for printing power expressions, min, max, and rational expressions in a specific string format. The code sample shows the implementation of how these symbolic expressions are formatted as strings. On the other hand, code sample 2 sets up a dictionary to map function names to simpler equivalents, particularly mathematical functions like 'Abs', 'Min', and 'Max'. It defines a mapping of known functions to their corresponding representations. The two code samples are syntactically and functionally distinct; the first focuses on printing expressions, while the second handles function name mappings. Thus, they do not exhibit cloning characteristics. \", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes in the SymPy codebase: one deals with expression formatting, and the other deals with function name mappings.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "pydata__xarray-7393",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 00000000..a5ffd15d\nimport xarray as xr\nimport numpy as np\n\nds = xr.Dataset(coords={'a': np.array([0], dtype='i4')})\nresult = ds['a'].values.dtype == ds.stack(b=('a',))['a'].values.dtype\nprint(f\"Original dtype: {ds['a'].values.dtype}\")\nprint(f\"Stacked dtype: {ds.stack(b=('a',))['a'].values.dtype}\")\nprint(f\"Types match? {result}\")\n",
+        "xarray/core/dataset.py": "index 3d4bf0a9..edcec4b4 100644\n                 new_indexes[new_dim] = idx\n                 new_indexes.update({k: idx for k in product_vars})\n                 idx_vars = idx.create_variables(product_vars)\n# Preserve original dtypes from product_vars\nfor k, var in idx_vars.items():\nif k in product_vars:\nidx_vars[k] = var.astype(product_vars[k].dtype)\n                 # keep consistent multi-index coordinate order\n                 for k in idx_vars:\n                     new_variables.pop(k, None)\n                 new_variables.update(idx_vars)\n                 new_coord_names.update(idx_vars)\n \n\n         indexes = {k: v for k, v in self._indexes.items() if k not in drop_indexes}\n         indexes.update(new_indexes)\n \n             restore_coord_dims=restore_coord_dims,\n             **indexer_kwargs,\n         )\n\n"
+    },
+    "ground_truth_patch": {
+        "xarray/core/indexing.py": "         self.level = level\n \n     def __array__(self, dtype: DTypeLike = None) -> np.ndarray:\nif dtype is None:\ndtype = self.dtype\n         if self.level is not None:\nreturn np.asarray(\nself.array.get_level_values(self.level).values, dtype=dtype\n)\n         else:\n             return super().__array__(dtype)\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically dissimilar, serving different purposes in different files without any functional equivalence. The first sample is primarily creating and manipulating a dataset, while the second sample is part of an array-like object implementation with a different functionality.\"}"
+}

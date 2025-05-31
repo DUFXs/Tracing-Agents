@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-16901",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/models/sql/where.py",
+    "ground_truth_patch_file": "django/db/models/sql/where.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have syntactical similarities but include added, modified, or removed statements. For example, in sample 2, there is an additional conditional statement checking the length of self.children to modify rhs_sum using the Mod function, which is not present in sample 1. Additionally, the use of `Mod` in place of the modulo operator in the rhs assignment indicates a syntactical alteration.\"}"
+}

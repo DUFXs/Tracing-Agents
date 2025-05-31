@@ -1,0 +1,7 @@
+{
+    "instance_id": "matplotlib__matplotlib-22865",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "lib/matplotlib/colorbar.py",
+    "ground_truth_patch_file": "lib/matplotlib/colorbar.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in whitespace and the literal value used for the 'end_idx' variable. In the first sample, 'end_idx' is set to -1, while in the second sample, 'end_idx' is set to 'len(X)'. All other structures, logic, and comments are identical, making them type-2 clones.\"}"
+}

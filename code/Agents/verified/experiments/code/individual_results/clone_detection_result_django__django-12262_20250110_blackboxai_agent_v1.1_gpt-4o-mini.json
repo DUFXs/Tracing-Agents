@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12262",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/template/library.py": "index 20bc86dac8..d8d9e25100 100644\n     unhandled_params = list(params)\n     unhandled_kwargs = [\n         kwarg for kwarg in kwonly\nif kwarg not in (kwonly_defaults or {})\n     ]\n     for bit in bits:\n         # First we try to extract a potential kwarg from the bit\n         if kwarg:\n             # The kwarg was successfully extracted\n             param, value = kwarg.popitem()\nif (param not in params and \nparam not in kwonly and \nvarkw is None):\n                 # An unexpected keyword argument was supplied\n                 raise TemplateSyntaxError(\n                     \"'%s' received unexpected keyword argument '%s'\" %\n"
+    },
+    "ground_truth_patch": {
+        "django/template/library.py": "         if kwarg:\n             # The kwarg was successfully extracted\n             param, value = kwarg.popitem()\nif param not in params and param not in kwonly and varkw is None:\n                 # An unexpected keyword argument was supplied\n                 raise TemplateSyntaxError(\n                     \"'%s' received unexpected keyword argument '%s'\" %\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in terms of logic and structure, with differences only in whitespace and layout. Both samples contain the same logic for handling keyword arguments and raising an error, but the formatting differences do not change their functional equivalence.\"}"
+}

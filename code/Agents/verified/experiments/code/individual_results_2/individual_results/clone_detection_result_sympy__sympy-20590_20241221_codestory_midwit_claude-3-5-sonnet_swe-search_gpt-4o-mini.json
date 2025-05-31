@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-20590",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "sympy/core/_print_helpers.py",
+    "ground_truth_patch_file": "sympy/core/_print_helpers.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and functionality but differ in comments and specific wording around the context. Additionally, there are variations in whitespace and layout, and potential differences in identifier names or literal values are not present.\"}"
+}

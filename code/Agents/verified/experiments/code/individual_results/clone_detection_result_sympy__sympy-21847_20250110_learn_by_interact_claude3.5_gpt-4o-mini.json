@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-21847",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sympy/polys/monomials.py": "index 0e84403307..fb0097aa6c 100644\n                 for variable in item:\n                     if variable != 1:\n                         powers[variable] += 1\nif sum(powers.values()) >= min_degree:\n                     monomials_list_comm.append(Mul(*item))\n\n             yield from set(monomials_list_comm)\n         else:\n             monomials_list_non_comm = []\n                 for variable in item:\n                     if variable != 1:\n                         powers[variable] += 1\nif sum(powers.values()) >= min_degree:\n                     monomials_list_non_comm.append(Mul(*item))\n             yield from set(monomials_list_non_comm)\n\n     else:\n         if any(min_degrees[i] > max_degrees[i] for i in range(n)):\n             raise ValueError('min_degrees[i] must be <= max_degrees[i] for all i')\n                 \"an instance of Monomial class expected, got %s\" % other)\n \n         return self.rebuild(monomial_lcm(self.exponents, exponents))\n\n\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/polys/monomials.py": "                 for variable in item:\n                     if variable != 1:\n                         powers[variable] += 1\nif sum(powers.values()) >= min_degree:\n                     monomials_list_comm.append(Mul(*item))\n             yield from set(monomials_list_comm)\n         else:\n                 for variable in item:\n                     if variable != 1:\n                         powers[variable] += 1\nif sum(powers.values()) >= min_degree:\n                     monomials_list_non_comm.append(Mul(*item))\n             yield from set(monomials_list_non_comm)\n     else:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout. The structure and content of the code are the same.\"}"
+}

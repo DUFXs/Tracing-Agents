@@ -1,0 +1,11 @@
+{
+    "instance_id": "sphinx-doc__sphinx-8721",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sphinx/ext/viewcode.py": "index 27202ee..6a7cf05 100644\n     env = app.builder.env\n     if not hasattr(env, '_viewcode_modules'):\n         return\nif app.builder.name == 'epub' and not env.config.viewcode_enable_epub:\nreturn\n     highlighter = app.builder.highlighter  # type: ignore\n     urito = app.builder.get_relative_uri\n \n"
+    },
+    "ground_truth_patch": {
+        "sphinx/ext/viewcode.py": "     env = app.builder.env\n     if not hasattr(env, '_viewcode_modules'):\n         return\nif app.builder.name == \"singlehtml\":\nreturn\nif app.builder.name.startswith(\"epub\") and not env.config.viewcode_enable_epub:\nreturn\n     highlighter = app.builder.highlighter  # type: ignore\n     urito = app.builder.get_relative_uri\n \n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 checks if the environment has '_viewcode_modules' attribute and returns if it doesn't. It then checks if the builder name is 'epub' and the viewcode_enable_epub config is false, and returns in that case. The code in code sample 2 performs similar checks but has an additional condition checking if the builder name is 'singlehtml', and slightly different logic for the epub check (checking if name starts with 'epub' instead of exact match).\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they have the same basic structure and purpose, but code sample 2 has an additional condition (checking for 'singlehtml') and a modified condition (using startswith('epub') instead of exact match). The core functionality remains similar, but there are these small modifications in the statements. Both samples share the same environment check at the beginning and the same highlighter and urito assignments at the end, with the main differences being in the middle conditional checks.\"\n}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-13439",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sklearn/pipeline.py": "index 4594f40..fd40d97 100644\n         # check if first estimator expects pairwise input\n         return getattr(self.steps[0][1], '_pairwise', False)\n \ndef __len__(self):\n\"\"\"Returns the length of the Pipeline\"\"\"\nreturn len(self.steps)\n\n \n def _name_estimators(estimators):\n     \"\"\"Generate names for estimators.\"\"\"\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/pipeline.py": "             if trans is not None and trans != 'passthrough':\n                 yield idx, name, trans\n \ndef __len__(self):\n\"\"\"\nReturns the length of the Pipeline\n\"\"\"\nreturn len(self.steps)\n\n     def __getitem__(self, ind):\n         \"\"\"Returns a sub-pipeline or a single esimtator in the pipeline\n \n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 contains parts of a Pipeline class implementation in scikit-learn, including a property that checks for pairwise input, a __len__ method that returns the length of steps, and the beginning of a _name_estimators method. The code in code sample 2 also contains parts of the Pipeline class implementation, including a generator function (partial), the same __len__ method, and the beginning of a __getitem__ method.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they contain identical __len__ method implementations, including the same docstring ('Returns the length of the Pipeline'), the same implementation (return len(self.steps)), and the same functionality. While the code samples contain different surrounding methods, the __len__ method itself is exactly the same with only minor differences in whitespace/formatting. This matches the definition of a type-1 clone where the code is identical except for differences in whitespace, layout, and comments.\"\n}"
+}

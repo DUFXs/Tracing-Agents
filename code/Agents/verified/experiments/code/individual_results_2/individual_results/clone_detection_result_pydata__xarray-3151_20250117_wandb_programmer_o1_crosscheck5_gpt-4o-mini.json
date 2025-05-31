@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-3151",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_nonmonotonic_combinebycoords.py",
+    "ground_truth_patch_file": "xarray/core/combine.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to different contexts and serve different purposes in the codebase. The first sample is a standalone test script that demonstrates the use of the xarray library and includes data generation and error handling, while the second sample is a fragment from an implementation file in the xarray library that deals with coordinate checks. They are syntactically dissimilar and functionally unrelated.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11179",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/models/deletion.py": "index 92fe4affb9..482c4aae87 100644\n             if self.can_fast_delete(instance):\n                 with transaction.mark_for_rollback_on_error():\n                     count = sql.DeleteQuery(model).delete_batch([instance.pk], self.using)\nsetattr(instance, model._meta.pk.attname, None)\n                 return count, {model._meta.label: count}\n \n         with transaction.atomic(using=self.using, savepoint=False):\n             for instance in instances:\n                 setattr(instance, model._meta.pk.attname, None)\n         return sum(deleted_counter.values()), dict(deleted_counter)\n\n",
+        "reproduce.py": "new file mode 100644\nindex 0000000000..3bdacf3754\nfrom django.conf import settings\nsettings.configure(\nDATABASES={\n'default': {\n'ENGINE': 'django.db.backends.sqlite3',\n'NAME': ':memory:',\n}\n},\nINSTALLED_APPS=['django.contrib.contenttypes']\n)\n\nimport django\ndjango.setup()\n\nfrom django.db import models, connection\n\n# Create a simple model\nclass SimpleModel(models.Model):\nname = models.CharField(max_length=100)\n\nclass Meta:\n# Use an app that's already installed\napp_label = 'contenttypes'\n\n# Create the table manually\nwith connection.schema_editor() as schema_editor:\nschema_editor.create_model(SimpleModel)\n\n# Create and delete an instance\nobj = SimpleModel.objects.create(name=\"test\")\nprint(f\"Before delete - PK: {obj.pk}\")\nobj.delete()\nprint(f\"After delete - PK: {obj.pk}\")\n\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/deletion.py": "             if self.can_fast_delete(instance):\n                 with transaction.mark_for_rollback_on_error():\n                     count = sql.DeleteQuery(model).delete_batch([instance.pk], self.using)\nsetattr(instance, model._meta.pk.attname, None)\n                 return count, {model._meta.label: count}\n \n         with transaction.atomic(using=self.using, savepoint=False):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout. The significant logic and structure of the code are the same, only minor formatting variations exist between the two samples.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13315",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/forms/models.py",
+    "ground_truth_patch_file": "django/forms/models.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity but have added, modified, or removed statements. The first code sample includes a call to `complex_filter(limit_choices_to).distinct()`, while the second code sample introduces additional logic related to `Exists`, `OuterRef`, and `pk`, altering the implementation of how limit choices are applied to the form field's queryset. The primary structure and purpose remain consistent, indicating they are related while not being identical.\"}"
+}

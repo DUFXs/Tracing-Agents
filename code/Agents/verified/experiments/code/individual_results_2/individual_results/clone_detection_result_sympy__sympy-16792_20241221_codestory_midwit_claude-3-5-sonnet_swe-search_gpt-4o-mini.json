@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-16792",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "sympy/utilities/codegen.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different functionalities and are syntactically dissimilar. The first sample is focused on testing the behavior of an autowrap function with specific matrix expressions, while the second sample defines a helper function related to dimension retrieval for array-like arguments and modifies a list of arguments. There is no functional or syntactical similarity that qualifies them as clones.\"}"
+}

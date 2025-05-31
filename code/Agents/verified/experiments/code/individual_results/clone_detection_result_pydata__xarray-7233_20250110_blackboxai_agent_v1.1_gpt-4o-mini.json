@@ -1,0 +1,12 @@
+{
+    "instance_id": "pydata__xarray-7233",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 21c18c17..dde62bbf 100644\n doc/external-examples-gallery.txt\n doc/notebooks-examples-gallery.txt\n doc/videos-gallery.txt\n.aider/\n",
+        "xarray/core/rolling.py": "index c194ec08..511f524f 100644\n             else:\n                 reshaped[key] = var\n \n# Ensure all original coordinates that exist in the reshaped result remain coordinates\nshould_be_coords = set(reshaped.variables) & set(self.obj.coords)\n         result = reshaped.set_coords(should_be_coords)\n         if isinstance(self.obj, DataArray):\n             return self.obj._from_temp_dataset(result)\n"
+    },
+    "ground_truth_patch": {
+        "xarray/core/rolling.py": "             else:\n                 reshaped[key] = var\n \n# should handle window_dim being unindexed\nshould_be_coords = (set(window_dim) & set(self.obj.coords)) | set(\nself.obj.coords\n)\n         result = reshaped.set_coords(should_be_coords)\n         if isinstance(self.obj, DataArray):\n             return self.obj._from_temp_dataset(result)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share a similar structure and logic, but there are differences in the content of the assignments (specifically, the set operations with the `should_be_coords` variable). The first sample uses a set intersection, while the second sample uses a set union along with a non-empty set of the object's coordinates, indicating added or modified statements.\"}"
+}

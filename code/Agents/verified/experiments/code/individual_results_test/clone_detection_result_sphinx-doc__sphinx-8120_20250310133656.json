@@ -1,0 +1,7 @@
+{
+    "instance_id": "sphinx-doc__sphinx-8120",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "sphinx/locale/__init__.py",
+    "ground_truth_patch_file": "sphinx/locale/__init__.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\"}"
+}

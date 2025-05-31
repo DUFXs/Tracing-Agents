@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-10973",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/backends/postgresql/client.py",
+    "ground_truth_patch_file": "django/db/backends/postgresql/client.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in identifier names (like 'env' vs 'subprocess_env') and the order of arguments in the subprocess.run call. The changes include differences in whitespace and comments, but the overall structure and logic remain consistent.\"}"
+}

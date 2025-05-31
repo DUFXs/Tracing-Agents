@@ -1,0 +1,14 @@
+{
+    "instance_id": "sphinx-doc__sphinx-8269",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/builders/linkcheck.py": "index 9b54afc7c..e0acc4ab5 100644\n                     # Read the whole document and see if #anchor exists\n                     response = requests.get(req_url, stream=True, config=self.app.config,\n                                             auth=auth_info, **kwargs)\nresponse.raise_for_status()  # Check for HTTP errors first\n                     found = check_anchor(response, unquote(anchor))\n                     if not found:\n                         raise Exception(__(\"Anchor '%s' not found\") % anchor)\n                 else:\n",
+        "test_404/source/conf.py": "new file mode 100644\nindex 000000000..91eaa52b2\nproject = 'test'\ncopyright = '2023'\nauthor = 'test'\nrelease = '1.0'\nextensions = []\nlinkcheck_anchors = True\n",
+        "test_404/source/index.rst": "new file mode 100644\nindex 000000000..383a3337d\nTest Page\n=========\n\n`404 with anchor <https://google.com/nonexistent.txt#test>`_\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/builders/linkcheck.py": "                     # Read the whole document and see if #anchor exists\n                     response = requests.get(req_url, stream=True, config=self.app.config,\n                                             auth=auth_info, **kwargs)\nresponse.raise_for_status()\n                     found = check_anchor(response, unquote(anchor))\n \n                     if not found:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace. The sequences of the code and comments are the same; only certain whitespace changes occur between the two samples.\"}"
+}

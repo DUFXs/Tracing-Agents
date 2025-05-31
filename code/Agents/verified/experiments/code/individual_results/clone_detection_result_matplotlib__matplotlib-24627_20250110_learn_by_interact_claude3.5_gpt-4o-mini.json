@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-24627",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "lib/matplotlib/axes/_base.py": "index 90b0bf117e..0195df1f9c 100644\n         else:\n             patch_visible = True\n \n# Unset axes and figure references for all artists\nfor artist in self._children:\nartist.axes = None\nif hasattr(artist, 'figure'):\nartist.figure = None\n\n\n         xaxis_visible = self.xaxis.get_visible()\n         yaxis_visible = self.yaxis.get_visible()\n \n             self.yaxis.set_tick_params(which=\"both\", labelright=False)\n             if self.yaxis.offsetText.get_position()[0] == 1:\n                 self.yaxis.offsetText.set_visible(False)\n\n",
+        "reproduce.py": "new file mode 100644\nindex 0000000000..67f7c0819f\nimport matplotlib.pyplot as plt\n\ndef test_remove():\nf, a = plt.subplots()\nl, = a.plot([1, 2])\nl.remove()\nprint(\"After remove():\", l.axes)\n\ndef test_cla():\nf, a = plt.subplots()\nl, = a.plot([1, 2])\na.cla()\nprint(\"After cla():\", l.axes)\n\ntest_remove()\ntest_cla()\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/axes/_base.py": "         self._get_patches_for_fill = _process_plot_var_args(self, 'fill')\n \n         self._gridOn = mpl.rcParams['axes.grid']\nold_children, self._children = self._children, []\nfor chld in old_children:\nchld.axes = chld.figure = None\n         self._mouseover_set = _OrderedSet()\n         self.child_axes = []\n         self._current_image = None  # strictly for pyplot via _sci, _gci\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they exhibit different functionality and purposes. Sample 1 deals with modifying the visibility of plot axes and resetting references to artists in matplotlib, while Sample 2 focuses on managing plot configuration and initializing properties of children in a grid-like structure. The syntactical structures and logical flows are distinct, indicating they are not similar in functionality.\"}"
+}

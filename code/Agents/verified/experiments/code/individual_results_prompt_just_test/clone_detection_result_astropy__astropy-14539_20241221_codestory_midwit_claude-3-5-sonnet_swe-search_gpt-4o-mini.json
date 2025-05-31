@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-14539",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "astropy/io/fits/diff.py": "index 100cdf1b8c..2bbeaf9ddb 100644\n                 arrb.dtype, np.floating\n             ):\n                 diffs = where_not_allclose(arra, arrb, rtol=self.rtol, atol=self.atol)\nelif \"P\" in col.format or \"Q\" in col.format:\n# Handle variable-length arrays (both P and Q formats)\n                 diffs = (\n                     [\n                         idx\n                         for idx in range(len(arra))\nif (len(arra[idx]) != len(arrb[idx]) or\nnot np.allclose(\narra[idx], arrb[idx], rtol=self.rtol, atol=self.atol\n))\n                     ],\n                 )\n             else:\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..b95e0804b6\nfrom astropy.io import fits\n\n# Create a column with variable length arrays\ncol = fits.Column('a', format='QD', array=[[0], [0, 0]])\nhdu = fits.BinTableHDU.from_columns([col])\nhdu.writeto('diffbug.fits', overwrite=True)\n\n# Test the FITSDiff functionality\nprint(\"\\nTesting FITSDiff on identical files:\")\nprint(fits.FITSDiff('diffbug.fits', 'diffbug.fits').identical)\nprint(\"\\nDetailed diff output:\")\nfits.printdiff('diffbug.fits', 'diffbug.fits')\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "astropy/io/fits/diff.py": "                 arrb.dtype, np.floating\n             ):\n                 diffs = where_not_allclose(arra, arrb, rtol=self.rtol, atol=self.atol)\nelif \"P\" in col.format or \"Q\" in col.format:\n                 diffs = (\n                     [\n                         idx\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 seems to be a part of a function that compares two arrays (arra and arrb) for differences when working with FITS files in the astropy library. It checks for specific data types and handles variable-length arrays in a certain format. The code also applies certain tolerances for comparison. In code sample 2, the snippet continues from the similar context of handling comparisons of arrays in a FITS file but is truncated and does not complete the conditional logic or variable assignments seen in sample 1.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in logic and structure, with only minor differences in whitespace and layout.\"}"
+}

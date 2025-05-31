@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14053",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "edge_cases.py",
+    "ground_truth_patch_file": "sklearn/tree/export.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and contain different code structures. Sample 1 is a complete script for testing the DecisionTreeClassifier with various cases, while Sample 2 is a partial snippet from a different file related to feature name handling in a tree structure. There are no significant syntactic similarities or functional equivalences between the two.\"}"
+}

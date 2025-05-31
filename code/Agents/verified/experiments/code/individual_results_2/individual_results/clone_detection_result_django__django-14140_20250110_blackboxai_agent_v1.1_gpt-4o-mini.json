@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-14140",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "django/db/models/query_utils.py",
+    "ground_truth_patch_file": "django/db/models/query_utils.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for minor differences in whitespace and layout.\"}"
+}

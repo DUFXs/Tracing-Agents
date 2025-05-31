@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-18189",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/solvers/diophantine.py": "index b9f5e3f..377d4e0 100644\n             if syms != var:\n                 dict_sym_index = dict(zip(syms, range(len(syms))))\n                 return {tuple([t[dict_sym_index[i]] for i in var])\nfor t in diophantine(eq, param, permute=permute)}\n         n, d = eq.as_numer_denom()\n         if n.is_number:\n             return set()\n"
+    },
+    "ground_truth_patch": {
+        "sympy/solvers/diophantine.py": "             if syms != var:\n                 dict_sym_index = dict(zip(syms, range(len(syms))))\n                 return {tuple([t[dict_sym_index[i]] for i in var])\nfor t in diophantine(eq, param, permute=permute)}\n         n, d = eq.as_numer_denom()\n         if n.is_number:\n             return set()\n"
+    },
+    "response": "{\n    \"explanation\": \"Both code samples are part of a Diophantine equation solver and do exactly the same thing. The code checks if the symbols (syms) are different from variables (var), creates a dictionary mapping symbols to their indices, transforms solution tuples based on this mapping, and returns the result. If the equation's numerator is a number after separating numerator and denominator, it returns an empty set.\",\n    \"is_clone\": true,\n    \"classification\": \"type-1\",\n    \"reasoning\": \"These code samples are type-1 clones because they are exactly identical, character by character, including whitespace, layout, and all identifiers. The patches show the same code being added or modified in the same file (sympy/solvers/diophantine.py). There are no differences whatsoever between the two code samples.\"\n}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14765",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "django/db/migrations/state.py": "index 088f5c41f0..7690ac596f 100644\n \n     def __init__(self, models=None, real_apps=None):\n         self.models = models or {}\nif real_apps is not None:\nassert isinstance(real_apps, set), \"real_apps must be a set.\"\nself.real_apps = real_apps\n         else:\n             self.real_apps = set()\n         self.is_delayed = False\n         self.relations = None\n\n \n     def add_model(self, model_state):\n         app_label, model_name = model_state.app_label, model_state.name_lower\n",
+        "test_real_apps_assertion.py": "new file mode 100644\nindex 0000000000..38db1ca97a\n#!/usr/bin/env python3\nimport sys\nimport traceback\n\ndef main():\nprint(\"Checking if ProjectState raises AssertionError when real_apps is a list.\")\nfrom django.db.migrations.state import ProjectState\n\ntry:\nstate = ProjectState(real_apps=[\"some_app\"])\nprint(\"No assertion error encountered, fix not present.\")\nsys.exit(1)\nexcept AssertionError:\nprint(\"AssertionError encountered as expected, fix is present.\")\nsys.exit(0)\nexcept Exception as e:\nprint(\"Unexpected exception encountered:\")\ntraceback.print_exc()\nsys.exit(2)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/state.py": "     def __init__(self, models=None, real_apps=None):\n         self.models = models or {}\n         # Apps to include from main registry, usually unmigrated ones\nif real_apps is None:\nreal_apps = set()\n         else:\nassert isinstance(real_apps, set)\nself.real_apps = real_apps\n         self.is_delayed = False\n         # {remote_model_key: {model_key: [(field_name, field)]}}\n         self.relations = None\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities with modifications present. Specifically, the second sample features changes in the structure related to how 'real_apps' is handled, particularly the use of comments and the omission of assert statements in certain contexts. This indicates that while they follow a similar pattern, statements have been added, modified, or removed between the two samples.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14141",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..d909a3324\nimport sklearn\n\n# Show current versions information\nsklearn.show_versions()\n\\ No newline at end of file\n",
+        "sklearn/utils/_show_versions.py": "index e5d3141bf..ecba9ec68 100644\n         \"Cython\",\n         \"pandas\",\n         \"matplotlib\",\n\"joblib\",\n     ]\n \n     def get_version(module):\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/utils/_show_versions.py": "         \"Cython\",\n         \"pandas\",\n         \"matplotlib\",\n\"joblib\",\n     ]\n \n     def get_version(module):\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 shows the addition of a new file called 'reproduce_error.py' that imports the sklearn library and calls the function to show the current versions of the libraries used. Meanwhile, code sample 2 only includes a part of the contents of 'sklearn/utils/_show_versions.py', showing a list of libraries followed by a function definition, and does not include any information about 'reproduce_error.py'.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because code sample 1 introduces a new file and contains a function call which is not present in code sample 2. They are different both in terms of content and functionality; thus, they do not match any clone definitions.\"}"
+}

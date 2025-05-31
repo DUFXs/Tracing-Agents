@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14765",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/db/migrations/state.py": "index 088f5c41f0..1d30c7a20d 100644\n         self.models = models or {}\n         # Apps to include from main registry, usually unmigrated ones\n         if real_apps:\nassert isinstance(real_apps, set), \"real_apps must be a set\"\nself.real_apps = real_apps\n         else:\n             self.real_apps = set()\n         self.is_delayed = False\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..fd5a04ac8a\nfrom django.db.migrations.state import ProjectState\n\n# Current behavior - accepts non-set types and converts them\nreal_apps = ['auth', 'contenttypes']  # passing a list instead of a set\nstate = ProjectState(real_apps=real_apps)\nprint(f\"Type of real_apps after initialization: {type(state.real_apps)}\")\nprint(f\"Value of real_apps after initialization: {state.real_apps}\")\n\n# After our change, this should raise an AssertionError\nprint(\"\\nTrying with list instead of set (should fail after our changes):\")\ntry:\nstate = ProjectState(real_apps=['auth', 'contenttypes'])\nprint(\"No assertion error - this is wrong!\")\nexcept AssertionError as e:\nprint(\"Got expected AssertionError - this is correct!\")\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/state.py": "     def __init__(self, models=None, real_apps=None):\n         self.models = models or {}\n         # Apps to include from main registry, usually unmigrated ones\nif real_apps is None:\nreal_apps = set()\n         else:\nassert isinstance(real_apps, set)\nself.real_apps = real_apps\n         self.is_delayed = False\n         # {remote_model_key: {model_key: [(field_name, field)]}}\n         self.relations = None\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they represent different functionality. The first sample sets `self.real_apps` based on whether `real_apps` is provided and uses an assertion to ensure it is a set. The second sample has a different approach for handling the `real_apps` initialization and modifies the handling of `None`. They have different structures and logic, making them functionally dissimilar.\"}"
+}

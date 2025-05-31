@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15277",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "django/db/models/fields/__init__.py": "index f30b523346..978e8c0e3d 100644\n     def __init__(self, *args, db_collation=None, **kwargs):\n         super().__init__(*args, **kwargs)\n         self.db_collation = db_collation\nif self.max_length is not None:\nself.validators.append(validators.MaxLengthValidator(self.max_length))\n\n \n     def check(self, **kwargs):\n         databases = kwargs.get('databases') or []\n",
+        "test_value_charfield_bug.py": "new file mode 100644\nindex 0000000000..cf0e9e790e\n#!/usr/bin/env python3\n\nimport sys\nimport traceback\nfrom django.db.models import Value\n\ndef main():\nprint(\"Starting test of the Value('test') bug using CharField with None max_length.\")\ntry:\nx = Value(\"test\")\ny = x._resolve_output_field()\ny.clean(\"1\", None)\nexcept TypeError as e:\nprint(\"BUG still present: A TypeError occurred:\")\ntraceback.print_exc()\nsys.exit(1)\nexcept Exception as e:\nprint(\"An unexpected exception occurred:\")\ntraceback.print_exc()\nsys.exit(2)\n\nprint(\"No error occurred. It appears the bug is fixed. Exiting 0.\")\nsys.exit(0)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/__init__.py": "     def __init__(self, *args, db_collation=None, **kwargs):\n         super().__init__(*args, **kwargs)\n         self.db_collation = db_collation\nif self.max_length is not None:\nself.validators.append(validators.MaxLengthValidator(self.max_length))\n \n     def check(self, **kwargs):\n         databases = kwargs.get('databases') or []\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout. The content of both code samples in the 'django/db/models/fields/__init__.py' portion is exactly the same, with only variations in whitespace formatting.\"}"
+}

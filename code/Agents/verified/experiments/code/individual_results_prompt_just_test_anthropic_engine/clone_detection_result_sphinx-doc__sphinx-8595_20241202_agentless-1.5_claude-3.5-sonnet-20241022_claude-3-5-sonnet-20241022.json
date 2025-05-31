@@ -1,0 +1,11 @@
+{
+    "instance_id": "sphinx-doc__sphinx-8595",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sphinx/ext/autodoc/__init__.py": "index 598a973..038a2be 100644\n     def get_object_members(self, want_all: bool) -> Tuple[bool, ObjectMembers]:\n         members = self.get_module_members()\n         if want_all:\nif self.__all__ is None:\n                 # for implicit module members, check __module__ to avoid\n                 # documenting imported objects\n                 return True, list(members.values())\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/ext/autodoc/__init__.py": "     def get_object_members(self, want_all: bool) -> Tuple[bool, ObjectMembers]:\n         members = self.get_module_members()\n         if want_all:\nif self.__all__ is None:\n                 # for implicit module members, check __module__ to avoid\n                 # documenting imported objects\n                 return True, list(members.values())\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples contain a method 'get_object_members' that takes a boolean parameter 'want_all' and returns a Tuple of boolean and ObjectMembers. The method gets module members and checks if 'want_all' is true. If it is, and if '__all__' is None, it returns True and a list of member values. This appears to be part of Sphinx's autodoc functionality for handling module documentation.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are exactly identical, including the same whitespace, layout, comments, and code structure. The only difference is in the patch header showing 'index 598a973..038a2be 100644' in sample 1, which is metadata and not part of the actual code.\"\n}"
+}

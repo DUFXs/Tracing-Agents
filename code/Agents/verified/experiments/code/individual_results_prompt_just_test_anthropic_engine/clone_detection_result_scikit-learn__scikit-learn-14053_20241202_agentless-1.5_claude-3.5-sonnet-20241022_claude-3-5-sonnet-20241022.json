@@ -1,0 +1,11 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14053",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sklearn/tree/export.py": "index 8644d61..0f977f9 100644\n         value_fmt = \"{}{} value: {}\\n\"\n \n     if feature_names:\nfeature_names_ = [feature_names[i] if i != _tree.TREE_UNDEFINED else \"undefined\"\nfor i in tree_.feature]\n     else:\nfeature_names_ = [\"feature_{}\".format(i) if i != _tree.TREE_UNDEFINED else \"undefined\"\nfor i in tree_.feature]\n \n     export_text.report = \"\"\n \n                                                             trunc_report)\n \n     print_tree_recurse(0, 1)\nreturn export_text.report\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/tree/export.py": "         value_fmt = \"{}{} value: {}\\n\"\n \n     if feature_names:\nfeature_names_ = [feature_names[i] if i != _tree.TREE_UNDEFINED\nelse None for i in tree_.feature]\n     else:\n         feature_names_ = [\"feature_{}\".format(i) for i in tree_.feature]\n \n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 processes feature names in a decision tree, creating a list of feature names either from provided names or generating default names ('feature_X'). When a feature index is TREE_UNDEFINED, it uses 'undefined' as the name. The code also includes additional functionality for text export and recursive tree printing. The code in code sample 2 performs a similar feature name processing, but handles undefined features differently (using None instead of 'undefined') and has a simpler implementation for the else case without checking for TREE_UNDEFINED.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they share the same basic structure and purpose (processing feature names for a decision tree), but have some modified statements and slight behavioral differences. Key differences include: 1) Using 'None' vs 'undefined' for undefined features, 2) The else clause in sample 2 is simpler and doesn't check for TREE_UNDEFINED, 3) Sample 1 contains additional code for text export and tree recursion. The core logic is similar, but there are enough statement modifications and additions/removals to classify this as a type-3 clone rather than type-1 or type-2.\"\n}"
+}

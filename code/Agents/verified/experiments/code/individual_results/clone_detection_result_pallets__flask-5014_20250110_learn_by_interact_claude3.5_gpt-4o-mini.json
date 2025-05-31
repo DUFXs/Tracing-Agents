@@ -1,0 +1,12 @@
+{
+    "instance_id": "pallets__flask-5014",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 00000000..41e7bc7f\nfrom flask import Blueprint\n\n# Test case 1: Empty string (already tested)\ntry:\nbp = Blueprint(name=\"\", import_name=\"test\")\nprint(\"ERROR: Empty name was accepted!\")\nexcept ValueError as e:\nprint(\"SUCCESS: Empty name rejected -\", str(e))\n\n# Test case 2: Only whitespace\ntry:\nbp = Blueprint(name=\"   \", import_name=\"test\")\nprint(\"ERROR: Whitespace-only name was accepted!\")\nexcept ValueError as e:\nprint(\"SUCCESS: Whitespace-only name rejected -\", str(e))\n\n# Test case 3: Valid name (should work)\ntry:\nbp = Blueprint(name=\"valid_name\", import_name=\"test\")\nprint(\"SUCCESS: Valid name accepted\")\nexcept ValueError as e:\nprint(\"ERROR: Valid name rejected -\", str(e))\n\n",
+        "src/flask/blueprints.py": "index eb50585d..bbe9fe1f 100644\n             root_path=root_path,\n         )\n \nif not name or not name.strip():\nraise ValueError(\"'name' cannot be empty.\")\n         if \".\" in name:\n             raise ValueError(\"'name' may not contain a dot '.' character.\")\n \n             lambda s: s.app.url_default_functions.setdefault(None, []).append(f)\n         )\n         return f\n\n"
+    },
+    "ground_truth_patch": {
+        "src/flask/blueprints.py": "             root_path=root_path,\n         )\n \nif not name:\nraise ValueError(\"'name' may not be empty.\")\n\n         if \".\" in name:\n             raise ValueError(\"'name' may not contain a dot '.' character.\")\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-4\", \"reasoning\": \"These code samples are type-4 clones because they are syntactically dissimilar but functionally equivalent. Both code samples handle errors related to the validity of a 'name' parameter in the Blueprint class of Flask by raising ValueErrors when the name is not valid, but they do so in slightly different ways. The first sample checks for both empty and whitespace-only names, while the second only checks for a non-empty name. However, the underlying logic of raising a ValueError for invalid names links them functionally.\"}"
+}

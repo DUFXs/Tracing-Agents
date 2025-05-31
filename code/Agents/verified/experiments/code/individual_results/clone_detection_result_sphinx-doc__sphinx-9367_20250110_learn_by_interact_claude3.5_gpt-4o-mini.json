@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-9367",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 000000000..57a7ed6b8\nfrom sphinx.pycode.ast import _UnparseVisitor\nimport ast\n\ndef test_tuple(elements, expected):\ntuple_node = ast.Tuple(elts=[ast.Constant(value=x) for x in elements], ctx=ast.Load())\nvisitor = _UnparseVisitor()\nresult = visitor.visit(tuple_node)\nprint(f\"Input: {elements}\")\nprint(f\"Output: {result}\")\nprint(f\"Expected: {expected}\")\nprint(f\"Test passed: {result == expected}\\n\")\n\n# Test cases\ntest_tuple([], \"()\")  # Empty tuple\ntest_tuple([1], \"(1,)\")  # Single element\ntest_tuple([1, 2], \"(1, 2)\")  # Two elements\ntest_tuple([1, 2, 3], \"(1, 2, 3)\")  # Three elements\n",
+        "sphinx/pycode/ast.py": "index f541ec0a9..9893453e6 100644\n         return \"%s %s\" % (self.visit(node.op), self.visit(node.operand))\n \n     def visit_Tuple(self, node: ast.Tuple) -> str:\nif not node.elts:\n             return \"()\"\nelements = \", \".join(self.visit(e) for e in node.elts)\nif len(node.elts) == 1:\nelements += \",\"\nreturn \"(\" + elements + \")\"\n\n \n     if sys.version_info < (3, 8):\n         # these ast nodes were deprecated in python 3.8\n \n     def generic_visit(self, node):\n         raise NotImplementedError('Unable to parse %s object' % type(node).__name__)\n\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/pycode/ast.py": "         return \"%s %s\" % (self.visit(node.op), self.visit(node.operand))\n \n     def visit_Tuple(self, node: ast.Tuple) -> str:\nif len(node.elts) == 0:\n             return \"()\"\nelif len(node.elts) == 1:\nreturn \"(%s,)\" % self.visit(node.elts[0])\nelse:\nreturn \"(\" + \", \".join(self.visit(e) for e in node.elts) + \")\"\n \n     if sys.version_info < (3, 8):\n         # these ast nodes were deprecated in python 3.8\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but include modified statements. In Code Sample 1, the method checks for an empty tuple by verifying if 'node.elts' is empty using 'if not node.elts', while Code Sample 2 uses 'if len(node.elts) == 0'. Additionally, the handling of single-element tuples differs, where Sample 1 appends a comma directly to 'elements' while Sample 2 generates the single-element tuple as '(element,)' by formatting strings. Therefore, there are added and modified statements that distinguish them.\"}"
+}

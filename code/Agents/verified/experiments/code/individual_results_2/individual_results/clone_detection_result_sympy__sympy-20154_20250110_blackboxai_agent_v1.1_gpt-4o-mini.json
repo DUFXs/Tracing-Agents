@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-20154",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": ".gitignore",
+    "ground_truth_patch_file": "sympy/utilities/iterables.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are from different files with entirely different content and functionality. The first sample is a `.gitignore` file with a list of files and directories to ignore, while the second sample appears to be Python code from a utility module with various statements and references.\"}"
+}

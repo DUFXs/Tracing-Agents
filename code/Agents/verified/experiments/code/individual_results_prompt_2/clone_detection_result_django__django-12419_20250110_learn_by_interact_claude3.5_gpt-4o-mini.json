@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12419",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/conf/global_settings.py": "index 09c9b95d26..98400ec826 100644\n SECURE_HSTS_PRELOAD = False\n SECURE_HSTS_SECONDS = 0\n SECURE_REDIRECT_EXEMPT = []\nSECURE_REFERRER_POLICY = \"same-origin\"\n\n SECURE_SSL_HOST = None\n SECURE_SSL_REDIRECT = False\n\n",
+        "test_referrer_policy.py": "new file mode 100644\nindex 0000000000..70a74d4e6e\nimport sys, os\n\n# Add the Django path\nsys.path.insert(0, os.path.abspath('/workspace/django__django__3.1'))\n\n# Import the settings module directly\nfrom django.conf import global_settings\n\ndef main():\nprint(f\"SECURE_REFERRER_POLICY = {global_settings.SECURE_REFERRER_POLICY}\")\nassert global_settings.SECURE_REFERRER_POLICY == \"same-origin\", \"SECURE_REFERRER_POLICY should be 'same-origin'\"\nprint(\"Test passed!\")\n\nif __name__ == '__main__':\nmain()\n\n"
+    },
+    "ground_truth_patch": {
+        "django/conf/global_settings.py": " SECURE_HSTS_PRELOAD = False\n SECURE_HSTS_SECONDS = 0\n SECURE_REDIRECT_EXEMPT = []\nSECURE_REFERRER_POLICY = 'same-origin'\n SECURE_SSL_HOST = None\n SECURE_SSL_REDIRECT = False\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 includes the declaration of several security settings in a Django configuration file, specifically 'global_settings.py'. It sets HSTS preloading, HSTS seconds, and other security-related parameters. The second part of the code involves a Python test script (test_referrer_policy.py) that imports these settings and checks that the SECURE_REFERRER_POLICY is set to 'same-origin', asserting its correctness and printing a confirmation message. The code in code sample 2 contains only the security settings declarations from 'global_settings.py', without any testing or assertions. It doesn't include the additional context provided in sample 1.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because code sample 1 involves additional logic in a separate script, which is not present in code sample 2. Thus, they have different functional purposes.\"}"
+}

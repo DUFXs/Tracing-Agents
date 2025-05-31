@@ -1,0 +1,7 @@
+{
+    "instance_id": "astropy__astropy-13579",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "astropy/wcs/wcsapi/wrappers/sliced_wcs.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are substantially different in both functionality and purpose. The first code sample focuses on creating a WCS (World Coordinate System) and performing operations related to it, while the second sample deals with pixel-to-world conversions using different methods and specific implementations in astropy. Hence, they do not share structural similarities or equivalent functions.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10844",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "sklearn/metrics/cluster/supervised.py",
+    "ground_truth_patch_file": "sklearn/metrics/cluster/supervised.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share a similar structure and the same sequence of operations, but the first sample contains an extra part that initializes the contingency matrix 'c', which is present in sample 2 with different whitespace and layout. The differences between the two samples include the presence of the line initializing 'c' in the second sample, indicating the introduction of a new statement related to the functionality.\"}"
+}

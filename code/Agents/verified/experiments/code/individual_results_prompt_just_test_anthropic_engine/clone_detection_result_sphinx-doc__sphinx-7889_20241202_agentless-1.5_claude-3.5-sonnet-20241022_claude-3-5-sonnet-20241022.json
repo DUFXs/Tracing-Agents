@@ -1,0 +1,11 @@
+{
+    "instance_id": "sphinx-doc__sphinx-7889",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sphinx/ext/autodoc/mock.py": "index 6801938..287add7 100644\n \n def _make_subclass(name: str, module: str, superclass: Any = _MockObject,\n                    attributes: Any = None) -> Any:\nattrs = {'__module__': module, '__display_name__': module + '.' + str(name)}\n     attrs.update(attributes or {})\n \nreturn type(str(name), (superclass,), attrs)\n \n \n class _MockModule(ModuleType):\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/ext/autodoc/mock.py": "     def __mro_entries__(self, bases: Tuple) -> Tuple:\n         return (self.__class__,)\n \ndef __getitem__(self, key: Any) -> \"_MockObject\":\nreturn _make_subclass(str(key), self.__display_name__, self.__class__)()\n \n     def __getattr__(self, key: str) -> \"_MockObject\":\n         return _make_subclass(key, self.__display_name__, self.__class__)()\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 defines a helper function '_make_subclass' that creates a new class type with specified name, module, superclass, and attributes. It also starts defining a '_MockModule' class that inherits from ModuleType. While the code in code sample 2 defines several methods (__mro_entries__, __getitem__, and __getattr__) that appear to be part of a mock object implementation, where both __getitem__ and __getattr__ use the _make_subclass function to create new mock objects.\",\n\"is_clone\": false,\n\"classification\": \"N/A\",\n\"reasoning\": \"These code samples are not clones because they serve different purposes and have different structures. Sample 1 defines a utility function for creating subclasses and begins a class definition, while Sample 2 implements specific magic methods for a mock object class. While they are related (Sample 2 uses the function defined in Sample 1), they are distinct pieces of functionality that cannot be considered clones of each other. The code structures, purposes, and implementations are fundamentally different.\"\n}"
+}

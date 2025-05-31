@@ -1,0 +1,12 @@
+{
+    "instance_id": "pytest-dev__pytest-7432",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "src/_pytest/skipping.py": "index 7bd975e5a..832b76ca7 100644\n         else:\n             rep.longrepr = \"Unexpected success\"\n         rep.outcome = \"failed\"\n     elif call.excinfo and isinstance(call.excinfo.value, xfail.Exception):\n         assert call.excinfo.value.msg is not None\n         rep.wasxfail = \"reason: \" + call.excinfo.value.msg\n         rep.outcome = \"skipped\"\nelif not rep.skipped and xfailed and not item.config.option.runxfail:\n         if call.excinfo:\n\n             raises = xfailed.raises\n             if raises is not None and not isinstance(call.excinfo.value, raises):\n                 rep.outcome = \"failed\"\n         elif report.passed:\n             return \"xpassed\", \"X\", \"XPASS\"\n     return None\n\n",
+        "test_skip_location.py": "new file mode 100644\nindex 000000000..0e5ca0671\nimport pytest\n\n@pytest.mark.skip\ndef test_skip_location() -> None:\nassert 0\n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/skipping.py": "             else:\n                 rep.outcome = \"passed\"\n                 rep.wasxfail = xfailed.reason\n\nif (\n         item._store.get(skipped_by_mark_key, True)\n         and rep.skipped\n         and type(rep.longrepr) is tuple\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 handles the outcome of a test case based on certain conditions, such as whether the test was expected to fail and whether it encountered an exception. It assigns various outcomes (like 'failed' or 'skipped') to the 'rep' object based on the state of the test. The code sample also includes a test function that uses the pytest framework to test skipping functionality. In contrast, the code in code sample 2 deals with different conditions regarding the test's result, specifically when the outcome should be marked as 'passed' and includes checks on whether the report was skipped. It does not handle exceptions or expected failure conditions like in sample 1.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different logical purposes and handle distinct conditions in the test outcome evaluation.\"}"
+}

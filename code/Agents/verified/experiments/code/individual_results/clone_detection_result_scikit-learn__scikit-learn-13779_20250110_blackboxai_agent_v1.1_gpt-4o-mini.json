@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-13779",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 73feb51e7..0dceba0b7 100644\n sklearn/utils/seq_dataset.pyx\n sklearn/utils/seq_dataset.pxd\n sklearn/linear_model/sag_fast.pyx\n.aider/\n",
+        "sklearn/ensemble/voting.py": "index 7afa7180c..13accdcec 100644\n \n         if sample_weight is not None:\n             for name, step in self.estimators:\nif step is not None and not has_fit_parameter(step, 'sample_weight'):\n                     raise ValueError('Underlying estimator \\'%s\\' does not'\n                                      ' support sample weights.' % name)\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/ensemble/voting.py": " \n         if sample_weight is not None:\n             for name, step in self.estimators:\nif step is None:\ncontinue\n                 if not has_fit_parameter(step, 'sample_weight'):\n                     raise ValueError('Underlying estimator \\'%s\\' does not'\n                                      ' support sample weights.' % name)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have added, modified, or removed statements. The first sample checks if 'step' is not None and raises a ValueError if the condition fails, while the second sample checks if 'step' is None and continues without raising an error. This indicates a modification of logic although the structure of the code is very similar.\"}"
+}

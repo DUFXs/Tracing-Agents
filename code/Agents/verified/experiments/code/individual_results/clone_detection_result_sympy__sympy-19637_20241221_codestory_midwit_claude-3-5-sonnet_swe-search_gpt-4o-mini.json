@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-19637",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..afe4dbf1ca\nfrom sympy.core.sympify import kernS\n\n# Test case 1: Expression with spaces that need kerning\nexpr1 = kernS(\"2 * (x + y)\")\nprint(\"Test 1:\", expr1)\n\n# Test case 2: Expression with negation\nexpr2 = kernS(\"-(x + 1)\")\nprint(\"Test 2:\", expr2)\n\n# Test case 3: Expression with nested parentheses\nexpr3 = kernS(\"2 * (x + (y - 1))\")\nprint(\"Test 3:\", expr3)\n\\ No newline at end of file\n",
+        "sympy/core/sympify.py": "index a3f1ce2851..e4de0edbcd 100644\n     from random import choice\n     from sympy.core.symbol import Symbol\n     hit = False\nkern = None\n     quoted = '\"' in s or \"'\" in s\n     if '(' in s and not quoted:\n         if s.count('(') != s.count(\")\"):\n             while kern in s:\n                 kern += choice(string.ascii_letters + string.digits)\n             s = s.replace(' ', kern)\nhit = True\n \n     for i in range(2):\n         try:\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/sympify.py": "             while kern in s:\n                 kern += choice(string.ascii_letters + string.digits)\n             s = s.replace(' ', kern)\nhit = kern in s\nelse:\nhit = False\n \n     for i in range(2):\n         try:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar, but contain differences such as missing statements or manipulated logic statements. Specifically, the variable 'hit' has been set differently between the two samples, indicating a functional alteration within a similar structure.\"}"
+}

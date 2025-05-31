@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-15349",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index fdcc1cabf1..3fbed863dc 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/algebras/quaternion.py": "index b84e7cb95a..7eae8d73d0 100644\n \n         m10 = 2*s*(q.b*q.c + q.d*q.a)\n         m11 = 1 - 2*s*(q.b**2 + q.d**2)\nm12 = 2*s*(q.c*q.d - q.b*q.a)\n \n         m20 = 2*s*(q.b*q.d - q.c*q.a)\n         m21 = 2*s*(q.c*q.d + q.b*q.a)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/algebras/quaternion.py": " \n         m10 = 2*s*(q.b*q.c + q.d*q.a)\n         m11 = 1 - 2*s*(q.b**2 + q.d**2)\nm12 = 2*s*(q.c*q.d - q.b*q.a)\n \n         m20 = 2*s*(q.b*q.d - q.c*q.a)\n         m21 = 2*s*(q.c*q.d + q.b*q.a)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and comments. The actual code logic is the same, and the only difference is the presence of additional comments or layout variations.\"}"
+}

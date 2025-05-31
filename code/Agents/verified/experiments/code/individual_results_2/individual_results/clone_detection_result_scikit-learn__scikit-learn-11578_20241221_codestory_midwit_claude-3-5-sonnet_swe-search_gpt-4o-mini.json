@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-11578",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "sklearn/linear_model/logistic.py",
+    "ground_truth_patch_file": "sklearn/linear_model/logistic.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for some differences in identifier names (the parameters passed to `LogisticRegression` in the first sample include `fit_intercept`, `penalty`, `dual`, and `intercept_scaling`, while the second sample does not), as well as whitespace, layout, and comments.\"}"
+}

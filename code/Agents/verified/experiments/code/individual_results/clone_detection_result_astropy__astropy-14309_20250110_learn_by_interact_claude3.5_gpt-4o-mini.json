@@ -1,0 +1,13 @@
+{
+    "instance_id": "astropy__astropy-14309",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "astropy/io/fits/connect.py": "index 4b6150f4ac..e7055651b6 100644\n             (\".fits\", \".fits.gz\", \".fit\", \".fit.gz\", \".fts\", \".fts.gz\")\n         ):\n             return True\nreturn len(args) > 0 and isinstance(args[0], (HDUList, TableHDU, BinTableHDU, GroupsHDU))\n\n \n \n def _decode_mixins(tbl):\n io_registry.register_reader(\"fits\", Table, read_table_fits)\n io_registry.register_writer(\"fits\", Table, write_table_fits)\n io_registry.register_identifier(\"fits\", Table, is_fits)\n\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..f15cf9a5b6\nfrom astropy.io.registry import identify_format\nfrom astropy.table import Table\n\n# Try to identify format of a non-FITS file\nfmts = identify_format(\"write\", Table, \"bububu.ecsv\", None, [], {})\nprint(fmts)\n",
+        "test_fix.py": "new file mode 100644\nindex 0000000000..80a48a27ad\nfrom astropy.io.registry import identify_format\nfrom astropy.table import Table\n\n# Test case 1: Non-FITS file with .ecsv extension (should not raise IndexError)\nprint(\"Test 1: Non-FITS file (.ecsv)\")\nfmt = identify_format(\"write\", Table, \"test.ecsv\", None, [], {})\nprint(f\"Format: {fmt}\")\n\n# Test case 2: FITS file by extension\nprint(\"\\nTest 2: FITS file by extension\")\nfmt = identify_format(\"write\", Table, \"test.fits\", None, [], {})\nprint(f\"Format: {fmt}\")\n\n# Test case 3: Non-FITS file with random extension\nprint(\"\\nTest 3: Non-FITS file (random extension)\")\nfmt = identify_format(\"write\", Table, \"test.xyz\", None, [], {})\nprint(f\"Format: {fmt}\")\n"
+    },
+    "ground_truth_patch": {
+        "astropy/io/fits/connect.py": "         fileobj.seek(pos)\n         return sig == FITS_SIGNATURE\n     elif filepath is not None:\nreturn filepath.lower().endswith(\n             (\".fits\", \".fits.gz\", \".fit\", \".fit.gz\", \".fts\", \".fts.gz\")\n)\n     return isinstance(args[0], (HDUList, TableHDU, BinTableHDU, GroupsHDU))\n \n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity but have modified statements. Both samples contain code that checks file extensions and returns values based on-type conditions, but they have different contextual usages such as different function signatures and different surrounding code.\"}"
+}

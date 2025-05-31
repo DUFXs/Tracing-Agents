@@ -1,0 +1,12 @@
+{
+    "instance_id": "pydata__xarray-4075",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce_bug.py": "new file mode 100644\nindex 00000000..1de21ba3\nimport numpy as np\nimport xarray as xr\n\ndta = xr.DataArray([1., 1., 1.])\nwgt = xr.DataArray(np.array([1, 1, 0], dtype=np.bool))\n\nresult = dta.weighted(wgt).mean()\nprint(\"Result:\", result)\nprint(\"Expected: 1.0\")\n",
+        "xarray/core/weighted.py": "index 996d2e4c..fd6dd627 100644\n         \"\"\" Calculate the sum of weights, accounting for missing values \"\"\"\n \n         # we need to mask data values that are nan; else the weights are wrong\nmask = da.notnull() * 1  # Convert boolean mask to numeric\n\n \n         sum_of_weights = self._reduce(mask, self.weights, dim=dim, skipna=False)\n \n \n _inject_docstring(DataArrayWeighted, \"DataArray\")\n _inject_docstring(DatasetWeighted, \"Dataset\")\n\n"
+    },
+    "ground_truth_patch": {
+        "xarray/core/weighted.py": "         # we need to mask data values that are nan; else the weights are wrong\n         mask = da.notnull()\n \n# bool -> int, because ``xr.dot([True, True], [True, True])`` -> True\n# (and not 2); GH4074\nif self.weights.dtype == bool:\nsum_of_weights = self._reduce(\nmask, self.weights.astype(int), dim=dim, skipna=False\n)\nelse:\nsum_of_weights = self._reduce(mask, self.weights, dim=dim, skipna=False)\n \n         # 0-weights are not valid\n         valid_weights = sum_of_weights != 0.0\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they handle different logical operations and conditions. The first sample computes a weighted mean using a boolean weight array, while the second sample checks if the weights are of a boolean type and modifies the weight processing accordingly. Additionally, there are significant differences in the logic and flow of operations which make them functionally distinct.\"}"
+}

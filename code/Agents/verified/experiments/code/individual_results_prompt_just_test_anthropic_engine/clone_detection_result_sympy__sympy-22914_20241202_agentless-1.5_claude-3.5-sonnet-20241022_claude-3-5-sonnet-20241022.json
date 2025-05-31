@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-22914",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/printing/pycode.py": "index d7c4404..d83cf1c 100644\n         else:\n             return name\n \ndef _print_Min(self, expr):\nreturn \"min({})\".format(\", \".join(self._print(arg) for arg in expr.args))\n\ndef _print_Max(self, expr):\nreturn \"max({})\".format(\", \".join(self._print(arg) for arg in expr.args))\n\n     _print_lowergamma = CodePrinter._print_not_supported\n     _print_uppergamma = CodePrinter._print_not_supported\n     _print_fresnelc = CodePrinter._print_not_supported\n"
+    },
+    "ground_truth_patch": {
+        "sympy/printing/pycode.py": " \n _known_functions = {\n     'Abs': 'abs',\n'Min': 'min',\n'Max': 'max',\n }\n _known_functions_math = {\n     'acos': 'acos',\n"
+    },
+    "response": "{\n\"explanation\": \"The code in sample 1 implements printer methods for Min and Max functions, which format these functions into Python string representations (e.g., 'min(arg1, arg2)' and 'max(arg1, arg2)'). It also includes some not supported print functions. The code in sample 2 defines dictionaries of known functions, mapping function names to their Python equivalents, including 'Min': 'min' and 'Max': 'max' mappings.\",\n\"is_clone\": false,\n\"classification\": \"N/A\",\n\"reasoning\": \"These code samples are not clones because they serve different purposes and have different implementations. Sample 1 contains actual implementation methods for printing Min and Max expressions, while sample 2 is a configuration dictionary that maps function names. While they are related (they both deal with Min and Max functions), they are distinct pieces of code with different functionality - one implements formatting logic while the other defines name mappings. They don't share similar syntax structure or functional equivalence.\"\n}"
+}

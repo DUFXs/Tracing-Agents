@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16136",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/views/generic/base.py": "index db1842e3e5..93979d1e9c 100644\n             request.path,\n             extra={\"status_code\": 405, \"request\": request},\n         )\nresponse = HttpResponseNotAllowed(self._allowed_methods())\nif self.view_is_async:\nasync def func():\nreturn response\nreturn func()\nreturn response\n \n     def options(self, request, *args, **kwargs):\n         \"\"\"Handle responding to requests for the OPTIONS HTTP verb.\"\"\"\n"
+    },
+    "ground_truth_patch": {
+        "django/views/generic/base.py": "             request.path,\n             extra={\"status_code\": 405, \"request\": request},\n         )\nresponse = HttpResponseNotAllowed(self._allowed_methods())\n\nif self.view_is_async:\n\nasync def func():\nreturn response\n\nreturn func()\nelse:\nreturn response\n \n     def options(self, request, *args, **kwargs):\n         \"\"\"Handle responding to requests for the OPTIONS HTTP verb.\"\"\"\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar, but they have an additional 'else' statement in the second sample that alters the flow of the function. The core structure of the async function and the response handling are the same, but the presence of the 'else' clause in the second sample changes the outcome depending on the condition.\"}"
+}

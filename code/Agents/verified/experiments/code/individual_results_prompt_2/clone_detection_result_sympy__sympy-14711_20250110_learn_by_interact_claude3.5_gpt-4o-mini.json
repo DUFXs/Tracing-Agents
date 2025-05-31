@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-14711",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..27791f1fb9\nfrom sympy.physics.vector import ReferenceFrame, Vector\nfrom sympy import symbols\n\nN = ReferenceFrame('N')\nprint(\"\\nTest Case 1: Original issue\")\nprint(\"Attempting to sum vectors...\")\nresult1 = sum([N.x, (0 * N.x)])\nprint(\"Result:\", result1)\n\nprint(\"\\nTest Case 2: Multiple zeros\")\nprint(\"Attempting to sum vectors with multiple zeros...\")\nresult2 = sum([N.x, (0 * N.x), (0 * N.x)])\nprint(\"Result:\", result2)\n\nprint(\"\\nTest Case 3: Zero vector only\")\nprint(\"Attempting to sum zero vectors only...\")\nresult3 = sum([(0 * N.x), (0 * N.x)])\nprint(\"Result:\", result3)\n\n",
+        "sympy/physics/vector/vector.py": "index a048ee57f1..3561ee667d 100644\n \n     def __add__(self, other):\n         \"\"\"The add operator for Vector. \"\"\"\nif other == 0:\nreturn self\n         other = _check_vector(other)\n         return Vector(self.args + other.args)\n \n     if not isinstance(other, Vector):\n         raise TypeError('A Vector must be supplied')\n     return other\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/physics/vector/vector.py": " \n     def __add__(self, other):\n         \"\"\"The add operator for Vector. \"\"\"\nif other == 0:\nreturn self\n         other = _check_vector(other)\n         return Vector(self.args + other.args)\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 includes both a script that tests the summation of vectors using the SymPy library and a function definition for the vector addition operator (__add__) in the vector file. Specific test cases are defined that sum different combinations of vectors, including cases with zero vectors. The code in code sample 2 consists only of the definition of the __add__ method for Vector, which handles the addition of vectors and accounts for the case when another vector is zero. The code samples differ significantly in context and functionality, as one is a testing script while the other is a method definition.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve very different purposes and structures, with one being a complete testing script and the other solely a method definition.\"}"
+}

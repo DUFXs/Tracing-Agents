@@ -1,0 +1,12 @@
+{
+    "instance_id": "psf__requests-2317",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 00000000..98c08a89\nimport requests\n\ndef test_request(method):\nprint(f\"\\nTesting with method: {method} (type: {type(method)})\")\ntry:\ns = requests.Session()\nresponse = s.request(method=method, url='http://httpbin.org/get')\nprint(\"Success! Response status:\", response.status_code)\nreturn True\nexcept Exception as e:\nprint(\"Error occurred:\", str(e))\nreturn False\n\n# Test with different method types\nmethods = [\n'GET',           # normal string\nb'GET',          # bytes\nu'GET',          # unicode string\n]\n\nfor method in methods:\ntest_request(method)\n\\ No newline at end of file\n",
+        "requests/sessions.py": "index d701ff2e..ffdc9b28 100644\n             If Tuple, ('cert', 'key') pair.\n         \"\"\"\n \n# Handle bytes method names from Python 3 clients\nif isinstance(method, bytes):\nmethod = method.decode('utf-8')\nelse:\nmethod = builtin_str(method)\n \n         # Create the Request.\n         req = Request(\n"
+    },
+    "ground_truth_patch": {
+        "requests/sessions.py": " from datetime import datetime\n \n from .auth import _basic_auth_str\nfrom .compat import cookielib, OrderedDict, urljoin, urlparse\n from .cookies import (\n     cookiejar_from_dict, extract_cookies_to_jar, RequestsCookieJar, merge_cookies)\n from .models import Request, PreparedRequest, DEFAULT_REDIRECT_LIMIT\n             If Tuple, ('cert', 'key') pair.\n         \"\"\"\n \nmethod = to_native_string(method)\n \n         # Create the Request.\n         req = Request(\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they do not share a significant syntactical structure or functionality that would classify them as clones. The first code sample is a standalone Python script that tests different HTTP request methods, while the second sample is a fragment of a module dealing with sessions in the requests library. The two snippets serve different purposes and contexts in the codebase.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "pytest-dev__pytest-5262",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 000000000..86937d649\nimport youtube_dl\ndef test_foo():\nyoutube_dl.YoutubeDL().extract_info('http://example.com/')\n\ntest_foo()\n",
+        "src/_pytest/capture.py": "index 25eab7fdf..144d2591d 100644\n         self.buffer = buffer\n         self.encoding = encoding\n \n@property\ndef mode(self):\n\"\"\"Return the mode with 'b' stripped from it.\nThis ensures that the mode exposed to the outside world is text-based\neven if the underlying buffer is in binary mode.\"\"\"\nreturn self.buffer.mode.replace('b', '')\n\n     def write(self, obj):\n         if isinstance(obj, six.text_type):\n             obj = obj.encode(self.encoding, \"replace\")\n             pass\n     else:\n         f.close()\n\n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/capture.py": "         \"\"\"Ensure that file.name is a string.\"\"\"\n         return repr(self.buffer)\n \n@property\ndef mode(self):\nreturn self.buffer.mode.replace(\"b\", \"\")\n\n     def __getattr__(self, name):\n         return getattr(object.__getattribute__(self, \"buffer\"), name)\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain different functionality. The first sample includes a function that extracts information from a URL using 'youtube_dl', while the second sample focuses on properties of a file buffer and does not relate to any URL extraction functionality. The purpose and context of the two pieces of code are fundamentally different, indicating they are not clones.\"}"
+}

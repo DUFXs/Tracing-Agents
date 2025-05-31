@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14765",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/migrations/state.py": "index 088f5c41f0..0cfcf3c1c2 100644\n     def __init__(self, models=None, real_apps=None):\n         self.models = models or {}\n         # Apps to include from main registry, usually unmigrated ones\nif real_apps is not None:\nassert isinstance(real_apps, set), \"real_apps must be a set, got %s\" % type(real_apps)\nself.real_apps = real_apps\n         else:\n             self.real_apps = set()\n         self.is_delayed = False\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/state.py": "     def __init__(self, models=None, real_apps=None):\n         self.models = models or {}\n         # Apps to include from main registry, usually unmigrated ones\nif real_apps is None:\nreal_apps = set()\n         else:\nassert isinstance(real_apps, set)\nself.real_apps = real_apps\n         self.is_delayed = False\n         # {remote_model_key: {model_key: [(field_name, field)]}}\n         self.relations = None\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactic similarity but contain modifications and additions. For instance, in sample 1, 'if real_apps is not None:' is changed to 'if real_apps is None:' in sample 2, and there is an additional comment in sample 2 that is not present in sample 1. Also, the assertion message is modified in sample 2 compared to sample 1. This indicates changes in the logic and structure of the code while retaining some common functionality.\"}"
+}

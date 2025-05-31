@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-16766",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "sympy/printing/pycode.py": "index a3f0310735..8ad0b69978 100644\n     def _print_Not(self, expr):\n         PREC = precedence(expr)\n         return self._operators['not'] + self.parenthesize(expr.args[0], PREC)\ndef _print_Indexed(self, expr):\nbase, *index = expr.args\nreturn \"{}[{}]\".format(str(base), \", \".join(self._print(ind) for ind in index))\n\n \n \n for k in PythonCodePrinter._kf:\n",
+        "test_indexed_printer.py": "new file mode 100644\nindex 0000000000..84c63febfa\nprint(\"Starting test_indexed_printer.py\")\nfrom sympy.printing.pycode import pycode\nfrom sympy import IndexedBase\n\np = IndexedBase(\"p\")\nresult = pycode(p[0])\nprint(f\"pycode(p[0]) returned: {result}\")\n\nexpected = \"p[0]\"\nif result != expected:\nprint(f\"Test FAILED: expected '{expected}' but got '{result}'\")\nexit(1)\nprint(\"Test PASSED: pycode(p[0]) returned the expected string\")\nexit(0)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/printing/pycode.py": "         PREC = precedence(expr)\n         return self._operators['not'] + self.parenthesize(expr.args[0], PREC)\n \ndef _print_Indexed(self, expr):\nbase = expr.args[0]\nindex = expr.args[1:]\nreturn \"{}[{}]\".format(str(base), \", \".join([self._print(ind) for ind in index]))\n\n \n for k in PythonCodePrinter._kf:\n     setattr(PythonCodePrinter, '_print_%s' % k, _print_known_func)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines two methods, _print_Not and _print_Indexed, for handling specific expressions in the SymPy library. The _print_Not method is responsible for formatting the 'not' operator, while the _print_Indexed method handles the formatting of indexed expressions. The second code sample has a partial implementation of the same methods with slight variations; it defines the _print_Indexed method differently. In sample 2, the expression handling for indices is done by directly assigning base and index, whereas sample 1 uses unpacking. The formatting string uses slightly different syntax in the list comprehension as well.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have added, modified, and removed statements in the definitions of the methods.\"}"
+}

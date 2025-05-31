@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-14309",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "astropy/io/fits/connect.py": "index 4b6150f4ac..1f51fe4835 100644\n             (\".fits\", \".fits.gz\", \".fit\", \".fit.gz\", \".fts\", \".fts.gz\")\n         ):\n             return True\nreturn len(args) > 0 and isinstance(args[0], (HDUList, TableHDU, BinTableHDU, GroupsHDU))\n \n \n def _decode_mixins(tbl):\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..b063e02465\nfrom astropy.io.registry import identify_format\nfrom astropy.table import Table\nfrom astropy.io.fits import HDUList, TableHDU, BinTableHDU, GroupsHDU\n\n# Test 1: Non-FITS file extension (previously failing case)\nprint(\"Test 1: Non-FITS file extension\")\nresult = identify_format(\"write\", Table, \"bububu.ecsv\", None, [], {})\nprint(f\"Result: {result}\")\n\n# Test 2: FITS file extension\nprint(\"\\nTest 2: FITS file extension\")\nresult = identify_format(\"write\", Table, \"test.fits\", None, [], {})\nprint(f\"Result: {result}\")\n\n# Test 3: With HDUList argument\nprint(\"\\nTest 3: With HDUList argument\")\nresult = identify_format(\"write\", Table, None, None, [HDUList()], {})\nprint(f\"Result: {result}\")\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "astropy/io/fits/connect.py": "         fileobj.seek(pos)\n         return sig == FITS_SIGNATURE\n     elif filepath is not None:\nreturn filepath.lower().endswith(\n             (\".fits\", \".fits.gz\", \".fit\", \".fit.gz\", \".fts\", \".fts.gz\")\n)\n     return isinstance(args[0], (HDUList, TableHDU, BinTableHDU, GroupsHDU))\n \n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share similar syntactic structures but feature added, modified, or removed statements. Both samples involve the use of the (HDUList, TableHDU, BinTableHDU, GroupsHDU) argument checking, but sample 1 includes additional context such as function calls and print statements related to file formats while sample 2 is more focused on a specific part of the file handling logic.\"}"
+}

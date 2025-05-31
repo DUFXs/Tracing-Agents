@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-15851",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/backends/postgresql/client.py": "index 4c9bd63546..82b0d4d1f3 100644\n             args += [\"-h\", host]\n         if port:\n             args += [\"-p\", str(port)]\n# Add parameters before database name\nargs.extend(parameters)\n         if dbname:\n             args += [dbname]\n \n         env = {}\n         if passwd:\n         finally:\n             # Restore the original SIGINT handler.\n             signal.signal(signal.SIGINT, sigint_handler)\n\n"
+    },
+    "ground_truth_patch": {
+        "django/db/backends/postgresql/client.py": "             args += [\"-h\", host]\n         if port:\n             args += [\"-p\", str(port)]\nargs.extend(parameters)\n         if dbname:\n             args += [dbname]\n \n         env = {}\n         if passwd:\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 adds command-line arguments to a list based on the provided host, port, database name, and other parameters for connecting to a PostgreSQL database. It also includes handling for the password and restores the original SIGINT signal handler. In comparison, the code in code sample 2 performs a similar operation by appending arguments to a list based on the host, port, database name, and parameters, but it does not contain the additional handling for the password or the signal handler restoration seen in sample 1.\",\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar, but code sample 1 includes additional statements for password handling and signal restoration that are absent in code sample 2.\"}"
+}

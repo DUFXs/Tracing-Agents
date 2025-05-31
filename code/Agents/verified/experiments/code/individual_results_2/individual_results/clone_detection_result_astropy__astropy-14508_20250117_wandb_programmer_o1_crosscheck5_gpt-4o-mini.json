@@ -1,0 +1,7 @@
+{
+    "instance_id": "astropy__astropy-14508",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "astropy/io/fits/card.py",
+    "ground_truth_patch_file": "astropy/io/fits/card.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactic similarities but contain significant modifications. The logic of both samples is aimed at formatting a float value to a string with specific constraints, but there are added, modified, or removed statements in the second sample, leading to different implementations despite the common goal.\"}"
+}

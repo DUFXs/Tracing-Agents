@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-12481",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/combinatorics/permutations.py": "index 4042fdb..f49020e 100644\n         # counting starts from 1.\n \n         temp = flatten(args)\nif not is_cycle and has_dups(temp):\nraise ValueError('there were repeated elements.')\n         temp = set(temp)\n \n         if not is_cycle and \\\n"
+    },
+    "ground_truth_patch": {
+        "sympy/combinatorics/permutations.py": "         # counting starts from 1.\n \n         temp = flatten(args)\nif has_dups(temp) and not is_cycle:\nraise ValueError('there were repeated elements.')\n         temp = set(temp)\n \n         if not is_cycle and \\\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples are checking for duplicate elements in a flattened list of arguments. In code sample 1, the condition is written as 'if not is_cycle and has_dups(temp)', while in code sample 2, it's written as 'if has_dups(temp) and not is_cycle'. Both raise the same ValueError if duplicates are found when is_cycle is false, and both proceed to convert temp to a set afterwards.\", \n\"is_clone\": true, \n\"classification\": \"type-1\", \n\"reasoning\": \"These code samples are type-1 clones because they are logically identical and only differ in the order of the boolean conditions in the if statement ('not is_cycle and has_dups(temp)' vs 'has_dups(temp) and not is_cycle'). Since AND operations are commutative in boolean logic, these expressions are equivalent. The rest of the code, including whitespace, comments, and other statements, is exactly the same. The change in order of the boolean conditions is merely a syntactic difference that doesn't affect the logic or outcome of the code.\"\n}"
+}

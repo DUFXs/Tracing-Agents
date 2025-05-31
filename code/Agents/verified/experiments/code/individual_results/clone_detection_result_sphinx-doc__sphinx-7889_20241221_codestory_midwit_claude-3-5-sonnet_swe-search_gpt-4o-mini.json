@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-7889",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..bdfa44554\nfrom typing import TypeVar, Generic, List, Dict, Union\nfrom sphinx.ext.autodoc.mock import _make_subclass, _MockObject\n\ndef test_mock(name, expected_success=True):\ntry:\nmock_class = _make_subclass(name, 'test_module')\nprint(f\"Success: Mock class created for {name}\")\nreturn True\nexcept Exception as e:\nif expected_success:\nprint(f\"Unexpected Error for {name}: {str(e)}\")\nreturn False\nelse:\nprint(f\"Expected Error for {name}: {str(e)}\")\nreturn True\n\n# Test cases\nT = TypeVar('T')\nU = TypeVar('U', bound=int)\nV = TypeVar('V', str, int)\n\n# Regular string name (should work)\ntest_mock(\"regular_class\")\n\n# TypeVar with no bounds\ntest_mock(T)\n\n# TypeVar with bounds\ntest_mock(U)\n\n# TypeVar with constraints\ntest_mock(V)\n\n# Generic types\ntest_mock(List[int])\ntest_mock(Dict[str, int])\ntest_mock(Union[str, int])\n\\ No newline at end of file\n",
+        "sphinx/ext/autodoc/mock.py": "index 98a3a3a96..da287b33c 100644\n         return self.__display_name__\n \n \ndef _make_subclass(name: Any, module: str, superclass: Any = _MockObject,\n                    attributes: Any = None) -> Any:\n# Handle TypeVar and other generic types\nname_str = name.__name__ if hasattr(name, '__name__') else str(name)\nattrs = {'__module__': module, '__display_name__': module + '.' + name_str}\n     attrs.update(attributes or {})\n \nreturn type(name_str, (superclass,), attrs)\n \n \n class _MockModule(ModuleType):\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/ext/autodoc/mock.py": "     def __mro_entries__(self, bases: Tuple) -> Tuple:\n         return (self.__class__,)\n \ndef __getitem__(self, key: Any) -> \"_MockObject\":\nreturn _make_subclass(str(key), self.__display_name__, self.__class__)()\n \n     def __getattr__(self, key: str) -> \"_MockObject\":\n         return _make_subclass(key, self.__display_name__, self.__class__)()\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain different functions and serve different purposes. The first sample defines a mock testing function with various TypeVar tests, while the second sample is focused on aspects of a class related to type and item retrieval. There is no syntactic similarity or functional equivalence between the two code snippets.\"}"
+}

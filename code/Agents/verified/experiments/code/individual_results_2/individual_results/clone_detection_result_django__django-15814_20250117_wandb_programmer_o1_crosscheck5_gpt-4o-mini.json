@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-15814",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/db/models/sql/query.py",
+    "ground_truth_patch_file": "django/db/models/sql/query.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have modifications in the order and structure of statements. In sample 2, the line 'cur_model = cur_model._meta.concrete_model' appears before assigning 'opts', while in sample 1, 'opts' is assigned using 'cur_model._meta.concrete_model._meta'. This change demonstrates added or modified statements.\"}"
+}

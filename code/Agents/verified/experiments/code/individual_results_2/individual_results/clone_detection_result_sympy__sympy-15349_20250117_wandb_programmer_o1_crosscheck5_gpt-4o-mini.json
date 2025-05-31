@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-15349",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "sympy/algebras/quaternion.py",
+    "ground_truth_patch_file": "sympy/algebras/quaternion.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they consist of different portions of a function or are likely fragments that do not maintain clear structural similarities. The first code sample contains multiple statements and a function, while the second code sample contains only a few lines, making them fundamentally different in context.\"}"
+}

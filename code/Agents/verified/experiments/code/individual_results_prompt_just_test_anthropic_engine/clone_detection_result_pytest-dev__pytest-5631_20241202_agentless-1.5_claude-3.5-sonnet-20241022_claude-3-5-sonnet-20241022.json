@@ -1,0 +1,11 @@
+{
+    "instance_id": "pytest-dev__pytest-5631",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "src/_pytest/compat.py": "index c84507d..8b196a1 100644\n     if any(mock_modules):\n         sentinels = [m.DEFAULT for m in mock_modules if m is not None]\n         return len(\n[p for p in patchings if not p.attribute_name and any(p.new is m for m in sentinels)]\n         )\n     return len(patchings)\n \n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/compat.py": "     patchings = getattr(function, \"patchings\", None)\n     if not patchings:\n         return 0\n\nmock_sentinel = getattr(sys.modules.get(\"mock\"), \"DEFAULT\", object())\nut_mock_sentinel = getattr(sys.modules.get(\"unittest.mock\"), \"DEFAULT\", object())\n\nreturn len(\n[\np\nfor p in patchings\nif not p.attribute_name\nand (p.new is mock_sentinel or p.new is ut_mock_sentinel)\n]\n)\n \n \n def getfuncargnames(function, is_method=False, cls=None):\n"
+    },
+    "response": "{\n\"explanation\": \"The code in sample 1 checks for mock modules and counts the number of patchings where the attribute_name is not set and the new value matches any of the mock module sentinels. The code in sample 2 does essentially the same thing but handles the mock sentinels differently by explicitly checking for both 'mock' and 'unittest.mock' modules' DEFAULT values.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they perform the same fundamental operation (counting patchings that match certain mock sentinel conditions) but with slightly different implementations. The core logic is the same - both use list comprehension to filter patchings based on attribute_name and sentinel values. However, sample 2 has modified statements to handle mock sentinels differently, checking explicitly for both 'mock' and 'unittest.mock' modules instead of using the any() function with mock_modules. The basic structure and purpose remain the same, but there are added and modified statements, making this a type-3 clone.\"\n}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15315",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/db/models/fields/__init__.py": "index 88c9ca9f28..fcea1597ef 100644\n         return NotImplemented\n \n     def __hash__(self):\nreturn hash(self.creation_counter)\n \n     def __deepcopy__(self, memodict):\n         # We don't have to deepcopy very much here, since most things are not\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..74f353ed8e\nfrom django.conf import settings\nfrom django.db import models\nimport django\n\n# Configure minimal settings\nsettings.configure(\nINSTALLED_APPS=[\n'django.contrib.contenttypes',\n'django.db.models.base',\n],\nDATABASES={'default': {'ENGINE': 'django.db.backends.sqlite3'}},\n)\n\n# Setup Django\ndjango.setup()\n\n# Test Case 1: Basic dictionary usage\nf1 = models.CharField(max_length=200)\nd = {f1: 1}\n\n# Test Case 2: Multiple models using same field\nclass Book(models.Model):\nclass Meta:\napp_label = 'django.db.models.base'\ntitle = f1\n\nclass Magazine(models.Model):\nclass Meta:\napp_label = 'django.db.models.base'\nname = f1\n\n# Test Case 3: Dictionary operations after model assignment\nassert f1 in d  # Original test\nd[f1] = 2  # Test dictionary update\nassert d[f1] == 2  # Test dictionary lookup\n\n# Test Case 4: Multiple fields in dictionary\nf2 = models.CharField(max_length=100)\nd[f2] = 3\nassert f2 in d\nassert f1 in d\nassert d[f1] == 2\nassert d[f2] == 3\n\nprint(\"All tests passed successfully!\")\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/__init__.py": "         return NotImplemented\n \n     def __hash__(self):\nreturn hash(self.creation_counter)\n \n     def __deepcopy__(self, memodict):\n         # We don't have to deepcopy very much here, since most things are not\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because Code Sample 1 contains additional code that is not present in Code Sample 2. Sample 1 includes a complete script with multiple test cases and setup for Django, while Sample 2 only contains a portion of the code from the Django model field implementation. The functionality and structure are significantly different, indicating they are not similar enough to be classified as clones.\"}"
+}

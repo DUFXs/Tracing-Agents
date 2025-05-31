@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13786",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "reproduce.py",
+    "ground_truth_patch_file": "django/db/migrations/operations/models.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

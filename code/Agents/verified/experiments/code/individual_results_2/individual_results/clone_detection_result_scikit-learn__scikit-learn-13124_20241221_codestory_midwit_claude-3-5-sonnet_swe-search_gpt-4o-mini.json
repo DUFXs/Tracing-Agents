@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-13124",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "sklearn/model_selection/_split.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and contain different functionalities. Sample 1 is focused on demonstrating stratified K-fold cross-validation using specific parameters and data handling, while Sample 2 is a documentation or code excerpt related to the configuration and implementation of K-fold mechanisms in the sklearn library, lacking the procedural context seen in Sample 1.\"}"
+}

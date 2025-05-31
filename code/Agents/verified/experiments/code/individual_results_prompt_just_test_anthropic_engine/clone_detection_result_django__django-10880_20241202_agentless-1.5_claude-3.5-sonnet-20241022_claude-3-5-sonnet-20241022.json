@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-10880",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/db/models/aggregates.py": "index f03a228..dbf3ca2 100644\n         return []\n \n     def as_sql(self, compiler, connection, **extra_context):\nextra_context['distinct'] = 'DISTINCT ' if self.distinct else ''\n         if self.filter:\n             if connection.features.supports_aggregate_filter_clause:\n                 filter_sql, filter_params = self.filter.as_sql(compiler, connection)\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/aggregates.py": "         return []\n \n     def as_sql(self, compiler, connection, **extra_context):\nextra_context['distinct'] = 'DISTINCT ' if self.distinct else ''\n         if self.filter:\n             if connection.features.supports_aggregate_filter_clause:\n                 filter_sql, filter_params = self.filter.as_sql(compiler, connection)\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples are from Django's aggregates.py file and contain identical code that handles SQL generation for aggregate queries. The code returns an empty list first, then defines an as_sql method that takes compiler, connection, and extra_context parameters. It sets a 'distinct' flag in the extra_context based on a self.distinct attribute, and then checks for a filter condition. If there's a filter and the database connection supports aggregate filter clauses, it generates the SQL for the filter.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are exactly identical in terms of code content, structure, and functionality. The only difference appears to be in the patch header information ('index f03a228..dbf3ca2 100644') which is present in sample 1 but not in sample 2. This difference is just in the patch metadata and not in the actual code content. The code portions themselves have identical whitespace, layout, identifiers, and logic.\"\n}"
+}

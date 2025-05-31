@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10908",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 9fa8c09bd..8658f6e50 100644\n .cache\n .pytest_cache/\n _configtest.o.d\n.aider/\n",
+        "sklearn/feature_extraction/text.py": "index 9b1ebd632..4f3117a9d 100644\n     def _validate_vocabulary(self):\n         vocabulary = self.vocabulary\n         if vocabulary is not None:\nif not vocabulary:\nraise ValueError(\"empty vocabulary passed to fit\")\n             if isinstance(vocabulary, set):\n                 vocabulary = sorted(vocabulary)\n             if not isinstance(vocabulary, Mapping):\n                         msg = (\"Vocabulary of size %d doesn't contain index \"\n                                \"%d.\" % (len(vocabulary), i))\n                         raise ValueError(msg)\n             self.fixed_vocabulary_ = True\n             self.vocabulary_ = dict(vocabulary)\n         else:\n \n     def get_feature_names(self):\n         \"\"\"Array mapping from feature integer indices to feature name\"\"\"\nif not hasattr(self, 'vocabulary_'):\nself._validate_vocabulary()\n\n         self._check_vocabulary()\n \n         return [t for t, i in sorted(six.iteritems(self.vocabulary_),\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/feature_extraction/text.py": " \n     def get_feature_names(self):\n         \"\"\"Array mapping from feature integer indices to feature name\"\"\"\nif not hasattr(self, 'vocabulary_'):\nself._validate_vocabulary()\n\n         self._check_vocabulary()\n \n         return [t for t, i in sorted(six.iteritems(self.vocabulary_),\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 contains a method named _validate_vocabulary that validates a vocabulary passed as an argument and potentially raises a ValueError if the vocabulary is empty or not a mapping. It also defines a method called get_feature_names that retrieves feature names based on the vocabulary. The code sample 2 only includes the definition and implementation of the method get_feature_names from code sample 1, without the _validate_vocabulary method.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because code sample 2 is incomplete and does not contain the _validate_vocabulary method, leading to a significant difference in functionality.\"}"
+}

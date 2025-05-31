@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-13480",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 0000000000..18496e55b6\nfrom sympy import Symbol, coth, log, tan\n\nx = Symbol('x')\ne = coth(log(tan(x)))\nprint(\"Testing various values:\")\nfor val in [2, 3, 5, 6, 8, 9, 11, 12, 13, 15, 18]:\nprint(f\"x = {val}:\", e.subs(x, val))\n\n",
+        "sympy/functions/elementary/hyperbolic.py": "index 2a4555d919..33dd729c22 100644\n                 x, m = _peeloff_ipi(arg)\n                 if m:\n                     cothm = coth(m)\nif cothm is S.ComplexInfinity:\n                         return coth(x)\n\n                     else: # cothm == 0\n                         return tanh(x)\n \n \n     def _eval_rewrite_as_log(self, arg):\n         return log(1/arg + sqrt(1/arg**2 + 1))\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/functions/elementary/hyperbolic.py": "                 x, m = _peeloff_ipi(arg)\n                 if m:\n                     cothm = coth(m)\nif cothm is S.ComplexInfinity:\n                         return coth(x)\n                     else: # cothm == 0\n                         return tanh(x)\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they come from different contexts and files within the codebase. Code sample 1 includes a `new file` definition with unrelated code for testing values using SymPy functions, while code sample 2 only contains a portion of a specific function without context regarding its use. There are no similarities in function, content, or purpose that would classify them as clones.\"}"
+}

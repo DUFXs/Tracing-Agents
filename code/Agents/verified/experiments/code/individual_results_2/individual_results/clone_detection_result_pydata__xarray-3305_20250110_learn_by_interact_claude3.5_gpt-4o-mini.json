@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-3305",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "reproduce.py",
+    "ground_truth_patch_file": "xarray/core/dataset.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and contain completely different syntax and semantics. Sample 1 focuses on creating a DataArray and computing its quantile, while Sample 2 shows a code extraction from a broader context involving variable assignment and quantile calculation without defining the context of the DataArray.\"}"
+}

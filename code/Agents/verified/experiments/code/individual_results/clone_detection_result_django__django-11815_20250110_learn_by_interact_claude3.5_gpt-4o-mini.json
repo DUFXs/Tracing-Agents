@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11815",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/migrations/serializer.py": "index 27b5cbd379..40fb7142cc 100644\n     def serialize(self):\n         enum_class = self.value.__class__\n         module = enum_class.__module__\nimports = {'import %s' % module}\nreturn \"%s.%s['%s']\" % (module, enum_class.__name__, self.value.name), imports\n \n \n class FloatSerializer(BaseSimpleSerializer):\n         \"migration files.\\nFor more, see https://docs.djangoproject.com/en/%s/\"\n         \"topics/migrations/#migration-serializing\" % (value, get_docs_version())\n     )\n\n",
+        "reproduce.py": "new file mode 100644\nindex 0000000000..0965729adc\nimport os\nimport django\nfrom django.conf import settings\n\n# Configure settings before importing models\nif not settings.configured:\nsettings.configure(\nINSTALLED_APPS=['django.contrib.contenttypes'],\nUSE_I18N=True,\nLANGUAGES=[('en', 'English'), ('fr', 'French')],\nLANGUAGE_CODE='en',\n)\ndjango.setup()\n\nfrom enum import Enum\nfrom django.utils.translation import gettext_lazy as _\n\nclass Status(Enum):\nGOOD = _('Good')  # 'Good' will be translated\nBAD = _('Bad')  # 'Bad' will be translated\ndef __str__(self):\nreturn self.name\n\n# Simulate what the migration serializer does\nfrom django.db.migrations.serializer import serializer_factory\nstatus_value = Status.GOOD\nserialized, imports = serializer_factory(status_value).serialize()\nprint(\"Serialized value:\", serialized)\nprint(\"Required imports:\", imports)\n\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/serializer.py": "     def serialize(self):\n         enum_class = self.value.__class__\n         module = enum_class.__module__\nreturn (\n'%s.%s[%r]' % (module, enum_class.__name__, self.value.name),\n{'import %s' % module},\n)\n \n \n class FloatSerializer(BaseSimpleSerializer):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have differences in the formatting of the return statement and the way imports are expressed. Specifically, the first sample returns a formatted string using '%s.%s[\\'%s\\']' while the second uses '%s.%s[%r]' and has a different structure in presenting the imports.\"}"
+}

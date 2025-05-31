@@ -1,0 +1,11 @@
+{
+    "instance_id": "matplotlib__matplotlib-24627",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "lib/matplotlib/axes/_base.py": "index eec4e31..f1bd477 100644\n \n     def clear(self):\n         \"\"\"Clear the Axes.\"\"\"\n# First unset axes and figure references for all artists\nfor artist in self._children:\nartist.axes = None\nif hasattr(artist, 'figure'):\nartist.figure = None\n         # Act as an alias, or as the superclass implementation depending on the\n         # subclass implementation.\n         if self._subclass_uses_cla:\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/axes/_base.py": "         self._get_patches_for_fill = _process_plot_var_args(self, 'fill')\n \n         self._gridOn = mpl.rcParams['axes.grid']\nold_children, self._children = self._children, []\nfor chld in old_children:\nchld.axes = chld.figure = None\n         self._mouseover_set = _OrderedSet()\n         self.child_axes = []\n         self._current_image = None  # strictly for pyplot via _sci, _gci\n"
+    },
+    "response": "{\n\"explanation\": \"The code in sample 1 is part of a 'clear' method that removes references to axes and figure objects from child artists. It iterates through self._children, setting artist.axes and artist.figure to None. While the code in sample 2 is doing something similar but in a different context - it's reassigning self._children to an empty list after storing the old children, and then sets the axes and figure attributes to None for each old child. Both snippets are dealing with cleaning up references to axes and figures from child objects.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they perform similar operations (nullifying axes and figure references of child objects) but with slightly different implementations. The core functionality is the same, but sample 1 modifies the existing children directly, while sample 2 creates a new empty list and handles the old children separately. They also have different surrounding context and additional operations. The basic pattern of iterating through children and setting axes/figure to None is present in both, but with modified and additional statements, which is characteristic of type-3 clones.\"\n}"
+}

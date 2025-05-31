@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-7910",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/ext/napoleon/__init__.py": "index 10b1ff3a3..d4f5556bb 100644\n                         mod_path = cls_path.split('.')\n                         cls = functools.reduce(getattr, mod_path, mod)\n                     else:\n# Try to get class from globals first\nif cls_path in obj.__globals__:\ncls = obj.__globals__[cls_path]\nelse:\n# Fallback: import module and get class if not in globals\nimport importlib\nmod = importlib.import_module(obj.__module__)\ncls = getattr(mod, cls_path, None)\n                 except Exception:\n                     cls_is_owner = False\n                 else:\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/ext/napoleon/__init__.py": " from sphinx import __display_version__ as __version__\n from sphinx.application import Sphinx\n from sphinx.ext.napoleon.docstring import GoogleDocstring, NumpyDocstring\nfrom sphinx.util import inspect\n \n \n class Config:\n                         mod_path = cls_path.split('.')\n                         cls = functools.reduce(getattr, mod_path, mod)\n                     else:\ncls = inspect.unwrap(obj).__globals__[cls_path]\n                 except Exception:\n                     cls_is_owner = False\n                 else:\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 is primarily dealing with class retrieval from a module based on its string path, checking global variables first, and handling exceptions. The code attempts to use the cls_path to access class data dynamically. The code in code sample 2, while showing class definition and imports, starts similarly by splitting cls_path into modules and reducing them to reach the class. However, it calls a method from the inspect module rather than directly accessing globals. Thus, both samples focus on dynamic class retrieval but differ slightly in the implementation details.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactic similarity with modifications in implementation details, such as how globals are accessed in the second sample.\"}"
+}

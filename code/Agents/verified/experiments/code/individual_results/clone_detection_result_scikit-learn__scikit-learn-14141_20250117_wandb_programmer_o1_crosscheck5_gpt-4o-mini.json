@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14141",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "sklearn/utils/_show_versions.py": "index e5d3141bf..2dcb5eae8 100644\n     -------\n     deps_info: dict\n         version information on relevant Python libraries\n     \"\"\"\n     deps = [\n         \"pip\",\n         \"Cython\",\n         \"pandas\",\n         \"matplotlib\",\n\"joblib\",\n     ]\n \n     def get_version(module):\n     return deps_info\n \n \n\n def _get_blas_info():\n     \"\"\"Information on system BLAS\n \n",
+        "test_joblib_in_show_versions.py": "new file mode 100644\nindex 000000000..ee5c28093\nimport sys\nimport subprocess\n\ndef main():\nprint(\"Running joblib in show_versions test...\")\n# Run the show_versions command from the correct module\ncmd = [\n\"python\",\n\"-c\",\n\"from sklearn.utils._show_versions import show_versions; show_versions()\"\n]\nresult = subprocess.run(\ncmd,\nstdout=subprocess.PIPE,\nstderr=subprocess.PIPE,\nuniversal_newlines=True\n)\nout = result.stdout\nerr = result.stderr\n\nprint(\"STDOUT from show_versions():\")\nprint(out)\nprint(\"STDERR from show_versions():\")\nprint(err)\n\n# Check if joblib is mentioned\nif \"joblib:\" in out:\nprint(\"PASS: 'joblib' is included in show_versions output.\")\nsys.exit(0)\nelse:\nprint(\"FAIL: 'joblib' is NOT included in show_versions output.\")\nsys.exit(1)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/utils/_show_versions.py": "         \"Cython\",\n         \"pandas\",\n         \"matplotlib\",\n\"joblib\",\n     ]\n \n     def get_version(module):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace, layout, and comments. The code in both samples matches exactly, and the differences are purely related to formatting.\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "astropy__astropy-8872",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "astropy/units/quantity.py": "index ded609cbe9..fcadc8f21b 100644\n         if dtype is None and (not (np.can_cast(np.float32, value.dtype)\n                                    or value.dtype.fields)\n                               or value.dtype.kind == 'O'):\nif value.dtype == np.float16:\nvalue = value.astype(np.float16)\nelse:\nvalue = value.astype(float)\n \n         value = value.view(cls)\n         value._set_unit(value_unit)\n         raise UnitsError(\"`rtol` should be dimensionless\")\n \n     return actual.value, desired.value, rtol.value, atol.value\n\n"
+    },
+    "ground_truth_patch": {
+        "astropy/units/quantity.py": "     dtype : ~numpy.dtype, optional\n         The dtype of the resulting Numpy array or scalar that will\n         hold the value.  If not provided, it is determined from the input,\nexcept that any integer and (non-Quantity) object inputs are converted\nto float by default.\n \n     copy : bool, optional\n         If `True` (default), then the value is copied.  Otherwise, a copy will\n                 if not copy:\n                     return value\n \nif value.dtype.kind in 'iu':\n                     dtype = float\n \n             return np.array(value, dtype=dtype, copy=copy, order=order,\n                             \"Numpy numeric type.\")\n \n         # by default, cast any integer, boolean, etc., to float\nif dtype is None and value.dtype.kind in 'iuO':\n             value = value.astype(float)\n \n         value = value.view(cls)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity with variations in structure and the presence of different conditional checks and statements. While certain core functionalities are clearly related, such as handling data types and conversion, the statements and conditions are modified, added, or removed, indicating a semantic divergence in implementation.\"}"
+}

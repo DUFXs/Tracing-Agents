@@ -1,0 +1,11 @@
+{
+    "instance_id": "pytest-dev__pytest-5262",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "src/_pytest/capture.py": "index 6b2d076..a4986ed 100644\n         \"\"\"Ensure that file.name is a string.\"\"\"\n         return repr(self.buffer)\n \n@property\ndef mode(self):\n\"\"\"Return the mode with 'b' stripped from it.\nThis ensures that the mode exposed to the outside world is text-based\neven if the underlying buffer is in binary mode.\"\"\"\nreturn self.buffer.mode.replace('b', '')\n\n     def __getattr__(self, name):\n         return getattr(object.__getattribute__(self, \"buffer\"), name)\n \n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/capture.py": "         \"\"\"Ensure that file.name is a string.\"\"\"\n         return repr(self.buffer)\n \n@property\ndef mode(self):\nreturn self.buffer.mode.replace(\"b\", \"\")\n\n     def __getattr__(self, name):\n         return getattr(object.__getattribute__(self, \"buffer\"), name)\n \n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 defines a property method 'mode' that returns the buffer's mode with 'b' stripped from it, along with a docstring explaining that this ensures the mode exposed is text-based even if the underlying buffer is binary. It also includes a __getattr__ method for attribute delegation. The code in code sample 2 does exactly the same thing functionally, but without the docstring explanation and with double quotes instead of single quotes.\", \n\"is_clone\": true, \n\"classification\": \"type-1\", \n\"reasoning\": \"These code samples are type-1 clones because they are identical in functionality and structure, with the only differences being:\n1. The removal of comments (docstring)\n2. A minor difference in string quotes ('b' vs \\\"b\\\")\n3. Some whitespace variations\nThese differences fall under the definition of type-1 clones, which allows for differences in whitespace, layout, and comments while maintaining identical code structure and functionality.\"\n}"
+}

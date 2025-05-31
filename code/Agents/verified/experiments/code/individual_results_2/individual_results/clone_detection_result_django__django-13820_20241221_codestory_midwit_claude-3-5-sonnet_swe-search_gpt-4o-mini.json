@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13820",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "django/db/migrations/loader.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes with no syntactical similarity. Code sample 1 creates mock modules to demonstrate testing for Django's module loading behavior, while code sample 2 is part of an implementation that checks module attributes to manage apps in Django's migration system. The logic and structural flow of the code samples do not align, making them functionally different.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-23534",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..762cabc475\nimport sympy as smp\n\ndef test_case(name, expr):\nprint(f\"\\n{name}:\")\nresult = expr\nif isinstance(result, tuple):\nprint(f\"Result is a tuple of length {len(result)}\")\nfor i, item in enumerate(result):\nif isinstance(item, tuple):\nprint(f\"  Item {i} is a tuple of length {len(item)}\")\nfor j, subitem in enumerate(item):\nprint(f\"    Subitem {j} type: {type(subitem)}\")\nelse:\nprint(f\"  Item {i} type: {type(item)}\")\nelse:\nprint(f\"Result type: {type(result)}\")\n\n# Test various cases\ntest_case(\"Case 1: Extra parentheses tuple\",\nsmp.symbols(('q:2', 'u:2'), cls=smp.Function))\n\ntest_case(\"Case 2: Comma separated\",\nsmp.symbols('q:2,u:2', cls=smp.Function))\n\ntest_case(\"Case 3: Single range\",\nsmp.symbols('f:3', cls=smp.Function))\n\ntest_case(\"Case 4: Nested parentheses\",\nsmp.symbols(('f:2', ('g:2', 'h:2')), cls=smp.Function))\n\n# Additional edge cases\ntest_case(\"Case 5: Empty range\",\nsmp.symbols('f:0', cls=smp.Function))\n\ntest_case(\"Case 6: Single symbol\",\nsmp.symbols('f', cls=smp.Function))\n\\ No newline at end of file\n",
+        "sympy/core/symbol.py": "index f4a555c13f..2aca8bab27 100644\n         return tuple(result)\n     else:\n         for name in names:\nresult.append(symbols(name, cls=cls, **args))\n \n         return type(names)(result)\n \n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/symbol.py": "         return tuple(result)\n     else:\n         for name in names:\nresult.append(symbols(name, cls=cls, **args))\n \n         return type(names)(result)\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are parts of the same file where the first code sample includes a complete function and multiple test cases, while the second code sample contains a small segment of code (a return statement within a different function) from another file, 'symbol.py'. They don't have any syntactical similarities that fit the defined clone types.\"}"
+}

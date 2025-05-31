@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-24562",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..59500adc51\nfrom sympy.core.numbers import Rational\n\n# Test case 1: Using string inputs\nr1 = Rational('0.5', '100')\nprint(f\"Rational('0.5', '100') = {r1}\")  # Currently wrong: 1/100100\n\n# Test case 2: Using numeric inputs\nr2 = Rational(0.5, 100)\nprint(f\"Rational(0.5, 100) = {r2}\")  # Currently correct: 1/200\n",
+        "sympy/core/numbers.py": "index 52f7ea45ad..3d8137a575 100644\n \n         if not isinstance(p, SYMPY_INTS):\n             p = Rational(p)\nif isinstance(q, str):\n# Handle string denominator by converting both p and q to Fractions\nq = fractions.Fraction(q)\n# Convert p to Fraction maintaining its value\np_frac = fractions.Fraction(p.p, p.q)\nreturn Rational((p_frac/q).numerator, (p_frac/q).denominator, 1)\n             q *= p.q\n             p = p.p\n         else:\n _register_classes()\n \n _illegal = (S.NaN, S.Infinity, S.NegativeInfinity, S.ComplexInfinity)\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/numbers.py": " \n             q = 1\n             gcd = 1\nQ = 1\n \n         if not isinstance(p, SYMPY_INTS):\n             p = Rational(p)\nQ *= p.q\n             p = p.p\n         else:\n             p = int(p)\n         if not isinstance(q, SYMPY_INTS):\n             q = Rational(q)\n             p *= q.q\nQ *= q.p\n         else:\nQ *= int(q)\nq = Q\n \n         # p and q are now ints\n         if q == 0:\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically dissimilar and do not exhibit structural similarity or equivalent functionality. The first code sample is focused on testing the Rational function with different input formats, while the second code sample seems to be part of a larger function dealing with Rational numbers but does not share any structural elements with the first sample.\"}"
+}

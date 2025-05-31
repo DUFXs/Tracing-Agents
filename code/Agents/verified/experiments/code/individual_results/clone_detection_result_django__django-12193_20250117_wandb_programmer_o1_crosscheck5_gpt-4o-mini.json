@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12193",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "django/forms/widgets.py": "index 6fe220bea7..0137495280 100644\n         return str(value)\n \n     def get_context(self, name, value, attrs):\n# Make a local copy so we don't permanently mutate the original attrs\nfinal_attrs = attrs.copy() if attrs else {}\n         if self.check_test(value):\nfinal_attrs['checked'] = True\nreturn super().get_context(name, value, final_attrs)\n\n \n     def value_from_datadict(self, data, files, name):\n         if name not in data:\n",
+        "test_checkbox_persistent_attrs.py": "new file mode 100644\nindex 0000000000..bf38db3b7f\nimport sys\nfrom django.forms.widgets import CheckboxInput\n\ndef main():\n# Simulates multiple uses of one CheckboxInput with a shared attrs dict.\ncheck = CheckboxInput()\nvalues = [True, False, True, False]\nresults = []\nglobal_attrs = {}  # The same attrs passed each time - triggers the bug\nfor i, val in enumerate(values):\ncontext = check.get_context(\"mybool_%d\" % i, val, global_attrs)\nis_checked = \"checked\" in context[\"widget\"][\"attrs\"]\nresults.append(is_checked)\n\nprint(\"results are:\", results)\n# If bug is present, once it sees a True, all subsequent results become True.\n# Expected correct behavior is [True, False, True, False].\nexpected = [True, False, True, False]\nif results == expected:\nprint(\"Test passed!\")\nsys.exit(0)\nelse:\nprint(\"Test failed - expected\", expected, \"got\", results)\nsys.exit(1)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/widgets.py": " \n     def get_context(self, name, value, attrs):\n         if self.check_test(value):\nattrs = {**(attrs or {}), 'checked': True}\n         return super().get_context(name, value, attrs)\n \n     def value_from_datadict(self, data, files, name):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have modifications in the specific implementation details of the 'get_context' method. In sample 1, the line where final_attrs is defined and updated differs from the usage of a dictionary unpacking syntax in sample 2, while both perform a similar function of setting the 'checked' attribute based on the value provided.\"}"
+}

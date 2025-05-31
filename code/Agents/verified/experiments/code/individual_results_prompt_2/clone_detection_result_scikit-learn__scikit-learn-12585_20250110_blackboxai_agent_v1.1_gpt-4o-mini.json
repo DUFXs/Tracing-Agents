@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-12585",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 55050f0a3..0172156f9 100644\n .cache\n .pytest_cache/\n _configtest.o.d\n.aider/\n",
+        "sklearn/base.py": "index 56ffb18bf..34998270c 100644\n     # XXX: not handling dictionaries\n     if estimator_type in (list, tuple, set, frozenset):\n         return estimator_type([clone(e, safe=safe) for e in estimator])\nelif not hasattr(estimator, 'get_params') or isinstance(estimator, type):\n         if not safe:\n             return copy.deepcopy(estimator)\n         else:\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/base.py": "     # XXX: not handling dictionaries\n     if estimator_type in (list, tuple, set, frozenset):\n         return estimator_type([clone(e, safe=safe) for e in estimator])\nelif not hasattr(estimator, 'get_params') or isinstance(estimator, type):\n         if not safe:\n             return copy.deepcopy(estimator)\n         else:\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 extracts a segment from a GitHub patch related to a Python file ('sklearn/base.py') and includes meta-information about other files to be ignored, while code sample 2 extracts only the relevant segment from 'sklearn/base.py' without the additional git-related info. The main logic regarding the checks for 'estimator' is identical in both samples.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in logic except for the differences in whitespace, layout, and the additional content in code sample 1 related to the .gitignore file.\"}"
+}

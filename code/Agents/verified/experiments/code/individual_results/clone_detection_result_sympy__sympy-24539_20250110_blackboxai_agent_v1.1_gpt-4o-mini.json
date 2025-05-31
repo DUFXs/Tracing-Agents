@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-24539",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 4413dd4395..7d427243bd 100644\n \n # Files for pyodide test\n pyodide\n.aider/\n",
+        "sympy/polys/rings.py": "index 12bd2fc920..be6e35d06d 100644\n     def as_expr(self, *symbols):\n         if symbols and len(symbols) != self.ring.ngens:\n             raise ValueError(\"not enough symbols, expected %s got %s\" % (self.ring.ngens, len(symbols)))\nelif not symbols:\n             symbols = self.ring.symbols\n \n         return expr_from_dict(self.as_expr_dict(), *symbols)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/polys/rings.py": "             return new_ring.from_dict(self, self.ring.domain)\n \n     def as_expr(self, *symbols):\nif not symbols:\n             symbols = self.ring.symbols\nelif len(symbols) != self.ring.ngens:\nraise ValueError(\n\"Wrong number of symbols, expected %s got %s\" %\n(self.ring.ngens, len(symbols))\n)\n \n         return expr_from_dict(self.as_expr_dict(), *symbols)\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have added, modified, or removed statements, notably in the error messages and the conditional order. For instance, the error message in the first sample is 'not enough symbols, expected %s got %s', while the second sample states 'Wrong number of symbols, expected %s got %s'. Additionally, the order and formatting of the conditions also differ.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-17655",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index db4a22815e..2450c37630 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/geometry/point.py": "index 7c978c47be..bdf5bdafef 100644\n         sympy.geometry.point.Point.translate\n \n         \"\"\"\nfrom sympy.core.mul import Mul\nif isinstance(other, Mul):\ncoeff, point = other.args\nif len(other.args) == 2 and isinstance(point, Point):\nreturn self + point * coeff\n         try:\n             s, o = Point._normalize_dimension(self, Point(other, evaluate=False))\n         except TypeError:\n         coords = [simplify(x*factor) for x in self.args]\n         return Point(coords, evaluate=False)\n \ndef __rmul__(self, factor):\n\"\"\"Multiply point's coordinates by a factor (reversed).\n\nThis method is called when factor * Point.\n\"\"\"\nreturn self.__mul__(factor)\n\n     def __neg__(self):\n         \"\"\"Negate the point.\"\"\"\n         coords = [-x for x in self.args]\n"
+    },
+    "ground_truth_patch": {
+        "sympy/geometry/point.py": "         coords = [simplify(x*factor) for x in self.args]\n         return Point(coords, evaluate=False)\n \ndef __rmul__(self, factor):\n\"\"\"Multiply a factor by point's coordinates.\"\"\"\nreturn self.__mul__(factor)\n\n     def __neg__(self):\n         \"\"\"Negate the point.\"\"\"\n         coords = [-x for x in self.args]\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in functionality but have differences in whitespace, layout, and comments. The method descriptions and whitespace variations indicate they are otherwise the same code but adapted slightly in presentation.\"}"
+}

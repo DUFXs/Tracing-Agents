@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-24443",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "sympy/combinatorics/homomorphisms.py",
+    "ground_truth_patch_file": "sympy/combinatorics/homomorphisms.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share some similar logic and structure, but there are significant differences in variable names, comments, and some implementation details that modify the code's statements.\"}"
+}

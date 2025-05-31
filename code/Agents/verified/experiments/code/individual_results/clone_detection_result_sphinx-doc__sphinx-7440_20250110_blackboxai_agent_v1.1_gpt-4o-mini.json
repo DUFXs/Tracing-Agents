@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-7440",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index b72664183..6b18e164a 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/domains/std.py": "index d820cfe5c..173ef3400 100644\n         term['ids'].append(node_id)\n \n     std = cast(StandardDomain, env.get_domain('std'))\n# Preserve case sensitivity for terms like MySQL vs mysql\nstd.note_object('term', termtext, node_id, location=term)\n \n     # add an index entry too\n     indexnode = addnodes.index()\n         'envvar':  EnvVarXRefRole(),\n         # links to tokens in grammar productions\n         'token':   TokenXRefRole(),\n# links to terms in glossary (case-sensitive)\n'term':    XRefRole(lowercase=False, innernodeclass=nodes.inline,\n                             warn_dangling=True),\n         # links to headings or arbitrary labels\n         'ref':     XRefRole(lowercase=True, innernodeclass=nodes.inline,\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/domains/std.py": "         term['ids'].append(node_id)\n \n     std = cast(StandardDomain, env.get_domain('std'))\nstd.note_object('term', termtext, node_id, location=term)\n \n     # add an index entry too\n     indexnode = addnodes.index()\n         # links to tokens in grammar productions\n         'token':   TokenXRefRole(),\n         # links to terms in glossary\n'term':    XRefRole(innernodeclass=nodes.inline,\n                             warn_dangling=True),\n         # links to headings or arbitrary labels\n         'ref':     XRefRole(lowercase=True, innernodeclass=nodes.inline,\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in whitespace, layout, and comments. The structure of the code is the same, but certain elements like parameter values and arrangement of whitespace differ slightly, which aligns with the definition of type-2 clones.\"}"
+}

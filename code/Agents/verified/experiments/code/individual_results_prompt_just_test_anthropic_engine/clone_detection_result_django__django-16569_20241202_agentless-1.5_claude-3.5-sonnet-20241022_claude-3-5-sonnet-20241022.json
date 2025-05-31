@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-16569",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/forms/formsets.py": "index d028801..d179ddf 100644\n                     required=False,\n                     widget=self.get_ordering_widget(),\n                 )\nif self.can_delete and (self.can_delete_extra or (index is not None and index < initial_form_count)):\n             form.fields[DELETION_FIELD_NAME] = BooleanField(\n                 label=_(\"Delete\"),\n                 required=False,\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/formsets.py": "                     required=False,\n                     widget=self.get_ordering_widget(),\n                 )\nif self.can_delete and (\nself.can_delete_extra or (index is not None and index < initial_form_count)\n):\n             form.fields[DELETION_FIELD_NAME] = BooleanField(\n                 label=_(\"Delete\"),\n                 required=False,\n"
+    },
+    "response": "{\"explanation\": \"Both code samples are from Django's formsets.py and handle form field creation. They both contain logic for adding deletion fields to a form based on certain conditions. The code checks if deletion is allowed (self.can_delete) and if either deletion of extra forms is allowed (self.can_delete_extra) or if the current form index is less than the initial form count. If these conditions are met, it adds a BooleanField named DELETION_FIELD_NAME to the form with a 'Delete' label.\", \n\"is_clone\": true, \n\"classification\": \"type-1\", \n\"reasoning\": \"These code samples are type-1 clones because they are identical in terms of functionality, variable names, and structure. The only difference is in the formatting of the if condition: Code sample 1 has the condition on a single line, while Code sample 2 splits it across multiple lines for better readability. This is purely a layout difference, which is characteristic of type-1 clones.\"}"
+}

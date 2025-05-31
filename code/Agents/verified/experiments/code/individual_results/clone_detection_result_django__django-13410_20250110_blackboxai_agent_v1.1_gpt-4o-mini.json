@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13410",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/core/files/locks.py": "index c46b00b905..4938347ea7 100644\n             return True\n     else:\n         def lock(f, flags):\ntry:\nfcntl.flock(_fd(f), flags)\nreturn True\nexcept OSError:\nreturn False\n \n         def unlock(f):\ntry:\nfcntl.flock(_fd(f), fcntl.LOCK_UN)\nreturn True\nexcept OSError:\nreturn False\n"
+    },
+    "ground_truth_patch": {
+        "django/core/files/locks.py": "             return True\n     else:\n         def lock(f, flags):\ntry:\nfcntl.flock(_fd(f), flags)\nreturn True\nexcept BlockingIOError:\nreturn False\n \n         def unlock(f):\nfcntl.flock(_fd(f), fcntl.LOCK_UN)\nreturn True\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactic similarity but have modifications in the exception handling between the two samples. In sample 1, the exception is 'OSError', while in sample 2, it is 'BlockingIOError'. This difference indicates that while the structure and logic are similar, there are changes in statements present.\"}"
+}

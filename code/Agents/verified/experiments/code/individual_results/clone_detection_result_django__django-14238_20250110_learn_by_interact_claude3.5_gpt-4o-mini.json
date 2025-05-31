@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14238",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/models/fields/__init__.py": "index 0f53d9c30b..64cebadc00 100644\n         return isinstance(instance, self._subclasses) or super().__instancecheck__(instance)\n \n     def __subclasscheck__(self, subclass):\nreturn any(issubclass(subclass, c) for c in self._subclasses) or super().__subclasscheck__(subclass)\n\n \n \n class AutoField(AutoFieldMixin, IntegerField, metaclass=AutoFieldMeta):\n \n     def rel_db_type(self, connection):\n         return SmallIntegerField().db_type(connection=connection)\n\n",
+        "reproduce.py": "new file mode 100644\nindex 0000000000..ad9a959e9c\nimport os\nimport django\nfrom django.conf import settings\n\n# Configure minimal Django settings if not already configured\nif not settings.configured:\nsettings.configure(\nDATABASES={'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': ':memory:'}},\nDEFAULT_AUTO_FIELD='reproduce.MyBigAutoField',\nINSTALLED_APPS=['django.contrib.contenttypes']\n)\ndjango.setup()\n\nfrom django.db import models\n\nclass MyBigAutoField(models.BigAutoField):\npass\n\nclass TestModel(models.Model):  # Changed name to avoid conflict\nclass Meta:\napp_label = 'reproduce'\n\n# Just validate the model class creation\nprint(\"Model created successfully!\")\n\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/__init__.py": "         return isinstance(instance, self._subclasses) or super().__instancecheck__(instance)\n \n     def __subclasscheck__(self, subclass):\nreturn issubclass(subclass, self._subclasses) or super().__subclasscheck__(subclass)\n \n \n class AutoField(AutoFieldMixin, IntegerField, metaclass=AutoFieldMeta):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in terms of functionality and logic, with only differences in whitespace and layout.\"}"
+}

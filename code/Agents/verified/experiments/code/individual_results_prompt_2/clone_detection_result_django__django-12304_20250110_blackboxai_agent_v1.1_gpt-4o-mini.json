@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12304",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/enums.py": "index f48143ddaf..642d84921c 100644\n class ChoicesMeta(enum.EnumMeta):\n     \"\"\"A metaclass for creating a enum choices.\"\"\"\n \ndo_not_call_in_templates = True\n\n     def __new__(metacls, classname, bases, classdict):\n         labels = []\n         for key in classdict._member_names:\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/enums.py": "         # that is passed in as \"self\" as the value to use when looking up the\n         # label in the choices.\n         cls.label = property(lambda self: cls._value2label_map_.get(self.value))\ncls.do_not_call_in_templates = True\n         return enum.unique(cls)\n \n     def __contains__(cls, member):\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a metaclass for creating enum choices, specifically a class called ChoicesMeta, which includes a method __new__ for creating new instances and a flag to indicate that certain methods should not be called in templates. The method collects labels from the class dictionary for member names, while code sample 2 appears to be extending this class by defining a property called label that retrieves a mapping for enum values and an __contains__ method to allow checking membership in the enum. Thus, both samples deal with adding functionality to an enum class but they illustrate different aspects of it.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they do not exhibit any clone characteristics such as identical structures or minor modifications. They serve different functions and are thus dissimilar in their implementation.\"}"
+}

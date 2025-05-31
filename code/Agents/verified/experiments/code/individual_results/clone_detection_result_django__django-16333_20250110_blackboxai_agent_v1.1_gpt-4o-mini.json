@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16333",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/auth/forms.py": "index d73d1c8495..4c9a4f5556 100644\n         user.set_password(self.cleaned_data[\"password1\"])\n         if commit:\n             user.save()\nself.save_m2m()\n         return user\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/forms.py": "         user.set_password(self.cleaned_data[\"password1\"])\n         if commit:\n             user.save()\nif hasattr(self, \"save_m2m\"):\nself.save_m2m()\n         return user\n \n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have added, modified, or removed statements. The first sample contains 'self.save_m2m()' without a condition, while the second sample modifies this by including a condition 'if hasattr(self, \\\"save_m2m\\\"):' before calling 'self.save_m2m()'. This indicates a change in functionality, which is characteristic of a type-3 clone.\"}"
+}

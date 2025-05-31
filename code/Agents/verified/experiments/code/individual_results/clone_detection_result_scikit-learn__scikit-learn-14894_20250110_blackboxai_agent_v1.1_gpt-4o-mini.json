@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14894",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 2629311e6..de7ee3009 100644\n # deprecated paths\n # TODO: Remove in 0.24\n sklearn/utils/mocking.py\n.aider/\n",
+        "sklearn/svm/base.py": "index 64cebe837..3dce6fad4 100644\n             n_class = 1\n         n_SV = self.support_vectors_.shape[0]\n \nif n_SV == 0:\n# Handle empty support vectors case\nself.dual_coef_ = sp.csr_matrix((n_class, 0))\nelse:\ndual_coef_indices = np.tile(np.arange(n_SV), n_class)\ndual_coef_indptr = np.arange(0, dual_coef_indices.size + 1,\ndual_coef_indices.size / n_class)\nself.dual_coef_ = sp.csr_matrix(\n(dual_coef_data, dual_coef_indices, dual_coef_indptr),\n(n_class, n_SV))\n \n     def predict(self, X):\n         \"\"\"Perform regression on samples in X.\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/svm/base.py": "         n_SV = self.support_vectors_.shape[0]\n \n         dual_coef_indices = np.tile(np.arange(n_SV), n_class)\nif not n_SV:\nself.dual_coef_ = sp.csr_matrix([])\nelse:\ndual_coef_indptr = np.arange(0, dual_coef_indices.size + 1,\ndual_coef_indices.size / n_class)\nself.dual_coef_ = sp.csr_matrix(\n(dual_coef_data, dual_coef_indices, dual_coef_indptr),\n(n_class, n_SV))\n \n     def predict(self, X):\n         \"\"\"Perform regression on samples in X.\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in identifier names, whitespace, layout, and comments. For example, the condition for handling empty support vectors is presented differently in both samples ('if n_SV == 0' vs. 'if not n_SV'), and some white spaces have changed, but the underlying logic and operations performed are effectively the same.\"}"
+}

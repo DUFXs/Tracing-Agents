@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-12907",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "astropy/modeling/separable.py": "index a308e27297..55882681bc 100644\n     noutp = _compute_n_outputs(left, right)\n \n     if isinstance(left, Model):\nif isinstance(left, CompoundModel) and left.op == '&':\ncleft = _separable(left)\nelse:\ncleft = _coord_matrix(left, 'left', noutp)\n     else:\n         cleft = np.zeros((noutp, left.shape[1]))\n         cleft[: left.shape[0], : left.shape[1]] = left\n\n     if isinstance(right, Model):\nif isinstance(right, CompoundModel) and right.op == '&':\ncright = _separable(right)\ncright_padded = np.zeros((noutp, right.n_inputs))\ncright_padded[-right.n_outputs:, -right.n_inputs:] = cright\ncright = cright_padded\nelse:\ncright = _coord_matrix(right, 'right', noutp)\n     else:\n         cright = np.zeros((noutp, right.shape[1]))\ncright[-right.shape[0]:, -right.shape[1]:] = right\n \n     return np.hstack([cleft, cright])\n \n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..42291e8c42\nfrom astropy.modeling import models as m\nfrom astropy.modeling.separable import separability_matrix\n\n# Test case 1: Simple compound model\nprint(\"\\nTest case 1: Simple compound model\")\ncm = m.Linear1D(10) & m.Linear1D(5)\nprint(separability_matrix(cm))\n\n# Test case 2: More complex compound model\nprint(\"\\nTest case 2: Complex compound model\")\ncomplex_model = m.Pix2Sky_TAN() & m.Linear1D(10) & m.Linear1D(5)\nprint(separability_matrix(complex_model))\n\n# Test case 3: Nested compound model (showing the bug)\nprint(\"\\nTest case 3: Nested compound model\")\nnested_model = m.Pix2Sky_TAN() & cm\nprint(separability_matrix(nested_model))\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "astropy/modeling/separable.py": "         cright = _coord_matrix(right, 'right', noutp)\n     else:\n         cright = np.zeros((noutp, right.shape[1]))\ncright[-right.shape[0]:, -right.shape[1]:] = right\n \n     return np.hstack([cleft, cright])\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for the differences in whitespace and layout. The second code sample contains a portion of code that appears in the first code sample, and the content is exactly the same when ignoring whitespace and layout. There are no differences in comments, literals, or identifiers.\"}"
+}

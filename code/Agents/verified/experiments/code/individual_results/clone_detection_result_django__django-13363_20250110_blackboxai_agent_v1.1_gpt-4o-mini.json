@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13363",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/functions/datetime.py": "index b6594b043b..a0141154c4 100644\n     def as_sql(self, compiler, connection):\n         # Cast to date rather than truncate to date.\n         lhs, lhs_params = compiler.compile(self.lhs)\ntzname = self.get_tzname() if settings.USE_TZ else None\n         sql = connection.ops.datetime_cast_date_sql(lhs, tzname)\n         return sql, lhs_params\n \n     def as_sql(self, compiler, connection):\n         # Cast to time rather than truncate to time.\n         lhs, lhs_params = compiler.compile(self.lhs)\ntzname = self.get_tzname() if settings.USE_TZ else None\n         sql = connection.ops.datetime_cast_time_sql(lhs, tzname)\n         return sql, lhs_params\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/functions/datetime.py": "     def as_sql(self, compiler, connection):\n         # Cast to date rather than truncate to date.\n         lhs, lhs_params = compiler.compile(self.lhs)\ntzname = self.get_tzname()\n         sql = connection.ops.datetime_cast_date_sql(lhs, tzname)\n         return sql, lhs_params\n \n     def as_sql(self, compiler, connection):\n         # Cast to time rather than truncate to time.\n         lhs, lhs_params = compiler.compile(self.lhs)\ntzname = self.get_tzname()\n         sql = connection.ops.datetime_cast_time_sql(lhs, tzname)\n         return sql, lhs_params\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace. The logical structure and content of the functions are the same, and the only differences are the presence of whitespace and some minor formatting.\"}"
+}

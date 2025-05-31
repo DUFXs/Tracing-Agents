@@ -1,0 +1,7 @@
+{
+    "instance_id": "matplotlib__matplotlib-26342",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "lib/matplotlib/contour.py",
+    "ground_truth_patch_file": "lib/matplotlib/collections.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-24066",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "sympy/physics/units/unitsystem.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to different files with distinct functionalities. Code sample 1 contains unit tests for verifying the behavior of dimension-related mathematical expressions, while code sample 2 involves a function for collecting factors and dimensions from expressions. The contexts and purposes of the two code samples are fundamentally different, indicating they are not clones.\"}"
+}

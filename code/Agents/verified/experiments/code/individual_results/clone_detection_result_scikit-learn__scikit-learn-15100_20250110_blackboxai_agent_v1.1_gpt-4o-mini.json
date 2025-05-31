@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-15100",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 20483c452..de7f6aff1 100644\n sklearn/utils/seq_dataset.pyx\n sklearn/utils/seq_dataset.pxd\n sklearn/linear_model/sag_fast.pyx\n.aider/\n",
+        "sklearn/feature_extraction/text.py": "index bb5a9d646..11236d958 100644\n         ASCII equivalent.\n     \"\"\"\n     normalized = unicodedata.normalize('NFKD', s)\nreturn ''.join([c for c in normalized if not unicodedata.combining(c)])\n \n \n def strip_accents_ascii(s):\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/feature_extraction/text.py": "         Remove accentuated char for any unicode symbol that has a direct\n         ASCII equivalent.\n     \"\"\"\ntry:\n# If `s` is ASCII-compatible, then it does not contain any accented\n# characters and we can avoid an expensive list comprehension\ns.encode(\"ASCII\", errors=\"strict\")\n         return s\nexcept UnicodeEncodeError:\nnormalized = unicodedata.normalize('NFKD', s)\n         return ''.join([c for c in normalized if not unicodedata.combining(c)])\n \n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share a similar structure and purpose but contain added statements and modified layout. For example, the second sample includes a try-except block that manages the scenario of an ASCII-compatible string, while the first does not.\"}"
+}

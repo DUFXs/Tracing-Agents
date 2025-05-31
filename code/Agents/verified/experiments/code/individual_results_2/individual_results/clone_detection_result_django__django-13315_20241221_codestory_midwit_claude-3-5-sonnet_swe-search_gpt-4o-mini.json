@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13315",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "django/forms/models.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and functionalities. Code sample 1 is a complete implementation of models, forms, and logic for managing products in Django with respect to their active status and related categories, while code sample 2 involves a helper function for applying filters in Django form fields. They do not exhibit similarity in structure or functionality and are not derived from each other.\"}"
+}

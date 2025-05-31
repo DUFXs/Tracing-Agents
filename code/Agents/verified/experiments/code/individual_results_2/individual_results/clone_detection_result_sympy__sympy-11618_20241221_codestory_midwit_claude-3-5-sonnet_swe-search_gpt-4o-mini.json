@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-11618",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "edge_cases.py",
+    "ground_truth_patch_file": "sympy/geometry/point.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes in the codebase. Sample 1 defines a test function for calculating distances between geometric points and includes multiple test cases. In contrast, Sample 2 contains a portion of a distance calculation method from a class definition, focusing on how the distance between points is computed based on their respective coordinates. The structure, functionality, and intent of the two pieces of code are distinct.\"}"
+}

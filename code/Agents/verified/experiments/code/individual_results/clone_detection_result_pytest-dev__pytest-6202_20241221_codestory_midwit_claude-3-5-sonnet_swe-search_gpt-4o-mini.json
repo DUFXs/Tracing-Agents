@@ -1,0 +1,12 @@
+{
+    "instance_id": "pytest-dev__pytest-6202",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..eec3ff56d\nimport pytest\n\n@pytest.mark.parametrize(\"a\", [\"..[\"]) \ndef test_boo(a):\nassert 0  # This will fail intentionally to show the error message\n\\ No newline at end of file\n",
+        "src/_pytest/python.py": "index b8b365ad3..5f2af31e2 100644\n             parts.append(name)\n         parts.reverse()\n         s = \".\".join(parts)\nreturn s\n \n     def reportinfo(self):\n         # XXX caching?\n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/python.py": "                     break\n             parts.append(name)\n         parts.reverse()\nreturn \".\".join(parts)\n \n     def reportinfo(self):\n         # XXX caching?\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in whitespace and layout. In particular, the layout and some whitespace formatting may differ slightly, but the structure and logic of the code are the same.\"}"
+}

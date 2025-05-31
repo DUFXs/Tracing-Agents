@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-11848",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_parse_http_date_future.py",
+    "ground_truth_patch_file": "django/utils/http.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and exhibit syntactical dissimilarities. Code sample 1 implements a test for parsing HTTP dates, while sample 2 contains logic related to interpreting years in a separate context. They do not share structural similarities or functionality that would qualify them as clones.\"}"
+}

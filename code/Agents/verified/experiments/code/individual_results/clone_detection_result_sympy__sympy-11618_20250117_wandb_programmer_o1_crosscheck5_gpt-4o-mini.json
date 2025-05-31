@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-11618",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "fix_distance_test.py": "new file mode 100644\nindex 0000000000..4142b1e63d\n#!/usr/bin/env python\nimport sys\nimport math\nfrom sympy.geometry import Point\nfrom sympy import sqrt\n\ndef main():\nprint(\"Running distance dimension mismatch test.\")\np1 = Point(2,0)\np2 = Point(1,0,2)\ndist = p1.distance(p2)\nprint(\"Computed distance:\", dist)\n\nexpected = sqrt(5)\nprint(\"Expected distance:\", expected)\n\n# We'll compare numerically to handle symbolic differences\nif abs(dist.evalf() - expected.evalf()) < 1e-12:\nprint(\"PASS: distance matches sqrt(5).\")\nsys.exit(0)\nelse:\nprint(\"FAIL: distance is\", dist, \"but expected\", expected)\nsys.exit(1)\n\nif __name__ == \"__main__\":\nmain()\n",
+        "sympy/geometry/point.py": "index 593048464b..01cf861d75 100644\n         return len(self)\n \n     def distance(self, p):\n# Convert p to a Point if necessary\np = Point(p)\n# Pad whichever point is shorter with zeros so that all dimensions match\nmax_dim = max(len(self), len(p))\ncoords_self = list(self.args) + [0]*(max_dim - len(self))\ncoords_p = list(p.args) + [0]*(max_dim - len(p))\nreturn sqrt(sum((a - b)**2 for a, b in zip(coords_self, coords_p)))\n\n \n     def taxicab_distance(self, p):\n         \"\"\"The Taxicab Distance from self to point p.\n"
+    },
+    "ground_truth_patch": {
+        "sympy/geometry/point.py": "         sqrt(x**2 + y**2)\n \n         \"\"\"\nif type(p) is not type(self):\nif len(p) == len(self):\nreturn sqrt(sum([(a - b)**2 for a, b in zip(\nself.args, p.args if isinstance(p, Point) else p)]))\nelse:\np1 = [0] * max(len(p), len(self))\np2 = p.args if len(p.args) > len(self.args) else self.args\n\nfor i in range(min(len(p), len(self))):\np1[i] = p.args[i] if len(p) < len(self) else self.args[i]\n\nreturn sqrt(sum([(a - b)**2 for a, b in zip(\np1, p2)]))\n\n         return sqrt(sum([(a - b)**2 for a, b in zip(\n             self.args, p.args if isinstance(p, Point) else p)]))\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically dissimilar and do not exhibit functional equivalence. Sample 1 involves a test function with specific points and a distance calculation, while Sample 2 contains a method for calculating distance with more complex checks and padding for points of differing dimensions, which indicates different implementations and logic.\"}"
+}

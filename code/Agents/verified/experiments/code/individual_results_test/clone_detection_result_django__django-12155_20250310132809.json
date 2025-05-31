@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-12155",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "tests/manual_admindocs_test.py",
+    "ground_truth_patch_file": "django/contrib/admindocs/views.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

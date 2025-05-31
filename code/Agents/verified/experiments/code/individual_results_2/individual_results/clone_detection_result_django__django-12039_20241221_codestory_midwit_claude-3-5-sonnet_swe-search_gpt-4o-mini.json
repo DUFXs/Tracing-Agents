@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-12039",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/backends/ddl_references.py",
+    "ground_truth_patch_file": "django/db/backends/ddl_references.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities but have added, modified, or removed statements, such as differences in how the suffixes are concatenated and how the exception handling is structured.\"}"
+}

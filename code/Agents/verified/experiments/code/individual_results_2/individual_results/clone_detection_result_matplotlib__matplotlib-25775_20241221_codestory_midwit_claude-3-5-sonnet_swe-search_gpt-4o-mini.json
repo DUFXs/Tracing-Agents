@@ -1,0 +1,7 @@
+{
+    "instance_id": "matplotlib__matplotlib-25775",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "lib/matplotlib/text.py",
+    "ground_truth_patch_file": "lib/matplotlib/backends/backend_agg.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they address different functionalities within the matplotlib library. The first sample deals with text rendering properties, such as text antialiasing and vertical alignment, while the second sample focuses on drawing glyphs to a bitmap and obtaining font metrics. There is no syntactical similarity or functional relationship between the two samples.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-10914",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/conf/global_settings.py": "index acee9887d2..ae62f31873 100644\n \n # The numeric mode to set newly-uploaded files to. The value should be a mode\n # you'd pass directly to os.chmod; see https://docs.python.org/library/os.html#files-and-directories.\n# Default file system permissions for uploaded files. If this is `None`, the system\n# defaults will be used. Otherwise, the file will be given these permissions.\n# For consistency between different systems, we recommend setting this to 0o644.\nFILE_UPLOAD_PERMISSIONS = 0o644\n \n # The numeric mode to assign to newly-created directories, when uploading files.\n # The value should be a mode as you'd pass to os.chmod;\n"
+    },
+    "ground_truth_patch": {
+        "django/conf/global_settings.py": "# The numeric mode to set newly-uploaded files to. The value should be a mode\n# you'd pass directly to os.chmod; see https://docs.python.org/library/os.html#files-and-directories.\nFILE_UPLOAD_PERMISSIONS = 0o644\n\n# The numeric mode to assign to newly-created directories, when uploading files.\n# The value should be a mode as you'd pass to os.chmod;\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout. The content of the comments and the code itself, including the assignment of 'FILE_UPLOAD_PERMISSIONS', remains the same.\"}"
+}

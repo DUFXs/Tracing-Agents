@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10844",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "sklearn/metrics/cluster/supervised.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and exhibit significant differences in function and structure. The first sample defines a series of test cases for evaluating a clustering metric using arrays, while the second sample appears to be part of a function dealing with contingency matrices and entropy calculations related to clustering, showing no syntactical or functional similarity.\"}"
+}

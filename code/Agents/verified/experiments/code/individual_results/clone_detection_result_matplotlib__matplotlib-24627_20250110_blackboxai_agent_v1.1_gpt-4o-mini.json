@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-24627",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 7d0e549e01..ec3b38b71a 100644\n lib/matplotlib/backends/web_backend/package-lock.json\n \n LICENSE/LICENSE_QHULL\n.aider/\n",
+        "lib/matplotlib/axes/_base.py": "index 90b0bf117e..138c4fd0b6 100644\n         xaxis_visible = self.xaxis.get_visible()\n         yaxis_visible = self.yaxis.get_visible()\n \n# Clean up any existing artists\n# Create a copy of the list since remove() modifies _children\nchildren = list(self._children)\nfor artist in children:\nartist.remove()  # This will properly clean up .axes references\n\n         for axis in self._axis_map.values():\n             axis.clear()  # Also resets the scale to linear.\n         for spine in self.spines.values():\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/axes/_base.py": "         self._get_patches_for_fill = _process_plot_var_args(self, 'fill')\n \n         self._gridOn = mpl.rcParams['axes.grid']\nold_children, self._children = self._children, []\nfor chld in old_children:\nchld.axes = chld.figure = None\n         self._mouseover_set = _OrderedSet()\n         self.child_axes = []\n         self._current_image = None  # strictly for pyplot via _sci, _gci\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they exhibit different functionality and structure, with no significant syntactic similarities or equivalent functionality. The first sample focuses on removing existing artists and clearing axes, while the second sample is involved in handling patches and grid parameters. Their statements and purposes significantly differ, making them functionally dissimilar.\"}"
+}

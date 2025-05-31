@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-11749",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "django/core/management/__init__.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve entirely different purposes and involve different types of functionality. Code sample 1 is a Django management command that adds arguments and handles them, while code sample 2 appears to deal with parsing argument options within a different context entirely. The structural elements and the intent behind the code differ significantly.\"}"
+}

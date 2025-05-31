@@ -1,0 +1,11 @@
+{
+    "instance_id": "matplotlib__matplotlib-24570",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "lib/matplotlib/offsetbox.py": "index a767323..752306d 100644\n         descent = max(d for h, d in hd_list)\n         height = height_descent + descent\n         offsets = [0. for h, d in hd_list]\nelif align in [\"left\", \"bottom\"]:\n         descent = 0.\n         offsets = [d for h, d in hd_list]\nelif align in [\"right\", \"top\"]:\n         descent = 0.\n         offsets = [height - h + d for h, d in hd_list]\n     elif align == \"center\":\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/offsetbox.py": "         descent = max(d for h, d in hd_list)\n         height = height_descent + descent\n         offsets = [0. for h, d in hd_list]\nelif align in [\"left\", \"bottom\"]:\n         descent = 0.\n         offsets = [d for h, d in hd_list]\nelif align in [\"right\", \"top\"]:\n         descent = 0.\n         offsets = [height - h + d for h, d in hd_list]\n     elif align == \"center\":\n"
+    },
+    "response": "{\"explanation\": \"Both code samples appear to be handling layout alignment calculations in matplotlib's offsetbox module. The code calculates descent, height, and offset values based on different alignment conditions ('left', 'bottom', 'right', 'top', 'center'). The code uses list comprehensions to compute offsets differently depending on the alignment value.\", \n\"is_clone\": true, \n\"classification\": \"type-1\", \n\"reasoning\": \"These code samples are type-1 clones because they are exactly identical, character for character. Both samples contain the same code structure, variable names, and logic. The only difference appears to be in how they are presented in the patch format, but the actual code content is identical. This is a clear case of a type-1 clone where the code is exactly the same without any variations in whitespace, layout, or comments.\"}"
+}

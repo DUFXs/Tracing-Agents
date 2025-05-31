@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14053",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_single_feature_export_text.py",
+    "ground_truth_patch_file": "sklearn/tree/export.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically different and serve different purposes in the codebase. Sample 1 focuses on loading iris data, fitting a Decision Tree Classifier, and exporting text from it, while Sample 2 contains a snippet related to feature names for trees, which is unrelated in context and functionality to Sample 1.\"}"
+}

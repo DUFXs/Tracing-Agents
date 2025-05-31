@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-3151",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "reproduce.py",
+    "ground_truth_patch_file": "xarray/core/combine.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they do not share similar structures or functionality. Sample 1 implements a complete script for creating datasets with xarray, while Sample 2 contains a fragment of a different function related to coordinate checking in a concatenated dataset. Their purposes and code constructs are different.\"}"
+}

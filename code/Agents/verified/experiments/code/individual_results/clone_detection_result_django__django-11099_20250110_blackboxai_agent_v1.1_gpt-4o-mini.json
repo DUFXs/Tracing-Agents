@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11099",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/auth/validators.py": "index b4878cfd45..1304f20a60 100644\n \n @deconstructible\n class ASCIIUsernameValidator(validators.RegexValidator):\nregex = r'\\A[\\w.@+-]+\\Z'\n     message = _(\n         'Enter a valid username. This value may contain only English letters, '\n         'numbers, and @/./+/-/_ characters.'\n \n @deconstructible\n class UnicodeUsernameValidator(validators.RegexValidator):\nregex = r'\\A[\\w.@+-]+\\Z'\n     message = _(\n         'Enter a valid username. This value may contain only letters, '\n         'numbers, and @/./+/-/_ characters.'\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/validators.py": " \n @deconstructible\n class ASCIIUsernameValidator(validators.RegexValidator):\nregex = r'^[\\w.@+-]+\\Z'\n     message = _(\n         'Enter a valid username. This value may contain only English letters, '\n         'numbers, and @/./+/-/_ characters.'\n \n @deconstructible\n class UnicodeUsernameValidator(validators.RegexValidator):\nregex = r'^[\\w.@+-]+\\Z'\n     message = _(\n         'Enter a valid username. This value may contain only letters, '\n         'numbers, and @/./+/-/_ characters.'\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for changes in the regex pattern used in the ASCIIUsernameValidator and UnicodeUsernameValidator classes. Specifically, the regex in the first sample uses 'r'\\\\A[\\\\w.@+-]+\\\\Z'' while the second sample uses 'r'^[\\\\w.@+-]+\\\\Z''. Additionally, they both have differences in whitespace and layout.\"}"
+}

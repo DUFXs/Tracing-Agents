@@ -1,0 +1,12 @@
+{
+    "instance_id": "pallets__flask-5014",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index e6713351..7483aef9 100644\n .coverage\n .coverage.*\n *,cover\n.aider/\n",
+        "src/flask/blueprints.py": "index eb50585d..06289027 100644\n         if \".\" in name:\n             raise ValueError(\"'name' may not contain a dot '.' character.\")\n \nif not name or name.isspace():\nraise ValueError(\"'name' may not be empty or contain only whitespace.\")\n\n         self.name = name\n         self.url_prefix = url_prefix\n         self.subdomain = subdomain\n"
+    },
+    "ground_truth_patch": {
+        "src/flask/blueprints.py": "             root_path=root_path,\n         )\n \nif not name:\nraise ValueError(\"'name' may not be empty.\")\n\n         if \".\" in name:\n             raise ValueError(\"'name' may not contain a dot '.' character.\")\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share syntactical similarities in their structure and logic, but there are added, modified, or removed statements. Specifically, Code sample 2 omits certain parts regarding 'root_path' and simplifies the error message for empty names, while retaining the check for a dot in the name. The presence of different statements in both snippets indicates they are syntactically similar but not identical.\"}"
+}

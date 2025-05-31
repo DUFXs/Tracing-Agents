@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-10914",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/conf/global_settings.py": "index acee9887d2..63fe2c83d9 100644\n \n # The numeric mode to set newly-uploaded files to. The value should be a mode\n # you'd pass directly to os.chmod; see https://docs.python.org/library/os.html#files-and-directories.\nFILE_UPLOAD_PERMISSIONS = 0o644\n \n # The numeric mode to assign to newly-created directories, when uploading files.\n\n # The value should be a mode as you'd pass to os.chmod;\n # see https://docs.python.org/library/os.html#files-and-directories.\n FILE_UPLOAD_DIRECTORY_PERMISSIONS = None\n SECURE_REDIRECT_EXEMPT = []\n SECURE_SSL_HOST = None\n SECURE_SSL_REDIRECT = False\n\n\n"
+    },
+    "ground_truth_patch": {
+        "django/conf/global_settings.py": "# The numeric mode to set newly-uploaded files to. The value should be a mode\n# you'd pass directly to os.chmod; see https://docs.python.org/library/os.html#files-and-directories.\nFILE_UPLOAD_PERMISSIONS = 0o644\n\n# The numeric mode to assign to newly-created directories, when uploading files.\n# The value should be a mode as you'd pass to os.chmod;\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines settings for file upload permissions in Django, including the numeric mode for newly-uploaded files and directories. It sets 'FILE_UPLOAD_PERMISSIONS' to '0o644' and includes a placeholder for 'FILE_UPLOAD_DIRECTORY_PERMISSIONS' and other security-related settings. The code sample 2 similarly describes file upload permissions and mentions the directory settings but doesn't include the complete set of configurations found in code sample 1, making it less comprehensive.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because code sample 2 is a partial excerpt of code sample 1; it lacks some variables and functionality. Thus, they differ significantly in their completeness and do not match any clone type.\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "matplotlib__matplotlib-23412",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "lib/matplotlib/patches.py": "index 1eefb1e..f0f58e9 100644\n         # docstring inherited\n         if not self.get_visible():\n             return\nwith self._bind_draw_path_function(renderer) as draw_path:\n             path = self.get_path()\n             transform = self.get_transform()\n             tpath = transform.transform_path_non_affine(path)\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/patches.py": "         # docstring inherited\n         if not self.get_visible():\n             return\n\nwith cbook._setattr_cm(self, _dash_pattern=(self._dash_pattern)), \\\n              self._bind_draw_path_function(renderer) as draw_path:\n             path = self.get_path()\n             transform = self.get_transform()\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 checks visibility, and if visible, uses a context manager '_bind_draw_path_function' to get a draw path function, then gets a path and transform, and transforms the path non-affinely. The code in code sample 2 follows a similar structure but adds an additional context manager 'cbook._setattr_cm' to set a dash pattern attribute, and doesn't include the non-affine path transformation.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they share the same basic structure and purpose (checking visibility, getting draw path, path, and transform), but have some modifications: Sample 2 adds a dash pattern context manager and omits the non-affine path transformation line. The core functionality remains similar, but there are added and removed statements, which is characteristic of type-3 clones. The modifications don't completely change the function's purpose but rather adjust how it's executed.\"\n}"
+}

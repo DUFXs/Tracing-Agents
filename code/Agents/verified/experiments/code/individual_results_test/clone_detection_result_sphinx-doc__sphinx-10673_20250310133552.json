@@ -1,0 +1,7 @@
+{
+    "instance_id": "sphinx-doc__sphinx-10673",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "_test_special_docs/_build/html/.doctrees/index.doctree",
+    "ground_truth_patch_file": "sphinx/environment/collectors/toctree.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

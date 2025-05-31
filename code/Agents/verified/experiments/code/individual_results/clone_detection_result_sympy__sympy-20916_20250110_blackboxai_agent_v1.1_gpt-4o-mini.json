@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-20916",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index db4a22815e..2450c37630 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/printing/conventions.py": "index 9a3be6bbe9..e757932415 100644\n from collections.abc import Iterable\n from sympy import Derivative\n \n_name_with_digits_p = re.compile(r'^([^\\W\\d_][^\\d]*?)(\\d+)$', re.UNICODE)\n \n \n def split_super_sub(text):\n"
+    },
+    "ground_truth_patch": {
+        "sympy/printing/conventions.py": " from collections.abc import Iterable\n from sympy import Derivative\n \n_name_with_digits_p = re.compile(r'^([^\\W\\d_]+)(\\d+)$', re.U)\n \n \n def split_super_sub(text):\n         else:\n             raise RuntimeError(\"This should never happen.\")\n \n# Make a little exception when a name ends with digits, i.e. treat them\n     # as a subscript too.\n     m = _name_with_digits_p.match(name)\n     if m:\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain different functionality; the first sample is incomplete and does not include the full implementation of the `split_super_sub` function, while the second sample includes additional lines of code that are not present in the first, indicating differing functionality.\"}"
+}

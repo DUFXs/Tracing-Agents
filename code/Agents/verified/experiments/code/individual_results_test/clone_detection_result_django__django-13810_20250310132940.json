@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13810",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_asgi_middleware_raise_mnu.py",
+    "ground_truth_patch_file": "django/core/handlers/base.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

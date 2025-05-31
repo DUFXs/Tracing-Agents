@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-3677",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "bug_test_merge_da.py",
+    "ground_truth_patch_file": "xarray/core/dataset.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are entirely different in functionality and context. The first sample deals with a specific test case for merging a DataArray into a Dataset, while the second sample appears to be part of a larger implementation that includes merges involving other datasets, with no direct overlap in statements or logic.\"}"
+}

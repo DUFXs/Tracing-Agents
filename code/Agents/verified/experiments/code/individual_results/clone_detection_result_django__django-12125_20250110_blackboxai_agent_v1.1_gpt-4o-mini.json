@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12125",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/migrations/serializer.py": "index 7d226955d5..2aa50ff439 100644\n             if module == builtins.__name__:\n                 return self.value.__name__, set()\n             else:\n# Use __qualname__ for inner classes to get full path\nname = getattr(self.value, '__qualname__', self.value.__name__)\nreturn \"%s.%s\" % (module, name), {\"import %s\" % module}\n \n \n class UUIDSerializer(BaseSerializer):\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/serializer.py": "             if module == builtins.__name__:\n                 return self.value.__name__, set()\n             else:\nreturn \"%s.%s\" % (module, self.value.__qualname__), {\"import %s\" % module}\n \n \n class UUIDSerializer(BaseSerializer):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have a modification in the statement that returns the name of the module and the class. The first sample uses the method 'getattr(self.value, '__qualname__', self.value.__name__)' to get the name, while the second sample directly uses 'self.value.__qualname__'. This change modifies the return statement slightly, indicating an addition or modification in the original logic.\"}"
+}

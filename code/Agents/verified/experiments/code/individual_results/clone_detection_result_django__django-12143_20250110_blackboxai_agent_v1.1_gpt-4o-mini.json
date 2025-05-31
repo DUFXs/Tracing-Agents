@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12143",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/options.py": "index 137e6faa0f..a100f1c499 100644\n \n     def _get_edited_object_pks(self, request, prefix):\n         \"\"\"Return POST data values of list_editable primary keys.\"\"\"\npk_pattern = re.compile(r'{}-\\d+-{}$'.format(re.escape(prefix), self.model._meta.pk.name))\n         return [value for key, value in request.POST.items() if pk_pattern.match(key)]\n \n     def _get_list_editable_queryset(self, request, prefix):\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/options.py": " \n     def _get_edited_object_pks(self, request, prefix):\n         \"\"\"Return POST data values of list_editable primary keys.\"\"\"\npk_pattern = re.compile(\nr'{}-\\d+-{}$'.format(re.escape(prefix), self.model._meta.pk.name)\n)\n         return [value for key, value in request.POST.items() if pk_pattern.match(key)]\n \n     def _get_list_editable_queryset(self, request, prefix):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace. The layout and comments are the same, indicating that they are equivalent aside from formatting changes.\"}"
+}

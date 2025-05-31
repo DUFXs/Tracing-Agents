@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-22914",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "sympy/printing/pycode.py",
+    "ground_truth_patch_file": "sympy/printing/pycode.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain different functionalities, structures, and context. The first sample defines two methods for printing mathematical operations (_print_Min and _print_Max) and employs dynamic function addition for _print_known_func, while the second sample defines a dictionary of known functions without any similarity in structure or logic. They are syntactically and functionally distinct.\"}"
+}

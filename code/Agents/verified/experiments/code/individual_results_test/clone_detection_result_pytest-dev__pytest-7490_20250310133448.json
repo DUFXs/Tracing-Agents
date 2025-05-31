@@ -1,0 +1,7 @@
+{
+    "instance_id": "pytest-dev__pytest-7490",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "src/_pytest/skipping.py",
+    "ground_truth_patch_file": "src/_pytest/skipping.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-3\"}"
+}

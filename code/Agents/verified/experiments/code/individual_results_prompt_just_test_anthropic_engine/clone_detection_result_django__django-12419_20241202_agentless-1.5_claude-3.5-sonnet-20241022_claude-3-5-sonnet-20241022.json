@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-12419",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/conf/global_settings.py": "index be2f32a..5e30e02 100644\n SECURE_HSTS_PRELOAD = False\n SECURE_HSTS_SECONDS = 0\n SECURE_REDIRECT_EXEMPT = []\nSECURE_REFERRER_POLICY = \"same-origin\"\n SECURE_SSL_HOST = None\nSECURE_SSL_REDIRECT = False\n"
+    },
+    "ground_truth_patch": {
+        "django/conf/global_settings.py": " SECURE_HSTS_PRELOAD = False\n SECURE_HSTS_SECONDS = 0\n SECURE_REDIRECT_EXEMPT = []\nSECURE_REFERRER_POLICY = 'same-origin'\n SECURE_SSL_HOST = None\n SECURE_SSL_REDIRECT = False\n"
+    },
+    "response": "{\n    \"explanation\": \"Both code samples are defining Django security settings in global_settings.py. They set identical security-related configuration variables: SECURE_HSTS_PRELOAD, SECURE_HSTS_SECONDS, SECURE_REDIRECT_EXEMPT, SECURE_REFERRER_POLICY, SECURE_SSL_HOST, and SECURE_SSL_REDIRECT with the same values. The only difference is in the string quotation for 'same-origin' (double quotes in sample 1, single quotes in sample 2).\",\n    \"is_clone\": true,\n    \"classification\": \"type-1\",\n    \"reasoning\": \"These code samples are type-1 clones because they are identical except for a trivial difference in string quotation marks. In Python, single and double quotes are functionally equivalent for string literals. The code structure, variable names, values, and overall functionality remain exactly the same. This falls under type-1 classification as it's only a superficial difference in syntax that doesn't affect the code's behavior or meaning.\"\n}"
+}

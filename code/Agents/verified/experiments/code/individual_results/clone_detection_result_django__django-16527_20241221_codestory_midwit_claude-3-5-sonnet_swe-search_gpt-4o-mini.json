@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16527",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/contrib/admin/templatetags/admin_modify.py": "index 9df4b7aadb..5b742af46a 100644\n                 and context.get(\"show_delete\", True)\n             ),\n             \"show_save_as_new\": not is_popup\nand has_add_permission\n             and has_change_permission\n             and change\n             and save_as,\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..b50723abdf\nfrom django.contrib.admin.templatetags.admin_modify import submit_row\nfrom django.template.context import Context\n\n# Test case 1: User has change permission but no add permission\ncontext = {\n'add': False,\n'change': True,\n'is_popup': False,\n'save_as': True,\n'show_save': True,\n'show_save_and_add_another': True,\n'show_save_and_continue': True,\n'has_add_permission': False,  # User doesn't have add permission\n'has_change_permission': True,\n'has_view_permission': True,\n'has_delete_permission': True,\n'has_editable_inline_admin_formsets': False,\n}\n\nresult = submit_row(context)\nprint(\"Test Case 1 - User without add permission:\")\nprint(f\"show_save_as_new: {result.get('show_save_as_new')}\")\nprint(\"Expected: False (shouldn't show save as new without add permission)\")\nprint()\n\n# Test case 2: User has both change and add permissions\ncontext['has_add_permission'] = True\nresult = submit_row(context)\nprint(\"Test Case 2 - User with add permission:\")\nprint(f\"show_save_as_new: {result.get('show_save_as_new')}\")\nprint(\"Expected: True (should show save as new with all required permissions)\")\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/templatetags/admin_modify.py": "                 and context.get(\"show_delete\", True)\n             ),\n             \"show_save_as_new\": not is_popup\nand has_add_permission\n             and change\n             and save_as,\n             \"show_save_and_add_another\": can_save_and_add_another,\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities, but there are added statements in code sample 2, specifically the inclusion of 'show_save_and_add_another' and the omission of parts from code sample 1. The overall structure and logic are similar, but the differences in added and removed statements classify them as type-3 clones.\"}"
+}

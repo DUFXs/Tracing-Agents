@@ -1,0 +1,11 @@
+{
+    "instance_id": "sphinx-doc__sphinx-10466",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sphinx/builders/gettext.py": "index c138802..c571428 100644\n     \"\"\"An entry of translatable message.\"\"\"\n     def __init__(self, text: str, locations: List[Tuple[str, int]], uuids: List[str]):\n         self.text = text\nself.locations = list(set(locations))  # Remove duplicate locations\n         self.uuids = uuids\n \n \n"
+    },
+    "ground_truth_patch": {
+        "sphinx/builders/gettext.py": " \n     def __iter__(self) -> Generator[Message, None, None]:\n         for message in self.messages:\npositions = sorted(set((source, line) for source, line, uuid\nin self.metadata[message]))\n             uuids = [uuid for source, line, uuid in self.metadata[message]]\n             yield Message(message, positions, uuids)\n \n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 is a constructor method that initializes a Message class with text, locations, and uuids, removing duplicate locations using set conversion. The code in code sample 2 is an iterator method that yields Message objects, where it processes message metadata to create sorted unique positions and corresponding uuids.\",\n\"is_clone\": false,\n\"classification\": \"N/A\",\n\"reasoning\": \"These code samples are not clones because they serve completely different purposes and have different functionality. Sample 1 is a constructor that initializes object attributes, while Sample 2 is an iterator that processes and yields Message objects. While both deal with similar data structures (locations/positions and uuids), their syntactic structure and functional purpose are fundamentally different. Sample 1 focuses on object initialization and duplicate removal, while Sample 2 focuses on iteration and data transformation. They don't share enough structural or functional similarity to be considered any type of clone.\"\n}"
+}

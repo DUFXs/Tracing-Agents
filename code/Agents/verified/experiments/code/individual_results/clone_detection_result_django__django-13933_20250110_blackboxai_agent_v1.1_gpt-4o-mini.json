@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13933",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/forms/models.py": "index 422bc5d178..e03a3803cd 100644\n     # This class is a subclass of ChoiceField for purity, but it doesn't\n     # actually use any of ChoiceField's implementation.\n     default_error_messages = {\n'invalid_choice': _('Select a valid choice. %(value)s is not one of'\n                             ' the available choices.'),\n     }\n     iterator = ModelChoiceIterator\n                 value = getattr(value, key)\n             value = self.queryset.get(**{key: value})\n         except (ValueError, TypeError, self.queryset.model.DoesNotExist):\nraise ValidationError(\nself.error_messages['invalid_choice'],\ncode='invalid_choice',\nparams={'value': value},\n)\n         return value\n \n     def validate(self, value):\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/models.py": "                 value = getattr(value, key)\n             value = self.queryset.get(**{key: value})\n         except (ValueError, TypeError, self.queryset.model.DoesNotExist):\nraise ValidationError(\nself.error_messages['invalid_choice'],\ncode='invalid_choice',\nparams={'value': value},\n)\n         return value\n \n     def validate(self, value):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have additional context in the first sample that is not present in the second sample. The second code sample starts at a specific line that focuses on the logic of retrieving a value, while the first sample includes additional comments and context that refer to the `default_error_messages` attribute. However, the core functionality is aligned, indicating that they share structural similarities but also have different surrounding code.\"}"
+}

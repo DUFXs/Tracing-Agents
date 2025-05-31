@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12143",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/options.py": "index 137e6faa0f..a100f1c499 100644\n \n     def _get_edited_object_pks(self, request, prefix):\n         \"\"\"Return POST data values of list_editable primary keys.\"\"\"\npk_pattern = re.compile(r'{}-\\d+-{}$'.format(re.escape(prefix), self.model._meta.pk.name))\n         return [value for key, value in request.POST.items() if pk_pattern.match(key)]\n \n     def _get_list_editable_queryset(self, request, prefix):\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/options.py": " \n     def _get_edited_object_pks(self, request, prefix):\n         \"\"\"Return POST data values of list_editable primary keys.\"\"\"\npk_pattern = re.compile(\nr'{}-\\d+-{}$'.format(re.escape(prefix), self.model._meta.pk.name)\n)\n         return [value for key, value in request.POST.items() if pk_pattern.match(key)]\n \n     def _get_list_editable_queryset(self, request, prefix):\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines two methods in a Django admin options class. The first method, _get_edited_object_pks, returns a list of primary keys from the request's POST data that match a specific pattern based on the provided prefix. The second method, _get_list_editable_queryset, is defined but does not contain any implemented code in the provided snippet. The same logic is found in code sample 2, which also defines the same two methods with the same functionality. However, in code sample 2, the formatting shows a slight variation in whitespace and line breaks, particularly where the regex pattern is compiled and returned. Despite these differences, the underlying logic remains unchanged and the functions are functionally identical.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace, layout, and some minor formatting aspects like line breaks.\"}"
+}

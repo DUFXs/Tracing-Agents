@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-4966",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "xarray/coding/variables.py",
+    "ground_truth_patch_file": "xarray/coding/variables.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\"}"
+}

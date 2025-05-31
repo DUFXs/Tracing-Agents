@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-9367",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "sphinx/pycode/ast.py": "index f541ec0a9..750a26c00 100644\n         return \"%s %s\" % (self.visit(node.op), self.visit(node.operand))\n \n     def visit_Tuple(self, node: ast.Tuple) -> str:\nif not node.elts:\n             return \"()\"\nelif len(node.elts) == 1:\n# single-element tuple -> add trailing comma\nreturn \"(\" + self.visit(node.elts[0]) + \",)\"\nelse:\nreturn \"(\" + \", \".join(self.visit(e) for e in node.elts) + \")\"\n\n \n     if sys.version_info < (3, 8):\n         # these ast nodes were deprecated in python 3.8\n",
+        "test_single_element_tuple.py": "new file mode 100644\nindex 000000000..e0e8a491d\n#!/usr/bin/env python3\nimport sys\n\ndef main():\nprint(\"Starting test for single-element tuple bug in Sphinx AST unparser.\")\nimport sphinx.pycode.ast\nsource = \"(1,)\"\nmodule = sphinx.pycode.ast.parse(source)\nnode = module.body[0].value\nunparsed = sphinx.pycode.ast.unparse(node, source)\n\nprint(\"Unparsed result:\", unparsed)\nprint(\"Expected:\", source)\n\nif unparsed == source:\nprint(\"Test passed! Single-element tuple is correctly unparsed as (1,).\")\nsys.exit(0)\nelse:\nprint(\"Test failed: single-element tuple is unparsed as\", unparsed)\nsys.exit(1)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/pycode/ast.py": "         return \"%s %s\" % (self.visit(node.op), self.visit(node.operand))\n \n     def visit_Tuple(self, node: ast.Tuple) -> str:\nif len(node.elts) == 0:\n             return \"()\"\nelif len(node.elts) == 1:\nreturn \"(%s,)\" % self.visit(node.elts[0])\nelse:\nreturn \"(\" + \", \".join(self.visit(e) for e in node.elts) + \")\"\n \n     if sys.version_info < (3, 8):\n         # these ast nodes were deprecated in python 3.8\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity but have differences in statements and their structures. Specifically, in the second sample, the empty tuple check has been altered from 'if not node.elts' to 'if len(node.elts) == 0', and the return statement for the single-element tuple has modified from concatenation to a formatting string. These changes indicate that additions or modifications have been made, which aligns with the definition of a type-3 clone.\"}"
+}

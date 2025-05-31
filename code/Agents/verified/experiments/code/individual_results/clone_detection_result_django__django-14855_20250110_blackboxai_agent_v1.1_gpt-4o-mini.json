@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14855",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/helpers.py": "index dd154f72ee..ba8c3463a0 100644\n             remote_field.model._meta.model_name,\n         )\n         try:\nurl = reverse(\nurl_name,\nargs=[quote(remote_obj.pk)],\ncurrent_app=self.model_admin.admin_site.name\n)\n             return format_html('<a href=\"{}\">{}</a>', url, remote_obj)\n         except NoReverseMatch:\n             return str(remote_obj)\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/helpers.py": "             remote_field.model._meta.model_name,\n         )\n         try:\nurl = reverse(\nurl_name,\nargs=[quote(remote_obj.pk)],\ncurrent_app=self.model_admin.admin_site.name,\n)\n             return format_html('<a href=\"{}\">{}</a>', url, remote_obj)\n         except NoReverseMatch:\n             return str(remote_obj)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for formatting differences, such as the placement of a comma in the argument list for the 'reverse' function, which creates a difference in whitespace layout but does not affect the logic or functionality of the code.\"}"
+}

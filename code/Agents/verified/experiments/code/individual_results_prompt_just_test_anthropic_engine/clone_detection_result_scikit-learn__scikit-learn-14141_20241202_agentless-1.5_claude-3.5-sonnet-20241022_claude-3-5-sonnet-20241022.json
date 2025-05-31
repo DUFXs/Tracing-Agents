@@ -1,0 +1,11 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14141",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sklearn/utils/_show_versions.py": "index 72f054a..13bf362 100644\n         \"Cython\",\n         \"pandas\",\n         \"matplotlib\",\n\"joblib\",\n     ]\n \n     def get_version(module):\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/utils/_show_versions.py": "         \"Cython\",\n         \"pandas\",\n         \"matplotlib\",\n\"joblib\",\n     ]\n \n     def get_version(module):\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples show part of a Python file that defines a list of module dependencies including 'Cython', 'pandas', 'matplotlib', and 'joblib', followed by the declaration of a function named 'get_version' that takes a 'module' parameter.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are exactly identical in terms of their code content. Both samples contain the same module names in the same order, same indentation, and the same function declaration. The only difference appears to be in the patch information at the start of sample 1 ('index 72f054a..13bf362 100644'), which is metadata about the change and not part of the actual code.\"\n}"
+}

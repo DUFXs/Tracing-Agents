@@ -1,0 +1,11 @@
+{
+    "instance_id": "pydata__xarray-4094",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "xarray/core/dataarray.py": "index d48a6e6..5b4a101 100644\n         # pull variables out of datarray\n         data_dict = {}\n         for k in variables:\n# Get the data for this variable, handling missing values in the index\nvar_data = self.sel({variable_dim: k}, drop=True)\nif var_data.size > 0:  # Only include non-empty selections\ndata_dict[k] = var_data.squeeze(drop=True)\n \n         # unstacked dataset\n         return Dataset(data_dict)\n"
+    },
+    "ground_truth_patch": {
+        "xarray/core/dataarray.py": "         # pull variables out of datarray\n         data_dict = {}\n         for k in variables:\ndata_dict[k] = self.sel({variable_dim: k}, drop=True).squeeze(drop=True)\n \n         # unstacked dataset\n         return Dataset(data_dict)\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 iterates through variables, creates a dictionary, and for each variable k, it selects data using the variable_dim, checks if the size is greater than 0, and only then adds the squeezed data to the dictionary. The code in code sample 2 also iterates through variables and creates a dictionary, but directly adds the selected and squeezed data to the dictionary without checking the size.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they have the same basic structure and purpose (creating a dictionary from selected and squeezed data), but code sample 1 includes additional statements for size checking (if var_data.size > 0) that are not present in code sample 2. The size check in sample 1 adds a condition for including data in the dictionary, while sample 2 includes all data unconditionally. This represents a modification of statements while maintaining similar syntactic structure, which is characteristic of type-3 clones.\"\n}"
+}

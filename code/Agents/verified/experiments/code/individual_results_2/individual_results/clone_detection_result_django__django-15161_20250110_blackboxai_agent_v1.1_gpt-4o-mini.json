@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-15161",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "django/db/models/expressions.py",
+    "ground_truth_patch_file": "django/db/models/expressions.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because while several of the class definitions, decorators, and methods are similar, the second code sample has some classes and methods that are not presented (specifically the classes 'ExpressionList' and 'WindowFrame'). Thus, they can be considered syntactically similar with added or removed statements.\"}"
+}

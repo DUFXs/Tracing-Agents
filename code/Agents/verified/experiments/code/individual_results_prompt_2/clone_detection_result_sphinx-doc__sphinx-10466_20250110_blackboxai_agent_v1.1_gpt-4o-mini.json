@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-10466",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/builders/gettext.py": "index e8bc547b7..320032fb7 100644\n     \"\"\"An entry of translatable message.\"\"\"\n     def __init__(self, text: str, locations: List[Tuple[str, int]], uuids: List[str]):\n         self.text = text\n# Deduplicate locations while preserving order\nself.locations = list(dict.fromkeys(locations))\n         self.uuids = uuids\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/builders/gettext.py": " \n     def __iter__(self) -> Generator[Message, None, None]:\n         for message in self.messages:\npositions = sorted(set((source, line) for source, line, uuid\nin self.metadata[message]))\n             uuids = [uuid for source, line, uuid in self.metadata[message]]\n             yield Message(message, positions, uuids)\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines an initializer for a class that handles translatable messages, taking parameters for the message text, locations, and UUIDs. It also deduplicates the locations while preserving order. On the other hand, code sample 2 implements an iterator for a class, yielding messages along with sorted and deduplicated position tuples derived from a metadata dictionary. It deals with a list of messages and their associated locations and UUIDs.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they perform different functions: one initializes message objects while the other iterates through them, leading to different structural and functional semantics.\"}"
+}

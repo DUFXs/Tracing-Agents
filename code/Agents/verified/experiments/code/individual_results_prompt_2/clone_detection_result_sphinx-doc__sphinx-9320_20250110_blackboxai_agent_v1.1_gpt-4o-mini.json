@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-9320",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/cmd/quickstart.py": "index a40a21073..45ef4d499 100644\n     return x\n \n \ndef is_path_or_empty(x: str) -> str:\nif not x:  # Allow empty input\nreturn x\nreturn is_path(x)  # Validate as path if not empty\n\n\n def allow_empty(x: str) -> str:\n     return x\n \n         print(__('sphinx-quickstart will not overwrite existing Sphinx projects.'))\n         print()\n         d['path'] = do_prompt(__('Please enter a new root path (or just Enter to exit)'),\n'', is_path_or_empty)\n         if not d['path']:\nsys.exit(0)\n \n     if 'sep' not in d:\n         print()\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/cmd/quickstart.py": "     return x\n \n \ndef is_path_or_empty(x: str) -> str:\nif x == '':\nreturn x\nreturn is_path(x)\n\n\n def allow_empty(x: str) -> str:\n     return x\n \n         print(__('sphinx-quickstart will not overwrite existing Sphinx projects.'))\n         print()\n         d['path'] = do_prompt(__('Please enter a new root path (or just Enter to exit)'),\n'', is_path_or_empty)\n         if not d['path']:\n             sys.exit(1)\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 contains a function `is_path_or_empty` that checks if the input `x` is empty and returns it if it is, otherwise it validates `x` as a path. It also has another function `allow_empty` that simply returns `x`. Additionally, there are print statements related to a Sphinx project setup and a prompt for a new root path. In code sample 2, the same `is_path_or_empty` function performs a similar check, but uses `if x == '':` instead of `if not x:` for its condition. The structure and functionality of both samples are mostly the same, with minor differences such as different exit codes and some whitespace. \", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are structurally identical except for differences in identifier names, literal values (specifically, the exit code in the sys.exit call), whitespace, and layout.\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-16766",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/printing/pycode.py": "index 5576888..8a05740 100644\n         PREC = precedence(expr)\n         return self._operators['not'] + self.parenthesize(expr.args[0], PREC)\n \ndef _print_Indexed(self, expr):\nbase, *index = expr.args\nreturn \"{}[{}]\".format(str(base), \", \".join([self._print(ind) for ind in index]))\n\n \n for k in PythonCodePrinter._kf:\n     setattr(PythonCodePrinter, '_print_%s' % k, _print_known_func)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/printing/pycode.py": "         PREC = precedence(expr)\n         return self._operators['not'] + self.parenthesize(expr.args[0], PREC)\n \ndef _print_Indexed(self, expr):\nbase = expr.args[0]\nindex = expr.args[1:]\nreturn \"{}[{}]\".format(str(base), \", \".join([self._print(ind) for ind in index]))\n\n \n for k in PythonCodePrinter._kf:\n     setattr(PythonCodePrinter, '_print_%s' % k, _print_known_func)\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 and 2 both contain a method `_print_Indexed` that handles printing of indexed expressions. In sample 1, it uses Python's unpacking operator (*) to split expr.args into base and index variables: `base, *index = expr.args`. In sample 2, it achieves the same result by explicitly assigning `base = expr.args[0]` and `index = expr.args[1:]`. Both methods then format these components into a string representation using the same format string and list comprehension to print the indices.\",\n\"is_clone\": true,\n\"classification\": \"type-2\",\n\"reasoning\": \"These code samples are type-2 clones because they perform exactly the same operation but use different ways to extract the base and index from expr.args. The first uses Python's unpacking operator (*), while the second uses explicit array indexing. The underlying logic and functionality remain identical, and the only difference is in how the variables are assigned. Both implementations:\n1. Extract the first argument as the base\n2. Get the remaining arguments as indices\n3. Format them into the same string representation\n4. Use the same list comprehension to process indices\nThe difference is purely syntactic in how variables are assigned, making this a type-2 clone.\"\n}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-13741",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/contrib/auth/forms.py": "index ac42308..4e1c8e0 100644\n \n     def __init__(self, *args, **kwargs):\n         kwargs.setdefault(\"required\", False)\nkwargs.setdefault(\"disabled\", True)\n         super().__init__(*args, **kwargs)\n \n     def bound_data(self, data, initial):\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/forms.py": " \n     def __init__(self, *args, **kwargs):\n         kwargs.setdefault(\"required\", False)\nkwargs.setdefault('disabled', True)\n         super().__init__(*args, **kwargs)\n \n \n class UsernameField(forms.CharField):\n     def to_python(self, value):\n         if user_permissions:\n             user_permissions.queryset = user_permissions.queryset.select_related('content_type')\n \n \n class AuthenticationForm(forms.Form):\n     \"\"\"\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 is a method initialization that sets default values for 'required' and 'disabled' parameters in kwargs dictionary before calling the parent class's initialization. The code in code sample 2 contains the same initialization method but is part of a larger code block that includes additional class definitions (UsernameField and AuthenticationForm) and other functionality.\", \n\"is_clone\": true, \n\"classification\": \"type-2\", \n\"reasoning\": \"These code samples are type-2 clones because they share identical initialization logic (__init__ method) with the same structure and functionality. The only difference is in the string literal quotes used for 'disabled' (double quotes in sample 1, single quotes in sample 2). The fact that sample 2 contains additional code beyond the shared portion doesn't affect the clone classification of the matching part.\"\n}"
+}

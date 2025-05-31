@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-16886",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sympy/crypto/crypto.py": "index ca552191c0..e54b35d2c9 100644\n     \"..-\": \"U\", \"...-\": \"V\",\n     \".--\": \"W\", \"-..-\": \"X\",\n     \"-.--\": \"Y\", \"--..\": \"Z\",\n\"-----\": \"0\", \".----\": \"1\",\n     \"..---\": \"2\", \"...--\": \"3\",\n     \"....-\": \"4\", \".....\": \"5\",\n     \"-....\": \"6\", \"--...\": \"7\",\n     \"-...-\": \"=\", \".-.-.\": \"+\",\n     \"-..-.\": \"/\", \".--.-.\": \"@\",\n     \"...-..-\": \"$\", \"-.-.--\": \"!\"}\n\n char_morse = {v: k for k, v in morse_char.items()}\n \n \n         orig_msg += (m ^ b)\n \n     return orig_msg\n\n\n\n\n\n\n\n\n\n\n\ndiff --git \"a/sympy/crypto/crypto.py\\\"\" \"b/sympy/crypto/crypto.py\\\"\"\nnew file mode 100644\nindex 0000000000..fb02c953a4\n\"-----\": \"0\", \".----\": \"1\",\n",
+        "test_morse.py": "new file mode 100644\nindex 0000000000..c28c56c091\nfrom sympy.crypto.crypto import encode_morse, decode_morse\n\n# Test case 1: Using current incorrect mapping\ntry:\nresult = decode_morse(\"----\")\nprint(f\"Current mapping '----' decodes to: {result}\")  # Should fail after fix\nexcept KeyError:\nprint(\"Success: Old incorrect mapping '----' is no longer recognized\")\n\n# Test case 2: Using correct mapping\nmorse_msg = \".----\"  # This is the correct Morse code for \"1\"\ntry:\nresult = decode_morse(morse_msg)\nprint(f\"Correct mapping '.----' decodes to: {result}\")\nexcept KeyError:\nprint(\"Error: Correct mapping '.----' is not recognized\")\n\n# Test case 3: Encoding the number \"1\"\nmsg = \"1\"\nencoded = encode_morse(msg)\nprint(f\"Encoding '1' gives: {encoded}\")\n"
+    },
+    "ground_truth_patch": {
+        "sympy/crypto/crypto.py": "     \"..-\": \"U\", \"...-\": \"V\",\n     \".--\": \"W\", \"-..-\": \"X\",\n     \"-.--\": \"Y\", \"--..\": \"Z\",\n\"-----\": \"0\", \".----\": \"1\",\n     \"..---\": \"2\", \"...--\": \"3\",\n     \"....-\": \"4\", \".....\": \"5\",\n     \"-....\": \"6\", \"--...\": \"7\",\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in terms of functionality and logic, differing only in whitespace and possibly formatting.\"}"
+}

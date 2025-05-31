@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-13480",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/functions/elementary/hyperbolic.py": "index d6c64f7..8762d75 100644\n                 x, m = _peeloff_ipi(arg)\n                 if m:\n                     cothm = coth(m)\nif cothm is S.ComplexInfinity:\n                         return coth(x)\n                     else: # cothm == 0\n                         return tanh(x)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/functions/elementary/hyperbolic.py": "                 x, m = _peeloff_ipi(arg)\n                 if m:\n                     cothm = coth(m)\nif cothm is S.ComplexInfinity:\n                         return coth(x)\n                     else: # cothm == 0\n                         return tanh(x)\n"
+    },
+    "response": "{\n    \"explanation\": \"Both code samples contain identical code that handles hyperbolic functions. The code takes an argument 'arg', peels off some value using '_peeloff_ipi' function returning x and m values. If m exists, it calculates coth(m). If the result is ComplexInfinity, it returns coth(x), otherwise (when cothm is 0) it returns tanh(x).\",\n    \"is_clone\": true,\n    \"classification\": \"type-1\",\n    \"reasoning\": \"These code samples are type-1 clones because they are exactly identical, including whitespace and comments. The only difference is in the patch metadata where sample 1 includes 'index d6c64f7..8762d75 100644' in the file path, which is not part of the actual code. The logic, structure, variable names, and even comments are exactly the same between both samples.\"\n}"
+}

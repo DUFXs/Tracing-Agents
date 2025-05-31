@@ -1,0 +1,7 @@
+{
+    "instance_id": "astropy__astropy-14539",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "astropy/io/fits/diff.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically dissimilar and address different functionalities. The first sample focuses on creating a FITS file and testing its diff functionality, while the second sample appears to deal with handling differences between arrays in a different context, likely related to data comparison. The content, functionality, and context of both code samples are significantly different.\"}"
+}

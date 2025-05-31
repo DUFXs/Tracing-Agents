@@ -1,0 +1,7 @@
+{
+    "instance_id": "pytest-dev__pytest-7571",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "src/_pytest/logging.py",
+    "ground_truth_patch_file": "src/_pytest/logging.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\"}"
+}

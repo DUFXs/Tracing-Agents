@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-13410",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/core/files/locks.py": "index 19083f2..4938347 100644\n             return True\n     else:\n         def lock(f, flags):\ntry:\nfcntl.flock(_fd(f), flags)\nreturn True\nexcept OSError:\nreturn False\n \n         def unlock(f):\ntry:\nfcntl.flock(_fd(f), fcntl.LOCK_UN)\nreturn True\nexcept OSError:\nreturn False\n"
+    },
+    "ground_truth_patch": {
+        "django/core/files/locks.py": "             return True\n     else:\n         def lock(f, flags):\ntry:\nfcntl.flock(_fd(f), flags)\nreturn True\nexcept BlockingIOError:\nreturn False\n \n         def unlock(f):\nfcntl.flock(_fd(f), fcntl.LOCK_UN)\nreturn True\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 implements two functions: 'lock' and 'unlock' for file locking operations using fcntl.flock. Both functions try to perform their respective operations and handle OSError exceptions, returning True on success and False on failure. The unlock function specifically tries to release a lock using LOCK_UN. The code in code sample 2 implements the same functions but with three key differences: 1) it catches BlockingIOError instead of OSError in the lock function, 2) the unlock function doesn't have any try-except block, and 3) the unlock function is simplified without error handling.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they have the same basic structure and functionality but with modified statements. The main modifications are: 1) Different exception type being caught (OSError vs BlockingIOError), 2) Removal of try-except block in the unlock function in sample 2, and 3) Simplified error handling in sample 2's unlock function. The core functionality remains the same (file locking operations), but these modifications in error handling and control flow make them type-3 clones rather than type-1 or type-2.\"\n}"
+}

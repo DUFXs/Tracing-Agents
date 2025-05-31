@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13158",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "tests_manual/migrations/__init__.py",
+    "ground_truth_patch_file": "django/db/models/sql/query.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-11119",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/template/engine.py": "index 8cd3dab..c3c8fea 100644\n         if isinstance(context, Context):\n             return t.render(context)\n         else:\nreturn t.render(Context(context, autoescape=self.autoescape))\n \n     def select_template(self, template_name_list):\n         \"\"\"\n"
+    },
+    "ground_truth_patch": {
+        "django/template/engine.py": "         if isinstance(context, Context):\n             return t.render(context)\n         else:\nreturn t.render(Context(context, autoescape=self.autoescape))\n \n     def select_template(self, template_name_list):\n         \"\"\"\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples contain identical Django template engine code that checks if a context object is an instance of Context class. If it is, it renders the template with the context directly. If not, it creates a new Context object with the given context and autoescape setting before rendering. Both samples also include the start of a select_template method definition with a docstring.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are exactly identical, containing the same code with the same whitespace, layout, and even the same incomplete docstring. The only difference appears to be in the git diff metadata line 'index 8cd3dab..c3c8fea 100644' present in sample 1 but not in sample 2, which is not part of the actual code.\"\n}"
+}

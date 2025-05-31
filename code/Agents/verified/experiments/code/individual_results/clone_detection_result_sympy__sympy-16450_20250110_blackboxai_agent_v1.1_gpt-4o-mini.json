@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-16450",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index fdcc1cabf1..3fbed863dc 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/simplify/simplify.py": "index c6b511f206..d1c86c154b 100644\n             eq[i] = e.subs(reps)\n         return f(eq), {r: s for s, r in reps.items()}\n \nreps = {}\nfor s in eq.free_symbols:\nif s.is_positive is None:\n# Gather existing assumptions that don't conflict with positive=True\ndummy_args = {\"positive\": True}\n# Preserve finite assumption\nif s.is_finite is True:\ndummy_args[\"finite\"] = True\n# Preserve other relevant assumptions\nfor assumption in ['integer', 'rational', 'prime', 'even', 'odd']:\nif getattr(s, f'is_{assumption}') is True:\ndummy_args[assumption] = True\nreps[s] = Dummy(s.name, **dummy_args)\n     eq = eq.subs(reps)\n     return eq, {r: s for s, r in reps.items()}\n"
+    },
+    "ground_truth_patch": {
+        "sympy/simplify/simplify.py": "             eq[i] = e.subs(reps)\n         return f(eq), {r: s for s, r in reps.items()}\n \nreps = {s: Dummy(s.name, positive=True, **s.assumptions0)\n                  for s in eq.free_symbols if s.is_positive is None}\n     eq = eq.subs(reps)\n     return eq, {r: s for s, r in reps.items()}\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have syntactical similarities but involve modifications in structure. In sample 1, there is a part that gathers existing assumptions with checks for variables like 'finite', but sample 2 combines this logic into a dictionary comprehension for creating the 'reps' mapping. This change indicates that while they achieve similar ends in variable substitutions, their syntactic structure has been adjusted, making them different but related.\"}"
+}

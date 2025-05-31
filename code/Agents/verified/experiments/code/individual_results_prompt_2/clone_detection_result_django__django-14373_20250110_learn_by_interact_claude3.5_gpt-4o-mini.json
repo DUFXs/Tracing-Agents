@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14373",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/utils/dateformat.py": "index 38e89c47bb..6da843006c 100644\n \n     def Y(self):\n         \"Year, 4 digits; e.g. '1999'\"\nreturn '%04d' % self.data.year\n\n \n     def z(self):\n         \"\"\"Day of the year, i.e. 1 to 366.\"\"\"\n     \"Convenience function\"\n     tf = TimeFormat(value)\n     return tf.format(format_string)\n\n",
+        "test_dateformat.py": "new file mode 100644\nindex 0000000000..759dc04df2\n\nimport datetime\nfrom django.utils.dateformat import DateFormat\n\n# Test various edge cases\ntest_years = [1, 99, 999, 1000, 9999]\nfor year in test_years:\ndate = datetime.date(year, 1, 1)\ndf = DateFormat(date)\nformatted = df.Y()\nprint(f\"Year {year} formatted: '{formatted}' (length: {len(str(formatted))})\")\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/dateformat.py": "         return '%02d' % (self.data.year % 100)\n \n     def Y(self):\n\"\"\"Year, 4 digits with leading zeros; e.g. '1999'.\"\"\"\nreturn '%04d' % self.data.year\n \n     def z(self):\n         \"\"\"Day of the year, i.e. 1 to 366.\"\"\"\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines functions for formatting years in a date format. The 'Y' function returns the year as a 4-digit string, and the 'z' function returns the day of the year. There is also a test case to verify the output of the 'Y' function for various years. In contrast, code sample 2 also defines the 'Y' function in a similar way but includes a line that returns the last two digits of the year (in a zero-padded format). The 'z' function remains the same across both samples.\",\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are not syntactically identical nor similar enough. Code sample 2 introduces a new statement for returning a two-digit year, making it change the functionality of the code, qualifying it as a type-3 clone but not a clone of code sample 1, which does not contain this functionality.\"}"
+}

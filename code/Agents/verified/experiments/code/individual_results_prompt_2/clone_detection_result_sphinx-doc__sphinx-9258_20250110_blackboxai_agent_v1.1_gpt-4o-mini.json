@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-9258",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/domains/python.py": "index 7d39d80ed..11baa79fd 100644\n     def make_xrefs(self, rolename: str, domain: str, target: str,\n                    innernode: Type[TextlikeNode] = nodes.emphasis,\n                    contnode: Node = None, env: BuildEnvironment = None) -> List[Node]:\ndelims = r'(\\s*[\\[\\]\\(\\),|](?:\\s*or\\s)?\\s*|\\s+or\\s+|\\s*\\|\\s*|\\.\\.\\.)'\n         delims_re = re.compile(delims)\n         sub_targets = re.split(delims, target)\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/domains/python.py": "     def make_xrefs(self, rolename: str, domain: str, target: str,\n                    innernode: Type[TextlikeNode] = nodes.emphasis,\n                    contnode: Node = None, env: BuildEnvironment = None) -> List[Node]:\ndelims = r'(\\s*[\\[\\]\\(\\),](?:\\s*or\\s)?\\s*|\\s+or\\s+|\\s*\\|\\s*|\\.\\.\\.)'\n         delims_re = re.compile(delims)\n         sub_targets = re.split(delims, target)\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a method `make_xrefs` that takes parameters related to roles, domains, and targets, and uses regex to define delimiters for splitting the target string. The function contains a regex pattern `delims` to identify various delimiters and compiles it into `delims_re`, then it splits the `target` string using this pattern. Code sample 2 does the same, defining the `make_xrefs` function with the same parameters and functionality, but there are differences in whitespace, layout, and a slight change in the regex pattern used for delimiters. The regex in sample 2 is missing the '|' before the first delimiter type. Although the content is similar, it is not identical due to these differences.\", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are nearly identical except for some differences in whitespace and a slight modification in the regex delimiters.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-19346",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "edge_cases.py",
+    "ground_truth_patch_file": "sympy/printing/repr.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and functionalities. Sample 1 focuses on demonstrating the use of sets and dictionaries with symbolic representation, while Sample 2 consists of methods related to printing representations of lists, dictionaries, and sets. They contain different operations and structures, making them syntactically dissimilar and functionally distinct.\"}"
+}

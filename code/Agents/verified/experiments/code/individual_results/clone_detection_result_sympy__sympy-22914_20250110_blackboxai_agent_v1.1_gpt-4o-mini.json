@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-22914",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index db4a22815e..2450c37630 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/printing/pycode.py": "index 3a72ab606c..4c80ae4110 100644\n     def _print_Pow(self, expr, rational=False):\n         return self._hprint_Pow(expr, rational=rational)\n \ndef _print_Min(self, expr):\nreturn \"min({})\".format(\", \".join(self._print(arg) for arg in expr.args))\n\ndef _print_Max(self, expr):\nreturn \"max({})\".format(\", \".join(self._print(arg) for arg in expr.args))\n\n\n     def _print_Rational(self, expr):\n         return '{}/{}'.format(expr.p, expr.q)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/printing/pycode.py": " \n _known_functions = {\n     'Abs': 'abs',\n'Min': 'min',\n'Max': 'max',\n }\n _known_functions_math = {\n     'acos': 'acos',\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to different segments of functionality and contain distinct content. Sample 1 contains method definitions for printing different mathematical expressions and rational numbers, while Sample 2 introduces a mapping dictionary of known functions, which are unrelated in purpose and structure.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-24443",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..a3988e8fd9\nfrom sympy.combinatorics import *\nfrom sympy.combinatorics.homomorphisms import homomorphism\n\n# Create a Dihedral group of order 6\nD3 = DihedralGroup(3)\n\n# Try to create a homomorphism from D3 to itself using its generators\nT = homomorphism(D3, D3, D3.generators, D3.generators)\nprint(\"If you see this, the error is fixed!\")\n\\ No newline at end of file\n",
+        "sympy/combinatorics/homomorphisms.py": "index bb7bdf32ba..156ac78673 100644\n             r_arr = r.array_form\n             i = 0\n             j = 0\n             while i < len(r):\n                 power = r_arr[j][1]\ns = r[i]\n                 if s in images:\n                     w = w*images[s]**power\n                 elif s**-1 in images:\n"
+    },
+    "ground_truth_patch": {
+        "sympy/combinatorics/homomorphisms.py": "     return GroupHomomorphism(domain, codomain, images)\n \n def _check_homomorphism(domain, codomain, images):\n\"\"\"\nCheck that a given mapping of generators to images defines a homomorphism.\n\nParameters\n==========\ndomain : PermutationGroup, FpGroup, FreeGroup\ncodomain : PermutationGroup, FpGroup, FreeGroup\nimages : dict\nThe set of keys must be equal to domain.generators.\nThe values must be elements of the codomain.\n\n\"\"\"\npres = domain if hasattr(domain, 'relators') else domain.presentation()\nrels = pres.relators\ngens = pres.generators\nsymbols = [g.ext_rep[0] for g in gens]\nsymbols_to_domain_generators = dict(zip(symbols, domain.generators))\n     identity = codomain.identity\n \n     def _image(r):\nw = identity\nfor symbol, power in r.array_form:\ng = symbols_to_domain_generators[symbol]\nw *= images[g]**power\nreturn w\n \n     for r in rels:\n         if isinstance(codomain, FpGroup):\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to different contexts and functionalities. Code sample 1 creates a Dihedral group and tests a homomorphism, while code sample 2 contains a portion of a function related to checking homomorphisms, which is not present in code sample 1. The syntactical structure and purpose of the code are different, indicating they serve different functionalities.\"}"
+}

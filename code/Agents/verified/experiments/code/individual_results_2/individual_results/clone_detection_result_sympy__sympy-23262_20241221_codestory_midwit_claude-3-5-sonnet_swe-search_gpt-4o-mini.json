@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-23262",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "edge_cases.py",
+    "ground_truth_patch_file": "sympy/utilities/lambdify.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve entirely different purposes and functionalities. Code sample 1 is focused on testing the behavior of the `lambdify` function with different input tuples, while code sample 2 is part of a utility function that processes an iterable argument. There is no syntactical similarity or functional equivalence between the two samples.\"}"
+}

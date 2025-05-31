@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-15349",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "sympy/algebras/quaternion.py",
+    "ground_truth_patch_file": "sympy/algebras/quaternion.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for a minor difference in the presence of whitespace and layout. Specifically, Code sample 2 is missing the return statement found in Code sample 1, which is a difference in layout but does not affect the remaining content or structure.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-21847",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index db4a22815e..2450c37630 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/polys/monomials.py": "index 0e84403307..2cc13d005a 100644\n                 for variable in item:\n                     if variable != 1:\n                         powers[variable] += 1\ntotal = sum(powers.values())\nif min_degree <= total <= max_degree:\n                     monomials_list_comm.append(Mul(*item))\n             yield from set(monomials_list_comm)\n         else:\n                 for variable in item:\n                     if variable != 1:\n                         powers[variable] += 1\ntotal = sum(powers.values())\nif min_degree <= total <= max_degree:\n                     monomials_list_non_comm.append(Mul(*item))\n             yield from set(monomials_list_non_comm)\n     else:\n"
+    },
+    "ground_truth_patch": {
+        "sympy/polys/monomials.py": "                 for variable in item:\n                     if variable != 1:\n                         powers[variable] += 1\nif sum(powers.values()) >= min_degree:\n                     monomials_list_comm.append(Mul(*item))\n             yield from set(monomials_list_comm)\n         else:\n                 for variable in item:\n                     if variable != 1:\n                         powers[variable] += 1\nif sum(powers.values()) >= min_degree:\n                     monomials_list_non_comm.append(Mul(*item))\n             yield from set(monomials_list_non_comm)\n     else:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar, but there are modifications in the conditions used for summing the powers. In the first sample, it checks if 'min_degree <= total <= max_degree', while in the second sample, it uses 'sum(powers.values()) >= min_degree'. This change alters the logic slightly, resulting in added/modified statements.\"}"
+}

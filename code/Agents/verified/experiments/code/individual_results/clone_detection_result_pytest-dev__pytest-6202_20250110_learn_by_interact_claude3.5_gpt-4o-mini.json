@@ -1,0 +1,12 @@
+{
+    "instance_id": "pytest-dev__pytest-6202",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "bug.py": "new file mode 100644\nindex 000000000..e8adc580a\nimport pytest\n\n@pytest.mark.parametrize(\"a\", [\"..[\", \".[.\", \".[.[\", \"....[\"])\ndef test_boo(a):\nassert 0\n\n\n",
+        "src/_pytest/python.py": "index b8b365ad3..13f42f6a5 100644\n             parts.append(name)\n         parts.reverse()\n         s = \".\".join(parts)\nreturn s\n\n \n     def reportinfo(self):\n         # XXX caching?\n         raise RuntimeError(\"function definitions are not supposed to be used\")\n \n     setup = runtest\n\n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/python.py": "                     break\n             parts.append(name)\n         parts.reverse()\nreturn \".\".join(parts)\n \n     def reportinfo(self):\n         # XXX caching?\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-4\", \"reasoning\": \"These code samples are type-4 clones because they contain different syntactical structures but achieve the same functional outcome. Specifically, both samples deal with assembling a string from parts and handle report information, but the implementations are not identical. The presence of additional or modified control flow (such as break statements) differentiates their syntactic representation while preserving functionality.\"}"
+}

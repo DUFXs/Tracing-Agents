@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15863",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/template/defaultfilters.py": "index 7a5b28d159..602d56e075 100644\n         elif last_char == \"u\":\n             use_l10n = False\n             arg = arg[:-1] or -1\nif isinstance(text, Decimal):\nd = text\nelse:\n         try:\ninput_val = repr(text)\nd = Decimal(input_val)\nexcept InvalidOperation:\ntry:\nd = Decimal(str(float(text)))\nexcept (ValueError, InvalidOperation, TypeError):\nreturn \"\"\n     try:\n         p = int(arg)\n     except ValueError:\n"
+    },
+    "ground_truth_patch": {
+        "django/template/defaultfilters.py": "             use_l10n = False\n             arg = arg[:-1] or -1\n     try:\ninput_val = str(text)\n         d = Decimal(input_val)\n     except InvalidOperation:\n         try:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but contain modifications and alterations. For instance, in the second sample, 'input_val = str(text)' is a modification from 'input_val = repr(text)' in the first sample. Additionally, there are differences in the indentation and layout of the code. The logical structure remains similar, indicating that they have been altered but retain their semantic intent.\"}"
+}

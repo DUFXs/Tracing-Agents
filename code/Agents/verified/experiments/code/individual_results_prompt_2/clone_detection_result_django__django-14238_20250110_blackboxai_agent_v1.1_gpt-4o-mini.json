@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14238",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/fields/__init__.py": "index 0f53d9c30b..a507d9391e 100644\n         return isinstance(instance, self._subclasses) or super().__instancecheck__(instance)\n \n     def __subclasscheck__(self, subclass):\nreturn any(issubclass(subclass, sc) for sc in self._subclasses) or super().__subclasscheck__(subclass)\n \n \n class AutoField(AutoFieldMixin, IntegerField, metaclass=AutoFieldMeta):\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/__init__.py": "         return isinstance(instance, self._subclasses) or super().__instancecheck__(instance)\n \n     def __subclasscheck__(self, subclass):\nreturn issubclass(subclass, self._subclasses) or super().__subclasscheck__(subclass)\n \n \n class AutoField(AutoFieldMixin, IntegerField, metaclass=AutoFieldMeta):\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a method for checking if an instance is a subclass and another for checking if a class is a subclass of the specified subclasses. Both methods utilize Python's built-in functionalities. The code in code sample 2 has similar methods but includes a slight modification in the __subclasscheck__ method, where it uses 'issubclass' instead of 'any(issubclass...)'.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have a modified statement in the __subclasscheck__ method.\"}"
+}

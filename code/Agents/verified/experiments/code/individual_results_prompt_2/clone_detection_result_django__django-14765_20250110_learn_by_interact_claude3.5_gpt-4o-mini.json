@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-14765",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/migrations/state.py": "index 088f5c41f0..06dab4f74e 100644\n     def __init__(self, models=None, real_apps=None):\n         self.models = models or {}\n         # Apps to include from main registry, usually unmigrated ones\nif real_apps is not None:\nassert isinstance(real_apps, set), \"real_apps must be a set\"\nself.real_apps = real_apps\n         else:\n             self.real_apps = set()\n         self.is_delayed = False\n\n         # {remote_model_key: {model_key: [(field_name, field)]}}\n         self.relations = None\n \n             (self.bases == other.bases) and\n             (self.managers == other.managers)\n         )\n\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/state.py": "     def __init__(self, models=None, real_apps=None):\n         self.models = models or {}\n         # Apps to include from main registry, usually unmigrated ones\nif real_apps is None:\nreal_apps = set()\n         else:\nassert isinstance(real_apps, set)\nself.real_apps = real_apps\n         self.is_delayed = False\n         # {remote_model_key: {model_key: [(field_name, field)]}}\n         self.relations = None\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines the constructor method __init__ for a class, initializing its properties: models and real_apps, including checks for the type of real_apps if it's provided. Additionally, it sets self.is_delayed to False and defines an empty relations property. In code sample 2, the constructor is mostly similar but has a variation in handling the case where real_apps is None, replacing it with an assignment of an empty set and omitting the assert statement about its type. Overall, both samples initialize the same properties and include similar comments regarding their purpose.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities, but there are changes in the control flow and the presence or absence of assertions and assignments, indicating different programming constructs.\"}"
+}

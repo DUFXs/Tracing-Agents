@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-12143",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/contrib/admin/options.py": "index 0fb4989..b3ffb52 100644\n \n     def _get_edited_object_pks(self, request, prefix):\n         \"\"\"Return POST data values of list_editable primary keys.\"\"\"\npk_pattern = re.compile(r'{}-\\d+-{}$'.format(re.escape(prefix), self.model._meta.pk.name))\n         return [value for key, value in request.POST.items() if pk_pattern.match(key)]\n \n     def _get_list_editable_queryset(self, request, prefix):\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/options.py": " \n     def _get_edited_object_pks(self, request, prefix):\n         \"\"\"Return POST data values of list_editable primary keys.\"\"\"\npk_pattern = re.compile(\nr'{}-\\d+-{}$'.format(re.escape(prefix), self.model._meta.pk.name)\n)\n         return [value for key, value in request.POST.items() if pk_pattern.match(key)]\n \n     def _get_list_editable_queryset(self, request, prefix):\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples contain a method '_get_edited_object_pks' that retrieves POST data values of list_editable primary keys. In both samples, the method creates a regular expression pattern to match keys in the format '{prefix}-{number}-{pk_name}' and returns a list comprehension of values where the keys match this pattern. The only difference between the samples is the formatting of the regular expression pattern creation - in sample 1 it's on a single line, while in sample 2 it's split across multiple lines.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are identical in terms of functionality and code structure. The only difference is in the layout/formatting of the code, specifically how the regular expression pattern is written (single line vs. multiple lines). There are no differences in the actual logic, variable names, or functionality - just in how the code is formatted on the page. This fits the definition of a type-1 clone exactly: identical except for differences in whitespace and layout.\"\n}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13658",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/core/management/__init__.py",
+    "ground_truth_patch_file": "django/core/management/__init__.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and functionality, but differ in whitespace and layout. The key identifiers and the overall logic are the same, but any formatting differences make them classified as type-2 clones instead of type-1.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-12774",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": ".gitignore",
+    "ground_truth_patch_file": "django/db/models/query.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain completely different content. The first code sample is a Git patch indicating changes to a .gitignore file, listing directories and files to ignore. The second sample is a Python code snippet that is part of a model query in the Django framework, which contains assertions, list comprehensions, and conditional statements. There is no syntactical or functional similarity between the two samples, making them entirely distinct.\"}"
+}

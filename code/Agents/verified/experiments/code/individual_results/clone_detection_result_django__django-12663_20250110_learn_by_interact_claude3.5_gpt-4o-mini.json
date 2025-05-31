@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-12663",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/models/fields/__init__.py": "index caa03665ea..21d7488676 100644\n \n     def get_prep_value(self, value):\n         \"\"\"Perform preliminary non-db specific value checks and conversions.\"\"\"\n# Handle SimpleLazyObject by evaluating it first\nif hasattr(value, '_setupfunc'):  # SimpleLazyObject check\nif not hasattr(value, '_wrapped'):\nvalue._setup()\nvalue = value._wrapped\n# Handle Promise objects (gettext_lazy, etc.)\n         if isinstance(value, Promise):\n             value = value._proxy____cast()\n# If value is a model instance, get its primary key\nif hasattr(value, '_meta'):\nvalue = value.pk\n         return value\n \n\n     def get_db_prep_value(self, value, connection, prepared=False):\n         \"\"\"\n         Return field's value prepared for interacting with the database backend.\n \n     def rel_db_type(self, connection):\n         return SmallIntegerField().db_type(connection=connection)\n\n\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/sql/query.py": "     @property\n     def output_field(self):\n         if len(self.select) == 1:\nselect = self.select[0]\nreturn getattr(select, 'target', None) or select.field\n         elif len(self.annotation_select) == 1:\n             return next(iter(self.annotation_select.values())).output_field\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically dissimilar and tackle different functionality in the Django framework. The first sample focuses on preparing values for database interaction, while the second sample deals with selecting output fields from a query. They do not share a common structure or intent.\"}"
+}

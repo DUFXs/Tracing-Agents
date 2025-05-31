@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15741",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/utils/formats.py": "index 3f38322d84..f429a635ea 100644\n     If use_l10n is provided and is not None, it forces the value to\n     be localized (or not), overriding the value of settings.USE_L10N.\n     \"\"\"\n# Convert format_type to string if it's a lazy object\nformat_type = str(format_type)\n     if use_l10n is None:\n         try:\n             use_l10n = settings._USE_L10N_INTERNAL\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/formats.py": "             use_l10n = settings.USE_L10N\n     if use_l10n and lang is None:\n         lang = get_language()\nformat_type = str(format_type)  # format_type may be lazy.\n     cache_key = (format_type, lang)\n     try:\n         return _format_cache[cache_key]\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 deals with the functionality of localizing a value based on the `use_l10n` setting, and it includes a conversion of `format_type` to a string if it's a lazy object. In addition, it retrieves a value for `use_l10n` from internal settings. On the other hand, the code in code sample 2 retrieves the value of `use_l10n` based on whether the `lang` variable is `None`, and it includes additional logic to determine language and caching based on `format_type`. Both samples are related to localization but handle different scenarios and include alterations in variables and logic.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they differ significantly in functionality, with different conditional logic and are syntactically dissimilar.\"}"
+}

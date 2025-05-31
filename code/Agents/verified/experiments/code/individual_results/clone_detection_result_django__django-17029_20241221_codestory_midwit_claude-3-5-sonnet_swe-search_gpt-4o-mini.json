@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-17029",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/apps/registry.py": "index 0683f3ad3c..481dd1fc86 100644\n         # Call expire cache on each model. This will purge\n         # the relation tree and the fields cache.\n         self.get_models.cache_clear()\nself.get_swappable_settings_name.cache_clear()\n         if self.ready:\n             # Circumvent self.get_models() to prevent that the cache is refilled.\n             # This particularly prevents that an empty value is cached while cloning.\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..9a6c955ef2\nimport os\nimport django\nfrom django.conf import settings\n\n# Configure minimal Django settings\nsettings.configure(\nINSTALLED_APPS=[\n'django.contrib.auth',\n'django.contrib.contenttypes',\n],\nDATABASES={\n'default': {\n'ENGINE': 'django.db.backends.sqlite3',\n'NAME': ':memory:',\n}\n}\n)\n\ndjango.setup()\n\nfrom django.apps import apps\n\n# First call to get_swappable_settings_name\nresult1 = apps.get_swappable_settings_name(\"auth.User\")\nprint(\"First call result:\", result1)\n\n# Clear the cache\napps.clear_cache()\n\n# Second call to get_swappable_settings_name\n# If the cache wasn't cleared, this will use the cached value\nresult2 = apps.get_swappable_settings_name(\"auth.User\")\nprint(\"Second call result (after clear_cache):\", result2)\n\n# To verify the cache is working, we can check the cache info\ncache_info = apps.get_swappable_settings_name.cache_info()\nprint(\"\\nCache info:\", cache_info)\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/apps/registry.py": " \n         This is mostly used in tests.\n         \"\"\"\nself.get_swappable_settings_name.cache_clear()\n         # Call expire cache on each model. This will purge\n         # the relation tree and the fields cache.\n         self.get_models.cache_clear()\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and functionality but differ in comments and whitespace. Both samples include calls to clear the cache for 'self.get_swappable_settings_name' and 'self.get_models', but the comments and the layout of the whitespace differ.\"}"
+}

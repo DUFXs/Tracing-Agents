@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-13124",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 7a8992055..c31911b0b 100644\n \n # Used by mypy\n .mypy_cache/\n.aider/\n",
+        "sklearn/model_selection/_split.py": "index 24394f869..37bb5662e 100644\n         super().__init__(n_splits, shuffle, random_state)\n \n     def _make_test_folds(self, X, y=None):\nrng = check_random_state(self.random_state)\n         y = np.asarray(y)\n         type_of_target_y = type_of_target(y)\n         allowed_target_types = ('binary', 'multiclass')\n                            \" be less than n_splits=%d.\"\n                            % (min_groups, self.n_splits)), Warning)\n \n# Initialize test_folds array\n         test_folds = np.zeros(n_samples, dtype=np.int)\n\n# For each class, get the indices and assign folds\nfor i, class_i in enumerate(unique_y):\n# Get indices for this class\nindices = np.where(y == class_i)[0]\n\n# If shuffle is True, shuffle the indices\nif self.shuffle:\nindices = rng.permutation(indices)\n\n# Split indices into n_splits groups\nfold_sizes = np.full(self.n_splits, len(indices) // self.n_splits, dtype=int)\nfold_sizes[:len(indices) % self.n_splits] += 1\ncurrent = 0\n\n# Assign samples to folds\nfor fold_idx in range(self.n_splits):\nstart, stop = current, current + fold_sizes[fold_idx]\ntest_folds[indices[start:stop]] = fold_idx\ncurrent = stop\n \n         return test_folds\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/model_selection/_split.py": "             ``n_splits`` default value will change from 3 to 5 in v0.22.\n \n     shuffle : boolean, optional\nWhether to shuffle each class's samples before splitting into batches.\n \n     random_state : int, RandomState instance or None, optional, default=None\n         If int, random_state is the seed used by the random number generator;\n         super().__init__(n_splits, shuffle, random_state)\n \n     def _make_test_folds(self, X, y=None):\nrng = check_random_state(self.random_state)\n         y = np.asarray(y)\n         type_of_target_y = type_of_target(y)\n         allowed_target_types = ('binary', 'multiclass')\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they share the same structure and logic, but they differ in comments, layout, and potential identifier names or literal values. The essential functionality and syntax remain the same, indicating they are similar but not identical.\"}"
+}

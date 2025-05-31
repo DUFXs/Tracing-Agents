@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-15809",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..35a0a42014\nfrom sympy import Min, Max, oo\n\n# Test Min() with no arguments\nresult_min = Min()\nprint(\"Min() returned:\", result_min)\nprint(\"Min() == oo:\", result_min == oo)\n\n# Test Max() with no arguments\nresult_max = Max()\nprint(\"\\nMax() returned:\", result_max)\nprint(\"Max() == -oo:\", result_max == -oo)\n\n# Test regular usage still works\nprint(\"\\nRegular usage:\")\nprint(\"Min(1, 2) =\", Min(1, 2))\nprint(\"Max(1, 2) =\", Max(1, 2))\n\\ No newline at end of file\n",
+        "sympy/functions/elementary/miscellaneous.py": "index 5f9fe73c5c..ffe1e940f1 100644\n class MinMaxBase(Expr, LatticeOp):\n     def __new__(cls, *args, **assumptions):\n         if not args:\n# Return appropriate infinity for empty Min/Max\nif cls.__name__ == 'Max':\nreturn S.NegativeInfinity\nelse:  # Min\nreturn S.Infinity\n \n         args = (sympify(arg) for arg in args)\n \n"
+    },
+    "ground_truth_patch": {
+        "sympy/functions/elementary/miscellaneous.py": "class MinMaxBase(Expr, LatticeOp):\n    def __new__(cls, *args, **assumptions):\n\n        args = (sympify(arg) for arg in args)\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they do not share sufficient syntactic similarity or functionality. The first code sample contains complete test cases and method calls related to the Min and Max functions, while the second code sample is a part of a class definition that does not show the same structure or functionality. They serve different purposes and are not equivalent even if they may appear related.\"}"
+}

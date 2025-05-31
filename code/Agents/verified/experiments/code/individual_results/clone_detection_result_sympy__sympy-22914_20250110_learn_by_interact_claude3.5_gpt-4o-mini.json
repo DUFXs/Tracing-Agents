@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-22914",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sympy/printing/pycode.py": "index 3a72ab606c..3fc8395c98 100644\n     _print_fresnelc = CodePrinter._print_not_supported\n     _print_fresnels = CodePrinter._print_not_supported\n \ndef _print_Min(self, expr):\nreturn \"min({})\".format(\", \".join(self._print(arg) for arg in expr.args))\n\ndef _print_Max(self, expr):\nreturn \"max({})\".format(\", \".join(self._print(arg) for arg in expr.args))\n\n \n for k in PythonCodePrinter._kf:\n     setattr(PythonCodePrinter, '_print_%s' % k, _print_known_func)\n \n     def _print_Pow(self, expr, rational=False):\n         return self._hprint_Pow(expr, rational=rational, sqrt='sympy.sqrt')\n\n",
+        "test_min_max.py": "new file mode 100644\nindex 0000000000..04219b4dfd\nfrom sympy import symbols, Min, Max, pycode\n\nprint(\"Testing Min/Max with 2 arguments:\")\na, b = symbols(\"a b\")\nc = Min(a, b)\nprint(\"Min(a,b):\", pycode(c))\nd = Max(a, b)\nprint(\"Max(a,b):\", pycode(d))\n\nprint(\"\\nTesting Min/Max with 3 arguments:\")\nx, y, z = symbols(\"x y z\")\ne = Min(x, y, z)\nprint(\"Min(x,y,z):\", pycode(e))\nf = Max(x, y, z)\nprint(\"Max(x,y,z):\", pycode(f))\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/printing/pycode.py": " \n _known_functions = {\n     'Abs': 'abs',\n'Min': 'min',\n'Max': 'max',\n }\n _known_functions_math = {\n     'acos': 'acos',\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes within the codebase. The first sample contains implementations related to printing Min and Max functions in the context of a larger code structure, while the second sample defines a set of known functions and their mappings, which is unrelated to the functionality present in the first sample.\"}"
+}

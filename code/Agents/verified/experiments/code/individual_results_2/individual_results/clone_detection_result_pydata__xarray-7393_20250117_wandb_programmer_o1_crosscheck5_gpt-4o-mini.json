@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-7393",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_stacking_int32.py",
+    "ground_truth_patch_file": "xarray/core/indexing.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to entirely different functionalities. Code sample 1 is focused on checking the data types after stacking an int32 coordinate using xarray, while code sample 2 is concerned with implementing a method for array conversion in a different context. There are no syntactical similarities, and their purposes are fundamentally unrelated.\"}"
+}

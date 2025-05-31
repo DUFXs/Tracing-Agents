@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-20154",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sympy/utilities/iterables.py": "index dd36dea304..d1f540e0f9 100644\n         keys.append(r)\n     room = m - q - bool(r)\n     if size:\nyield sum(ms.values()), ms.copy()\n     else:\nyield ms.copy()\n\n \n     while keys != [1]:\n         # Reuse any 1's.\n             break\n         room -= need\n         if size:\nyield sum(ms.values()), ms.copy()\n         else:\nyield ms.copy()\n \n \n def ordered_partitions(n, m=None, sort=True):\n         except StopIteration:\n             pending -= 1\n             nexts = itertools.cycle(itertools.islice(nexts, pending))\n\n\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/utilities/iterables.py": "     {2: 1, 4: 1}\n     {3: 2}\n \n     References\n     ==========\n \n         keys.append(r)\n     room = m - q - bool(r)\n     if size:\nyield sum(ms.values()), ms.copy()\n     else:\nyield ms.copy()\n \n     while keys != [1]:\n         # Reuse any 1's.\n             break\n         room -= need\n         if size:\nyield sum(ms.values()), ms.copy()\n         else:\nyield ms.copy()\n \n \n def ordered_partitions(n, m=None, sort=True):\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 contains logic related to managing room capacity, utilizing keys, and yielding values based on certain conditions, which likely relates to some form of resource management or partitioning. The core structure includes a loop that repeats until a condition is met and shows how to handle StopIteration exceptions. The code in code sample 2 contains similar logic, primarily focused on the same management of rooms and keys, alongside yielding of results, but it introduces some additional information possibly related to references that are present in the output. Both samples share a significant amount of similar logic and structure.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar with additional details in code sample 2 (likely extra commentary or references), but they maintain similar functional logic.\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "sphinx-doc__sphinx-7440",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sphinx/domains/std.py": "index c7bf7da..88f7284 100644\n         term['ids'].append(node_id)\n \n     std = cast(StandardDomain, env.get_domain('std'))\nstd.note_object('term', termtext, node_id, location=term)\n \n     # add an index entry too\n     indexnode = addnodes.index()\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/domains/std.py": "         term['ids'].append(node_id)\n \n     std = cast(StandardDomain, env.get_domain('std'))\nstd.note_object('term', termtext, node_id, location=term)\n \n     # add an index entry too\n     indexnode = addnodes.index()\n         # links to tokens in grammar productions\n         'token':   TokenXRefRole(),\n         # links to terms in glossary\n'term':    XRefRole(innernodeclass=nodes.inline,\n                             warn_dangling=True),\n         # links to headings or arbitrary labels\n         'ref':     XRefRole(lowercase=True, innernodeclass=nodes.inline,\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 shows a snippet that appends a node_id to a term's ids list, gets a StandardDomain instance, notes a term object, and begins to create an index node. The code in code sample 2 contains the same initial code but also includes additional code that defines different types of cross-reference roles (TokenXRefRole and XRefRole) for tokens, terms, and references.\",\n\"is_clone\": false,\n\"classification\": \"N/A\",\n\"reasoning\": \"These code samples are not clones because while code sample 2 contains all of code sample 1 at the beginning, it also contains significant additional functionality for defining cross-reference roles that is not present in code sample 1. The second sample is a superset of the first sample but includes completely different and unrelated functionality. This goes beyond the modifications that would qualify for any clone type (1-4) as it's adding entirely new, unrelated functionality rather than just modifying the existing code's structure or behavior.\"\n}"
+}

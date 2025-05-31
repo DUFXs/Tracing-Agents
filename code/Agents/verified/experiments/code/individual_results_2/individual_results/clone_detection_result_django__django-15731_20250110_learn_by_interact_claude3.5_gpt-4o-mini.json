@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-15731",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "django/db/models/manager.py",
+    "ground_truth_patch_file": "django/db/models/manager.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they have identical structure and functionality but differ in the presence of additional import statements and potentially some other differences such as whitespace and layout. Specifically, Code sample 2 has additional imports (`import copy` and `import inspect`) which are absent in Code sample 1, but the core class method implementation and functionality remain the same.\"}"
+}

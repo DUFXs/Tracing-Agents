@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-12155",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/contrib/admindocs/utils.py",
+    "ground_truth_patch_file": "django/contrib/admindocs/views.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they illustrate completely different functionalities and structures. Code sample 1 focuses on manipulating strings and processing lines from a docstring, while code sample 2 involves imports and relates to application-level operations such as examining functions and their documentation. There are no functional similarities or syntactical resemblance between the two samples, thus they do not qualify as clones.\"}"
+}

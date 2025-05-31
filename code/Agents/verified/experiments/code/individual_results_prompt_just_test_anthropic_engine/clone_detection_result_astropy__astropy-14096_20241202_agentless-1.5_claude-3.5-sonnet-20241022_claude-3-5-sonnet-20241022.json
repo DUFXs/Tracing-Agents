@@ -1,0 +1,11 @@
+{
+    "instance_id": "astropy__astropy-14096",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "astropy/coordinates/sky_coordinate.py": "index f158027..6781fe2 100644\n         Overrides getattr to return coordinates that this can be transformed\n         to, based on the alias attr in the primary transform graph.\n         \"\"\"\n# Check class dict first to allow properties to work normally\nif attr in type(self).__dict__:\nreturn object.__getattribute__(self, attr)\n\n         if \"_sky_coord_frame\" in self.__dict__:\n             if self._is_name(attr):\n                 return self  # Should this be a deepcopy of self?\n"
+    },
+    "ground_truth_patch": {
+        "astropy/coordinates/sky_coordinate.py": "             if frame_cls is not None and self.frame.is_transformable_to(frame_cls):\n                 return self.transform_to(attr)\n \n# Call __getattribute__; this will give correct exception.\nreturn self.__getattribute__(attr)\n \n     def __setattr__(self, attr, val):\n         # This is to make anything available through __getattr__ immutable\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 is part of a custom __getattr__ implementation that first checks if an attribute exists in the class dictionary using type(self).__dict__, and then checks if there's a sky coordinate frame and if the attribute name matches certain criteria. While the code in code sample 2 is part of the same file but handles frame transformation logic and includes the end of one method (__getattr__) and the beginning of another method (__setattr__).\",\n\"is_clone\": false,\n\"classification\": \"N/A\",\n\"reasoning\": \"These code samples are not clones because they serve different purposes and have different logic flows. Sample 1 is focused on attribute lookup in the class dictionary and sky coordinate frame checking, while Sample 2 deals with frame transformation and includes parts of two different methods. While they appear in the same file and are related to attribute handling, they have distinct functionality and aren't structurally or functionally equivalent. The code fragments also appear to be from different parts of the same class implementation, with Sample 2 showing the end of one method and the start of another.\"\n}"
+}

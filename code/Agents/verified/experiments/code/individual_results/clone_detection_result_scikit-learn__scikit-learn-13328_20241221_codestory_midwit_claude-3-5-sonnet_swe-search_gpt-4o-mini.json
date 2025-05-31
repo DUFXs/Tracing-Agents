@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-13328",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..5bf5e129b\nimport numpy as np\nfrom sklearn.datasets import make_regression\nfrom sklearn.linear_model import HuberRegressor\n\n# Random data\nX, y, coef = make_regression(n_samples=200, n_features=2, noise=4.0, coef=True, random_state=0)\nX_bool = X > 0\nX_bool_as_float = np.asarray(X_bool, dtype=float)\n\n# Test cases\nprint(\"Testing with regular float array:\")\nhuber = HuberRegressor().fit(X, y)\nprint(\"Success!\")\n\nprint(\"\\nTesting with boolean array:\")\ntry:\nhuber = HuberRegressor().fit(X_bool, y)\nprint(\"Success!\")\nexcept TypeError as e:\nprint(\"Failed with error:\", str(e))\n\nprint(\"\\nTesting with boolean array converted to float:\")\nhuber = HuberRegressor().fit(X_bool_as_float, y)\nprint(\"Success!\")\n\\ No newline at end of file\n",
+        "sklearn/linear_model/huber.py": "index 65c686400..817f16aaf 100644\n         \"\"\"\n         X, y = check_X_y(\n             X, y, copy=False, accept_sparse=['csr'], y_numeric=True)\n\n# Convert boolean arrays to float\nif X.dtype == np.bool_:\nX = X.astype(np.float64)\n\n         if sample_weight is not None:\n             sample_weight = np.array(sample_weight)\n             check_consistent_length(y, sample_weight)\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/linear_model/huber.py": "         self : object\n         \"\"\"\n         X, y = check_X_y(\nX, y, copy=False, accept_sparse=['csr'], y_numeric=True,\ndtype=[np.float64, np.float32])\n         if sample_weight is not None:\n             sample_weight = np.array(sample_weight)\n             check_consistent_length(y, sample_weight)\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to different contexts and serve different purposes. The first code sample is a script that generates synthetic data, tests a regression model using boolean and float arrays, and handles exceptions. In contrast, the second code sample is a piece of a method within a class that checks and preprocesses input for regression, specifically handling boolean arrays. While there are common elements like the boolean array conversion, they are functionally distinct and do not match any clone type definition.\"}"
+}

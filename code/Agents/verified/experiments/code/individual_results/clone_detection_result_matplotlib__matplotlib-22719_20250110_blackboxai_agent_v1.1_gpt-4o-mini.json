@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-22719",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 7d0e549e01..ec3b38b71a 100644\n lib/matplotlib/backends/web_backend/package-lock.json\n \n LICENSE/LICENSE_QHULL\n.aider/\n",
+        "lib/matplotlib/category.py": "index c823b68fd9..f61d8dec0d 100644\n         StrCategoryConverter._validate_unit(unit)\n         # dtype = object preserves numerical pass throughs\n         values = np.atleast_1d(np.array(value, dtype=object))\n\n# Handle empty arrays specially - return as-is without warning\nif values.size == 0:\nreturn np.asarray(values, dtype=float)\n\n         # pass through sequence of non binary numbers\n         with _api.suppress_matplotlib_deprecation_warning():\n             is_numlike = all(units.ConversionInterface.is_numlike(v)\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/category.py": "             is_numlike = all(units.ConversionInterface.is_numlike(v)\n                              and not isinstance(v, (str, bytes))\n                              for v in values)\nif values.size and is_numlike:\n             _api.warn_deprecated(\n                 \"3.5\", message=\"Support for passing numbers through unit \"\n                 \"converters is deprecated since %(since)s and support will be \"\n                 convertible = self._str_is_convertible(val)\n             if val not in self._mapping:\n                 self._mapping[val] = next(self._counter)\nif data.size and convertible:\n             _log.info('Using categorical units to plot a list of strings '\n                       'that are all parsable as floats or dates. If these '\n                       'strings should be plotted as numbers, cast to the '\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they do not exhibit syntactical similarity or functional equivalence. Code sample 1 is focused on validation and handling empty arrays, while code sample 2 deals with determining if values are categorical units and handling different types, indicating distinct functionalities.\"}"
+}

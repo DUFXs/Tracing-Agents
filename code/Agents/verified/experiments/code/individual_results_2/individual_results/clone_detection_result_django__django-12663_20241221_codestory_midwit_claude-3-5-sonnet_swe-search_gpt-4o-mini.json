@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-12663",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/models/lookups.py",
+    "ground_truth_patch_file": "django/db/models/sql/query.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to different classes and serve different functionalities, with distinct code structures and logic despite both being from a Django project.\"}"
+}

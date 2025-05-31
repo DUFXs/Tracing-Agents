@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-12585",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 55050f0a3..0172156f9 100644\n .cache\n .pytest_cache/\n _configtest.o.d\n.aider/\n",
+        "sklearn/base.py": "index 56ffb18bf..34998270c 100644\n     # XXX: not handling dictionaries\n     if estimator_type in (list, tuple, set, frozenset):\n         return estimator_type([clone(e, safe=safe) for e in estimator])\nelif not hasattr(estimator, 'get_params') or isinstance(estimator, type):\n         if not safe:\n             return copy.deepcopy(estimator)\n         else:\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/base.py": "     # XXX: not handling dictionaries\n     if estimator_type in (list, tuple, set, frozenset):\n         return estimator_type([clone(e, safe=safe) for e in estimator])\nelif not hasattr(estimator, 'get_params') or isinstance(estimator, type):\n         if not safe:\n             return copy.deepcopy(estimator)\n         else:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for the presence of different whitespace due to the formatting of the overall patch representation. The actual code content in 'sklearn/base.py' is the same in both samples.\"}"
+}

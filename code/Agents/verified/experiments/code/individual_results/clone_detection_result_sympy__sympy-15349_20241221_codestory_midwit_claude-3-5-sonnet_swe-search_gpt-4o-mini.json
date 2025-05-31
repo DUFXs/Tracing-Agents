@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-15349",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..dc56c64cf7\nfrom sympy import *\nimport sympy\n\n# Print sympy version\nprint('Sympy version: ', sympy.__version__)\n\n# Create symbolic variable\nx = symbols('x')\n\n# Test rotation around x-axis\nprint(\"\\nRotation around x-axis:\")\nqx = Quaternion(cos(x/2), sin(x/2), 0, 0)\nresult_x = trigsimp(qx.to_rotation_matrix())\nprint(result_x)\n\n# Test rotation around y-axis\nprint(\"\\nRotation around y-axis:\")\nqy = Quaternion(cos(x/2), 0, sin(x/2), 0)\nresult_y = trigsimp(qy.to_rotation_matrix())\nprint(result_y)\n\n# Test rotation around z-axis\nprint(\"\\nRotation around z-axis:\")\nqz = Quaternion(cos(x/2), 0, 0, sin(x/2))\nresult_z = trigsimp(qz.to_rotation_matrix())\nprint(result_z)\n\nprint(\"\\nExpected rotation matrices:\")\nprint(\"X-axis rotation:\")\nprint(\"[ 1,      0,       0]\")\nprint(\"[ 0,  cos(x), -sin(x)]\")\nprint(\"[ 0,  sin(x),  cos(x)]\")\n\nprint(\"\\nY-axis rotation:\")\nprint(\"[ cos(x),  0,  sin(x)]\")\nprint(\"[      0,  1,       0]\")\nprint(\"[-sin(x),  0,  cos(x)]\")\n\nprint(\"\\nZ-axis rotation:\")\nprint(\"[ cos(x), -sin(x),  0]\")\nprint(\"[ sin(x),  cos(x),  0]\")\nprint(\"[      0,       0,  1]\")\n\\ No newline at end of file\n",
+        "sympy/algebras/quaternion.py": "index b84e7cb95a..7eae8d73d0 100644\n \n         m10 = 2*s*(q.b*q.c + q.d*q.a)\n         m11 = 1 - 2*s*(q.b**2 + q.d**2)\nm12 = 2*s*(q.c*q.d - q.b*q.a)\n \n         m20 = 2*s*(q.b*q.d - q.c*q.a)\n         m21 = 2*s*(q.c*q.d + q.b*q.a)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/algebras/quaternion.py": " \n         m10 = 2*s*(q.b*q.c + q.d*q.a)\n         m11 = 1 - 2*s*(q.b**2 + q.d**2)\nm12 = 2*s*(q.c*q.d - q.b*q.a)\n \n         m20 = 2*s*(q.b*q.d - q.c*q.a)\n         m21 = 2*s*(q.c*q.d + q.b*q.a)\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are not similar in structure or functionality. The first sample contains a complete script including import statements and multiple print statements that demonstrate the functionality of rotations using quaternions, while the second sample only contains a snippet related to the quaternion calculations and lacks context. Therefore, they are syntactically and functionally dissimilar.\"}"
+}

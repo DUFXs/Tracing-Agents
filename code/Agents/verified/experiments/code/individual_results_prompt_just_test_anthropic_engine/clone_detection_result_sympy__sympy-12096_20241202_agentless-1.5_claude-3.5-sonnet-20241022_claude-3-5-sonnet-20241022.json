@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-12096",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/core/function.py": "index 654774e..5a6589b 100644\n             func = getattr(mpmath, fname)\n         except (AttributeError, KeyError):\n             try:\nresult = self._imp_(*[arg.evalf(prec) for arg in self.args])\nif hasattr(result, 'evalf'):\nreturn result.evalf(prec)\nreturn Float(result, prec)\n             except (AttributeError, TypeError, ValueError):\n                 return\n \n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/function.py": "             func = getattr(mpmath, fname)\n         except (AttributeError, KeyError):\n             try:\nreturn Float(self._imp_(*[i.evalf(prec) for i in self.args]), prec)\n             except (AttributeError, TypeError, ValueError):\n                 return\n \n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 evaluates a function by first calling _imp_ with evaluated arguments, then checks if the result has an evalf method and either calls it or converts the result to a Float with the specified precision. The code in code sample 2 does the same operation but more concisely, directly wrapping the _imp_ call and its evaluated arguments in a Float constructor.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they perform the same fundamental operation (evaluating a function and returning a Float result with specified precision) but with slightly different structure. Sample 1 uses intermediate steps with conditional logic (checking hasattr(result, 'evalf')), while sample 2 consolidates the operation into a single line. The core functionality is the same, but statements have been modified and consolidated. Also note that sample 2 uses 'i' instead of 'arg' in the list comprehension, but this is a minor difference. The key difference is in the structure of how they handle the result, making this a type-3 clone rather than type-1 or type-2.\"\n}"
+}

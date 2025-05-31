@@ -1,0 +1,11 @@
+{
+    "instance_id": "psf__requests-1766",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "requests/auth.py": "index ff8249e..7248f53 100644\n         if entdig:\n             base += ', digest=\"%s\"' % entdig\n         if qop:\nbase += ', qop=\"auth\", nc=%s, cnonce=\"%s\"' % (ncvalue, cnonce)\n \n         return 'Digest %s' % (base)\n \n"
+    },
+    "ground_truth_patch": {
+        "requests/auth.py": " \n         A1 = '%s:%s:%s' % (self.username, realm, self.password)\n         A2 = '%s:%s' % (method, path)\n\n         HA1 = hash_utf8(A1)\n         HA2 = hash_utf8(A2)\n \n         if entdig:\n             base += ', digest=\"%s\"' % entdig\n         if qop:\nbase += ', qop=\"auth\", nc=%s, cnonce=\"%s\"' % (ncvalue, cnonce)\n \n         return 'Digest %s' % (base)\n \n"
+    },
+    "response": "{\n    \"explanation\": \"The code in code sample 1 is a fragment of digest authentication code that handles adding digest and QOP (Quality of Protection) parameters to a base authentication string. It specifically handles the final part of digest authentication string construction. The code in code sample 2 contains the same fragment but also includes additional code for calculating digest authentication values (A1, A2, HA1, and HA2) using the username, realm, password, method, and path.\",\n    \"is_clone\": true,\n    \"classification\": \"type-3\",\n    \"reasoning\": \"These code samples are type-3 clones because code sample 2 contains all the code from sample 1 (the part handling entdig and qop parameters) but has additional statements before it for calculating the digest authentication values. The core functionality in sample 1 is completely contained within sample 2, with sample 2 having additional related statements. This matches the definition of a type-3 clone where there are added statements while maintaining syntactic similarity in the overlapping parts.\"\n}"
+}

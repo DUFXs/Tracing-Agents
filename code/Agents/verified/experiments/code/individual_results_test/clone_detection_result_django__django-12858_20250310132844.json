@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-12858",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "django/db/models/base.py",
+    "ground_truth_patch_file": "django/db/models/base.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

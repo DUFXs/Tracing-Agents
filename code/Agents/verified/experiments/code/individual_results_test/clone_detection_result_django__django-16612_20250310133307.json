@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-16612",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "test_redirect.py",
+    "ground_truth_patch_file": "django/contrib/admin/sites.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

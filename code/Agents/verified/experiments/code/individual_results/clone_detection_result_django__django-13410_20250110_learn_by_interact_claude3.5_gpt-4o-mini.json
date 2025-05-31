@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13410",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/core/files/locks.py": "index c46b00b905..f26b03f67f 100644\n             return True\n     else:\n         def lock(f, flags):\ntry:\nfcntl.flock(_fd(f), flags)\nreturn True\nexcept OSError:\nreturn False\n \n         def unlock(f):\ntry:\nfcntl.flock(_fd(f), fcntl.LOCK_UN)\nreturn True\nexcept OSError:\nreturn False\n\n",
+        "test_lock.py": "new file mode 100644\nindex 0000000000..3bac22675d\nimport os\nimport tempfile\nfrom django.core.files import locks\n\ndef test_file_locking():\n# Create a temporary file\nwith tempfile.NamedTemporaryFile(delete=False) as temp_file:\ntemp_path = temp_file.name\n\n# Try to acquire a lock in non-blocking mode\nwith open(temp_path, 'w') as f1:\n# First lock should succeed\nresult1 = locks.lock(f1, locks.LOCK_EX | locks.LOCK_NB)\nprint(f\"First lock attempt: {result1}\")  # Should be True\n\n# Try to acquire another lock on the same file\nwith open(temp_path, 'r') as f2:\nresult2 = locks.lock(f2, locks.LOCK_EX | locks.LOCK_NB)\nprint(f\"Second lock attempt: {result2}\")  # Should be False\n\n# Unlock the first file\nunlock_result = locks.unlock(f1)\nprint(f\"Unlock result: {unlock_result}\")  # Should be True\n\n# Clean up\nos.unlink(temp_path)\n\nif __name__ == \"__main__\":\ntest_file_locking()\n"
+    },
+    "ground_truth_patch": {
+        "django/core/files/locks.py": "             return True\n     else:\n         def lock(f, flags):\ntry:\nfcntl.flock(_fd(f), flags)\nreturn True\nexcept BlockingIOError:\nreturn False\n \n         def unlock(f):\nfcntl.flock(_fd(f), fcntl.LOCK_UN)\nreturn True\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in identifier names and potentially other values. For instance, in the second sample, the exception is changed from 'OSError' to 'BlockingIOError', which alters the functionality slightly, but the structure and the intent of the code remain the same.\"}"
+}

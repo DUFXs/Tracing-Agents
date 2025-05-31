@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-22456",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/codegen/ast.py": "index 7a7d795..bf09463 100644\n \n     \"\"\"\n     __slots__ = ('text',)\n     is_Atom = True\n \n     @classmethod\n"
+    },
+    "ground_truth_patch": {
+        "sympy/codegen/ast.py": " from sympy.core.relational import (Ge, Gt, Le, Lt)\n from sympy.core import Symbol, Tuple, Dummy\n from sympy.core.basic import Basic\nfrom sympy.core.expr import Expr, Atom\n from sympy.core.numbers import Float, Integer, oo\n from sympy.core.sympify import _sympify, sympify, SympifyError\n from sympy.utilities.iterables import (iterable, topological_sort,\n         else:\n             return kwargs\n \n class BreakToken(Token):\n     \"\"\" Represents 'break' in C/Python ('exit' in Fortran).\n \n         return _sympify(itr)\n \n \nclass String(Atom, Token):\n     \"\"\" SymPy object representing a string.\n \n     Atomic object which is not an expression (as opposed to Symbol).\n     def _sympystr(self, printer, *args, **kwargs):\n         return self.text\n \ndef kwargs(self, exclude = (), apply = None):\nreturn {}\n\n#to be removed when Atom is given a suitable func\n@property\ndef func(self):\nreturn lambda: self\n \n class QuotedString(String):\n     \"\"\" Represents a string which should be printed with quotes. \"\"\"\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 shows a small fragment of a class definition with __slots__ and is_Atom attributes, and the beginning of a classmethod decorator. The code in code sample 2 is a larger file containing imports, class definitions for BreakToken, String, and QuotedString classes, along with various methods and properties.\",\n\"is_clone\": false,\n\"classification\": \"N/A\",\n\"reasoning\": \"These code samples are not clones because they represent different parts of the same file but contain completely different functionality. Sample 1 is just a small fragment showing class attributes, while sample 2 contains multiple complete class definitions, imports, and implementations. They don't share any significant structural or functional similarities that would qualify them as any type of clone.\"\n}"
+}

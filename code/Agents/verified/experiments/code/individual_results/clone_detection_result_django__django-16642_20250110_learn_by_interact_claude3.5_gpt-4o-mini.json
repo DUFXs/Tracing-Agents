@@ -1,0 +1,14 @@
+{
+    "instance_id": "django__django-16642",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/http/response.py": "index f62dec8ce9..a13c7f2ffd 100644\n                     \"bzip2\": \"application/x-bzip\",\n                     \"gzip\": \"application/gzip\",\n                     \"xz\": \"application/x-xz\",\n\"br\": \"application/x-brotli\",\n\"compress\": \"application/x-compress\",\n                 }.get(encoding, content_type)\n\n                 self.headers[\"Content-Type\"] = (\n                     content_type or \"application/octet-stream\"\n                 )\n         kwargs.setdefault(\"content_type\", \"application/json\")\n         data = json.dumps(data, cls=encoder, **json_dumps_params)\n         super().__init__(content=data, **kwargs)\n\n",
+        "test.html.Z": "new file mode 100644\nindex 0000000000..08cf610141\ntest content\n\\ No newline at end of file\n",
+        "test.html.br": "new file mode 100644\nindex 0000000000..08cf610141\ntest content\n\\ No newline at end of file\n",
+        "test_mime.py": "new file mode 100644\nindex 0000000000..0738059779\nfrom django.conf import settings\nsettings.configure()\n\nfrom django.http import FileResponse\nimport io\n\n# Create test files\nwith open('test.html.br', 'wb') as f:\nf.write(b'test content')\n\nwith open('test.html.Z', 'wb') as f:\nf.write(b'test content')\n\n# Test br file\nresponse = FileResponse(open('test.html.br', 'rb'))\nprint(\"Content-Type for .br file:\", response.headers['Content-Type'])\n\n# Test Z file\nresponse = FileResponse(open('test.html.Z', 'rb'))\nprint(\"Content-Type for .Z file:\", response.headers['Content-Type'])\n"
+    },
+    "ground_truth_patch": {
+        "django/http/response.py": "                 # Encoding isn't set to prevent browsers from automatically\n                 # uncompressing files.\n                 content_type = {\n\"br\": \"application/x-brotli\",\n                     \"bzip2\": \"application/x-bzip\",\n\"compress\": \"application/x-compress\",\n                     \"gzip\": \"application/gzip\",\n                     \"xz\": \"application/x-xz\",\n                 }.get(encoding, content_type)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in whitespace, layout, and the addition of comments. Both samples are building a dictionary to map encoding types to their respective 'Content-Type' strings, but the second example includes comments explaining the intention behind not setting the content_type initially. Despite these differences, the overall structure and functionality remain the same.\"}"
+}

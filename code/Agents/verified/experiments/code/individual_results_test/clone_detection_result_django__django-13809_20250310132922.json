@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13809",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "test.log",
+    "ground_truth_patch_file": "django/core/management/commands/runserver.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-1\"}"
+}

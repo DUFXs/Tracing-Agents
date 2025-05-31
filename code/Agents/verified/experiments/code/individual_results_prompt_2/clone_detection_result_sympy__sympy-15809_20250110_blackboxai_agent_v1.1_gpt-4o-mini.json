@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-15809",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index fdcc1cabf1..3fbed863dc 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/functions/elementary/miscellaneous.py": "index 5f9fe73c5c..f4294571f8 100644\n class MinMaxBase(Expr, LatticeOp):\n     def __new__(cls, *args, **assumptions):\n         if not args:\nreturn cls.identity\n \n         args = (sympify(arg) for arg in args)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/functions/elementary/miscellaneous.py": "class MinMaxBase(Expr, LatticeOp):\n    def __new__(cls, *args, **assumptions):\n\n        args = (sympify(arg) for arg in args)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a class called MinMaxBase that inherits from Expr and LatticeOp. Inside the class, it implements a method __new__ that takes a variable number of arguments and assumptions. If no arguments are provided, it returns the identity of the class. Otherwise, it converts the provided arguments to symbolic expressions using the sympify function. The code sample 2 also defines the same class and method, but it omits the conditional check for empty arguments and the return statement for cls.identity. Both snippets share a common structure, but code sample 2 is slightly modified by removing a part of the original logic.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar, but code sample 2 has removed the logic that checks for empty arguments and the return statement, making it a modified version of the original in code sample 1.\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-16877",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/template/defaultfilters.py": "index 693c70d..d8fe3a0 100644\n     return [mark_safe(obj) for obj in value]\n \n \n@register.filter(is_safe=True)\ndef escapeseq(value):\n\"\"\"\nEscape a sequence of values. Convert each element in the sequence to a string\nand apply HTML escaping. Return a list with the results.\n\"\"\"\nreturn [conditional_escape(obj) for obj in value]\n\n\n @register.filter(is_safe=True)\n @stringfilter\n def striptags(value):\n"
+    },
+    "ground_truth_patch": {
+        "django/template/defaultfilters.py": "     return conditional_escape(value)\n \n \n@register.filter(is_safe=True)\ndef escapeseq(value):\n\"\"\"\nAn \"escape\" filter for sequences. Mark each element in the sequence,\nindividually, as a string that should be auto-escaped. Return a list with\nthe results.\n\"\"\"\nreturn [conditional_escape(obj) for obj in value]\n\n\n @register.filter(is_safe=True)\n @stringfilter\n def force_escape(value):\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 shows a function 'escapeseq' that takes a sequence value and applies HTML escaping to each element using conditional_escape, returning a list of escaped values. The docstring describes it as escaping a sequence of values. While the code in code sample 2 shows the same function 'escapeseq' with identical implementation but a slightly different docstring that describes it as an 'escape' filter for sequences.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they contain the exact same function 'escapeseq' with identical implementation: '@register.filter(is_safe=True)' decorator and 'return [conditional_escape(obj) for obj in value]' code. The only difference is in the docstring comments, which is allowed in type-1 clones. The surrounding context (different functions before and after) is not part of the clone itself.\"\n}"
+}

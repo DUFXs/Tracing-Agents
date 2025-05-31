@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16642",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 6a67c6eb28..cd0195a6d7 100644\n tests/.coverage*\n build/\n tests/report/\n.aider/\n",
+        "django/http/response.py": "index f62dec8ce9..9773ea1e01 100644\n         if self._no_explicit_content_type:\n             if filename:\n                 content_type, encoding = mimetypes.guess_type(filename)\n# Handle special cases for compressed files\nif filename.lower().endswith('.z'):\ncontent_type = 'application/x-compress'\nelif filename.lower().endswith('.br'):\ncontent_type = 'application/x-brotli'\nelse:\n# Encoding isn't set to prevent browsers from automatically\n# uncompressing files.\ncontent_type = {\n\"bzip2\": \"application/x-bzip\",\n\"gzip\": \"application/gzip\",\n\"xz\": \"application/x-xz\",\n}.get(encoding, content_type)\n                 self.headers[\"Content-Type\"] = (\n                     content_type or \"application/octet-stream\"\n                 )\n"
+    },
+    "ground_truth_patch": {
+        "django/http/response.py": "                 # Encoding isn't set to prevent browsers from automatically\n                 # uncompressing files.\n                 content_type = {\n\"br\": \"application/x-brotli\",\n                     \"bzip2\": \"application/x-bzip\",\n\"compress\": \"application/x-compress\",\n                     \"gzip\": \"application/gzip\",\n                     \"xz\": \"application/x-xz\",\n                 }.get(encoding, content_type)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in whitespace, layout, and the order of dictionary items, as well as the specific content of the identifiers and keys used.\"}"
+}

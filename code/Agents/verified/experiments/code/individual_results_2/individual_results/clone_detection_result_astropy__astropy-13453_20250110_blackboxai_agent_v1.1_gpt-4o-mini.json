@@ -1,0 +1,7 @@
+{
+    "instance_id": "astropy__astropy-13453",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "astropy/io/ascii/html.py",
+    "ground_truth_patch_file": "astropy/io/ascii/html.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have syntactic similarities but differ in structure and content. Code sample 1 modifies `col.info.format` based on the `self.data.formats`, whereas code sample 2 modifies `self.data.cols` and additionally calls methods like `_set_fill_values` and `_set_col_formats`, which are not present in code sample 1. This indicates added or modified statements while maintaining some common logic.\"}"
+}

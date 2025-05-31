@@ -1,0 +1,7 @@
+{
+    "instance_id": "matplotlib__matplotlib-14623",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "lib/matplotlib/axes/_base.py",
+    "ground_truth_patch_file": "lib/matplotlib/ticker.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-5\"}"
+}

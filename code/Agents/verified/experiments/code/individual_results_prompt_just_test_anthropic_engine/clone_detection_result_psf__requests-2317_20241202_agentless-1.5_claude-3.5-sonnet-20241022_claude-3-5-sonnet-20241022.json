@@ -1,0 +1,11 @@
+{
+    "instance_id": "psf__requests-2317",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "requests/sessions.py": "index 76c9998..cb43117 100644\n             If Tuple, ('cert', 'key') pair.\n         \"\"\"\n \nmethod = to_native_string(method)\n \n         # Create the Request.\n         req = Request(\n"
+    },
+    "ground_truth_patch": {
+        "requests/sessions.py": " from datetime import datetime\n \n from .auth import _basic_auth_str\nfrom .compat import cookielib, OrderedDict, urljoin, urlparse\n from .cookies import (\n     cookiejar_from_dict, extract_cookies_to_jar, RequestsCookieJar, merge_cookies)\n from .models import Request, PreparedRequest, DEFAULT_REDIRECT_LIMIT\n             If Tuple, ('cert', 'key') pair.\n         \"\"\"\n \nmethod = to_native_string(method)\n \n         # Create the Request.\n         req = Request(\n"
+    },
+    "response": "{\n    \"explanation\": \"The code in code sample 1 shows a small snippet of code that converts a method to a native string and creates a Request object. The code in code sample 2 shows the same exact code but includes additional import statements at the beginning of the file.\",\n    \"is_clone\": true,\n    \"classification\": \"type-3\",\n    \"reasoning\": \"These code samples are type-3 clones because they contain the exact same core functionality (converting method to native string and creating a Request), but code sample 2 includes additional statements (import statements) that are not present in code sample 1. This fits the definition of type-3 clones where there are added, modified, or removed statements while maintaining syntactic similarity in the shared parts.\"\n}"
+}

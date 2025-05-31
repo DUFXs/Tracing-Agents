@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12262",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/template/library.py": "index 20bc86dac8..d8d9e25100 100644\n     unhandled_params = list(params)\n     unhandled_kwargs = [\n         kwarg for kwarg in kwonly\nif kwarg not in (kwonly_defaults or {})\n     ]\n     for bit in bits:\n         # First we try to extract a potential kwarg from the bit\n         if kwarg:\n             # The kwarg was successfully extracted\n             param, value = kwarg.popitem()\nif (param not in params and \nparam not in kwonly and \nvarkw is None):\n                 # An unexpected keyword argument was supplied\n                 raise TemplateSyntaxError(\n                     \"'%s' received unexpected keyword argument '%s'\" %\n"
+    },
+    "ground_truth_patch": {
+        "django/template/library.py": "         if kwarg:\n             # The kwarg was successfully extracted\n             param, value = kwarg.popitem()\nif param not in params and param not in kwonly and varkw is None:\n                 # An unexpected keyword argument was supplied\n                 raise TemplateSyntaxError(\n                     \"'%s' received unexpected keyword argument '%s'\" %\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 handles parameters in a Python template library by checking if a keyword argument (kwarg) was successfully extracted. If it was, it assigns the parameter and its value. It then checks if the extracted parameter is not in the defined parameters or keyword-only arguments and if varkw is None, indicating an unexpected keyword argument. An error is raised in this case. Meanwhile, code sample 2 performs the same function but lacks the initial lines that extract and define the unhandled_params list and the unhandled_kwargs list. The essence of the second code is similar to the relevant part of the first, focusing only on the check for unexpected keyword arguments and raising an error.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but the first sample has additional lines that extract unhandled parameters and keyword arguments that are not present in the second sample.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "pydata__xarray-4966",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 5f02700d..e6a14f92 100644\n Icon*\n \n .ipynb_checkpoints\n.aider/\n",
+        "xarray/coding/variables.py": "index b035ff82..938752c4 100644\n                     if \"_FillValue\" in attrs:\n                         new_fill = unsigned_dtype.type(attrs[\"_FillValue\"])\n                         attrs[\"_FillValue\"] = new_fill\nelif data.dtype.kind == \"u\":\nif unsigned == \"false\":\nsigned_dtype = np.dtype(\"i%s\" % data.dtype.itemsize)\ntransform = partial(np.asarray, dtype=signed_dtype)\ndata = lazy_elemwise_func(data, transform, signed_dtype)\nif \"_FillValue\" in attrs:\nnew_fill = signed_dtype.type(attrs[\"_FillValue\"])\nattrs[\"_FillValue\"] = new_fill\n             else:\n                 warnings.warn(\n                     \"variable %r has _Unsigned attribute but is not \"\n"
+    },
+    "ground_truth_patch": {
+        "xarray/coding/variables.py": "                     if \"_FillValue\" in attrs:\n                         new_fill = unsigned_dtype.type(attrs[\"_FillValue\"])\n                         attrs[\"_FillValue\"] = new_fill\nelif data.dtype.kind == \"u\":\nif unsigned == \"false\":\nsigned_dtype = np.dtype(\"i%s\" % data.dtype.itemsize)\ntransform = partial(np.asarray, dtype=signed_dtype)\ndata = lazy_elemwise_func(data, transform, signed_dtype)\nif \"_FillValue\" in attrs:\nnew_fill = signed_dtype.type(attrs[\"_FillValue\"])\nattrs[\"_FillValue\"] = new_fill\n             else:\n                 warnings.warn(\n                     \"variable %r has _Unsigned attribute but is not \"\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for the differences in whitespace and formatting. The content and structure of the code are exactly the same.\"}"
+}

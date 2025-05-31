@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16527",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/templatetags/admin_modify.py": "index 9df4b7aadb..5b742af46a 100644\n                 and context.get(\"show_delete\", True)\n             ),\n             \"show_save_as_new\": not is_popup\nand has_add_permission\n             and has_change_permission\n             and change\n             and save_as,\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/templatetags/admin_modify.py": "                 and context.get(\"show_delete\", True)\n             ),\n             \"show_save_as_new\": not is_popup\nand has_add_permission\n             and change\n             and save_as,\n             \"show_save_and_add_another\": can_save_and_add_another,\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 checks several conditions to determine whether to show a delete option in a Django admin interface, while the code in code sample 2 adds an additional condition to check if a user can save and add another item in the admin interface. Both pieces of code involve accessing the context and evaluating permission-related conditions.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because code sample 1 does not include the check for 'show_save_and_add_another', which is present in code sample 2. This represents a functional difference as the second sample includes more logic than the first.\"}"
+}

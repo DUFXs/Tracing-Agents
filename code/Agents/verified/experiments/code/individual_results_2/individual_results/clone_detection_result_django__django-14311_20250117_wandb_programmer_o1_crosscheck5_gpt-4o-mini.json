@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-14311",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/utils/autoreload.py",
+    "ground_truth_patch_file": "django/utils/autoreload.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they show syntactical similarities, but with added, modified, or removed statements. For example, the handling of __spec__ in the second code sample has been altered with conditional checks around the `spec` variable, while the first code sample processes it directly without modification. Also, some elements like the handling of name and args vary between the two.\"}"
+}

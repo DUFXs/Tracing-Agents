@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12209",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/base.py": "index e3b14a41a0..743620cfbb 100644\n         if not pk_set and (force_update or update_fields):\n             raise ValueError(\"Cannot force an update in save() with no primary key.\")\n         updated = False\n# Handle force_insert case first\nif force_insert:\nif pk_set:\nbase_qs = cls._base_manager.using(using)\nif base_qs.filter(pk=pk_val).exists():\nraise DatabaseError(\"Forced insert failed as primary key already exists.\")\nupdated = False\n# Try UPDATE when pk is set and not forcing insert\nelif not force_update and pk_set:\n             base_qs = cls._base_manager.using(using)\n             values = [(f, None, (getattr(self, f.attname) if raw else f.pre_save(self, False)))\nfor f in non_pks]\n             forced_update = update_fields or force_update\n             updated = self._do_update(base_qs, using, pk_val, values, update_fields,\nforced_update)\n             if force_update and not updated:\n                 raise DatabaseError(\"Forced update did not affect any rows.\")\n             if update_fields and not updated:\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/base.py": "         updated = False\n         # Skip an UPDATE when adding an instance and primary key has a default.\n         if (\nnot raw and\n             not force_insert and\n             self._state.adding and\n             self._meta.pk.default and\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain different logic and statements. Sample 1 involves logic around handling primary keys during updates, while Sample 2 starts with a condition related to skipping updates when adding an instance, indicating a different functionality.\"}"
+}

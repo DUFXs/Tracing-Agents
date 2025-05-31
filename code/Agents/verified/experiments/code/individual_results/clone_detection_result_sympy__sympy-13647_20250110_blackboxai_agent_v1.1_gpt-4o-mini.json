@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-13647",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 13ee70ccae..4b6ee33b52 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/matrices/common.py": "index 056d9bc497..4aa75e4d77 100644\n                 return self[i, j]\n             elif pos <= j < pos + other.cols:\n                 return other[i, j - pos]\nreturn self[i, j - other.cols]\n \n         return self._new(self.rows, self.cols + other.cols,\n                          lambda i, j: entry(i, j))\n"
+    },
+    "ground_truth_patch": {
+        "sympy/matrices/common.py": "                 return self[i, j]\n             elif pos <= j < pos + other.cols:\n                 return other[i, j - pos]\nreturn self[i, j - other.cols]\n \n         return self._new(self.rows, self.cols + other.cols,\n                          lambda i, j: entry(i, j))\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for the presence of additional text in Code sample 1, which relates to a different file (.gitignore) and does not impinge on the relevant lines of code. The actual lines of code in sympy/matrices/common.py are the same in both samples, differing only in formatting.\"}"
+}

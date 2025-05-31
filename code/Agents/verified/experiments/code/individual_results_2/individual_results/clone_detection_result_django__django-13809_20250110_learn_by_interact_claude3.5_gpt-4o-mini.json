@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13809",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "django/core/management/commands/runserver.py",
+    "ground_truth_patch_file": "django/core/management/commands/runserver.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in whitespace and a minor detail in the output string of the `self.stdout.write` method, where in sample 1 the text is not enclosed in quotes while in sample 2 it is. Otherwise, the structure and logic of both samples are the same.\"}"
+}

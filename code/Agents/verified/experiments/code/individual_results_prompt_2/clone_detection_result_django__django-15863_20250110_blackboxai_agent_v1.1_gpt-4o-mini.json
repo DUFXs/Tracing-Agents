@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15863",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/template/defaultfilters.py": "index 7a5b28d159..602d56e075 100644\n         elif last_char == \"u\":\n             use_l10n = False\n             arg = arg[:-1] or -1\nif isinstance(text, Decimal):\nd = text\nelse:\n         try:\ninput_val = repr(text)\nd = Decimal(input_val)\nexcept InvalidOperation:\ntry:\nd = Decimal(str(float(text)))\nexcept (ValueError, InvalidOperation, TypeError):\nreturn \"\"\n     try:\n         p = int(arg)\n     except ValueError:\n"
+    },
+    "ground_truth_patch": {
+        "django/template/defaultfilters.py": "             use_l10n = False\n             arg = arg[:-1] or -1\n     try:\ninput_val = str(text)\n         d = Decimal(input_val)\n     except InvalidOperation:\n         try:\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 processes a variable `text` to convert it into a `Decimal` object, attempting to handle various formats and exceptions related to non-numeric inputs. It also checks for a character condition using `last_char`. On the other hand, the code in code sample 2 also aims to convert `text` to a `Decimal` but uses a different approach by calling `str(text)` instead of `repr(text)` and omits the preliminary check of `isinstance(text, Decimal)`. Both snippets deal with exception handling for invalid conversions. While they share a similar purpose, they diverge in their logic and structure.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they have different methods for handling input and include distinct logical flows. Hence, they can't be classified as any clone type.\"}"
+}

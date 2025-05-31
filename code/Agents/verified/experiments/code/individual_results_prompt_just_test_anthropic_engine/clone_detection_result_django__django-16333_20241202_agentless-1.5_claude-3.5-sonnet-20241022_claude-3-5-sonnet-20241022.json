@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-16333",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/contrib/auth/forms.py": "index 9d4c3a8..c71b56e 100644\n         user.set_password(self.cleaned_data[\"password1\"])\n         if commit:\n             user.save()\nself.save_m2m()\n         return user\n \n \n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/forms.py": "         user.set_password(self.cleaned_data[\"password1\"])\n         if commit:\n             user.save()\nif hasattr(self, \"save_m2m\"):\nself.save_m2m()\n         return user\n \n \n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 sets a user's password, saves the user if commit is True, and unconditionally calls save_m2m() before returning the user. The code in code sample 2 does almost the same thing, but adds a safety check by only calling save_m2m() if the method exists (using hasattr).\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they have the same basic structure and functionality, but code sample 2 adds a conditional check (if hasattr(self, 'save_m2m')) around the save_m2m() call. This represents a small modification to the original code that makes it safer by checking for the existence of the method before calling it, but the core functionality remains the same. The addition of this safety check makes it a type-3 clone rather than a type-1 or type-2 clone.\"\n}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-24539",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "sympy/polys/rings.py": "index 12bd2fc920..9cc19293f0 100644\n             return new_ring.from_dict(self, self.ring.domain)\n \n     def as_expr(self, *symbols):\nif symbols:\nif len(symbols) != self.ring.ngens:\nraise ValueError(\"not enough symbols, expected %s got %s\" % (self.ring.ngens, len(symbols)))\n         else:\n             symbols = self.ring.symbols\n\n         return expr_from_dict(self.as_expr_dict(), *symbols)\n\n \n     def as_expr_dict(self):\n         to_sympy = self.ring.domain.to_sympy\n",
+        "test_as_expr_symbols.py": "new file mode 100644\nindex 0000000000..78c06d5435\nimport sys\nfrom sympy import ring, ZZ, symbols\n\ndef main():\nprint(\"Reproducing the problem of ignoring user-supplied symbols in PolyElement.as_expr()\")\nR, x, y, z = ring(\"x,y,z\", ZZ)\nf = 3*x**2*y - x*y*z + 7*z**3 + 1\nU, V, W = symbols(\"u,v,w\", real=True)\nprint(\"Created polynomial f =\", f)\n\nprint(\"Calling f.as_expr(U, V, W)...\")\nresult = f.as_expr(U, V, W)\nprint(\"Got:\", result)\n\nexpected = \"3*u**2*v - u*v*w + 7*w**3 + 1\"\nif str(result) == expected:\nprint(\"PASS: The user-supplied symbols are used.\")\nsys.exit(0)\nelse:\nprint(\"FAIL: The user-supplied symbols were ignored.\")\nprint(\"Expected:\", expected)\nsys.exit(1)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "sympy/polys/rings.py": "             return new_ring.from_dict(self, self.ring.domain)\n \n     def as_expr(self, *symbols):\nif not symbols:\n             symbols = self.ring.symbols\nelif len(symbols) != self.ring.ngens:\nraise ValueError(\n\"Wrong number of symbols, expected %s got %s\" %\n(self.ring.ngens, len(symbols))\n)\n \n         return expr_from_dict(self.as_expr_dict(), *symbols)\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and logic except for some differences in whitespace, the error messages have different text, and some identifiers have been changed.\"}"
+}

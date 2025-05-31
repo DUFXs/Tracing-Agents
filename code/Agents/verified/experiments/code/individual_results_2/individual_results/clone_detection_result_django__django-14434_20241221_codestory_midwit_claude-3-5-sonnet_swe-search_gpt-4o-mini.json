@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-14434",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/backends/base/schema.py",
+    "ground_truth_patch_file": "django/db/backends/base/schema.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity with modifications present. Both samples contain similar structures related to handling columns and indexes in a database context, but there are changes in the statements, such as differences in variable assignments and function calls, indicating that while the general structure is maintained, the specific implementations differ.\"}"
+}

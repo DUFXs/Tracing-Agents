@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12713",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/options.py": "index 69a5fbf389..db7df891e3 100644\n             return None\n         db = kwargs.get('using')\n \nif 'widget' not in kwargs:\nautocomplete_fields = self.get_autocomplete_fields(request)\nif db_field.name in autocomplete_fields:\nkwargs['widget'] = AutocompleteSelectMultiple(db_field.remote_field, self.admin_site, using=db)\nelif db_field.name in self.raw_id_fields:\nkwargs['widget'] = widgets.ManyToManyRawIdWidget(db_field.remote_field, self.admin_site, using=db)\nelif db_field.name in [*self.filter_vertical, *self.filter_horizontal]:\nkwargs['widget'] = widgets.FilteredSelectMultiple(\ndb_field.verbose_name,\ndb_field.name in self.filter_vertical\n)\n \n         if 'queryset' not in kwargs:\n             queryset = self.get_field_queryset(db, db_field, request)\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/options.py": "             return None\n         db = kwargs.get('using')\n \nif 'widget' not in kwargs:\nautocomplete_fields = self.get_autocomplete_fields(request)\nif db_field.name in autocomplete_fields:\nkwargs['widget'] = AutocompleteSelectMultiple(\ndb_field.remote_field,\nself.admin_site,\nusing=db,\n)\nelif db_field.name in self.raw_id_fields:\nkwargs['widget'] = widgets.ManyToManyRawIdWidget(\ndb_field.remote_field,\nself.admin_site,\nusing=db,\n)\nelif db_field.name in [*self.filter_vertical, *self.filter_horizontal]:\nkwargs['widget'] = widgets.FilteredSelectMultiple(\ndb_field.verbose_name,\ndb_field.name in self.filter_vertical\n)\n         if 'queryset' not in kwargs:\n             queryset = self.get_field_queryset(db, db_field, request)\n             if queryset is not None:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have added, modified, or removed statements. For example, sample 2 has an additional check for 'queryset' being not None, which is not present in sample 1.\"}"
+}

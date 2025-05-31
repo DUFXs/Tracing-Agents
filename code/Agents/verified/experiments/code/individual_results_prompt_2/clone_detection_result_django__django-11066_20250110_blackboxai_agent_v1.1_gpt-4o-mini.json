@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11066",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/contenttypes/management/__init__.py": "index 2b5f688136..563cba2fdf 100644\n             content_type.model = new_model\n             try:\n                 with transaction.atomic(using=db):\ncontent_type.save(using=db, update_fields={'model'})\n             except IntegrityError:\n                 # Gracefully fallback if a stale content type causes a\n                 # conflict as remove_stale_contenttypes will take care of\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/contenttypes/management/__init__.py": "             content_type.model = new_model\n             try:\n                 with transaction.atomic(using=db):\ncontent_type.save(using=db, update_fields={'model'})\n             except IntegrityError:\n                 # Gracefully fallback if a stale content type causes a\n                 # conflict as remove_stale_contenttypes will take care of\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 updates a file patch by showing changes made to two files: the .gitignore file with entries for tests and build directories, and a block of code in the init.py file, which assigns a model to a content type and attempts to save it in a database transaction. In contrast, code sample 2 only shows the portion of the patch relevant to changes in the init.py file without including the .gitignore changes. The two samples both reflect the same logic for saving a content type with a fall-back mechanism for handling IntegrityErrors.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in content except for the differences in whitespace, layout, and the absence of the .gitignore changes in the second sample.\"}"
+}

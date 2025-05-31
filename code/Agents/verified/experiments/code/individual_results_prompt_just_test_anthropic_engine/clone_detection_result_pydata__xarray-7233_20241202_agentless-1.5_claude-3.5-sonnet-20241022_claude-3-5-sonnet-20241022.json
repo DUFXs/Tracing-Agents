@@ -1,0 +1,11 @@
+{
+    "instance_id": "pydata__xarray-7233",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "xarray/core/rolling.py": "index d923cdb..94578db 100644\n             else:\n                 reshaped[key] = var\n \n# Preserve all original coordinates, not just the ones being coarsened\nshould_be_coords = set(self.obj.coords)\n         result = reshaped.set_coords(should_be_coords)\n         if isinstance(self.obj, DataArray):\n             return self.obj._from_temp_dataset(result)\n"
+    },
+    "ground_truth_patch": {
+        "xarray/core/rolling.py": "             else:\n                 reshaped[key] = var\n \n# should handle window_dim being unindexed\nshould_be_coords = (set(window_dim) & set(self.obj.coords)) | set(\nself.obj.coords\n)\n         result = reshaped.set_coords(should_be_coords)\n         if isinstance(self.obj, DataArray):\n             return self.obj._from_temp_dataset(result)\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 preserves all original coordinates by creating a set of coordinates from self.obj.coords and then sets these coordinates in a reshaped object. If the original object is a DataArray, it returns a transformed version of the result. The code in code sample 2 handles window dimensions that might be unindexed by creating a set of coordinates that is the union of (1) the intersection of window_dim and self.obj.coords and (2) all coordinates in self.obj.coords. It then similarly sets these coordinates and handles DataArray objects.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they have the same basic structure and purpose (handling coordinates and returning transformed results), but there are modifications in how the coordinates are collected. Sample 1 simply takes all coordinates from self.obj.coords, while Sample 2 does more complex set operations involving window_dim. The core functionality (setting coordinates and handling DataArray objects) remains the same, but there's a meaningful modification in how the coordinate set is constructed. This makes it a type-3 clone where statements have been modified while maintaining similar syntax and overall structure.\"\n}"
+}

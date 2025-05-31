@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-14311",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "django/utils/autoreload.py",
+    "ground_truth_patch_file": "django/utils/autoreload.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity but have added, modified, or removed statements. Specifically, the second sample introduces checks related to the `spec` variable that are not present in the first sample, making them structurally different.\"}"
+}

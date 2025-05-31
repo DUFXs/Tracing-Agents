@@ -1,0 +1,13 @@
+{
+    "instance_id": "sympy__sympy-14711",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "edge_cases.py": "new file mode 100644\nindex 0000000000..4a378ab3d3\nfrom sympy.physics.vector import ReferenceFrame, Vector\nfrom sympy import symbols\n\nN = ReferenceFrame('N')\n\n# Test case 1: Adding zero to a vector\nresult1 = N.x + (0 * N.x)\nprint(\"Test 1 - N.x + (0 * N.x):\", result1)\n\n# Test case 2: Adding a vector to zero\nresult2 = (0 * N.x) + N.x\nprint(\"Test 2 - (0 * N.x) + N.x:\", result2)\n\n# Test case 3: Adding multiple vectors with zeros\nresult3 = sum([N.x, (0 * N.y), N.z, (0 * N.x)])\nprint(\"Test 3 - sum([N.x, (0 * N.y), N.z, (0 * N.x)]):\", result3)\n\n# Test case 4: Adding zero to zero\nresult4 = (0 * N.x) + (0 * N.y)\nprint(\"Test 4 - (0 * N.x) + (0 * N.y):\", result4)\n\\ No newline at end of file\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..e4294c0e46\nfrom sympy.physics.vector import ReferenceFrame, Vector\nfrom sympy import symbols\n\nN = ReferenceFrame('N')\nresult = sum([N.x, (0 * N.x)])\nprint(result)\n\\ No newline at end of file\n",
+        "sympy/physics/vector/vector.py": "index a048ee57f1..8849119218 100644\n \n     def __add__(self, other):\n         \"\"\"The add operator for Vector. \"\"\"\nif other == 0:\nreturn self\n         other = _check_vector(other)\n         return Vector(self.args + other.args)\n \n"
+    },
+    "ground_truth_patch": {
+        "sympy/physics/vector/vector.py": " \n     def __add__(self, other):\n         \"\"\"The add operator for Vector. \"\"\"\nif other == 0:\nreturn self\n         other = _check_vector(other)\n         return Vector(self.args + other.args)\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are entirely different in functionality and structure. Code sample 1 contains multiple test cases for vector addition with zero, while code sample 2 includes only a small portion of the implementation of the vector addition operator. They serve different purposes and do not exhibit similarities required for any clone classification.\"}"
+}

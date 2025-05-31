@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-12708",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/db/backends/base/schema.py": "index d7d8448..4a687d0 100644\n             model, columns, exclude=meta_constraint_names | meta_index_names,\n             **constraint_kwargs\n         )\n# Filter for index-type constraints only when deleting an index\nif constraint_kwargs.get('index'):\nconstraint_names = [name for name in constraint_names if name.endswith('_idx')]\n         if len(constraint_names) != 1:\n             raise ValueError(\"Found wrong number (%s) of constraints for %s(%s)\" % (\n                 len(constraint_names),\n"
+    },
+    "ground_truth_patch": {
+        "django/db/backends/base/schema.py": "         news = {tuple(fields) for fields in new_index_together}\n         # Deleted indexes\n         for fields in olds.difference(news):\nself._delete_composed_index(\nmodel,\nfields,\n{'index': True, 'unique': False},\nself.sql_delete_index,\n)\n         # Created indexes\n         for field_names in news.difference(olds):\n             fields = [model._meta.get_field(field) for field in field_names]\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 is filtering constraint names that end with '_idx' when deleting an index and performing validation to ensure exactly one constraint is found. The code in code sample 2 is handling the deletion of composed indexes by comparing old and new index sets, and deleting indexes that exist in the old set but not in the new set.\",\n\"is_clone\": false,\n\"classification\": \"N/A\",\n\"reasoning\": \"These code samples are not clones because they serve different purposes and have different functionalities. While both deal with indexes in Django's database schema management, sample 1 is focused on constraint validation and filtering specific index constraints, while sample 2 is handling the comparison and deletion of composed indexes based on differences between old and new index sets. The code structure, logic flow, and operations performed are fundamentally different. Sample 1 is doing constraint filtering and validation, while sample 2 is performing set operations and index deletion.\"\n}"
+}

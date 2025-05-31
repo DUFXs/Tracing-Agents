@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-24066",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 4413dd4395..7d427243bd 100644\n \n # Files for pyodide test\n pyodide\n.aider/\n",
+        "sympy/physics/units/unitsystem.py": "index 3daf84c108..6b4719bf8a 100644\n from sympy.core.mul import Mul\n from sympy.core.power import Pow\n from sympy.core.singleton import S\nfrom sympy import exp\n from sympy.physics.units.dimensions import _QuantityMapper\n from sympy.physics.units.quantities import Quantity\n \n                 dim /= idim**count\n             return factor, dim\n         elif isinstance(expr, Function):\nif expr.func == exp:\n# exp of a dimensionless quantity should be dimensionless\narg_factor, arg_dim = self._collect_factor_and_dimension(expr.args[0])\nif not self.get_dimension_system().is_dimensionless(arg_dim):\nraise ValueError(\n'Dimension of \"{}({})\" is {}, but it should be {}'.format(\nexpr.func, expr.args[0], arg_dim, Dimension(1)))\nreturn expr.func(arg_factor), Dimension(1)\n             fds = [self._collect_factor_and_dimension(\n                 arg) for arg in expr.args]\n             return (expr.func(*(f[0] for f in fds)),\n"
+    },
+    "ground_truth_patch": {
+        "sympy/physics/units/unitsystem.py": "                 dim /= idim**count\n             return factor, dim\n         elif isinstance(expr, Function):\nfds = [self._collect_factor_and_dimension(arg) for arg in expr.args]\ndims = [Dimension(1) if self.get_dimension_system().is_dimensionless(d[1]) else d[1] for d in fds]\nreturn (expr.func(*(f[0] for f in fds)), *dims)\n         elif isinstance(expr, Dimension):\n             return S.One, expr\n         else:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they show syntactical similarity with differences in added or modified statements. While they share some structure, the second sample has additional statements related to the handling of dimension checks that are not present in the first sample, indicating modifications in functionality.\"}"
+}

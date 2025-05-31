@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10908",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_cv_user_vocab_get_feature_names.py",
+    "ground_truth_patch_file": "sklearn/feature_extraction/text.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-0\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-17139",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/simplify/fu.py": "index 0cdedc1..d0b4400 100644\n         if not (rv.is_Pow and rv.base.func == f):\n             return rv\n \nif not rv.exp.is_extended_real:\nreturn rv\n         if (rv.exp < 0) == True:\n             return rv\n         if (rv.exp > max) == True:\n"
+    },
+    "ground_truth_patch": {
+        "sympy/simplify/fu.py": "         # change is not going to allow a simplification as far as I can tell.\n         if not (rv.is_Pow and rv.base.func == f):\n             return rv\nif not rv.exp.is_real:\nreturn rv\n \n         if (rv.exp < 0) == True:\n             return rv\n"
+    },
+    "response": "{\n    \"explanation\": \"The code in code sample 1 checks a series of conditions: first, it verifies if rv is not a Power with a base function f, then checks if the exponent is not extended real, then checks if the exponent is negative, and finally checks if the exponent is greater than some maximum value. The code in code sample 2 performs similar checks but has a few differences: it includes a comment, checks for is_real instead of is_extended_real, and doesn't include the final check for exponent being greater than max.\",\n    \"is_clone\": true,\n    \"classification\": \"type-3\",\n    \"reasoning\": \"These code samples are type-3 clones because they have the same basic structure and most of the same checks, but there are some modifications: (1) sample 1 uses is_extended_real while sample 2 uses is_real, and (2) sample 1 has an additional statement checking if rv.exp > max. The rest of the code is identical including the checks for Pow, base.func, and negative exponent. The differences are minor modifications to the statements while maintaining the same basic structure, which fits the definition of a type-3 clone.\"\n}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-16569",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/forms/formsets.py": "index 235aaf844c..e84656a66e 100644\n                     required=False,\n                     widget=self.get_ordering_widget(),\n                 )\nif self.can_delete and (self.can_delete_extra or (index is not None and index < initial_form_count)):\n             form.fields[DELETION_FIELD_NAME] = BooleanField(\n                 label=_(\"Delete\"),\n                 required=False,\n                 widget=self.get_deletion_widget(),\n             )\n \n\n     def add_prefix(self, index):\n         return \"%s-%s\" % (self.prefix, index)\n \n     \"\"\"Validate every formset and return True if all are valid.\"\"\"\n     # List comprehension ensures is_valid() is called for all formsets.\n     return all([formset.is_valid() for formset in formsets])\n\n\n\n\n\n\n\n\ndiff --git \"a/django/forms/formsets.py\\\"\" \"b/django/forms/formsets.py\\\"\"\nnew file mode 100644\nindex 0000000000..bf2c963131\nif self.can_delete and (self.can_delete_extra or (index is not None and index < initial_form_count)):\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/formsets.py": "                     required=False,\n                     widget=self.get_ordering_widget(),\n                 )\nif self.can_delete and (\nself.can_delete_extra or (index is not None and index < initial_form_count)\n):\n             form.fields[DELETION_FIELD_NAME] = BooleanField(\n                 label=_(\"Delete\"),\n                 required=False,\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout. The logical structure and content of the code are the same, with variations in line breaks and indentation.\"}"
+}

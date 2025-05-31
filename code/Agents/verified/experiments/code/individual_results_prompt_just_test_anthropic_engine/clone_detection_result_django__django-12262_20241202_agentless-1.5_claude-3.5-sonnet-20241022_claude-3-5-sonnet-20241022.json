@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-12262",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/template/library.py": "index e9453ed..a8f61ed 100644\n         if kwarg:\n             # The kwarg was successfully extracted\n             param, value = kwarg.popitem()\nif param not in params and param not in kwonly and varkw is None:\n                 # An unexpected keyword argument was supplied\n                 raise TemplateSyntaxError(\n                     \"'%s' received unexpected keyword argument '%s'\" %\n"
+    },
+    "ground_truth_patch": {
+        "django/template/library.py": "         if kwarg:\n             # The kwarg was successfully extracted\n             param, value = kwarg.popitem()\nif param not in params and param not in kwonly and varkw is None:\n                 # An unexpected keyword argument was supplied\n                 raise TemplateSyntaxError(\n                     \"'%s' received unexpected keyword argument '%s'\" %\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples contain identical Python code that checks for unexpected keyword arguments in Django's template library. The code extracts a parameter and value from a keyword argument dictionary using popitem(), then checks if the parameter is not in the expected parameters, keyword-only parameters, and no variable keyword arguments are allowed. If these conditions are met, it raises a TemplateSyntaxError with a message indicating an unexpected keyword argument was received.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are exactly identical in terms of code content, including whitespace and comments. The only difference is in the patch metadata line 'index e9453ed..a8f61ed 100644' that appears in sample 1 but not in sample 2, which is not part of the actual code but rather part of the git patch format information.\"\n}"
+}

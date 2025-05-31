@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-8621",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/builders/html/transforms.py": "index c91da57e9..27f8c1bbf 100644\n     def run(self, **kwargs: Any) -> None:\n         matcher = NodeMatcher(nodes.literal, classes=[\"kbd\"])\n         for node in self.document.traverse(matcher):  # type: nodes.literal\ntext = node[-1].astext()\nparts = self.pattern.split(text)\n\n# Handle single-character keystroke that matches a separator\nif len(parts) == 3 and not parts[0] and not parts[2] and parts[1] in {'-', '+', '^'}:\ncontinue  # Keep the original node intact\n\n# Skip if no separators found\n             if len(parts) == 1:\n                 continue\n \n             node.pop()\n             while parts:\n                 key = parts.pop(0)\nif key:  # Only create kbd node for non-empty keys\nnode += nodes.literal('', key, classes=[\"kbd\"])\n \n                 try:\n                     # key separator (ex. -, +, ^)\n                     sep = parts.pop(0)\nif sep:\n# Check if this is the last separator and next part is empty\n# If so, this separator is actually a keystroke\nis_keystroke = len(parts) == 1 and not parts[0]\nif is_keystroke:\nnode += nodes.literal('', sep, classes=[\"kbd\"])\nelse:\nnode += nodes.Text(sep)\n                 except IndexError:\n                     pass\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/builders/html/transforms.py": "     \"\"\"\n     default_priority = 400\n     builders = ('html',)\npattern = re.compile(r'(?<=.)(-|\\+|\\^|\\s+)(?=.)')\n \n     def run(self, **kwargs: Any) -> None:\n         matcher = NodeMatcher(nodes.literal, classes=[\"kbd\"])\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain significantly different code fragments and serve different purposes. Sample 1 includes a complete method for handling node traversal and keystroke processing, while Sample 2 presents a different structure with only part of the `run` function and some additional comments. This indicates that they are not simply variations of the same code but represent distinct implementations.\"}"
+}

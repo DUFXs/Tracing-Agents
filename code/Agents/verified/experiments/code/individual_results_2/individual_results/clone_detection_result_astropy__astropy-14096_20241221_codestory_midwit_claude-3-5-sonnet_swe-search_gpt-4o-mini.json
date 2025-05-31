@@ -1,0 +1,7 @@
+{
+    "instance_id": "astropy__astropy-14096",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "astropy/coordinates/sky_coordinate.py",
+    "ground_truth_patch_file": "astropy/coordinates/sky_coordinate.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain fundamentally different logic and operations. Code sample 1 deals with attribute retrieval with a focus on checking if an attribute exists, while code sample 2 deals with attribute setting and transformation logic. The operations and contexts are distinct enough to classify them as unrelated.\"}"
+}

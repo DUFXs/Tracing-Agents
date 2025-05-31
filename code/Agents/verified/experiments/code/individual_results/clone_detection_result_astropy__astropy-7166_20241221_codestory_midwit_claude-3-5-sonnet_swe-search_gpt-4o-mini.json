@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-7166",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "astropy/utils/misc.py": "index de3fb01d18..cceaeb957f 100644\n                 not key.startswith('_'))\n \n         for key, val in dct.items():\nif ((inspect.isfunction(val) or isinstance(val, property)) and\n                 is_public_member(key) and\n                 val.__doc__ is None):\n                 for base in cls.__mro__[1:]:\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..fac927e102\nfrom astropy.utils.misc import InheritDocstrings\n\nclass A(metaclass=InheritDocstrings):\n@property\ndef value(self):\n\"\"\"This is the docstring for value in class A.\"\"\"\nreturn 42\n\nclass B(A):\n@property \ndef value(self):\n# This property should inherit the docstring from A.value but doesn't\nreturn 43\n\n# Print the docstrings to show the issue\nprint(\"A.value docstring:\", A.value.__doc__)\nprint(\"B.value docstring:\", B.value.__doc__)  # This will be None\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "astropy/utils/misc.py": " A \"grab bag\" of relatively small general-purpose utilities that don't have\n a clear module/package to live in.\n \"\"\"\n import abc\n import contextlib\n import difflib\n from collections import defaultdict, OrderedDict\n \n \n __all__ = ['isiterable', 'silence', 'format_exception', 'NumpyRNGContext',\n            'find_api_page', 'is_path_hidden', 'walk_skip_hidden',\n            'JsonCustomEncoder', 'indent', 'InheritDocstrings',\n                 not key.startswith('_'))\n \n         for key, val in dct.items():\nif ((inspect.isfunction(val) or inspect.isdatadescriptor(val)) and\nis_public_member(key) and\nval.__doc__ is None):\n                 for base in cls.__mro__[1:]:\n                     super_method = getattr(base, key, None)\n                     if super_method is not None:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar, but there are notable differences in statements and structure. They both involve checking function properties and handling docstrings, but Sample 2 includes additional imports and functionality, including a different way to denote property values and their inheritance, while Sample 1 focuses on the inheritance of docstrings.\"}"
+}

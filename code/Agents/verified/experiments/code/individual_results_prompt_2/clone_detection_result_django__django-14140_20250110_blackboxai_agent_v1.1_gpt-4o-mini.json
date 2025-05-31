@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14140",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/query_utils.py": "index ae0f886107..28ffa267df 100644\n         path = '%s.%s' % (self.__class__.__module__, self.__class__.__name__)\n         if path.startswith('django.db.models.query_utils'):\n             path = path.replace('django.db.models.query_utils', 'django.db.models')\nargs, kwargs = tuple(self.children), {}\nif self.connector != self.default:\nkwargs = {'_connector': self.connector}\n         if self.negated:\n             kwargs['_negated'] = True\n         return path, args, kwargs\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/query_utils.py": "         path = '%s.%s' % (self.__class__.__module__, self.__class__.__name__)\n         if path.startswith('django.db.models.query_utils'):\n             path = path.replace('django.db.models.query_utils', 'django.db.models')\nargs = tuple(self.children)\nkwargs = {}\nif self.connector != self.default:\nkwargs['_connector'] = self.connector\n         if self.negated:\n             kwargs['_negated'] = True\n         return path, args, kwargs\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 constructs a path string that represents the module and class name of a given object. It checks if this path starts with a specific string and replaces that prefix with another. It then prepares arguments and keyword arguments based on the object's state, including a connector condition and a negation check. The code in code sample 2 performs the same logic of creating the path string and managing the arguments and keyword arguments based on certain condition checks. The main structural elements and logic remain consistent, although there are minor differences in whitespace and formatting.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in functionality and structure, with only differences in whitespace and layout.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "psf__requests-2931",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "requests/models.py",
+    "ground_truth_patch_file": "requests/models.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

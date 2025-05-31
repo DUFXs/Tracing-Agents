@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-16527",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/contrib/admin/templatetags/admin_modify.py": "index 4d29402..33fcdea 100644\n             ),\n             \"show_save_as_new\": not is_popup\n             and has_change_permission\nand has_add_permission\n             and change\n             and save_as,\n             \"show_save_and_add_another\": can_save_and_add_another,\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/templatetags/admin_modify.py": "                 and context.get(\"show_delete\", True)\n             ),\n             \"show_save_as_new\": not is_popup\nand has_add_permission\n             and change\n             and save_as,\n             \"show_save_and_add_another\": can_save_and_add_another,\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples are from Django's admin template tags and are setting template context variables. Code sample 1 sets 'show_save_as_new' based on conditions including not being in a popup, having change and add permissions, being in change mode, and having save_as enabled. It also sets 'show_save_and_add_another' based on can_save_and_add_another. Code sample 2 does exactly the same thing, with the only difference being that has_change_permission is removed from the conditions for show_save_as_new.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they are syntactically similar with only one condition (has_change_permission) removed in the second sample. The overall structure and purpose of the code remains the same, but there is a small modification in the conditions for show_save_as_new. This fits the definition of a type-3 clone where statements can be modified or removed while maintaining the overall similarity.\"\n}"
+}

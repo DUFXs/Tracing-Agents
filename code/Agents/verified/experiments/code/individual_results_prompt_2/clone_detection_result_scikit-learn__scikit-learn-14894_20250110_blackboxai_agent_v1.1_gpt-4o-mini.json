@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14894",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 2629311e6..de7ee3009 100644\n # deprecated paths\n # TODO: Remove in 0.24\n sklearn/utils/mocking.py\n.aider/\n",
+        "sklearn/svm/base.py": "index 64cebe837..3dce6fad4 100644\n             n_class = 1\n         n_SV = self.support_vectors_.shape[0]\n \nif n_SV == 0:\n# Handle empty support vectors case\nself.dual_coef_ = sp.csr_matrix((n_class, 0))\nelse:\ndual_coef_indices = np.tile(np.arange(n_SV), n_class)\ndual_coef_indptr = np.arange(0, dual_coef_indices.size + 1,\ndual_coef_indices.size / n_class)\nself.dual_coef_ = sp.csr_matrix(\n(dual_coef_data, dual_coef_indices, dual_coef_indptr),\n(n_class, n_SV))\n \n     def predict(self, X):\n         \"\"\"Perform regression on samples in X.\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/svm/base.py": "         n_SV = self.support_vectors_.shape[0]\n \n         dual_coef_indices = np.tile(np.arange(n_SV), n_class)\nif not n_SV:\nself.dual_coef_ = sp.csr_matrix([])\nelse:\ndual_coef_indptr = np.arange(0, dual_coef_indices.size + 1,\ndual_coef_indices.size / n_class)\nself.dual_coef_ = sp.csr_matrix(\n(dual_coef_data, dual_coef_indices, dual_coef_indptr),\n(n_class, n_SV))\n \n     def predict(self, X):\n         \"\"\"Perform regression on samples in X.\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 checks the number of support vectors in a machine learning model. If the number of support vectors (n_SV) is zero, it assigns an empty matrix to self.dual_coef_. If n_SV is not zero, it calculates dual_coef_indices and dual_coef_indptr, then creates a sparse matrix for dual coefficients. Finally, it defines the predict method for performing regression on input samples X. In code sample 2, the logic is similar, but it uses a different conditional check ('if not n_SV') to handle the case of zero support vectors and has minor ordering differences in the statements. Both methods ultimately achieve the same functionality.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but contain different statements and rewriting of conditions.\"}"
+}

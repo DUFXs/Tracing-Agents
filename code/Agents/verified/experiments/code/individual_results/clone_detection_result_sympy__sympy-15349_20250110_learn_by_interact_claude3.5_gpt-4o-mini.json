@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-15349",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sympy/algebras/quaternion.py": "index b84e7cb95a..0d2ae374d8 100644\n \n         m10 = 2*s*(q.b*q.c + q.d*q.a)\n         m11 = 1 - 2*s*(q.b**2 + q.d**2)\nm12 = 2*s*(q.c*q.d - q.b*q.a)\n\n \n         m20 = 2*s*(q.b*q.d - q.c*q.a)\n         m21 = 2*s*(q.c*q.d + q.b*q.a)\n \n             return Matrix([[m00, m01, m02, m03], [m10, m11, m12, m13],\n                           [m20, m21, m22, m23], [m30, m31, m32, m33]])\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/algebras/quaternion.py": " \n         m10 = 2*s*(q.b*q.c + q.d*q.a)\n         m11 = 1 - 2*s*(q.b**2 + q.d**2)\nm12 = 2*s*(q.c*q.d - q.b*q.a)\n \n         m20 = 2*s*(q.b*q.d - q.c*q.a)\n         m21 = 2*s*(q.c*q.d + q.b*q.a)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share significant syntactical similarity but have a modified structure and additional return statement in Code Sample 1 that is absent in Code Sample 2.\"}"
+}

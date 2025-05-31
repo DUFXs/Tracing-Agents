@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13810",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/core/handlers/base.py",
+    "ground_truth_patch_file": "django/core/handlers/base.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share similar syntactic structures, but there are significant differences in how statements are used and structured. Specifically, the second sample modifies the implementation of how handlers are adapted and introduces changes that alter the flow of control within the `try` and `except` blocks, which makes them contextually different despite their related functionality.\"}"
+}

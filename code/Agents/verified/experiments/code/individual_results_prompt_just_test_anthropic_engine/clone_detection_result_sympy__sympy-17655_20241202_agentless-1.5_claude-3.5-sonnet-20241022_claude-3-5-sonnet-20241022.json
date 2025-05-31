@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-17655",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/geometry/entity.py": "index cbf5cb4..267fdc3 100644\n \n     def __rmul__(self, a):\n         \"\"\"Implementation of reverse multiplication method.\"\"\"\nreturn self.__mul__(a)\n \n     def __rsub__(self, a):\n         \"\"\"Implementation of reverse subtraction method.\"\"\"\n"
+    },
+    "ground_truth_patch": {
+        "sympy/geometry/point.py": "         coords = [simplify(x*factor) for x in self.args]\n         return Point(coords, evaluate=False)\n \ndef __rmul__(self, factor):\n\"\"\"Multiply a factor by point's coordinates.\"\"\"\nreturn self.__mul__(factor)\n\n     def __neg__(self):\n         \"\"\"Negate the point.\"\"\"\n         coords = [-x for x in self.args]\n"
+    },
+    "response": "{\n    \"explanation\": \"The code in code sample 1 implements a reverse multiplication method (__rmul__) in a geometry entity class that simply calls the regular multiplication method (__mul__) with the same argument. It also shows a reverse subtraction method stub. The code in code sample 2 also implements a reverse multiplication method (__rmul__) in a Point class that calls the regular multiplication method, but additionally shows code for coordinate multiplication and negation operations.\",\n    \"is_clone\": true,\n    \"classification\": \"type-2\",\n    \"reasoning\": \"These code samples are type-2 clones because they both implement the __rmul__ method with identical functionality - both methods simply return self.__mul__(parameter). The only differences are in the parameter names ('a' vs 'factor') and the documentation string ('Implementation of reverse multiplication method' vs 'Multiply a factor by point's coordinates'). The surrounding context code (like __rsub__ in sample 1 and __neg__ in sample 2) is different, but the __rmul__ implementations themselves are type-2 clones.\"\n}"
+}

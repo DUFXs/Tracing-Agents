@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-14500",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "django/db/migrations/executor.py",
+    "ground_truth_patch_file": "django/db/migrations/executor.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share similar patterns and structure but include different statements. The first sample includes an additional check for 'fake' and the handling related to the 'unapply' process of the migration, while the second sample lacks these elements, leading to syntactic differences despite the functionally similar context.\"}"
+}

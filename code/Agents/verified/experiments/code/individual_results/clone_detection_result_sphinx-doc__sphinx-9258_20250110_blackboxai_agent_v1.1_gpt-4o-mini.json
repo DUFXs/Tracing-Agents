@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-9258",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/domains/python.py": "index 7d39d80ed..11baa79fd 100644\n     def make_xrefs(self, rolename: str, domain: str, target: str,\n                    innernode: Type[TextlikeNode] = nodes.emphasis,\n                    contnode: Node = None, env: BuildEnvironment = None) -> List[Node]:\ndelims = r'(\\s*[\\[\\]\\(\\),|](?:\\s*or\\s)?\\s*|\\s+or\\s+|\\s*\\|\\s*|\\.\\.\\.)'\n         delims_re = re.compile(delims)\n         sub_targets = re.split(delims, target)\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/domains/python.py": "     def make_xrefs(self, rolename: str, domain: str, target: str,\n                    innernode: Type[TextlikeNode] = nodes.emphasis,\n                    contnode: Node = None, env: BuildEnvironment = None) -> List[Node]:\ndelims = r'(\\s*[\\[\\]\\(\\),](?:\\s*or\\s)?\\s*|\\s+or\\s+|\\s*\\|\\s*|\\.\\.\\.)'\n         delims_re = re.compile(delims)\n         sub_targets = re.split(delims, target)\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in content, with the only differences being in whitespace and layout. Both samples contain the same function definition and logic, differing only in how the text is formatted, such as extra blank spaces or new lines.\"}"
+}

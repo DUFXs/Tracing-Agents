@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10297",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_store_cv_values_in_ridge_classifier.py",
+    "ground_truth_patch_file": "sklearn/linear_model/ridge.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-5\"}"
+}

@@ -1,0 +1,13 @@
+{
+    "instance_id": "django__django-11119",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "autoesc_test.html": "new file mode 100644\nindex 0000000000..e6b3aa7fc5\nHello {{ name }} <b>!</b>\n\\ No newline at end of file\n",
+        "django/template/engine.py": "index dfaa67ba12..216c92435d 100644\n         if isinstance(context, Context):\n             return t.render(context)\n         else:\nreturn t.render(Context(context, autoescape=self.autoescape))\n\n \n     def select_template(self, template_name_list):\n         \"\"\"\n",
+        "test_autoescape.py": "new file mode 100644\nindex 0000000000..ac41517acc\nimport sys\nimport os\nfrom django.template import Engine\n\ndef main():\nprint(\"Testing autoescape bug reproduction with file-based template.\")\n# Create a template file in the current directory\nwith open(\"autoesc_test.html\", \"w\") as f:\nf.write(\"Hello {{ name }} <b>!</b>\")\n\n# Create an engine that looks in the current directory, with autoescape=False\ne = Engine(dirs=[\".\"], autoescape=False)\ncontext = {\"name\": \"<b>World</b>\"}\n# Render the named template\nout = e.render_to_string(\"autoesc_test.html\", context)\nprint(\"Output from e.render_to_string('autoesc_test.html', context):\", out)\nexpected = \"Hello <b>World</b> <b>!</b>\"\n\nif out == expected:\nprint(\"Test passed: autoescape is honored (no escaping).\")\nsys.exit(0)\nelse:\nprint(\"Test failed: autoescape was not honored - got:\", out, \" expected:\", expected)\nsys.exit(1)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "django/template/engine.py": "         if isinstance(context, Context):\n             return t.render(context)\n         else:\nreturn t.render(Context(context, autoescape=self.autoescape))\n \n     def select_template(self, template_name_list):\n         \"\"\"\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and comments. The code lines regarding the 'if isinstance(context, Context):' construct and the subsequent return statements are the same in both examples, with no changes in content, only minor differences in formatting.\"}"
+}

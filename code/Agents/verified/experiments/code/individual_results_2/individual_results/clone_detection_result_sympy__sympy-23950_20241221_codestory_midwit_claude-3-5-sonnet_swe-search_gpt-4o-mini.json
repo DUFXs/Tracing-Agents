@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-23950",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "sympy/sets/contains.py",
+    "ground_truth_patch_file": "sympy/sets/contains.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have similar structures; however, sample 1 contains additional comments and examples that are omitted in sample 2. The core functionality in the method `as_set` is identical, but the presence of differences in content (comments and examples) signifies that they are not fully identical.\"}"
+}

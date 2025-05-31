@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-20801",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index db4a22815e..2450c37630 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/core/numbers.py": "index 79f6a7d165..a2557d5251 100644\n             other = _sympify(other)\n         except SympifyError:\n             return NotImplemented\n         if isinstance(other, Boolean):\n             return False\nif not self:\nreturn not other\n         if other.is_NumberSymbol:\n             if other.is_irrational:\n                 return False\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/numbers.py": "             other = _sympify(other)\n         except SympifyError:\n             return NotImplemented\n         if isinstance(other, Boolean):\n             return False\n         if other.is_NumberSymbol:\n             # the mpf tuples\n             ompf = other._as_mpf_val(self._prec)\n             return bool(mlib.mpf_eq(self._mpf_, ompf))\nif not self:\nreturn not other\n         return False    # Float != non-Number\n \n     def __ne__(self, other):\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 includes a series of conditional checks and operations on a variable 'other' that is being sympified. It has checks for instances of 'Boolean' and 'NumberSymbol', along with specific handling for 'irrational' numbers. In addition, it appears to handle the negation of a self variable, returning the negated value of 'other'. The code in code sample 2 performs similar checks on 'other', but it contains extra lines that handle a case involving 'mpf' tuples and returns boolean equality based on that condition. Therefore, while both samples have a focus on the symmetry and equivalence of 'other', they have different conditional logic that diverges towards the end. Thus, they are not strictly limited to whitespace or simple identifier differences.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because code sample 2 has added logic related to 'mpf' tuples that is not present in code sample 1, which makes them syntactically different.\"}"
+}

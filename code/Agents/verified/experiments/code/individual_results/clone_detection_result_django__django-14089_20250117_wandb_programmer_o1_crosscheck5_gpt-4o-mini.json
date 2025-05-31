@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14089",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "django/utils/datastructures.py": "index 871b016715..e82b1aed6f 100644\n \n     def __len__(self):\n         return len(self.dict)\ndef __reversed__(self):\nreturn reversed(list(self.dict.keys()))\n\n \n \n class MultiValueDictKeyError(KeyError):\n",
+        "test_reversed_orderedset.py": "new file mode 100644\nindex 0000000000..6523033d7a\nimport sys\nfrom django.utils.datastructures import OrderedSet\n\ndef main():\nprint(\"Step 1: Creating an OrderedSet with [1, 2, 3].\")\ns = OrderedSet([1, 2, 3])\nprint(f\"OrderedSet is: {list(s)}\")\n\nprint(\"Step 2: Calling reversed(s)...\")\ntry:\nreversed_list = list(reversed(s))\nprint(\"Reversed list is:\", reversed_list)\nexpected = [3, 2, 1]\nprint(\"Expected reversed list is:\", expected)\nif reversed_list == expected:\nprint(\"Test PASSED: reversed(OrderedSet) returned correct reversed order.\")\nsys.exit(0)\nelse:\nprint(\"Test FAILED: reversed(OrderedSet) returned an incorrect order.\")\nsys.exit(1)\nexcept Exception as e:\nprint(\"Test FAILED: reversed(OrderedSet) raised an error:\", e)\nsys.exit(1)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/datastructures.py": "     def __iter__(self):\n         return iter(self.dict)\n \ndef __reversed__(self):\nreturn reversed(self.dict)\n\n     def __contains__(self, item):\n         return item in self.dict\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain different methods and functionality altogether. The first code sample includes a `__len__` method and a test function for the `OrderedSet`, while the second code sample only shows different methods (`__iter__`, `__reversed__`, and `__contains__`) related to the `OrderedSet`. Although they are related through the context of `OrderedSet`, they do not share the same code structure or functionality.\"}"
+}

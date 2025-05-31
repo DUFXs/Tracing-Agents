@@ -1,0 +1,11 @@
+{
+    "instance_id": "sphinx-doc__sphinx-9281",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sphinx/util/inspect.py": "index a415a7074..3eb6c8a1e 100644\n \n def object_description(object: Any) -> str:\n     \"\"\"A repr() implementation that returns text safe to use in reST context.\"\"\"\nif isinstance(object, enum.Enum):\nreturn f\"{object.__class__.__name__}.{object.name}\"\n     if isinstance(object, dict):\n         try:\n\n             sorted_keys = sorted(object)\n         except Exception:\n             pass  # Cannot sort dict keys, fall back to generic repr\n             doc = inspect.getdoc(obj)\n \n     return doc\n\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/util/inspect.py": "                      (object_description(key), object_description(object[key]))\n                      for key in sorted_keys)\n             return \"{%s}\" % \", \".join(items)\nelif isinstance(object, set):\n         try:\n             sorted_values = sorted(object)\n         except TypeError:\n             pass  # Cannot sort set values, fall back to generic repr\n         else:\n             return \"{%s}\" % \", \".join(object_description(x) for x in sorted_values)\nelif isinstance(object, frozenset):\n         try:\n             sorted_values = sorted(object)\n         except TypeError:\n         else:\n             return \"frozenset({%s})\" % \", \".join(object_description(x)\n                                                  for x in sorted_values)\nelif isinstance(object, enum.Enum):\nreturn \"%s.%s\" % (object.__class__.__name__, object.name)\n\n     try:\n         s = repr(object)\n     except Exception as exc:\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically dissimilar and serve different parts of the function. Sample 1 mentions determining the description of an object and handling specific object types like dictionaries, while Sample 2 deals with sorting elements in sets and frozensets. The functional intent and the structure of both samples differ significantly.\"}"
+}

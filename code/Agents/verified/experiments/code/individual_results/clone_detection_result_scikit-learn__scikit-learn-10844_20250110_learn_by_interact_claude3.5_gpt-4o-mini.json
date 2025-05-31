@@ -1,0 +1,11 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10844",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sklearn/metrics/cluster/supervised.py": "index a987778ae..8a5607aa7 100644\n     tk = np.dot(c.data, c.data) - n_samples\n     pk = np.sum(np.asarray(c.sum(axis=0)).ravel() ** 2) - n_samples\n     qk = np.sum(np.asarray(c.sum(axis=1)).ravel() ** 2) - n_samples\nreturn np.sqrt(tk / pk) * np.sqrt(tk / qk) if tk != 0. else 0.\n\n \n \n def entropy(labels):\n     # log(a / b) should be calculated as log(a) - log(b) for\n     # possible loss of precision\n     return -np.sum((pi / pi_sum) * (np.log(pi) - log(pi_sum)))\n\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/metrics/cluster/supervised.py": "     labels_true, labels_pred = check_clusterings(labels_true, labels_pred)\n     n_samples, = labels_true.shape\n \nc = contingency_matrix(labels_true, labels_pred,\nsparse=True).astype(np.int64)\n     tk = np.dot(c.data, c.data) - n_samples\n     pk = np.sum(np.asarray(c.sum(axis=0)).ravel() ** 2) - n_samples\n     qk = np.sum(np.asarray(c.sum(axis=1)).ravel() ** 2) - n_samples\nreturn np.sqrt(tk / pk) * np.sqrt(tk / qk) if tk != 0. else 0.\n \n \n def entropy(labels):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share significant structural similarity but have an added line in the second sample: 'labels_true, labels_pred = check_clusterings(labels_true, labels_pred)' which alters the overall structure. Despite this, much of the core logic involving calculations for tk, pk, and qk, as well as the entropy function, remains the same.\"}"
+}

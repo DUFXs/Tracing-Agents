@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-15809",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sympy/functions/elementary/miscellaneous.py": "index 5f9fe73c5c..ac2cc8c802 100644\n class MinMaxBase(Expr, LatticeOp):\n     def __new__(cls, *args, **assumptions):\n         if not args:\nreturn cls.identity\n \n         args = (sympify(arg) for arg in args)\n \n\n         # first standard filter, for cls.zero and cls.identity\n         # also reshape Max(a, Max(b, c)) to Max(a, b, c)\n         try:\n \n     def _eval_is_negative(self):\n         return fuzzy_or(a.is_negative for a in self.args)\n\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/functions/elementary/miscellaneous.py": "class MinMaxBase(Expr, LatticeOp):\n    def __new__(cls, *args, **assumptions):\n\n        args = (sympify(arg) for arg in args)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a class `MinMaxBase` that is meant to handle operations related to minimum and maximum values. In the `__new__` method, it checks if any arguments were provided; if not, it returns `cls.identity`. It then converts each argument into a sympy expression using `sympify`, and has a method `_eval_is_negative` that checks if any of the instance's arguments are negative using `fuzzy_or`. The code in code sample 2 also defines the same class `MinMaxBase` and includes a simplified version of the `__new__` method that only includes the argument conversion into a sympy expression. It does not contain the logic for returning identity values or checking if arguments are negative.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but differ in the presence and content of certain statements and logic.\"}"
+}

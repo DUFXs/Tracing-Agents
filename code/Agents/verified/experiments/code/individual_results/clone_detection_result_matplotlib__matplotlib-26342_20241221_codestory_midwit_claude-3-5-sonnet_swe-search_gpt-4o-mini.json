@@ -1,0 +1,11 @@
+{
+    "instance_id": "matplotlib__matplotlib-26342",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "lib/matplotlib/contour.py": "index 3f84250b64..55623a8f5a 100644\n @_docstring.dedent_interpd\n class ContourSet(ContourLabeler, mcoll.Collection):\n     \"\"\"\nA class for the creation and manipulation of contour plots.\n\n     Store a set of contour lines or filled regions.\n \n     User-callable method: `~.Axes.clabel`\n     Parameters\n     ----------\n     ax : `~matplotlib.axes.Axes`\n\"\"\"\n \ndef set_paths(self, paths):\n\"\"\"\nSet the paths of the contour set.\n \nThis is particularly useful for transforming contours in mapping libraries\nlike Cartopy.\n \nParameters\n----------\npaths : list of `~matplotlib.path.Path`\nThe new paths for the contour set.\n\"\"\"\nself._paths = paths\nself.stale = True\n \n     def __init__(self, ax, *args,\n                  levels=None, filled=False, linewidths=None, linestyles=None,\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/collections.py": "         return self._paths\n \n     def set_paths(self, paths):\nself._paths = paths\nself.stale = True\n \n     def get_transforms(self):\n         return self._transforms\n         self.set_sizes(sizes)\n         self.stale = True\n \n     def get_paths(self):\n         return self._paths\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically dissimilar and serve different purposes in terms of class and method definitions. The first code sample defines a class and has a method related to setting contour paths, while the second code sample contains methods for getting transforms and paths, indicating different functionalities and contexts.\"}"
+}

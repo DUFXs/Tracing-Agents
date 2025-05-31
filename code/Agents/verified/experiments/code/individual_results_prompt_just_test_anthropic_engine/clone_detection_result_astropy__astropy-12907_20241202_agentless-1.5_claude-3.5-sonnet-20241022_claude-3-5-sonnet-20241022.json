@@ -1,0 +1,11 @@
+{
+    "instance_id": "astropy__astropy-12907",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "astropy/modeling/separable.py": "index d6e9246..6099f63 100644\n         cright = _coord_matrix(right, 'right', noutp)\n     else:\n         cright = np.zeros((noutp, right.shape[1]))\ncright[-right.shape[0]:, -right.shape[1]:] = right\n \n     return np.hstack([cleft, cright])\n \n"
+    },
+    "ground_truth_patch": {
+        "astropy/modeling/separable.py": "         cright = _coord_matrix(right, 'right', noutp)\n     else:\n         cright = np.zeros((noutp, right.shape[1]))\ncright[-right.shape[0]:, -right.shape[1]:] = right\n \n     return np.hstack([cleft, cright])\n \n"
+    },
+    "response": "{\n    \"explanation\": \"Both code samples are handling matrix operations in Python, specifically dealing with a right matrix. The code first checks if a condition is met to either create a coordinate matrix using _coord_matrix or create a zero matrix with numpy. Then it assigns values to the right portion of the matrix and finally concatenates left and right matrices horizontally using np.hstack.\",\n    \"is_clone\": true,\n    \"classification\": \"type-1\",\n    \"reasoning\": \"These code samples are type-1 clones because they are exactly identical, containing the same code with the same whitespace and layout. Both samples show the same operations: conditional creation of cright matrix, assignment of values, and horizontal stacking with cleft. There are no differences in identifiers, syntax, or functionality between the two samples.\"\n}"
+}

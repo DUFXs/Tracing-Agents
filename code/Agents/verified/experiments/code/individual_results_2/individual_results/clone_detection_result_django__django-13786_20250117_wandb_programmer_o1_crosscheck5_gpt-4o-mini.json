@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13786",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/db/migrations/operations/models.py",
+    "ground_truth_patch_file": "django/db/migrations/operations/models.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they show syntactic similarities with added or modified statements and some omitted portions. The first code sample contains more context and statements that were not included in the second sample.\"}"
+}

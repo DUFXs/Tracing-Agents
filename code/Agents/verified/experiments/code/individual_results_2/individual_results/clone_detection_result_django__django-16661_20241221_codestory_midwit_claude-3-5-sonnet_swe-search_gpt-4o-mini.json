@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-16661",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/contrib/admin/options.py",
+    "ground_truth_patch_file": "django/contrib/admin/options.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have syntactical similarities but also exhibit differences in statements. The first sample discusses filtering based on fields found in local models, whereas the second sample refers to lookups on nonexistent fields. Even though some structural similarities exist, the context and conditions in which they operate are modified.\"}"
+}

@@ -1,0 +1,13 @@
+{
+    "instance_id": "sympy__sympy-17139",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 0000000000..7833cec4c9\nfrom sympy import *\nx = Symbol('x')\nprint(simplify(cos(x)**I))\n",
+        "sympy/simplify/fu.py": "index ad1130ef96..b4ac874238 100644\n         if not (rv.is_Pow and rv.base.func == f):\n             return rv\n \nif not rv.exp.is_extended_real:\nreturn rv\n         if (rv.exp < 0) == True:\n             return rv\n\n         if (rv.exp > max) == True:\n             return rv\n         if rv.exp == 2:\n         return expr\n     else:\n         return TR8(expand_mul(TRpower(expr)))\n\n",
+        "test_cases.py": "new file mode 100644\nindex 0000000000..af25f2d95d\nfrom sympy import *\nx = Symbol('x')\n# Test with negative real exponent\nprint(\"cos(x)**(-2) =\", simplify(cos(x)**(-2)))\n# Test with complex number with real and imaginary parts\nprint(\"cos(x)**(2+3*I) =\", simplify(cos(x)**(2+3*I)))\n# Test with purely imaginary number\nprint(\"cos(x)**I =\", simplify(cos(x)**I))\n"
+    },
+    "ground_truth_patch": {
+        "sympy/simplify/fu.py": "         # change is not going to allow a simplification as far as I can tell.\n         if not (rv.is_Pow and rv.base.func == f):\n             return rv\nif not rv.exp.is_real:\nreturn rv\n \n         if (rv.exp < 0) == True:\n             return rv\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically dissimilar and exhibit different logic structures. The first sample shows a complete implementation of functions with specific operations and comments on their behavior, while the second sample only includes parts of these functions with different conditions and comments. They are not functionally equivalent as they handle different conditions in their operations.\"}"
+}

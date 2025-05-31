@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11163",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/forms/models.py": "index d157c291ef..5edbbd376f 100644\n     for f in chain(opts.concrete_fields, opts.private_fields, opts.many_to_many):\n         if not getattr(f, 'editable', False):\n             continue\nif fields is not None and f.name not in fields:\n             continue\n         if exclude and f.name in exclude:\n             continue\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/models.py": "     for f in chain(opts.concrete_fields, opts.private_fields, opts.many_to_many):\n         if not getattr(f, 'editable', False):\n             continue\nif fields is not None and f.name not in fields:\n             continue\n         if exclude and f.name in exclude:\n             continue\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for a difference in whitespace. The only difference is that Code sample 1 includes an additional line regarding '.gitignore', which is absent in Code sample 2. The code within 'django/forms/models.py' is identical in both samples when ignoring whitespace.\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "matplotlib__matplotlib-13989",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "lib/matplotlib/axes/_axes.py": "index 6b68737..d420a5c 100644\n \n         density = bool(density) or bool(normed)\n         if density and not stacked:\nhist_kwargs['density'] = density\n \n         # List to store all the top coordinates of the histograms\n         tops = []\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/axes/_axes.py": " \n         density = bool(density) or bool(normed)\n         if density and not stacked:\nhist_kwargs['density'] = density\n \n         # List to store all the top coordinates of the histograms\n         tops = []\n"
+    },
+    "response": "{\"explanation\": \"Both code samples are doing exactly the same thing: They handle density parameters for histogram plotting in matplotlib. Both samples first set a density value based on boolean operations of density and normed parameters, then check if density is true and stacked is false to set the density in hist_kwargs dictionary. Finally, both initialize an empty list called 'tops' to store histogram coordinates.\", \n\"is_clone\": true, \n\"classification\": \"type-1\", \n\"reasoning\": \"These code samples are type-1 clones because they are exactly identical in terms of code content. The only difference appears to be in the patch header line 'index 6b68737..d420a5c 100644\\\\n' which is present in sample 1 but not in sample 2. This difference is merely in the metadata/layout and not in the actual code content. The code logic, variables, operations, and even comments are exactly the same in both samples.\"}"
+}

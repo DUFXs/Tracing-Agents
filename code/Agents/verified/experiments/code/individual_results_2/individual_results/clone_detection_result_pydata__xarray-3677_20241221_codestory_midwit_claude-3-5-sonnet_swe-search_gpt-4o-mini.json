@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-3677",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "test_edge_cases.py",
+    "ground_truth_patch_file": "xarray/core/dataset.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they deal with different functionalities in the xarray library. Code sample 1 consists of tests for merging DataArrays within a Dataset, while code sample 2 is a method snippet from the xarray core that appears to facilitate the merging of datasets. The samples have different structures, purposes, and the context in which they function, indicating no direct cloning relationship.\"}"
+}

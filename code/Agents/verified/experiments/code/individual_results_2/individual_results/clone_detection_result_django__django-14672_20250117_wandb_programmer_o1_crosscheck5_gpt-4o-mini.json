@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-14672",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/db/models/fields/reverse_related.py",
+    "ground_truth_patch_file": "django/db/models/fields/reverse_related.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and logic but differ in indentation and the presence of a property decorator in the first sample.\"}"
+}

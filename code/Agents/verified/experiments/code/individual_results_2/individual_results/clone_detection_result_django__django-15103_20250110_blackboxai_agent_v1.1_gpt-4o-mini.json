@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-15103",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": ".gitignore",
+    "ground_truth_patch_file": "django/template/defaultfilters.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they differ entirely in their content and functionality. The first sample edits a .gitignore file with directory entries, while the second sample defines a Django template filter function. There are no similarities in syntax, functionality, or structure that would classify them as clones.\"}"
+}

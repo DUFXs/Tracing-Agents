@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16899",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 6a67c6eb28..cd0195a6d7 100644\n tests/.coverage*\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/checks.py": "index c395b0bde2..2c90dedc31 100644\n             except FieldDoesNotExist:\n                 return [\n                     checks.Error(\n\"The value of '%s' refers to '%s', which is not a callable, \"\n\"an attribute of '%s', or an attribute of '%s'.\"\n                         % (\n                             label,\nfield_name,\n                             obj.__class__.__name__,\n                             obj.model._meta.label,\n                         ),\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/checks.py": "             except FieldDoesNotExist:\n                 return [\n                     checks.Error(\n\"The value of '%s' refers to '%s', which is not a callable, \"\n\"an attribute of '%s', or an attribute of '%s'.\"\n                         % (\n                             label,\nfield_name,\n                             obj.__class__.__name__,\n                             obj.model._meta.label,\n                         ),\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for the difference in whitespace and layout. The content of both samples is exactly the same, with no changes to the logic or identifiers.\"}"
+}

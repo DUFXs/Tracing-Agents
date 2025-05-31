@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11099",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/contrib/auth/validators.py": "index b4878cfd45..dd15050813 100644\n \n @deconstructible\n class ASCIIUsernameValidator(validators.RegexValidator):\nregex = r'\\A[\\w.@+-]+\\Z'\n     message = _(\n         'Enter a valid username. This value may contain only English letters, '\n         'numbers, and @/./+/-/_ characters.'\n \n @deconstructible\n class UnicodeUsernameValidator(validators.RegexValidator):\nregex = r'\\A[\\w.@+-]+\\Z'\n     message = _(\n         'Enter a valid username. This value may contain only letters, '\n         'numbers, and @/./+/-/_ characters.'\n     )\n     flags = 0\n\n",
+        "reproduce_issue.py": "new file mode 100644\nindex 0000000000..6401522983\nfrom django.contrib.auth.validators import ASCIIUsernameValidator, UnicodeUsernameValidator\n\ndef test_validator(validator, username):\ntry:\nvalidator(username)\nprint(f\"'{username}' (len={len(username)}) was accepted\")\nexcept:\nprint(f\"'{username}' (len={len(username)}) was rejected\")\n\n# Create validators\nascii_validator = ASCIIUsernameValidator()\nunicode_validator = UnicodeUsernameValidator()\n\nprint(\"Testing ASCII validator:\")\ntest_validator(ascii_validator, \"normal_user\")\ntest_validator(ascii_validator, \"normal_user\\n\")\n\nprint(\"\\nTesting Unicode validator:\")\ntest_validator(unicode_validator, \"normal_user\")\ntest_validator(unicode_validator, \"normal_user\\n\")\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/validators.py": " \n @deconstructible\n class ASCIIUsernameValidator(validators.RegexValidator):\nregex = r'^[\\w.@+-]+\\Z'\n     message = _(\n         'Enter a valid username. This value may contain only English letters, '\n         'numbers, and @/./+/-/_ characters.'\n \n @deconstructible\n class UnicodeUsernameValidator(validators.RegexValidator):\nregex = r'^[\\w.@+-]+\\Z'\n     message = _(\n         'Enter a valid username. This value may contain only letters, '\n         'numbers, and @/./+/-/_ characters.'\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and possibly layout. The content, including class definitions and messages, is the same in both samples.\"}"
+}

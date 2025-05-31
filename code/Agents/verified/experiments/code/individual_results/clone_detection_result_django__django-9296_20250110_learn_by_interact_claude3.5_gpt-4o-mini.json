@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-9296",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/core/paginator.py": "index 1f92da5d4f..d07566ce29 100644\n         \"\"\"\n         return range(1, self.num_pages + 1)\n \ndef __iter__(self):\n\"\"\"Iterate over the pages in the paginator.\"\"\"\nfor page_num in self.page_range:\nyield self.page(page_num)\n\n     def _check_object_list_is_ordered(self):\n         \"\"\"\n         Warn if self.object_list is unordered (typically a QuerySet).\n         if self.number == self.paginator.num_pages:\n             return self.paginator.count\n         return self.number * self.paginator.per_page\n\n"
+    },
+    "ground_truth_patch": {
+        "django/core/paginator.py": "         self.orphans = int(orphans)\n         self.allow_empty_first_page = allow_empty_first_page\n \ndef __iter__(self):\nfor page_number in self.page_range:\nyield self.page(page_number)\n\n     def validate_number(self, number):\n         \"\"\"Validate the given 1-based page number.\"\"\"\n         try:\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they exhibit significant differences in both syntactical structure and functionality. Code sample 1 contains a method for checking if the object list is ordered, while code sample 2 includes a validation method for page numbers, indicating different functionality. Additionally, the variables and logic utilized in both samples are dissimilar, making them functionally distinct.\"}"
+}

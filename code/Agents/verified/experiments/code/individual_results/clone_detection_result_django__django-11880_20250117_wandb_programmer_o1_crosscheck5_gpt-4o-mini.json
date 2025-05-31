@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11880",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "django/forms/fields.py": "index 03cd8af8d7..9852f50de2 100644\n         memo[id(self)] = result\n         result.widget = copy.deepcopy(self.widget, memo)\n         result.validators = self.validators[:]\nresult.error_messages = copy.deepcopy(self.error_messages, memo)\n         return result\n\n \n \n class CharField(Field):\n",
+        "tests/test_deepcopy_error_messages.py": "new file mode 100644\nindex 0000000000..e08b8c5b3b\nimport sys\nimport copy\nfrom django.forms import CharField\n\ndef main():\nprint(\"Step 1: Creating an original CharField with a custom error_messages dict.\")\noriginal = CharField(error_messages={'required': \"Original required error.\"})\nprint(\"Step 2: Deepcopying the field into 'cloned'.\")\ncloned = copy.deepcopy(original)\nprint(\"Step 3: Modifying 'cloned' error_messages['required'] to be different.\")\ncloned.error_messages['required'] = \"Cloned required error.\"\n\nprint(\"-> original.error_messages:\", original.error_messages)\nprint(\"-> cloned.error_messages:\", cloned.error_messages)\n\nif original.error_messages['required'] == cloned.error_messages['required']:\nprint(\"ERROR: Bug present. The error_messages dict is shared!\")\nsys.exit(1)\nelse:\nprint(\"SUCCESS: The error_messages dict is not shared.\")\nsys.exit(0)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/fields.py": "         result = copy.copy(self)\n         memo[id(self)] = result\n         result.widget = copy.deepcopy(self.widget, memo)\nresult.error_messages = self.error_messages.copy()\n         result.validators = self.validators[:]\n         return result\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have added or modified statements. The difference is that the first sample uses 'result = copy.deepcopy(self.error_messages, memo)', while the second uses 'result.error_messages = self.error_messages.copy()'. This indicates changes in the logic related to how 'error_messages' is copied, which makes them not identical, qualifying them as type-3 clones.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-17029",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 6a67c6eb28..cd0195a6d7 100644\n tests/.coverage*\n build/\n tests/report/\n.aider/\n",
+        "django/apps/registry.py": "index 0683f3ad3c..481dd1fc86 100644\n         # Call expire cache on each model. This will purge\n         # the relation tree and the fields cache.\n         self.get_models.cache_clear()\nself.get_swappable_settings_name.cache_clear()\n         if self.ready:\n             # Circumvent self.get_models() to prevent that the cache is refilled.\n             # This particularly prevents that an empty value is cached while cloning.\n"
+    },
+    "ground_truth_patch": {
+        "django/apps/registry.py": " \n         This is mostly used in tests.\n         \"\"\"\nself.get_swappable_settings_name.cache_clear()\n         # Call expire cache on each model. This will purge\n         # the relation tree and the fields cache.\n         self.get_models.cache_clear()\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because while they differ in spacing and the order in which some lines appear, their logical content is the same. Identifiers and the structure of the methods used remain unchanged, indicating they are functionally equivalent apart from minor syntactic differences.\"}"
+}

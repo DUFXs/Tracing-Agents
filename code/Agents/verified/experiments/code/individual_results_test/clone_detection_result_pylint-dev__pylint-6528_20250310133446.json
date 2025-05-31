@@ -1,0 +1,7 @@
+{
+    "instance_id": "pylint-dev__pylint-6528",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_recursive_ignore_bug.py",
+    "ground_truth_patch_file": "pylint/lint/expand_modules.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

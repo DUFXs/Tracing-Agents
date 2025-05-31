@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-9367",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..8ba371297\nfrom sphinx.pycode.ast import parse, unparse\n\ndef test_tuple(code):\nnode = parse(code, mode='eval').body\nresult = unparse(node)\nprint(f\"Original: {code}\")\nprint(f\"Unparsed: {result}\")\nprint(f\"Correct?: {code == result}\")\nprint()\n\n# Test cases\ntest_tuple(\"(1,)\")           # Single element tuple\ntest_tuple(\"()\")            # Empty tuple\ntest_tuple(\"(1, 2)\")        # Multiple elements\ntest_tuple(\"('x',)\")        # String element\ntest_tuple(\"(None,)\")       # None as element\n\\ No newline at end of file\n",
+        "sphinx/pycode/ast.py": "index f541ec0a9..b9d929ba5 100644\n         return \"%s %s\" % (self.visit(node.op), self.visit(node.operand))\n \n     def visit_Tuple(self, node: ast.Tuple) -> str:\nif not node.elts:\n             return \"()\"\nelements = [self.visit(e) for e in node.elts]\nif len(elements) == 1:\nreturn \"(\" + elements[0] + \",)\"  # Add trailing comma for single-element tuples\nreturn \"(\" + \", \".join(elements) + \")\"\n \n     if sys.version_info < (3, 8):\n         # these ast nodes were deprecated in python 3.8\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/pycode/ast.py": "         return \"%s %s\" % (self.visit(node.op), self.visit(node.operand))\n \n     def visit_Tuple(self, node: ast.Tuple) -> str:\nif len(node.elts) == 0:\n             return \"()\"\nelif len(node.elts) == 1:\nreturn \"(%s,)\" % self.visit(node.elts[0])\nelse:\nreturn \"(\" + \", \".join(self.visit(e) for e in node.elts) + \")\"\n \n     if sys.version_info < (3, 8):\n         # these ast nodes were deprecated in python 3.8\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity but have differences in the structure and handling of the Tuple elements. The first sample checks for an empty list through 'if not node.elts' and handles a single-element tuple with a comma directly. In contrast, the second sample uses 'if len(node.elts) == 0' and 'elif len(node.elts) == 1', changing the structure of the conditional logic and the method used to return a single-element tuple with string formatting. Thus, while they are thematically related and functionally aim to achieve the same end, they are modified at the syntactical level.\"}"
+}

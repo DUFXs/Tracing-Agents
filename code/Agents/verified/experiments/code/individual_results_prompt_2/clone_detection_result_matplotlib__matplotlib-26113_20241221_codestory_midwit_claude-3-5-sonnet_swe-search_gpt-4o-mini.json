@@ -1,0 +1,11 @@
+{
+    "instance_id": "matplotlib__matplotlib-26113",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "lib/matplotlib/axes/_axes.py": "index 5369eadbde..46fb698522 100644\n             if mincnt is None:\n                 mincnt = 0\n             accum = np.array(\n[reduce_C_function(acc) if len(acc) >= mincnt else np.nan\n                  for Cs_at_i in [Cs_at_i1, Cs_at_i2]\n                  for acc in Cs_at_i[1:]],  # [1:] drops out-of-range points.\n                 float)\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/axes/_axes.py": "             if mincnt is None:\n                 mincnt = 0\n             accum = np.array(\n[reduce_C_function(acc) if len(acc) >= mincnt else np.nan\n                  for Cs_at_i in [Cs_at_i1, Cs_at_i2]\n                  for acc in Cs_at_i[1:]],  # [1:] drops out-of-range points.\n                 float)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 contains a patch indicating changes to a Python script related to matplotlib, where it checks if 'mincnt' is None and assigns it a value of 0 if it is. It then constructs a NumPy array from a list comprehension that applies 'reduce_C_function' to elements if they meet a certain condition. The code in code sample 2 is practically identical but is represented without the index change information at the beginning. Both samples perform the same operations in an identical manner.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout, specifically the additional patch metadata in code sample 1 that is not present in code sample 2.\"}"
+}

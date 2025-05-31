@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-14539",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "astropy/io/fits/diff.py": "index 100cdf1b8c..2bbeaf9ddb 100644\n                 arrb.dtype, np.floating\n             ):\n                 diffs = where_not_allclose(arra, arrb, rtol=self.rtol, atol=self.atol)\nelif \"P\" in col.format or \"Q\" in col.format:\n# Handle variable-length arrays (both P and Q formats)\n                 diffs = (\n                     [\n                         idx\n                         for idx in range(len(arra))\nif (len(arra[idx]) != len(arrb[idx]) or\nnot np.allclose(\narra[idx], arrb[idx], rtol=self.rtol, atol=self.atol\n))\n                     ],\n                 )\n             else:\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..b95e0804b6\nfrom astropy.io import fits\n\n# Create a column with variable length arrays\ncol = fits.Column('a', format='QD', array=[[0], [0, 0]])\nhdu = fits.BinTableHDU.from_columns([col])\nhdu.writeto('diffbug.fits', overwrite=True)\n\n# Test the FITSDiff functionality\nprint(\"\\nTesting FITSDiff on identical files:\")\nprint(fits.FITSDiff('diffbug.fits', 'diffbug.fits').identical)\nprint(\"\\nDetailed diff output:\")\nfits.printdiff('diffbug.fits', 'diffbug.fits')\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "astropy/io/fits/diff.py": "                 arrb.dtype, np.floating\n             ):\n                 diffs = where_not_allclose(arra, arrb, rtol=self.rtol, atol=self.atol)\nelif \"P\" in col.format or \"Q\" in col.format:\n                 diffs = (\n                     [\n                         idx\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for whitespace differences. The structure and content of the code are the same, just formatted differently.\"}"
+}

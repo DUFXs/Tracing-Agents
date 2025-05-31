@@ -1,0 +1,7 @@
+{
+    "instance_id": "pytest-dev__pytest-8399",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "src/_pytest/unittest.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to entirely different functionalities and structures. The first sample is a unit test invoking Pytest with some assertions, while the second sample appears to be from a fixture declaration in a different context within the Pytest framework. There are no syntactic similarities or functional equivalents between the two, therefore they cannot be classified as clones of any type.\"}"
+}

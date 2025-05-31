@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15569",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/models/query_utils.py": "index 0caa165e15..a0dbac604b 100644\n         if lookup_name is None:\n             lookup_name = lookup.lookup_name\n         del cls.class_lookups[lookup_name]\ncls._clear_cached_lookups()\n \n \n def select_related_descend(field, restricted, requested, load_fields, reverse=False):\n         query = compiler.query\n         where = query.build_filtered_relation_q(self.condition, reuse=set(self.path))\n         return compiler.compile(where)\n\n",
+        "reproduce.py": "new file mode 100644\nindex 0000000000..08d58ce0df\nfrom django.db.models.query_utils import RegisterLookupMixin\n\nclass TestLookup:\nlookup_name = 'test_lookup'\n\nclass TestMixin(RegisterLookupMixin):\nclass_lookups = {}\n\n# Register a lookup\nTestMixin.register_lookup(TestLookup)\nprint(\"Lookups after register:\", TestMixin.get_lookups())\n\n# Unregister the lookup\nTestMixin._unregister_lookup(TestLookup)\nprint(\"Lookups after unregister:\", TestMixin.get_lookups())  # Cache still contains old value!\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/query_utils.py": "         if lookup_name is None:\n             lookup_name = lookup.lookup_name\n         del cls.class_lookups[lookup_name]\ncls._clear_cached_lookups()\n \n \n def select_related_descend(field, restricted, requested, load_fields, reverse=False):\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 shows a patch that includes a method for handling lookups in a Django model's query utilities. It checks if 'lookup_name' is None and assigns a lookup name if necessary. It also manages a dictionary of class lookups by deleting a specific lookup and clearing cached lookups. Additionally, there is a definition for a function 'select_related_descend' which builds and compiles a query based on certain conditions. In contrast, code sample 2 is much shorter and contains only a fragment of the same patch, focusing on the same methods but without any initialization of the class or context provided. It does not include any of the surrounding code or functionality that is present in the first sample.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in functionality and structure except for differences in whitespace and layout.\"}"
+}

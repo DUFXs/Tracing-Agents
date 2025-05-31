@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-12481",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 0000000000..f9c1c28d6b\nfrom sympy.combinatorics.permutations import Permutation\n\n# This should work but currently raises ValueError\np = Permutation([[0,1],[0,1]])\nprint(f\"Result: {p}\")\n\n# Test more cases\np2 = Permutation([[0,1,2],[1,2,3]])  # Overlapping cycles\nprint(f\"Test with overlapping cycles: {p2}\")\n\np3 = Permutation([])  # Empty list should give identity\nprint(f\"Test with empty list: {p3}\")\n",
+        "sympy/combinatorics/permutations.py": "index 136ed5a478..70cfd4e7cf 100644\n         # counting starts from 1.\n \n         temp = flatten(args)\nif not is_cycle and has_dups(temp):\nraise ValueError('there were repeated elements.')\n         temp = set(temp)\n \n\n         if not is_cycle and \\\n                 any(i not in temp for i in range(len(temp))):\n             raise ValueError(\"Integers 0 through %s must be present.\" %\n \n Perm = Permutation\n _af_new = Perm._af_new\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/combinatorics/permutations.py": "         # counting starts from 1.\n \n         temp = flatten(args)\nif has_dups(temp) and not is_cycle:\nraise ValueError('there were repeated elements.')\n         temp = set(temp)\n \n         if not is_cycle and \\\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 includes an example of using the Permutation class from the sympy library to create permutations and print results, as well as raising a ValueError when the input causes issues related to cycles or duplicates. Code sample 2, on the other hand, contains a snippet that checks for duplicates in the arguments and raises a ValueError if they are found, but does not include any instantiation of the Permutation class or print statements. It seems to be part of the implementation logic in the Permutation class for handling input validation.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because sample 1 is an example of usage while sample 2 is an implementation detail of the Permutation class, and they serve different purposes in the codebase.\"}"
+}

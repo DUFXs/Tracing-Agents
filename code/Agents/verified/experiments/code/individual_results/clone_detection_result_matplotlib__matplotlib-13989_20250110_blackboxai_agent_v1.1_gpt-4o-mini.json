@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-13989",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index c74e7438a3..22af3b49eb 100644\n #########################\n \n jquery-ui-*/\n.aider/\n",
+        "lib/matplotlib/axes/_axes.py": "index 4b73d52293..1900f32233 100644\n \n         density = bool(density) or bool(normed)\n         if density and not stacked:\nhist_kwargs['density'] = density\n# Keep the range if it was set earlier\nif bin_range is not None:\nhist_kwargs['range'] = bin_range\n \n         # List to store all the top coordinates of the histograms\n         tops = []\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/axes/_axes.py": " \n         density = bool(density) or bool(normed)\n         if density and not stacked:\nhist_kwargs['density'] = density\n \n         # List to store all the top coordinates of the histograms\n         tops = []\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in logic and structure, but differ in formatting and whitespace. There are no changes in identifiers or literal values.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14089",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/utils/datastructures.py": "index 871b016715..79dfadf18a 100644\n     def __len__(self):\n         return len(self.dict)\n \ndef __reversed__(self):\n\"\"\"Return an iterator of the OrderedSet's items in reverse order.\"\"\"\nreturn reversed(list(self.dict))\n\n\n \n class MultiValueDictKeyError(KeyError):\n     pass\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/datastructures.py": "     def __iter__(self):\n         return iter(self.dict)\n \ndef __reversed__(self):\nreturn reversed(self.dict)\n\n     def __contains__(self, item):\n         return item in self.dict\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain different method implementations and functionalities. Sample 1 includes the `__len__` method and the `MultiValueDictKeyError` class, whereas Sample 2 has the `__iter__` and `__contains__` methods. Additionally, the strings and structure of the returned outputs differ significantly.\"}"
+}

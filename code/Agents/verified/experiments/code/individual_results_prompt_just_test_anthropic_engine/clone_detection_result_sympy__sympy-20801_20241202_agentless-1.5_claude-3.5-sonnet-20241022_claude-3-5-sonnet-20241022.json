@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-20801",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/core/numbers.py": "index ecd2cce..8b24d33 100644\n             other = _sympify(other)\n         except SympifyError:\n             return NotImplemented\n         if isinstance(other, Boolean):\n             return False\nif not self:\nreturn not other\n         if other.is_NumberSymbol:\n             if other.is_irrational:\n                 return False\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/numbers.py": "             other = _sympify(other)\n         except SympifyError:\n             return NotImplemented\n         if isinstance(other, Boolean):\n             return False\n         if other.is_NumberSymbol:\n             # the mpf tuples\n             ompf = other._as_mpf_val(self._prec)\n             return bool(mlib.mpf_eq(self._mpf_, ompf))\nif not self:\nreturn not other\n         return False    # Float != non-Number\n \n     def __ne__(self, other):\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 appears to be a part of an equality comparison method that handles special cases for comparing numerical values. It tries to convert the 'other' value to a sympy object, handles Boolean comparisons, and checks for irrational NumberSymbols. The code in code sample 2 is also part of an equality comparison method but includes additional functionality for comparing mpf (multiple precision floating-point) values and has additional method definitions.\",\n\"is_clone\": false,\n\"classification\": \"N/A\",\n\"reasoning\": \"These code samples are not clones because while they share some common code segments (the initial _sympify conversion, Boolean check, and the 'if not self' condition), code sample 2 contains significant additional functionality not present in sample 1. Specifically, sample 2 includes mpf comparison logic (using _as_mpf_val and mlib.mpf_eq), and contains part of a not-equals method definition. The differences are too substantial to classify these as clones of any type, as they appear to be different parts of related but distinct comparison methods.\"\n}"
+}

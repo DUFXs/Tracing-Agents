@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-23950",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "reproduce.py",
+    "ground_truth_patch_file": "sympy/sets/contains.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and contexts in the codebase. The first sample is a complete script that includes variable declarations, print statements, and multiple tests involving the `Contains` and `Piecewise` classes from the sympy library. The second sample seems to be a partial implementation of a method (`as_set`) within a class that handles aspects of set operations. The two samples do not share structural similarities or functional equivalence, as they do not perform similar operations or even relate closely to one another.\"}"
+}

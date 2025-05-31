@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13741",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/auth/forms.py": "index b9eb33329f..f74057f042 100644\n \n     def __init__(self, *args, **kwargs):\n         kwargs.setdefault(\"required\", False)\n# Force disabled=True regardless of input\nkwargs[\"disabled\"] = True\n         super().__init__(*args, **kwargs)\n \n     def bound_data(self, data, initial):\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/forms.py": " \n     def __init__(self, *args, **kwargs):\n         kwargs.setdefault(\"required\", False)\nkwargs.setdefault('disabled', True)\n         super().__init__(*args, **kwargs)\n \n \n class UsernameField(forms.CharField):\n     def to_python(self, value):\n         if user_permissions:\n             user_permissions.queryset = user_permissions.queryset.select_related('content_type')\n \n \n class AuthenticationForm(forms.Form):\n     \"\"\"\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 initializes a form by setting up default keyword arguments where 'required' is set to False and 'disabled' is explicitly forced to True before calling the parent class's initializer. It also contains a method definition for 'bound_data' which appears to handle data and initial values. The code in code sample 2 similarly defines an initializer for a form, setting 'required' to False and uses the method 'setdefault' for 'disabled', but does not explicitly enforce its value to True. Additionally, code sample 2 introduces new class definitions after the '__init__' method, which are absent in code sample 1.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because while they share some similar functionality in the initializer method, code sample 2 adds new class definitions and alters the functionality by changing the treatment of the 'disabled' keyword argument. Hence, they diverge in structure and context.\"}"
+}

@@ -1,0 +1,13 @@
+{
+    "instance_id": "pytest-dev__pytest-5262",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "src/_pytest/capture.py": "index 25eab7fdf..a4f519381 100644\n \n     def __getattr__(self, name):\n         return getattr(object.__getattribute__(self, \"buffer\"), name)\n@property\ndef mode(self):\noriginal_mode = getattr(self.buffer, \"mode\", \"\")\n# Return the mode with 'b' removed, so code doesn't think the stream is binary-only.\nreturn original_mode.replace(\"b\", \"\")\n\n \n \n CaptureResult = collections.namedtuple(\"CaptureResult\", [\"out\", \"err\"])\n",
+        "test_foo.py": "new file mode 100644\nindex 000000000..ad6d10294\nimport sys\n\ndef test_foo():\nif 'b' in sys.stdout.mode:\nsys.stdout.write(b'Hello from bytes\\n')\nelse:\nsys.stdout.write('Hello from text\\n')\n",
+        "youtube_dl_bmode_test.py": "new file mode 100644\nindex 000000000..67cf69d06\n#!/usr/bin/env python\nimport sys\nimport subprocess\n\ndef main():\nwith open('test_foo.py', 'w') as f:\nf.write(\"\"\"import sys\n\ndef test_foo():\nif 'b' in sys.stdout.mode:\nsys.stdout.write(b'Hello from bytes\\\\n')\nelse:\nsys.stdout.write('Hello from text\\\\n')\n\"\"\")\n\nprint(\"Running 'pytest test_foo.py'\")\ncmd = [\"pytest\", \"test_foo.py\"]\nproc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)\noutput = proc.stdout\nprint(output)\nif \"TypeError: write() argument must be str, not bytes\" in output:\nprint(\"TEST FAILS => The bug is present.\")\nsys.exit(1)\nelse:\nprint(\"TEST PASSES => The bug is not triggered.\")\nsys.exit(0)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/capture.py": "         \"\"\"Ensure that file.name is a string.\"\"\"\n         return repr(self.buffer)\n \n@property\ndef mode(self):\nreturn self.buffer.mode.replace(\"b\", \"\")\n\n     def __getattr__(self, name):\n         return getattr(object.__getattribute__(self, \"buffer\"), name)\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share similar functionality in managing the 'mode' property and the '__getattr__' method, but they also have differences in layout, statements, and the expressions used (e.g., 'self.buffer.mode' vs. 'getattr(self.buffer, \\\"mode\\\", \\\"\\\")'). The structure and logic are largely equivalent, which leads us to classify them as syntactically similar with modifications.\"}"
+}

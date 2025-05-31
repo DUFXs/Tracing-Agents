@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-13372",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..9107b140b7\nfrom sympy import Mul, Symbol, Max\n\nx = Symbol('x')\ny = Symbol('y')\n\nprint(\"Test case 1:\")\nprint(\"Mul(x, Max(0, y), evaluate=False).evalf()\")\nresult1 = Mul(x, Max(0, y), evaluate=False).evalf()\nprint(result1)\n\nprint(\"\\nTest case 2:\")\nprint(\"Mul(Max(0, y), x, evaluate=False).evalf()\")\nresult2 = Mul(Max(0, y), x, evaluate=False).evalf()\nprint(result2)\n",
+        "sympy/core/evalf.py": "index 72a5fbae52..2f4e41b73c 100644\n             elif re.is_number:\n                 re = re._to_mpmath(prec, allow_ints=False)._mpf_\n                 reprec = prec\nelse:\nraise NotImplementedError\n             if im == 0:\n                 im = None\n                 imprec = None\n             elif im.is_number:\n                 im = im._to_mpmath(prec, allow_ints=False)._mpf_\n                 imprec = prec\nelse:\nraise NotImplementedError\n             r = re, im, reprec, imprec\n\n         except AttributeError:\n             raise NotImplementedError\n     if options.get(\"verbose\"):\n \n     \"\"\"\n     return sympify(x).evalf(n, **options)\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/evalf.py": "             elif re.is_number:\n                 re = re._to_mpmath(prec, allow_ints=False)._mpf_\n                 reprec = prec\nelse:\nraise NotImplementedError\n             if im == 0:\n                 im = None\n                 imprec = None\n             elif im.is_number:\n                 im = im._to_mpmath(prec, allow_ints=False)._mpf_\n                 imprec = prec\nelse:\nraise NotImplementedError\n             r = re, im, reprec, imprec\n         except AttributeError:\n             raise NotImplementedError\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain entirely different code segments with no syntactical similarity or functional equivalence. The first sample includes imports and two print statements that clearly define a testing function, whereas the second sample contains a portion of a different file with logic related to number handling, which has no relation to the first sample.\"}"
+}

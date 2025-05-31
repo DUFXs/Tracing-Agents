@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-15561",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/db/backends/base/schema.py",
+    "ground_truth_patch_file": "django/db/backends/base/schema.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have some added or modified statements. The first sample has a return statement with a condition involving tuple comparisons, while the second one has modified variable names (e.g., 'non_database_attrs' in the first sample versus 'non_db_attrs' in the second) and lacks part of the return statement along with some context comments.\"}"
+}

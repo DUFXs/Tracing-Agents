@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-12193",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/forms/widgets.py": "index dc396a1..32b9cba 100644\n \n     def get_context(self, name, value, attrs):\n         if self.check_test(value):\nattrs = {} if attrs is None else attrs.copy()\n             attrs['checked'] = True\n         return super().get_context(name, value, attrs)\n \n"
+    },
+    "ground_truth_patch": {
+        "django/forms/widgets.py": " \n     def get_context(self, name, value, attrs):\n         if self.check_test(value):\nattrs = {**(attrs or {}), 'checked': True}\n         return super().get_context(name, value, attrs)\n \n     def value_from_datadict(self, data, files, name):\n"
+    },
+    "response": "{\n    \"explanation\": \"The code in code sample 1 is a method that gets context for a widget, checking a test condition and if true, creating or copying an attrs dictionary and setting the 'checked' attribute to True before calling the parent class's get_context method. The code in code sample 2 does the same thing but uses a more concise dictionary merge syntax with **.\",\n    \"is_clone\": true,\n    \"classification\": \"type-3\",\n    \"reasoning\": \"These code samples are type-3 clones because they perform the same functionality but with slightly modified statements. Both methods check a condition and set the 'checked' attribute in a dictionary before calling the parent's get_context, but they differ in how they construct the dictionary. Sample 1 uses an if-else with dictionary copy, while sample 2 uses dictionary unpacking with the ** operator. The logical structure and outcome are the same, but the implementation details vary slightly. This makes them type-3 clones as they have syntactically similar structure with modified statements but maintain the same functionality.\"\n}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-11532",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": ".gitignore",
+    "ground_truth_patch_file": "django/core/mail/message.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they edit entirely different files with different content and purposes; one modifies a .gitignore file listing directories to ignore in a project, while the other appears to be a Python patch related to email handling in Django.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-22914",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "sympy/printing/pycode.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes; the first sample tests the Min and Max functions using symbolic mathematics, while the second sample defines mappings for known functions in a different context. They don't share similar structure, syntax, or functionality.\"}"
+}

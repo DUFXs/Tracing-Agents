@@ -1,0 +1,12 @@
+{
+    "instance_id": "pydata__xarray-7233",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 00000000..7e501388\nimport xarray as xr\nimport numpy as np\n\n# Create test data\nda = xr.DataArray(np.arange(24), dims=[\"time\"])\nda = da.assign_coords(day=365 * da)\nds = da.to_dataset(name=\"T\")\n\nprint(\"\\nOriginal dataset:\")\nprint(ds)\n\n# Apply coarsen.construct\nresult = ds.coarsen(time=12).construct(time=(\"year\", \"month\"))\n\nprint(\"\\nAfter coarsen.construct:\")\nprint(result)\n",
+        "xarray/core/rolling.py": "index c194ec08..c6e4f00c 100644\n             else:\n                 reshaped[key] = var\n \n# Preserve all original coordinates, not just the ones being coarsened\nshould_be_coords = set(self.obj.coords)\n         result = reshaped.set_coords(should_be_coords)\n\n         if isinstance(self.obj, DataArray):\n             return self.obj._from_temp_dataset(result)\n         else:\n         \"\"\"\n         wrapped_func = self._reduce_method(func)\n         return wrapped_func(self, keep_attrs=keep_attrs, **kwargs)\n\n"
+    },
+    "ground_truth_patch": {
+        "xarray/core/rolling.py": "             else:\n                 reshaped[key] = var\n \n# should handle window_dim being unindexed\nshould_be_coords = (set(window_dim) & set(self.obj.coords)) | set(\nself.obj.coords\n)\n         result = reshaped.set_coords(should_be_coords)\n         if isinstance(self.obj, DataArray):\n             return self.obj._from_temp_dataset(result)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share syntactical structure and functionality, but there are differences in added or modified statements regarding how original coordinates are handled and the context in which they are used.\"}"
+}

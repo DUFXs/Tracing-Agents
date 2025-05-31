@@ -1,0 +1,11 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14053",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sklearn/tree/export.py": "index 1fe11e596..34cfd3995 100644\n         value_fmt = \"{}{} value: {}\\n\"\n \n     if feature_names:\nfeature_names_ = [feature_names[i] if i != _tree.TREE_UNDEFINED else \"undefined\"\nfor i in tree_.feature]\n     else:\nfeature_names_ = [\"feature_{}\".format(i) if i != _tree.TREE_UNDEFINED else \"undefined\"\nfor i in tree_.feature]\n\n \n     export_text.report = \"\"\n \n \n     print_tree_recurse(0, 1)\n     return export_text.report\n\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/tree/export.py": "         value_fmt = \"{}{} value: {}\\n\"\n \n     if feature_names:\nfeature_names_ = [feature_names[i] if i != _tree.TREE_UNDEFINED\nelse None for i in tree_.feature]\n     else:\n         feature_names_ = [\"feature_{}\".format(i) for i in tree_.feature]\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 prepares a list of feature names where it checks if the provided feature_names are defined. If they are defined, it assigns values from feature_names; if not, it assigns a default value of 'undefined'. It constructs this list using a list comprehension. Additionally, it initializes an empty report and calls a function to print the tree recursively before returning the report. The code in code sample 2 also prepares a list of feature names in a similar way but uses 'None' instead of 'undefined' for undefined features. It constructs the list of feature names without a conditional for TREE_UNDEFINED in the else block. The initial value_fmt and function calls remain the same, but the conditional logic for undefined values differs.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar, but there are differences in the handling of undefined feature names, leading to the inclusion of 'None' in the second sample instead of 'undefined'.\"}"
+}

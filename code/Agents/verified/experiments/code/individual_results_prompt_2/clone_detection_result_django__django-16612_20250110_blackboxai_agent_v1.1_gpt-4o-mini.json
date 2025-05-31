@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16612",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 6a67c6eb28..cd0195a6d7 100644\n tests/.coverage*\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/sites.py": "index 61be31d890..9d950c7acc 100644\n                 pass\n             else:\n                 if getattr(match.func, \"should_append_slash\", True):\nnew_path = f\"{request.path}/\"\nif request.META.get(\"QUERY_STRING\"):\nnew_path = f\"{new_path}?{request.META['QUERY_STRING']}\"\nreturn HttpResponsePermanentRedirect(new_path)\n         raise Http404\n \n     def _build_app_dict(self, request, label=None):\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/sites.py": "                 pass\n             else:\n                 if getattr(match.func, \"should_append_slash\", True):\nreturn HttpResponsePermanentRedirect(\nrequest.get_full_path(force_append_slash=True)\n)\n         raise Http404\n \n     def _build_app_dict(self, request, label=None):\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 checks if the 'should_append_slash' attribute is set on a function matches the current request and constructs a new path with a trailing slash, optionally appending a query string if it exists. It then returns a permanent redirect to this new path. Code sample 2 performs a similar check but instead uses the built-in method 'get_full_path' with the force_append_slash parameter, which changes how the path is generated. Both samples raise an Http404 error if the conditions aren't met, and they both define a method named '_build_app_dict'.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but contain slightly different implementations, specifically in how the new path is constructed.\"}"
+}

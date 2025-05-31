@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13112",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/fields/related.py": "index c2aea9c730..1c65e81194 100644\n     if isinstance(relation, str):\n         if \".\" not in relation:\n             relation = \"%s.%s\" % (scope_model._meta.app_label, relation)\nelse:\n# Handle case-insensitive app label matching\napp_label, model_name = relation.split('.')\n# Convert to lowercase for comparison but preserve original case\napps_dict = {app.lower(): app for app in scope_model._meta.apps.app_configs.keys()}\nif app_label.lower() in apps_dict:\nrelation = \"%s.%s\" % (apps_dict[app_label.lower()], model_name)\n \n     return relation\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/related.py": "         if self.remote_field.parent_link:\n             kwargs['parent_link'] = self.remote_field.parent_link\n         if isinstance(self.remote_field.model, str):\nif '.' in self.remote_field.model:\napp_label, model_name = self.remote_field.model.split('.')\nkwargs['to'] = '%s.%s' % (app_label, model_name.lower())\nelse:\nkwargs['to'] = self.remote_field.model.lower()\n         else:\n             kwargs['to'] = self.remote_field.model._meta.label_lower\n         # If swappable is True, then see if we're actually pointing to the target\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they do not share sufficient syntactical or functional similarity. Sample 1 and Sample 2 have different logical structures, belong to different parts of a process, utilize different variables and specific functionalities, making their implementations distinct.\"}"
+}

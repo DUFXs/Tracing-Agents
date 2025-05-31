@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16429",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/utils/timesince.py": "index 701c49bab9..4dbd0efaab 100644\n             d.hour,\n             d.minute,\n             d.second,\ntzinfo=d.tzinfo,\n         )\n     else:\n         pivot = d\n     Like timesince, but return a string measuring the time until the given time.\n     \"\"\"\n     return timesince(d, now, reversed=True, time_strings=time_strings, depth=depth)\n\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..70700d0f36\nfrom django.conf import settings\nfrom django.utils import timezone\nimport datetime\n\nsettings.configure(USE_TZ=True)\n\n# Initialize Django\nimport django\ndjango.setup()\n\n# Create timezone-aware datetime objects\nnow = timezone.now()\nd = now - datetime.timedelta(days=31)\n\n# Try to use timesince\nfrom django.utils.timesince import timesince\nprint(timesince(d))\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/timesince.py": "             d.hour,\n             d.minute,\n             d.second,\ntzinfo=d.tzinfo,\n         )\n     else:\n         pivot = d\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout. The statements and the content are the same; only the surrounding formatting is altered, making them type-1 clones.\"}"
+}

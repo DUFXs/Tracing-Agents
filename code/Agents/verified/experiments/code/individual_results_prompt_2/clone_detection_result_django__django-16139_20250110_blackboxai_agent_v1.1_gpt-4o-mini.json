@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16139",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/auth/forms.py": "index b3cfc6723c..2408de97e0 100644\n     def __init__(self, *args, **kwargs):\n         super().__init__(*args, **kwargs)\n         password = self.fields.get(\"password\")\nif password and self.instance.pk:\npassword.help_text = password.help_text.format(f\"../../{self.instance.pk}/password/\")\n         user_permissions = self.fields.get(\"user_permissions\")\n         if user_permissions:\n             user_permissions.queryset = user_permissions.queryset.select_related(\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/forms.py": "         super().__init__(*args, **kwargs)\n         password = self.fields.get(\"password\")\n         if password:\npassword.help_text = password.help_text.format(\nf\"../../{self.instance.pk}/password/\"\n)\n         user_permissions = self.fields.get(\"user_permissions\")\n         if user_permissions:\n             user_permissions.queryset = user_permissions.queryset.select_related(\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 is part of a Django model form's __init__ method. It initializes the form by calling the superclass's __init__ method, retrieves the 'password' field, and modifies its help text based on the instance's primary key if the password field and instance are present. It also retrieves the 'user_permissions' field, and if present, sets its queryset for related users. In code sample 2, the code achieves similar functionality but has some differences in spacing and formatting in the lines of code -- notably, the help text formatting and the condition check for the 'if password'.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in functionality and logic, only differing in whitespace, layout, and minor formatting.\"}"
+}

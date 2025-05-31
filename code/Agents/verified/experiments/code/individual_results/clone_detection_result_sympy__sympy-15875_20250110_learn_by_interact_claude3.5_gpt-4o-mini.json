@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-15875",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sympy/core/add.py": "index 83a5f2aedc..7989ef9107 100644\n         if b.is_zero:\n             if not im_or_z and not im:\n                 return True\nreturn None\n         if b.is_zero is False:\n\n             return False\n \n     def _eval_is_odd(self):\n \n from .mul import Mul, _keep_coeff, prod\n from sympy.core.numbers import Rational\n\n",
+        "test_is_zero.py": "new file mode 100644\nindex 0000000000..85acbe78ef\nfrom sympy import I, simplify\n\ne = -2*I + (1 + I)**2\nprint(\"e =\", e)\nprint(\"e.is_zero =\", e.is_zero)\nprint(\"simplify(e).is_zero =\", simplify(e).is_zero)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/add.py": "                 return\n         if z == len(self.args):\n             return True\nif len(nz) == 0 or len(nz) == len(self.args):\n             return None\n         b = self.func(*nz)\n         if b.is_zero:\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically dissimilar and serve different functional purposes. The first sample includes specific conditions and returning values based on those conditions, whereas the second sample has a different structure and returns from an earlier point, indicating distinct logic and functionality.\"}"
+}

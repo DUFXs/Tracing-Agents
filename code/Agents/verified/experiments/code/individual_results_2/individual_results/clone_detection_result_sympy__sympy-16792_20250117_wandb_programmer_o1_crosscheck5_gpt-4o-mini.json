@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-16792",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_autowrap_issue.py",
+    "ground_truth_patch_file": "sympy/utilities/codegen.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes in different contexts. Code sample 1 is a test script demonstrating the use of the `autowrap` function from the SymPy library, while code sample 2 appears to be part of a code generation utility that handles array-like arguments and dimensions. Their functionalities, structures, and statements are significantly different, making them functionally dissimilar.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15022",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/options.py": "index 66f3396a6b..f2fe71ff6e 100644\n         if search_fields and search_term:\n             orm_lookups = [construct_search(str(search_field))\n                            for search_field in search_fields]\nsearch_bits = []\n             for bit in smart_split(search_term):\n                 if bit.startswith(('\"', \"'\")) and bit[0] == bit[-1]:\n                     bit = unescape_string_literal(bit)\nsearch_bits.append(bit)\n\n# Combine all terms into a single AND query, where each term must match at least one field\nand_queries = models.Q()\nfor bit in search_bits:\nor_queries = models.Q()\nfor orm_lookup in orm_lookups:\nor_queries |= models.Q(**{orm_lookup: bit})\nand_queries &= or_queries\n\nqueryset = queryset.filter(and_queries)\n             may_have_duplicates |= any(\n                 lookup_spawns_duplicates(self.opts, search_spec)\n                 for search_spec in orm_lookups\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/options.py": "         if search_fields and search_term:\n             orm_lookups = [construct_search(str(search_field))\n                            for search_field in search_fields]\nterm_queries = []\n             for bit in smart_split(search_term):\n                 if bit.startswith(('\"', \"'\")) and bit[0] == bit[-1]:\n                     bit = unescape_string_literal(bit)\n                     *((orm_lookup, bit) for orm_lookup in orm_lookups),\n                     _connector=models.Q.OR,\n                 )\nterm_queries.append(or_queries)\nqueryset = queryset.filter(models.Q(*term_queries))\n             may_have_duplicates |= any(\n                 lookup_spawns_duplicates(self.opts, search_spec)\n                 for search_spec in orm_lookups\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have added, modified, or removed statements. While they share similar structures and overall functionality, specific details such as variable names and the logic for combining queries differ between the two samples.\"}"
+}

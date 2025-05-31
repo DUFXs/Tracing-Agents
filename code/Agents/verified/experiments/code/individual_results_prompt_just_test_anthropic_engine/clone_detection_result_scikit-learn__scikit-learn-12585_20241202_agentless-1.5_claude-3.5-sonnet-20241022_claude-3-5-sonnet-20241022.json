@@ -1,0 +1,11 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-12585",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sklearn/base.py": "index 8dd093e..42f6f43 100644\n     # XXX: not handling dictionaries\n     if estimator_type in (list, tuple, set, frozenset):\n         return estimator_type([clone(e, safe=safe) for e in estimator])\nelif not hasattr(estimator, 'get_params') or isinstance(estimator, type):\n         if not safe:\n             return copy.deepcopy(estimator)\n         else:\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/base.py": "     # XXX: not handling dictionaries\n     if estimator_type in (list, tuple, set, frozenset):\n         return estimator_type([clone(e, safe=safe) for e in estimator])\nelif not hasattr(estimator, 'get_params') or isinstance(estimator, type):\n         if not safe:\n             return copy.deepcopy(estimator)\n         else:\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples contain identical code that handles cloning of estimators in scikit-learn. The code checks if the estimator type is a collection (list, tuple, set, or frozenset), and if so, it returns a new collection of the same type with cloned elements. If the estimator doesn't have 'get_params' method or is a type object, it performs a deep copy if safe=False.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are exactly identical in terms of code content, logic, and structure. The only difference is in the file metadata line 'index 8dd093e..42f6f43 100644' that appears in sample 1 but not in sample 2. This difference is merely in the patch metadata and not in the actual code content. The code logic, whitespace, comments, and all other aspects are completely identical between the two samples.\"\n}"
+}

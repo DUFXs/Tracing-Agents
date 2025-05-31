@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-18189",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 0000000000..f21c82c416\nfrom sympy import symbols, diophantine\n\nm, n = symbols('m n')\neq = n**4 + m**4 - 2**4 - 3**4\n\nprint(\"Testing with syms=(m,n):\")\nprint(diophantine(eq, syms=(m,n), permute=True))\n\nprint(\"\\nTesting with syms=(n,m):\")\nprint(diophantine(eq, syms=(n,m), permute=True))\n",
+        "sympy/solvers/diophantine.py": "index 6092e35dab..b1519b3f11 100644\n             if syms != var:\n                 dict_sym_index = dict(zip(syms, range(len(syms))))\n                 return {tuple([t[dict_sym_index[i]] for i in var])\nfor t in diophantine(eq, param, permute=permute)}\n\n         n, d = eq.as_numer_denom()\n         if n.is_number:\n             return set()\n     # every number can be written as a sum of 4 squares; for k > 4 partitions\n     # can be 0\n     return True\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/solvers/diophantine.py": "             if syms != var:\n                 dict_sym_index = dict(zip(syms, range(len(syms))))\n                 return {tuple([t[dict_sym_index[i]] for i in var])\nfor t in diophantine(eq, param, permute=permute)}\n         n, d = eq.as_numer_denom()\n         if n.is_number:\n             return set()\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to different files. Sample 1 includes a new file 'reproduce.py' along with code from 'diophantine.py', while Sample 2 consists only of code from 'diophantine.py'. Thus, they cannot be classified as clones under the provided definitions.\"}"
+}

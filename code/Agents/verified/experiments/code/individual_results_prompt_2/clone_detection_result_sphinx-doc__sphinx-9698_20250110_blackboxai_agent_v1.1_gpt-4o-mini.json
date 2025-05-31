@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-9698",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/domains/python.py": "index cd02eaad5..1a3bd60c7 100644\n         if 'classmethod' in self.options:\n             return _('%s() (%s class method)') % (methname, clsname)\n         elif 'property' in self.options:\nreturn _('%s (%s property)') % (methname, clsname)\n         elif 'staticmethod' in self.options:\n             return _('%s() (%s static method)') % (methname, clsname)\n         else:\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/domains/python.py": "         if 'classmethod' in self.options:\n             return _('%s() (%s class method)') % (methname, clsname)\n         elif 'property' in self.options:\nreturn _('%s (%s property)') % (methname, clsname)\n         elif 'staticmethod' in self.options:\n             return _('%s() (%s static method)') % (methname, clsname)\n         else:\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 is part of a Git patch that includes a section from 'sphinx/domains/python.py' with a conditional structure that checks for 'classmethod', 'property', and 'staticmethod' in self.options to return appropriate formatted strings based on the method context. The snippet contains some indentation and line breaks. Code sample 2 contains the same section of 'sphinx/domains/python.py' with identical logic and structure but lacks the additional metadata about the file changes present in code sample 1. The actual logic is the same in both code samples.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for the differences in whitespace and additional metadata related to the Git patch.\"}"
+}

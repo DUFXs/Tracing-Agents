@@ -1,0 +1,12 @@
+{
+    "instance_id": "pydata__xarray-6721",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 21c18c17..dde62bbf 100644\n doc/external-examples-gallery.txt\n doc/notebooks-examples-gallery.txt\n doc/videos-gallery.txt\n.aider/\n",
+        "xarray/core/common.py": "index 3c328f42..a3636cba 100644\n \n     chunks: dict[Any, tuple[int, ...]] = {}\n     for v in variables:\nif hasattr(v._data, \"chunks\"):\n             for dim, c in v.chunksizes.items():\n                 if dim in chunks and c != chunks[dim]:\n                     raise ValueError(\n"
+    },
+    "ground_truth_patch": {
+        "xarray/core/common.py": " \n     chunks: dict[Any, tuple[int, ...]] = {}\n     for v in variables:\nif hasattr(v._data, \"chunks\"):\n             for dim, c in v.chunksizes.items():\n                 if dim in chunks and c != chunks[dim]:\n                     raise ValueError(\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace. The code structure and statements remain the same, with only minor variations in spacing and layout.\"}"
+}

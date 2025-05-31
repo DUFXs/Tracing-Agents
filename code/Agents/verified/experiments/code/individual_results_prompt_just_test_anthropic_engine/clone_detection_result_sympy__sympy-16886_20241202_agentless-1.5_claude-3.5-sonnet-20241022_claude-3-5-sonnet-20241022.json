@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-16886",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/crypto/crypto.py": "index 156e471..ec6f49b 100644\n     \"..-\": \"U\", \"...-\": \"V\",\n     \".--\": \"W\", \"-..-\": \"X\",\n     \"-.--\": \"Y\", \"--..\": \"Z\",\n\"-----\": \"0\", \".----\": \"1\",\n     \"..---\": \"2\", \"...--\": \"3\",\n     \"....-\": \"4\", \".....\": \"5\",\n     \"-....\": \"6\", \"--...\": \"7\",\n"
+    },
+    "ground_truth_patch": {
+        "sympy/crypto/crypto.py": "     \"..-\": \"U\", \"...-\": \"V\",\n     \".--\": \"W\", \"-..-\": \"X\",\n     \"-.--\": \"Y\", \"--..\": \"Z\",\n\"-----\": \"0\", \".----\": \"1\",\n     \"..---\": \"2\", \"...--\": \"3\",\n     \"....-\": \"4\", \".....\": \"5\",\n     \"-....\": \"6\", \"--...\": \"7\",\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples are dictionary definitions in Python that map Morse code sequences to their corresponding letters and numbers. Both samples contain the exact same mappings: 'U' through 'Z' and numbers '0' through '7', using the standard Morse code patterns (dots and dashes) as keys and the corresponding characters as values.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are completely identical, containing the exact same Morse code mappings with the same whitespace, layout, and content. There are no differences between the two samples at all - they are perfect duplicates of each other. The patches show the same lines being added or modified in the same file (sympy/crypto/crypto.py) with identical content.\"\n}"
+}

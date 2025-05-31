@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13590",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "django/db/models/sql/query.py",
+    "ground_truth_patch_file": "django/db/models/sql/query.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and logic but differ in some identifier names and variable assignments, specifically `resolved_values` vs `values`, and the use of `type(value)` vs `type_ = type(value)`. They also use a different conditional check for named tuples. There are differences in whitespace and comments as well.\"}"
+}

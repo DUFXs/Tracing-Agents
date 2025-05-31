@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-14976",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "sympy/printing/pycode.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and have entirely different functionality. The first sample is focused on creating a symbolic equation, generating a function from it, and performing numerical computations. The second sample provides implementations for printing rational numbers and upper gamma functions in a specific format, which does not relate to the operations described in the first sample. Hence, there is no syntactical or functional similarity between the two.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-13031",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "sympy/matrices/sparse.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and have distinct structures. Sample 1 focuses on creating and stacking matrices while providing expected output shapes, whereas Sample 2 contains conditional checks and error handling related to matrix stacking but lacks the sample constructs of matrix creation and output. Additionally, the syntactic and functional constructs differ, which indicates they are not similar in any of the defined clone types.\"}"
+}

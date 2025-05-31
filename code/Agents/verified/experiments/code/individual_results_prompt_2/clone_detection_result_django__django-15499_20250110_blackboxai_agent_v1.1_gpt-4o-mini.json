@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15499",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/migrations/operations/models.py": "index 90fc31bee5..b69c431971 100644\n                     managers=self.managers,\n                 ),\n             ]\nelif (\nisinstance(operation, AlterModelManagers)\nand self.name_lower == operation.name_lower\n):\nreturn [\nCreateModel(\nself.name,\nfields=self.fields,\noptions=self.options,\nbases=self.bases,\nmanagers=operation.managers,\n),\n]\n         elif (\n             isinstance(operation, FieldOperation)\n             and self.name_lower == operation.model_name_lower\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/operations/models.py": "                     managers=self.managers,\n                 ),\n             ]\nelif (\nisinstance(operation, AlterModelManagers)\nand self.name_lower == operation.name_lower\n):\nreturn [\nCreateModel(\nself.name,\nfields=self.fields,\noptions=self.options,\nbases=self.bases,\nmanagers=operation.managers,\n),\n]\n         elif (\n             isinstance(operation, AlterTogetherOptionOperation)\n             and self.name_lower == operation.name_lower\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 checks if an operation is an instance of 'AlterModelManagers' and compares the name of the operation with the instance's lowercased name. If they match, it returns a list containing a 'CreateModel' with relevant details. In contrast, the code in code sample 2 performs a similar check but verifies if the operation is an instance of 'AlterTogetherOptionOperation', indicating it handles a different type of operation. Therefore, these samples have similar structures but differ in their functionality.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they check for different instance types ('AlterModelManagers' vs 'AlterTogetherOptionOperation'), resulting in different functional outputs.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13658",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/core/management/__init__.py",
+    "ground_truth_patch_file": "django/core/management/__init__.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-17139",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..3c4c33fbf3\nfrom sympy import *\n\ndef test_complex_power():\nx = Symbol('x')\n\n# Test case 1: Original case with I\nprint(\"Testing cos(x)**I...\")\ntry:\nresult = simplify(cos(x)**I)\nprint(f\"Result 1: {result}\")\nexcept Exception as e:\nprint(f\"Error 1: {str(e)}\")\n\n# Test case 2: Complex number with real and imaginary parts\nprint(\"\\nTesting cos(x)**(2 + 3*I)...\")\ntry:\nresult = simplify(cos(x)**(2 + 3*I))\nprint(f\"Result 2: {result}\")\nexcept Exception as e:\nprint(f\"Error 2: {str(e)}\")\n\n# Test case 3: Real exponent (should work as before)\nprint(\"\\nTesting cos(x)**2...\")\ntry:\nresult = simplify(cos(x)**2)\nprint(f\"Result 3: {result}\")\nexcept Exception as e:\nprint(f\"Error 3: {str(e)}\")\n\nif __name__ == \"__main__\":\ntest_complex_power()\n\\ No newline at end of file\n",
+        "sympy/simplify/fu.py": "index ad1130ef96..98df702098 100644\n         if not (rv.is_Pow and rv.base.func == f):\n             return rv\n \n# Skip transformation for complex exponents\nif rv.exp.is_complex and not rv.exp.is_real:\nreturn rv\n         if (rv.exp < 0) == True:\n             return rv\n         if (rv.exp > max) == True:\n"
+    },
+    "ground_truth_patch": {
+        "sympy/simplify/fu.py": "         # change is not going to allow a simplification as far as I can tell.\n         if not (rv.is_Pow and rv.base.func == f):\n             return rv\nif not rv.exp.is_real:\nreturn rv\n \n         if (rv.exp < 0) == True:\n             return rv\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to different contexts and serve different purposes. The first sample includes a complete test function for complex powers using SymPy, while the second sample consists of parts of a method in a module related to simplification in SymPy. The first sample is about testing behavior while the second is about a simplification logic, indicating they are syntactically dissimilar and functionally unrelated.\"}"
+}

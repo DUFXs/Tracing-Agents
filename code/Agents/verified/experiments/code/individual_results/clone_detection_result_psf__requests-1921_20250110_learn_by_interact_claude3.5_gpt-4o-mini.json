@@ -1,0 +1,11 @@
+{
+    "instance_id": "psf__requests-1921",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "requests/sessions.py": "index a023e4ec..1b91a8a4 100644\n     merged_setting = dict_class(to_key_val_list(session_setting))\n     merged_setting.update(to_key_val_list(request_setting))\n \n# Remove keys that are set to None in either session or request settings\nfor (k, v) in list(merged_setting.items()):\n         if v is None:\n             del merged_setting[k]\n \n     return merged_setting\n \n \n\n def merge_hooks(request_hooks, session_hooks, dict_class=OrderedDict):\n     \"\"\"\n     Properly merges both requests and session hooks.\n     \"\"\"Returns a :class:`Session` for context-management.\"\"\"\n \n     return Session()\n\n"
+    },
+    "ground_truth_patch": {
+        "requests/sessions.py": "         if v is None:\n             del merged_setting[k]\n \nmerged_setting = dict((k, v) for (k, v) in merged_setting.items() if v is not None)\n\n     return merged_setting\n \n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity but include modified statements. In sample 1, there is a loop that deletes keys from the merged_setting dictionary where the value is None, while sample 2 uses a dictionary comprehension to create a new merged_setting dictionary excluding keys with None values. The logical intention is similar, but the implementation is different.\"}"
+}

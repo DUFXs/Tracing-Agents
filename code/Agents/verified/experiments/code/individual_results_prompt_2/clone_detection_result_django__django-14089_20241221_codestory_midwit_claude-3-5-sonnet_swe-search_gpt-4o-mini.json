@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14089",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/utils/datastructures.py": "index 871b016715..966ebb7c96 100644\n     def __len__(self):\n         return len(self.dict)\n \ndef __reversed__(self):\n\"\"\"\nReturn an iterator over the items in the set in reverse order.\n\"\"\"\nreturn reversed(self.dict)\n\n \n class MultiValueDictKeyError(KeyError):\n     pass\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..bf6320befd\nfrom django.utils.datastructures import OrderedSet\n\ndef test_reverse(ordered_set, case_name):\nprint(f\"\\nTesting {case_name}:\")\ntry:\nreversed_set = reversed(ordered_set)\nprint(\"Values in reverse order:\")\nfor item in reversed_set:\nprint(item)\nprint(\"Success!\")\nexcept Exception as e:\nprint(\"Error:\", e)\n\n# Test case 1: Normal set (already tested above)\ntest_reverse(OrderedSet(['a', 'b', 'c', 'd']), \"normal set\")\n\n# Test case 2: Empty set\ntest_reverse(OrderedSet(), \"empty set\")\n\n# Test case 3: Single item\ntest_reverse(OrderedSet(['single']), \"single item\")\n\n# Test case 4: Mixed types (strings, numbers, tuples)\ntest_reverse(OrderedSet([1, 'two', (3, 4), 5.0]), \"mixed types\")\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/datastructures.py": "     def __iter__(self):\n         return iter(self.dict)\n \ndef __reversed__(self):\nreturn reversed(self.dict)\n\n     def __contains__(self, item):\n         return item in self.dict\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines methods for an OrderedSet class in Django, specifically the __len__ and __reversed__ methods, allowing retrieval of the length of the object and iteration in reverse order. It also includes tests for the reverse functionality on various cases of OrderedSet instances. The code in code sample 2 includes methods for the same class: it defines the __iter__ and __contains__ methods, enabling iteration through the dict and checking for containment of items. Both samples focus on the OrderedSet structure but deal with different functionalities.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they implement different methods for the OrderedSet class, which serve different purposes and do not share a similar syntax or structure that would classify them as clones.\"}"
+}

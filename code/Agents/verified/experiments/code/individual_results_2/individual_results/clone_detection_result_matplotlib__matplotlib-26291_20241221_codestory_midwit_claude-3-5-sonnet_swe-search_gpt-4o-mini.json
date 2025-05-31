@@ -1,0 +1,7 @@
+{
+    "instance_id": "matplotlib__matplotlib-26291",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "lib/matplotlib/offsetbox.py",
+    "ground_truth_patch_file": "lib/mpl_toolkits/axes_grid1/inset_locator.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they have different functionality and structures. Sample 1 contains a method that retrieves the window extent given a renderer, while Sample 2 shows a callable that seems to modify or set properties for an axes object and retrieves the window extent differently. Their internal logic and purpose are distinct, making them syntactically and functionally dissimilar.\"}"
+}

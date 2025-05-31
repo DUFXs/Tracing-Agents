@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-15278",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/backends/sqlite3/schema.py",
+    "ground_truth_patch_file": "django/db/backends/sqlite3/schema.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have syntactic similarities but differ in structure. Code sample 1's condition is straightforward and in one line, while code sample 2's condition is spread across multiple lines with additional parentheses around it, and the order of the conditions is slightly altered. There are also different comments explaining the same logic, making them syntactically similar but with added or modified statements.\"}"
+}

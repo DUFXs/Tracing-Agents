@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12419",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/conf/global_settings.py": "index 09c9b95d26..8bb59a4037 100644\n SECURE_HSTS_PRELOAD = False\n SECURE_HSTS_SECONDS = 0\n SECURE_REDIRECT_EXEMPT = []\nSECURE_REFERRER_POLICY = 'same-origin'\n SECURE_SSL_HOST = None\n SECURE_SSL_REDIRECT = False\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..4a9f8fd789\nfrom django.conf import global_settings\nfrom django.test import Client\nfrom django.http import HttpResponse\nfrom django.conf import settings\nfrom django.core.wsgi import get_wsgi_application\nimport os\n\n# Configure minimal Django settings\nos.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django.conf.global_settings')\nsettings.configure(\nDEBUG=True,\nSECRET_KEY='dummy',\nROOT_URLCONF=__name__,\nMIDDLEWARE=['django.middleware.security.SecurityMiddleware'],\n)\n\n# Define a simple view\ndef index(request):\nreturn HttpResponse('Test page')\n\n# URL pattern\nfrom django.urls import path\nurlpatterns = [\npath('', index),\n]\n\ndef main():\n# Initialize Django\napplication = get_wsgi_application()\n\n# Create a test client\nclient = Client()\n\n# Make a request and check the Referrer-Policy header\nresponse = client.get('/')\nprint(f\"Current SECURE_REFERRER_POLICY setting: {global_settings.SECURE_REFERRER_POLICY}\")\nreferrer_policy = response.get('Referrer-Policy')\nprint(f\"Referrer-Policy header present: {referrer_policy is not None}\")\nif referrer_policy is not None:\nprint(f\"Referrer-Policy value: {referrer_policy}\")\nelse:\nprint(\"No Referrer-Policy header set (current default behavior)\")\n\nif __name__ == '__main__':\nmain()\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/conf/global_settings.py": " SECURE_HSTS_PRELOAD = False\n SECURE_HSTS_SECONDS = 0\n SECURE_REDIRECT_EXEMPT = []\nSECURE_REFERRER_POLICY = 'same-origin'\n SECURE_SSL_HOST = None\n SECURE_SSL_REDIRECT = False\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout. The content and structure of the global settings in both samples are the same, with only minor variations in whitespace formatting.\"}"
+}

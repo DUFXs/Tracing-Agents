@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10844",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "sklearn/metrics/cluster/supervised.py",
+    "ground_truth_patch_file": "sklearn/metrics/cluster/supervised.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\"}"
+}

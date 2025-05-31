@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-24970",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "lib/matplotlib/colors.py": "index 2d3072da04..32c2cf8115 100644\n                 xa = xa.astype(int)\n         # Set the over-range indices before the under-range;\n         # otherwise the under-range values get converted to over-range.\n# Convert special indices properly to avoid NumPy deprecation warnings\ni_over = np.array(self._i_over).astype(xa.dtype)\ni_under = np.array(self._i_under).astype(xa.dtype)\ni_bad = np.array(self._i_bad).astype(xa.dtype)\nxa[xa > self.N - 1] = i_over\nxa[xa < 0] = i_under\nxa[mask_bad] = i_bad\n \n         lut = self._lut\n         if bytes:\n \n     norm = BoundaryNorm(levels, ncolors=n_data_colors)\n     return cmap, norm\n\n",
+        "reproduce.py": "new file mode 100644\nindex 0000000000..9e12b2848d\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.get_cmap()(np.empty((0,), dtype=np.uint8))\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/colors.py": "         if not xa.dtype.isnative:\n             xa = xa.byteswap().newbyteorder()  # Native byteorder is faster.\n         if xa.dtype.kind == \"f\":\nxa *= self.N\n# Negative values are out of range, but astype(int) would\n# truncate them towards zero.\nxa[xa < 0] = -1\n# xa == 1 (== N after multiplication) is not out of range.\nxa[xa == self.N] = self.N - 1\n# Avoid converting large positive values to negative integers.\nnp.clip(xa, -1, self.N, out=xa)\nwith np.errstate(invalid=\"ignore\"):\n# We need this cast for unsigned ints as well as floats\nxa = xa.astype(int)\n         # Set the over-range indices before the under-range;\n         # otherwise the under-range values get converted to over-range.\n         xa[xa > self.N - 1] = self._i_over\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share syntactic structures and have similar functionalities, but they include added, modified, or removed statements. For instance, both samples involve manipulating the array 'xa' and handling indices based on conditions related to the threshold 'self.N', but the specific operations and structure have slight changes that differentiate them.\"}"
+}

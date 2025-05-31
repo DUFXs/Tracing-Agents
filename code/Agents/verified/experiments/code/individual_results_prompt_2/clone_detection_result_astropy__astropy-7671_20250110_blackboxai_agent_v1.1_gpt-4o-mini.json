@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-7671",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index cead603acf..c2f0f665db 100644\n \n # VSCode\n .vscode\n.aider/\n",
+        "astropy/utils/introspection.py": "index 3e784f9fc3..eb95a086a1 100644\n import inspect\n import types\n import importlib\nfrom pkg_resources import parse_version\n \n \n __all__ = ['resolve_name', 'minversion', 'find_current_module',\n         have_version = resolve_name(module.__name__, version_path)\n \n     if inclusive:\nreturn parse_version(have_version) >= parse_version(version)\n     else:\nreturn parse_version(have_version) > parse_version(version)\n \n \n def find_current_module(depth=1, finddiff=False):\n"
+    },
+    "ground_truth_patch": {
+        "astropy/utils/introspection.py": " \n \n import inspect\nimport re\n import types\n import importlib\n from distutils.version import LooseVersion\n     else:\n         have_version = resolve_name(module.__name__, version_path)\n \n# LooseVersion raises a TypeError when strings like dev, rc1 are part\n# of the version number. Match the dotted numbers only. Regex taken\n# from PEP440, https://www.python.org/dev/peps/pep-0440/, Appendix B\nexpr = '^([1-9]\\\\d*!)?(0|[1-9]\\\\d*)(\\\\.(0|[1-9]\\\\d*))*'\nm = re.match(expr, version)\nif m:\nversion = m.group(0)\n\n     if inclusive:\n         return LooseVersion(have_version) >= LooseVersion(version)\n     else:\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 imports several modules, including 'inspect', 'types', and 'importlib', and defines a method 'find_current_module' with a parameter 'depth' and 'finddiff'. The function computes whether a module's version meets a certain minimum version requirement. The function utilizes 'parse_version' to compare version strings. Code sample 2 also imports 'inspect', 'types', and 'importlib', but additionally imports 'LooseVersion' from 'distutils.version'. This sample includes logic for matching version strings with regex and specifies behavior for version comparison using 'LooseVersion'. Both samples ultimately aim to resolve and compare version information but differ in implementation details and a few identifiers used.\", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they contain similar logic for version handling with differences in identifier names, literal values, and additional elements in the second sample.\"}"
+}

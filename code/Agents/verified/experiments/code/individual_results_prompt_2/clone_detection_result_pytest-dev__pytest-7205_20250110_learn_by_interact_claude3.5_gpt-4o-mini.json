@@ -1,0 +1,12 @@
+{
+    "instance_id": "pytest-dev__pytest-7205",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..167c60737\nimport pytest\n\n@pytest.mark.parametrize('data', [b'Hello World'])\ndef test_data(data):\npass\n",
+        "src/_pytest/setuponly.py": "index c9cc589ff..fb438af9c 100644\n import pytest\nfrom _pytest._io.saferepr import saferepr\n \n \n def pytest_addoption(parser):\n             tw.write(\" (fixtures used: {})\".format(\", \".join(deps)))\n \n     if hasattr(fixturedef, \"cached_param\"):\ntw.write(\"[{}]\".format(saferepr(fixturedef.cached_param)))\n \n     tw.flush()\n \n def pytest_cmdline_main(config):\n     if config.option.setuponly:\n         config.option.setupshow = True\n\n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/setuponly.py": " import pytest\nfrom _pytest._io.saferepr import saferepr\n \n \n def pytest_addoption(parser):\n             tw.write(\" (fixtures used: {})\".format(\", \".join(deps)))\n \n     if hasattr(fixturedef, \"cached_param\"):\ntw.write(\"[{}]\".format(saferepr(fixturedef.cached_param, maxsize=42)))\n \n     tw.flush()\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a test function using pytest that is parameterized with a byte string 'Hello World'. The second sample contains a portion of code that adds an option to a pytest command line parser and writes output based on fixture usage. The two code samples represent different functionalities within the pytest framework.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes in the pytest framework, with one focusing on testing and the other on command line options.\"}"
+}

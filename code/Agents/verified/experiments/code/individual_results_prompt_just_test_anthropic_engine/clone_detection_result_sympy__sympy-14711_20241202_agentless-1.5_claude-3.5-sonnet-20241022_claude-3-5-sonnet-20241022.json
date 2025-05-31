@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-14711",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/physics/vector/vector.py": "index 77e79b6..52e3de7 100644\n \n     def __add__(self, other):\n         \"\"\"The add operator for Vector. \"\"\"\nif other == 0:\nreturn self\n         other = _check_vector(other)\n         return Vector(self.args + other.args)\n \n"
+    },
+    "ground_truth_patch": {
+        "sympy/physics/vector/vector.py": " \n     def __add__(self, other):\n         \"\"\"The add operator for Vector. \"\"\"\nif other == 0:\nreturn self\n         other = _check_vector(other)\n         return Vector(self.args + other.args)\n \n"
+    },
+    "response": "{\n    \"explanation\": \"Both code samples implement the addition operator (__add__) for a Vector class. In both cases, the code: 1) Checks if the other operand is 0, in which case it returns self, 2) Validates the other operand using _check_vector(), and 3) Returns a new Vector instance with the combined arguments of both vectors.\",\n    \"is_clone\": true,\n    \"classification\": \"type-1\",\n    \"reasoning\": \"These code samples are type-1 clones because they are exactly identical, including the method name, parameters, docstring, logic, and even whitespace. The only difference appears to be in the git patch metadata (index line) which is not part of the actual code.\"\n}"
+}

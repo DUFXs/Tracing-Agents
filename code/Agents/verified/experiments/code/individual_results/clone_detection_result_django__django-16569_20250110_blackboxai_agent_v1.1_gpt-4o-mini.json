@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16569",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 6a67c6eb28..cd0195a6d7 100644\n tests/.coverage*\n build/\n tests/report/\n.aider/\n",
+        "django/forms/formsets.py": "index 235aaf844c..02d040ee03 100644\n                     required=False,\n                     widget=self.get_ordering_widget(),\n                 )\nif self.can_delete and (self.can_delete_extra or (index is not None and index < initial_form_count)):\n             form.fields[DELETION_FIELD_NAME] = BooleanField(\n                 label=_(\"Delete\"),\n                 required=False,\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/formsets.py": "                     required=False,\n                     widget=self.get_ordering_widget(),\n                 )\nif self.can_delete and (\nself.can_delete_extra or (index is not None and index < initial_form_count)\n):\n             form.fields[DELETION_FIELD_NAME] = BooleanField(\n                 label=_(\"Delete\"),\n                 required=False,\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical differences in terms of layout, specifically the placement of parentheses and line breaks, while maintaining the same logical structure and functionality.\"}"
+}

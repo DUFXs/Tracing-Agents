@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-20801",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index db4a22815e..2450c37630 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/core/numbers.py": "index 79f6a7d165..a2557d5251 100644\n             other = _sympify(other)\n         except SympifyError:\n             return NotImplemented\n         if isinstance(other, Boolean):\n             return False\nif not self:\nreturn not other\n         if other.is_NumberSymbol:\n             if other.is_irrational:\n                 return False\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/numbers.py": "             other = _sympify(other)\n         except SympifyError:\n             return NotImplemented\n         if isinstance(other, Boolean):\n             return False\n         if other.is_NumberSymbol:\n             # the mpf tuples\n             ompf = other._as_mpf_val(self._prec)\n             return bool(mlib.mpf_eq(self._mpf_, ompf))\nif not self:\nreturn not other\n         return False    # Float != non-Number\n \n     def __ne__(self, other):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities, but contain added statements in the second sample that are not present in the first. Specifically, the second sample has additional logic related to the handling of 'other' as well as an additional return statement that introduces new functionality. Overall, while they share a similar structure and purpose, the presence of these additions modifies the content significantly, indicating they are not strictly identical.\"}"
+}

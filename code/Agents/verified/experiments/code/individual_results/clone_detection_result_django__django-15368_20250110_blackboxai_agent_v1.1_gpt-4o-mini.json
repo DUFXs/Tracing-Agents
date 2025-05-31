@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15368",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/query.py": "index f8d848e926..f2f9797d88 100644\n                 when_statements = []\n                 for obj in batch_objs:\n                     attr = getattr(obj, field.attname)\nif not hasattr(attr, 'resolve_expression'):\n                         attr = Value(attr, output_field=field)\n                     when_statements.append(When(pk=obj.pk, then=attr))\n                 case_statement = Case(*when_statements, output_field=field)\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/query.py": " from django.db.models import AutoField, DateField, DateTimeField, sql\n from django.db.models.constants import LOOKUP_SEP, OnConflict\n from django.db.models.deletion import Collector\nfrom django.db.models.expressions import Case, F, Ref, Value, When\n from django.db.models.functions import Cast, Trunc\n from django.db.models.query_utils import FilteredRelation, Q\n from django.db.models.sql.constants import CURSOR, GET_ITERATOR_CHUNK_SIZE\n                 when_statements = []\n                 for obj in batch_objs:\n                     attr = getattr(obj, field.attname)\nif not hasattr(attr, 'resolve_expression'):\n                         attr = Value(attr, output_field=field)\n                     when_statements.append(When(pk=obj.pk, then=attr))\n                 case_statement = Case(*when_statements, output_field=field)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they differ in identifier names, specifically in the import statements: the first sample does not include any import statements while the second sample contains several import declarations. Additionally, the core logic concerning 'when_statements' and the 'Case' mechanism remains identical, other than the added literal values (i.e., the imports) in the second sample.\"}"
+}

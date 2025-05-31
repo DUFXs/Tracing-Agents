@@ -1,0 +1,11 @@
+{
+    "instance_id": "sphinx-doc__sphinx-8459",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sphinx/ext/autodoc/typehints.py": "index 6f90bd7..5f20d3a 100644\n         if callable(obj):\n             annotations = app.env.temp_data.setdefault('annotations', {})\n             annotation = annotations.setdefault(name, OrderedDict())\nsig = inspect.signature(obj, type_aliases=app.config.autodoc_type_aliases)\n             for param in sig.parameters.values():\n                 if param.annotation is not param.empty:\n                     annotation[param.name] = typing.stringify(param.annotation)\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/ext/autodoc/typehints.py": "         if callable(obj):\n             annotations = app.env.temp_data.setdefault('annotations', {})\n             annotation = annotations.setdefault(name, OrderedDict())\nsig = inspect.signature(obj, type_aliases=app.config.autodoc_type_aliases)\n             for param in sig.parameters.values():\n                 if param.annotation is not param.empty:\n                     annotation[param.name] = typing.stringify(param.annotation)\n"
+    },
+    "response": "{\"explanation\": \"Both code samples contain identical Python code that handles type annotations for callable objects. The code checks if an object is callable, then sets up annotations in the environment's temporary data. It retrieves the function's signature using inspect.signature() with type aliases from the configuration. For each parameter in the signature, if it has an annotation (not empty), it stores the stringified version of that annotation in an OrderedDict.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are exactly identical in terms of code content. The only difference appears to be in how they are presented in the patch format, where sample 1 includes the Git diff metadata 'index 6f90bd7..5f20d3a 100644' at the beginning of the patch. The actual code content, structure, identifiers, and functionality are completely identical.\"}"
+}

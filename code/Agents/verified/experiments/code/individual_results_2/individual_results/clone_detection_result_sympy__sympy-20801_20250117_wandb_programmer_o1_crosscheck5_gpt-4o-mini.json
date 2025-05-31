@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-20801",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "sympy/core/numbers.py",
+    "ground_truth_patch_file": "sympy/core/numbers.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but contain added, modified, or removed statements. Specifically, sample 2 has an additional comment indicated by `# the mpf tuples`, and the indentation and organization of the `if not self:` condition is different in sample 2, altering their syntax.\"}"
+}

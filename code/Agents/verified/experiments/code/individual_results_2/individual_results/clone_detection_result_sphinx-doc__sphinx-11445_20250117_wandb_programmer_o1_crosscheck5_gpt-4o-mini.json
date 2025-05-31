@@ -1,0 +1,7 @@
+{
+    "instance_id": "sphinx-doc__sphinx-11445",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "sphinx/util/rst.py",
+    "ground_truth_patch_file": "sphinx/util/rst.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have added, modified, or removed statements. Both samples contain a similar structure where they iterate over 'content', but sample 1 is handling 'docinfo_re' while sample 2 uses 'FIELD_NAME_RE', indicating a modification in the matching logic. Moreover, the handling of the results and insertion methods differ between the two samples. Thus, the core logic remains recognizable but has differences that put them in the type-3 category.\"}"
+}

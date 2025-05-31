@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16429",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/utils/timesince.py": "index 701c49bab9..f582d0e4f2 100644\n             d.hour,\n             d.minute,\n             d.second,\ntzinfo=d.tzinfo,\n         )\n     else:\n         pivot = d\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..71be851405\nfrom django.conf import settings\nimport django\nfrom django.utils import timezone\nfrom django.utils.timesince import timesince\nimport datetime\n\n# Configure Django settings\nsettings.configure(\nUSE_TZ=True,\nINSTALLED_APPS=[\n'django.contrib.contenttypes',\n'django.contrib.auth',\n'django.contrib.messages',\n],\nLANGUAGE_CODE='en-us',\n)\n\n# Initialize Django\ndjango.setup()\n\n# Create a timezone-aware datetime for now\nnow = timezone.now()\n# Create a datetime 31 days in the past\nd = now - datetime.timedelta(days=31)\n\n# This should now work without raising TypeError\nresult = timesince(d)\nprint(f\"Success! Result: {result}\")\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/timesince.py": "             d.hour,\n             d.minute,\n             d.second,\ntzinfo=d.tzinfo,\n         )\n     else:\n         pivot = d\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in content, differing only in whitespace and layout. The lines of code presented in both patches are exactly the same without any changes to identifiers, literal values, or other syntactic elements.\"}"
+}

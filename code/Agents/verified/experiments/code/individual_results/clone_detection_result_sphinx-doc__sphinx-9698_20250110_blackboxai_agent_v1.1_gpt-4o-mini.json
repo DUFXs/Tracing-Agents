@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-9698",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/domains/python.py": "index cd02eaad5..1a3bd60c7 100644\n         if 'classmethod' in self.options:\n             return _('%s() (%s class method)') % (methname, clsname)\n         elif 'property' in self.options:\nreturn _('%s (%s property)') % (methname, clsname)\n         elif 'staticmethod' in self.options:\n             return _('%s() (%s static method)') % (methname, clsname)\n         else:\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/domains/python.py": "         if 'classmethod' in self.options:\n             return _('%s() (%s class method)') % (methname, clsname)\n         elif 'property' in self.options:\nreturn _('%s (%s property)') % (methname, clsname)\n         elif 'staticmethod' in self.options:\n             return _('%s() (%s static method)') % (methname, clsname)\n         else:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for the presence of additional information in the first code sample regarding the file path and the git index. The actual code inside the 'sphinx/domains/python.py' patch is exactly the same in both samples, with no differences in whitespace, layout, or comments.\"}"
+}

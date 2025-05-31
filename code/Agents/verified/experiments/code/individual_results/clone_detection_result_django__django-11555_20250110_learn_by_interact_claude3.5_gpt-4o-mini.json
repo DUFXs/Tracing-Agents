@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-11555",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/models/sql/query.py": "index e15e64cde4..3ee7e3225a 100644\n from django.db.models.aggregates import Count\n from django.db.models.constants import LOOKUP_SEP\n from django.db.models.expressions import (\nBaseExpression, Col, F, OuterRef, Ref, SimpleCol, OrderBy,\n )\n\n from django.db.models.fields import Field\n from django.db.models.fields.related_lookups import MultiColSource\n from django.db.models.lookups import Lookup\n             field.empty_strings_allowed\n         ) or field.null\n \n def get_order_dir(field, default='ASC'):\n     \"\"\"\n     Return the field name and direction for an order specification. For\n     prefix) should sort. The '-' prefix always sorts the opposite way.\n     \"\"\"\n     dirn = ORDER_DIR[default]\nif isinstance(field, OrderBy):\nreturn field.expression.name, 'DESC' if field.descending else 'ASC'\nelif isinstance(field, str) and field[0] == '-':\n         return field[1:], dirn[1]\n     return field, dirn[0]\n \n \n def add_to_dict(data, key, value):\n\n\n     \"\"\"\n     Add \"value\" to the set of values for \"key\", whether or not \"key\" already\n     exists.\n         query.promote_joins(to_promote)\n         query.demote_joins(to_demote)\n         return to_demote\n\n\n\n\n\n\n\n\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/sql/compiler.py": " \n             results = []\n             for item in opts.ordering:\nif isinstance(item, OrderBy):\nresults.append((item, False))\ncontinue\n                 results.extend(self.find_ordering_name(item, opts, alias,\n                                                        order, already_seen))\n             return results\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are distinct in functionality and purpose. The first sample focuses on defining functions related to database field ordering and dictionaries, while the second sample is concerned with processing ordering results in a different context. They have different structures, functionalities, and are placed within different files, indicating they are not merely variations or restructuring of the same logic.\"}"
+}

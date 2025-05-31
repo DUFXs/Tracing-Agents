@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-20801",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "sympy/core/numbers.py",
+    "ground_truth_patch_file": "sympy/core/numbers.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities, but they contain added or modified statements. The presence of additional handling of 'other.is_NumberSymbol' and the return statements, along with the differences in whitespace and layout, classifies them as syntactically similar but with more content in the second sample.\"}"
+}

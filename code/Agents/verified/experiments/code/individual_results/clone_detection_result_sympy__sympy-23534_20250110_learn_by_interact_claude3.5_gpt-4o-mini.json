@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-23534",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 0000000000..98c7fe29c9\nimport sympy as smp\n\n# Test with extra layer of parentheses\nprint(\"Test 1: Extra parentheses\")\nq, u = smp.symbols(('q:2', 'u:2'), cls=smp.Function)\nprint(\"Type of q[0]:\", type(q[0]))\nprint(\"Expected: <class 'sympy.core.function.UndefinedFunction'>\")\nprint()\n\n# Test with comma-separated string\nprint(\"Test 2: Comma-separated\")\nf, g = smp.symbols('f,g', cls=smp.Function)\nprint(\"Type of f:\", type(f))\nprint(\"Expected: <class 'sympy.core.function.UndefinedFunction'>\")\nprint()\n\n# Test with ranges in parentheses\nprint(\"Test 3: Ranges in parentheses\")\na = smp.symbols('x(:2)', cls=smp.Function)\nprint(\"Type of a[0]:\", type(a[0]))\nprint(\"Expected: <class 'sympy.core.function.UndefinedFunction'>\")\n\n# For comparison, test without extra parentheses\nq2, u2 = smp.symbols('q:2 u:2', cls=smp.Function)\nprint(\"\\nWithout extra parentheses - Type of q2[0]:\", type(q2[0]))\n\n",
+        "sympy/core/symbol.py": "index f4a555c13f..b6835a34aa 100644\n         return tuple(result)\n     else:\n         for name in names:\nresult.append(symbols(name, cls=cls, **args))\n\n \n         return type(names)(result)\n \n             ki = mapping[k][i]\n             reps[ki] = Symbol(name, **ki.assumptions0)\n     return new_iter.xreplace(reps)\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/symbol.py": "         return tuple(result)\n     else:\n         for name in names:\nresult.append(symbols(name, cls=cls, **args))\n \n         return type(names)(result)\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they do not share any syntactical or functional similarity. The first sample includes significant code that defines tests using the sympy library, while the second sample only contains a fragment from the symbol.py file without context or functional equivalence. There is no resemblance that fits into any of the clone categories.\"}"
+}

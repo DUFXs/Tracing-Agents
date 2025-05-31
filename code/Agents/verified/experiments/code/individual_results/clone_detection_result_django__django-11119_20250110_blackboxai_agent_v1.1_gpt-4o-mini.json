@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11119",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/template/engine.py": "index dfaa67ba12..ff9ce58d59 100644\n         if isinstance(context, Context):\n             return t.render(context)\n         else:\nreturn t.render(Context(context, autoescape=self.autoescape))\n \n     def select_template(self, template_name_list):\n         \"\"\"\n"
+    },
+    "ground_truth_patch": {
+        "django/template/engine.py": "         if isinstance(context, Context):\n             return t.render(context)\n         else:\nreturn t.render(Context(context, autoescape=self.autoescape))\n \n     def select_template(self, template_name_list):\n         \"\"\"\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for minor differences in whitespace and layout. The actual code logic and structure remain the same.\"}"
+}

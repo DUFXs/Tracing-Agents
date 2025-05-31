@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-20590",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "sympy/core/_print_helpers.py",
+    "ground_truth_patch_file": "sympy/core/_print_helpers.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they have significant differences in their contents. Code sample 1 contains a complete class definition, including several method implementations and detailed documentation, while code sample 2 lacks the core functionalities and has comments instead of code, indicating different purposes and structures.\"}"
+}

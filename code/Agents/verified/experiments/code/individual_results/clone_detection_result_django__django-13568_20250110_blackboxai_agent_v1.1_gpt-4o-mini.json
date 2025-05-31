@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13568",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/auth/checks.py": "index 65fc266f7e..bde6519c77 100644\n from django.apps import apps\n from django.conf import settings\n from django.core import checks\nfrom django.db import models\n \n from .management import _get_builtin_permissions\n \n             )\n         )\n \n# Check that the username field is unique or has a unique constraint\nfield = cls._meta.get_field(cls.USERNAME_FIELD)\nhas_unique_constraint = any(\nisinstance(constraint, models.UniqueConstraint) and\nlen(constraint.fields) == 1 and\nconstraint.fields[0] == cls.USERNAME_FIELD and\nconstraint.condition is None\nfor constraint in cls._meta.constraints\n)\n\nif not field.unique and not has_unique_constraint:\n         if (settings.AUTHENTICATION_BACKENDS ==\n                 ['django.contrib.auth.backends.ModelBackend']):\n             errors.append(\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/checks.py": "         )\n \n     # Check that the username field is unique\nif not cls._meta.get_field(cls.USERNAME_FIELD).unique and not any(\nconstraint.fields == (cls.USERNAME_FIELD,)\nfor constraint in cls._meta.total_unique_constraints\n):\n         if (settings.AUTHENTICATION_BACKENDS ==\n                 ['django.contrib.auth.backends.ModelBackend']):\n             errors.append(\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities but contain added, modified, or removed statements. Specifically, the first sample checks for a unique constraint using a different approach than the second sample, which checks uniqueness differently and refers to different properties (using 'total_unique_constraints' instead of 'constraints'). However, the overall structure and intent of the code, which is to verify the uniqueness of the username field, remain similar.\"}"
+}

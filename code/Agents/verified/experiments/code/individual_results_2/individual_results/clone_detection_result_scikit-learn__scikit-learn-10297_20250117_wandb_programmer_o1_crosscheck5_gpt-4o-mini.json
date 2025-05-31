@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10297",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "sklearn/linear_model/ridge.py",
+    "ground_truth_patch_file": "sklearn/linear_model/ridge.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and logic but differ in terms of comments and whitespace formatting. The alterations made in comments do not affect the functional performance of the code, maintaining the semantic equivalence.\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-13821",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/db/backends/sqlite3/base.py": "index 9fa9b1c..a6a24d2 100644\n \n \n def check_sqlite_version():\nif Database.sqlite_version_info < (3, 9, 0):\nraise ImproperlyConfigured('SQLite 3.9.0 or later is required (found %s).' % Database.sqlite_version)\n \n \n check_sqlite_version()\n"
+    },
+    "ground_truth_patch": {
+        "django/db/backends/sqlite3/base.py": " \n \n def check_sqlite_version():\nif Database.sqlite_version_info < (3, 9, 0):\nraise ImproperlyConfigured(\n'SQLite 3.9.0 or later is required (found %s).' % Database.sqlite_version\n)\n \n \n check_sqlite_version()\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples define a function 'check_sqlite_version()' that checks if the installed SQLite version is at least 3.9.0. If not, it raises an ImproperlyConfigured exception with a message indicating the found version. Both samples then call this function. The only difference between them is the formatting of the raise statement - in sample 1 it's on a single line, while in sample 2 it's split across multiple lines.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are identical in terms of functionality, variable names, and logic. The only difference is in the layout/formatting of the code, specifically how the raise statement is formatted (single line vs. multiple lines). This falls under the definition of type-1 clones, which allows for differences in whitespace, layout, and comments.\"\n}"
+}

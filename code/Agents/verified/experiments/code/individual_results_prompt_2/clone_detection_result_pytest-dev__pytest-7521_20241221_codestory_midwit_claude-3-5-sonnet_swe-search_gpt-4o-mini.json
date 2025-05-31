@@ -1,0 +1,12 @@
+{
+    "instance_id": "pytest-dev__pytest-7521",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..2fdcef614\nimport pytest\n\ndef test_cafd_includes_carriage_return(capfd):\nprint('Greetings from DOS', end='\\r')\nout, err = capfd.readouterr()\nassert out.endswith('\\r')\n\nif __name__ == '__main__':\npytest.main([__file__])\n\\ No newline at end of file\n",
+        "src/_pytest/capture.py": "index 3f9c60fb9..a1f6d985d 100644\n                 encoding=\"utf-8\",\n                 errors=\"replace\",\n                 write_through=True,\nnewline=''  # Preserve original line endings\n             )\n             if targetfd in patchsysdict:\n                 self.syscapture = SysCapture(targetfd, self.tmpfile)\n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/capture.py": "                 TemporaryFile(buffering=0),  # type: ignore[arg-type]\n                 encoding=\"utf-8\",\n                 errors=\"replace\",\nnewline=\"\",\n                 write_through=True,\n             )\n             if targetfd in patchsysdict:\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a test function using pytest that checks if a printed string ends with a carriage return (\\\\r). It captures the output using 'capfd' and asserts the condition. The second part of code sample 1 deals with the configuration for capturing output. In code sample 2, the focus is on specifying parameters for the capture configuration, including using a TemporaryFile with specific settings. The two samples deal with capturing outputs in different contexts but do not exhibit cloning behavior.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes related to output capture in pytest and do not share significant syntactic or functional similarities.\"}"
+}

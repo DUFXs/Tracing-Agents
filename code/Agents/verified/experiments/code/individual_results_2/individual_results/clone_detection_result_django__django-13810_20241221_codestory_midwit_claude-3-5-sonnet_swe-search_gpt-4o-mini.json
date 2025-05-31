@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13810",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/core/handlers/base.py",
+    "ground_truth_patch_file": "django/core/handlers/base.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but contain added, modified, or removed statements. For instance, Sample 2 introduces a condition with 'continue' and has a different comment style, suggesting alterations in control flow and documentation, while maintaining similar structural logic.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-25931",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "reproduce.py",
+    "ground_truth_patch_file": "sklearn/ensemble/_iforest.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and do not share a structure or function. Sample 1 is a standalone script that uses the IsolationForest class for different test cases related to anomaly detection, while Sample 2 is a snippet from the implementation of the IsolationForest algorithm itself, dealing with internal methods and class attributes. There is no syntactical similarity or functional equivalence between them.\"}"
+}

@@ -1,0 +1,13 @@
+{
+    "instance_id": "sympy__sympy-15017",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..d08a1a168f\nimport sympy\n\n# Test rank-0 array length\na = sympy.Array(3)\nprint(\"len(a):\", len(a))\nprint(\"len(list(a)):\", len(list(a)))\n\n# Test numpy behavior for comparison\ntry:\nimport numpy\nb = numpy.asarray(1)\nprint(\"numpy.asarray(1).size:\", b.size)\nexcept ImportError:\nprint(\"numpy not installed for comparison\")\n\\ No newline at end of file\n",
+        "sympy/tensor/array/dense_ndim_array.py": "index 9be94a8631..9790712755 100644\n         self._shape = shape\n         self._array = list(flat_list)\n         self._rank = len(shape)\nself._loop_size = functools.reduce(lambda x,y: x*y, shape) if shape else 1\n         return self\n \n     def __setitem__(self, index, value):\n         self._shape = shape\n         self._array = list(flat_list)\n         self._rank = len(shape)\nself._loop_size = functools.reduce(lambda x,y: x*y, shape) if shape else 1\n         return self\n \n     def __setitem__(self, index, value):\n",
+        "sympy/tensor/array/sparse_ndim_array.py": "index 72b5d51299..0cf329a012 100644\n \n         shape, flat_list = cls._handle_ndarray_creation_inputs(iterable, shape, **kwargs)\n         shape = Tuple(*map(_sympify, shape))\nloop_size = functools.reduce(lambda x,y: x*y, shape) if shape else 1\n \n         # Sparse array:\n         if isinstance(flat_list, (dict, Dict)):\n         self = object.__new__(cls)\n         self._shape = shape\n         self._rank = len(shape)\nself._loop_size = functools.reduce(lambda x,y: x*y, shape) if shape else 1\n \n         # Sparse array:\n         if isinstance(flat_list, (dict, Dict)):\n"
+    },
+    "ground_truth_patch": {
+        "sympy/tensor/array/dense_ndim_array.py": "         self._shape = shape\n         self._array = list(flat_list)\n         self._rank = len(shape)\nself._loop_size = functools.reduce(lambda x,y: x*y, shape, 1)\n         return self\n \n     def __setitem__(self, index, value):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but differ in the presence of an argument in the 'reduce' function. The first sample has 'reduce(lambda x,y: x*y, shape) if shape else 1', while the second has 'reduce(lambda x,y: x*y, shape, 1)'. This slight modification adds a default argument in the second sample, indicating an added statement compared to the first.\"}"
+}

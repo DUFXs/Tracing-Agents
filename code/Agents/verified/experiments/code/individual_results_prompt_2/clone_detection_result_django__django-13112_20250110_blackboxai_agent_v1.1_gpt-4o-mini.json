@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13112",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/fields/related.py": "index c2aea9c730..1c65e81194 100644\n     if isinstance(relation, str):\n         if \".\" not in relation:\n             relation = \"%s.%s\" % (scope_model._meta.app_label, relation)\nelse:\n# Handle case-insensitive app label matching\napp_label, model_name = relation.split('.')\n# Convert to lowercase for comparison but preserve original case\napps_dict = {app.lower(): app for app in scope_model._meta.apps.app_configs.keys()}\nif app_label.lower() in apps_dict:\nrelation = \"%s.%s\" % (apps_dict[app_label.lower()], model_name)\n \n     return relation\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/related.py": "         if self.remote_field.parent_link:\n             kwargs['parent_link'] = self.remote_field.parent_link\n         if isinstance(self.remote_field.model, str):\nif '.' in self.remote_field.model:\napp_label, model_name = self.remote_field.model.split('.')\nkwargs['to'] = '%s.%s' % (app_label, model_name.lower())\nelse:\nkwargs['to'] = self.remote_field.model.lower()\n         else:\n             kwargs['to'] = self.remote_field.model._meta.label_lower\n         # If swappable is True, then see if we're actually pointing to the target\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a method to handle the conversion of a relation string for Django models, ensuring it is formatted correctly with respect to app labels. It performs checks on the input relation, splitting it if it contains a dot to properly structure the output in the format 'app_label.model_name'. In contrast, code sample 2 seems to work with a remote field's properties, specifically checking if its parent link exists and how to set the 'to' key in a kwargs dictionary, either by extracting app labels and model names or using the model's label in lowercase. Both samples are part of model field management in Django, focusing on different aspects of handling model relationships.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they deal with different functionalities related to Django model fields and handle different aspects of input processing.\"}"
+}

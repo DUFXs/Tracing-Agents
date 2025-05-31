@@ -1,0 +1,11 @@
+{
+    "instance_id": "sphinx-doc__sphinx-7454",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sphinx/domains/python.py": "index 893bb0a22..b5fdce8f4 100644\n def _parse_annotation(annotation: str) -> List[Node]:\n     \"\"\"Parse type annotation.\"\"\"\n     def make_xref(text: str) -> addnodes.pending_xref:\n# Special case: treat None as a built-in constant (obj) instead of a class\nreftype = 'obj' if text == 'None' else 'class'\n         return pending_xref('', nodes.Text(text),\nrefdomain='py', reftype=reftype, reftarget=text)\n \n     def unparse(node: ast.AST) -> List[Node]:\n         if isinstance(node, ast.Attribute):\n         return [make_xref(annotation)]\n \n \n\n def _parse_arglist(arglist: str) -> addnodes.desc_parameterlist:\n     \"\"\"Parse a list of arguments using AST parser\"\"\"\n     params = addnodes.desc_parameterlist(arglist)\n         'parallel_read_safe': True,\n         'parallel_write_safe': True,\n     }\n\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/domains/python.py": " def _parse_annotation(annotation: str) -> List[Node]:\n     \"\"\"Parse type annotation.\"\"\"\n     def make_xref(text: str) -> addnodes.pending_xref:\nif text == 'None':\nreftype = 'obj'\nelse:\nreftype = 'class'\n\n         return pending_xref('', nodes.Text(text),\nrefdomain='py', reftype=reftype, reftarget=text)\n \n     def unparse(node: ast.AST) -> List[Node]:\n         if isinstance(node, ast.Attribute):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar, but there are differences in how the statements are structured and organized. In Code sample 1, the logic for setting 'reftype' includes a comment about treating 'None' as a built-in constant and uses a ternary expression. In Code sample 2, this logic is split into an if-else statement without the comment. Additionally, Code sample 1 contains more code not present in Code sample 2, indicating that part of the function is modified or removed.\"}"
+}

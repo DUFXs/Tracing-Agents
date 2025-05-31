@@ -1,0 +1,12 @@
+{
+    "instance_id": "pallets__flask-5014",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 00000000..53af43f7\nfrom flask import Flask, Blueprint\n\napp = Flask(__name__)\n\n# Try to create a Blueprint with an empty name\ntry:\nbp = Blueprint(\"\", __name__)\nexcept ValueError as e:\nprint(\"Empty name test passed:\", e)\n\n# Try to create a Blueprint with whitespace name\ntry:\nbp = Blueprint(\"   \", __name__)\nexcept ValueError as e:\nprint(\"Whitespace name test passed:\", e)\n\nif __name__ == \"__main__\":\nprint(\"All tests passed!\")\n\\ No newline at end of file\n",
+        "src/flask/blueprints.py": "index eb50585d..24313ddd 100644\n \n         if \".\" in name:\n             raise ValueError(\"'name' may not contain a dot '.' character.\")\nif not name or not name.strip():\nraise ValueError(\"'name' may not be empty or contain only whitespace.\")\n \n         self.name = name\n         self.url_prefix = url_prefix\n"
+    },
+    "ground_truth_patch": {
+        "src/flask/blueprints.py": "             root_path=root_path,\n         )\n \nif not name:\nraise ValueError(\"'name' may not be empty.\")\n\n         if \".\" in name:\n             raise ValueError(\"'name' may not contain a dot '.' character.\")\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to different contexts and serve different functionalities. The first sample is a complete script for testing the creation of a Flask Blueprint with various name inputs, while the second sample contains only snippets of code related to error checking within the Blueprint class. There is no syntactic similarity or shared structure between the two samples. Therefore, they cannot be considered clones.\"}"
+}

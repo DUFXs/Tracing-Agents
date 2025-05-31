@@ -1,0 +1,7 @@
+{
+    "instance_id": "matplotlib__matplotlib-24970",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "lib/matplotlib/colors.py",
+    "ground_truth_patch_file": "lib/matplotlib/colors.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactic similarities, but they contain added, modified, or removed statements. Both samples manipulate the array 'xa' by converting indices and handling out-of-bound values, but they differ significantly in additional operations, such as byte swapping and clipping in Sample 2, which are not present in Sample 1.\"}"
+}

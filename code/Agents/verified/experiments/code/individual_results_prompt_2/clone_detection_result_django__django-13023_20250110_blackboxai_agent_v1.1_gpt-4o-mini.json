@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13023",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/fields/__init__.py": "index 0fd69059ee..f2a97b28f0 100644\n         if isinstance(value, float):\n             return self.context.create_decimal_from_float(value)\n         try:\nif isinstance(value, (list, tuple)):\nraise TypeError(\"Lists and tuples cannot be converted to Decimal\")\n             return decimal.Decimal(value)\nexcept (decimal.InvalidOperation, TypeError, ValueError):\n             raise exceptions.ValidationError(\n                 self.error_messages['invalid'],\n                 code='invalid',\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/__init__.py": "             return self.context.create_decimal_from_float(value)\n         try:\n             return decimal.Decimal(value)\nexcept (decimal.InvalidOperation, TypeError, ValueError):\n             raise exceptions.ValidationError(\n                 self.error_messages['invalid'],\n                 code='invalid',\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 is part of a validation process for decimal conversion. It checks if the value is a float, and if true, it creates a decimal from that float value. It then checks if the value is a list or tuple and raises a TypeError if so. If the value is neither, it attempts to convert it to a decimal and catches exceptions to raise a validation error with a specific message. The code in code sample 2 does essentially the same thing, where it directly returns a decimal from a float or raises a validation error without checking for lists or tuples, indicating it is an incomplete version of the logic in code sample 1.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have similar logic structure but differ by additional checks and exception handling present in code sample 1 that are not in code sample 2.\"}"
+}

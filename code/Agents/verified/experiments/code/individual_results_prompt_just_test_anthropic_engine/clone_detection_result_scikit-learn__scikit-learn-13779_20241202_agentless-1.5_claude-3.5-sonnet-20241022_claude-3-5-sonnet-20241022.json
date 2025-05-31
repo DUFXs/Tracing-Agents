@@ -1,0 +1,11 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-13779",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sklearn/ensemble/voting.py": "index 858d868..b0942af 100644\n \n         if sample_weight is not None:\n             for name, step in self.estimators:\nif step is not None and not has_fit_parameter(step, 'sample_weight'):\n                     raise ValueError('Underlying estimator \\'%s\\' does not'\n                                      ' support sample weights.' % name)\n \n"
+    },
+    "ground_truth_patch": {
+        "sklearn/ensemble/voting.py": " \n         if sample_weight is not None:\n             for name, step in self.estimators:\nif step is None:\ncontinue\n                 if not has_fit_parameter(step, 'sample_weight'):\n                     raise ValueError('Underlying estimator \\'%s\\' does not'\n                                      ' support sample weights.' % name)\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 checks if sample_weight is not None, then iterates through estimators checking if each step is not None and if the step supports sample weights. If a step doesn't support sample weights, it raises a ValueError. The code in code sample 2 does essentially the same thing but handles the None check differently - it uses a continue statement to skip None steps instead of combining the checks in one condition.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they perform the same functionality with slightly modified statements. The main difference is in how they handle None steps: Sample 1 uses 'if step is not None and not has_fit_parameter(step, 'sample_weight')' while Sample 2 splits this into two separate conditions with a continue statement ('if step is None: continue' followed by 'if not has_fit_parameter(step, 'sample_weight')'). The core logic and purpose remain the same, but the structure has been modified slightly, which is characteristic of a type-3 clone.\"\n}"
+}

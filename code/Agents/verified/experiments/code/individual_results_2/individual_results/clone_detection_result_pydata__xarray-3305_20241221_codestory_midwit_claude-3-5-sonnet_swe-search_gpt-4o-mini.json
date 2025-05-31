@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-3305",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "xarray/core/dataset.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and have different structures. The first code sample contains thorough tests for the `quantile` method of a `DataArray` while demonstrating the variations in the `keep_attrs` parameter, whereas the second code sample shows a snippet from a dataset manipulation context in the xarray library without any test cases or similar functional behavior to the first sample. They do not exhibit any syntactic or functional similarity to qualify as clones.\"}"
+}

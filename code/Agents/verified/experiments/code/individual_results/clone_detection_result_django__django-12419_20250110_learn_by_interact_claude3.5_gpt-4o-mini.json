@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12419",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/conf/global_settings.py": "index 09c9b95d26..98400ec826 100644\n SECURE_HSTS_PRELOAD = False\n SECURE_HSTS_SECONDS = 0\n SECURE_REDIRECT_EXEMPT = []\nSECURE_REFERRER_POLICY = \"same-origin\"\n\n SECURE_SSL_HOST = None\n SECURE_SSL_REDIRECT = False\n\n",
+        "test_referrer_policy.py": "new file mode 100644\nindex 0000000000..70a74d4e6e\nimport sys, os\n\n# Add the Django path\nsys.path.insert(0, os.path.abspath('/workspace/django__django__3.1'))\n\n# Import the settings module directly\nfrom django.conf import global_settings\n\ndef main():\nprint(f\"SECURE_REFERRER_POLICY = {global_settings.SECURE_REFERRER_POLICY}\")\nassert global_settings.SECURE_REFERRER_POLICY == \"same-origin\", \"SECURE_REFERRER_POLICY should be 'same-origin'\"\nprint(\"Test passed!\")\n\nif __name__ == '__main__':\nmain()\n\n"
+    },
+    "ground_truth_patch": {
+        "django/conf/global_settings.py": " SECURE_HSTS_PRELOAD = False\n SECURE_HSTS_SECONDS = 0\n SECURE_REDIRECT_EXEMPT = []\nSECURE_REFERRER_POLICY = 'same-origin'\n SECURE_SSL_HOST = None\n SECURE_SSL_REDIRECT = False\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they represent different code functionalities and contexts. The first sample contains a test framework setup and asserts that a specific setting matches an expected value, while the second sample consists of settings configuration alone without any functionality or operational context. Hence, they differ significantly in both syntax and function, making them not clones.\"}"
+}

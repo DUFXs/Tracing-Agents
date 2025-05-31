@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-13647",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/matrices/common.py": "index fb4452b..5bfb0dd 100644\n                 return self[i, j]\n             elif pos <= j < pos + other.cols:\n                 return other[i, j - pos]\nreturn self[i, j - other.cols]\n \n         return self._new(self.rows, self.cols + other.cols,\n                          lambda i, j: entry(i, j))\n"
+    },
+    "ground_truth_patch": {
+        "sympy/matrices/common.py": "                 return self[i, j]\n             elif pos <= j < pos + other.cols:\n                 return other[i, j - pos]\nreturn self[i, j - other.cols]\n \n         return self._new(self.rows, self.cols + other.cols,\n                          lambda i, j: entry(i, j))\n"
+    },
+    "response": "{\n    \"explanation\": \"Both code samples contain identical code that appears to be part of a matrix operation. The code handles matrix indexing and concatenation, where it returns elements from either 'self' or 'other' matrices based on position conditions, and finally creates a new matrix with combined columns using the entry function.\",\n    \"is_clone\": true,\n    \"classification\": \"type-1\",\n    \"reasoning\": \"These code samples are type-1 clones because they are exactly identical, including whitespace and layout. The patches show the same lines of code with no differences whatsoever. Both patches are modifying the same file (sympy/matrices/common.py) with the exact same content.\"\n}"
+}

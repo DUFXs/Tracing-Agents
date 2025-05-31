@@ -1,0 +1,7 @@
+{
+    "instance_id": "pytest-dev__pytest-7490",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "src/_pytest/skipping.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they have significantly different structures and purposes. The first code sample is a simple test function using pytest that expects a failure, while the second code sample is part of a pytest hook implementation to manage test setup and handling annotations for skipped and expected failure tests. The logic, function definitions, and overall architectural intent differ greatly, making them syntactically and functionally dissimilar.\"}"
+}

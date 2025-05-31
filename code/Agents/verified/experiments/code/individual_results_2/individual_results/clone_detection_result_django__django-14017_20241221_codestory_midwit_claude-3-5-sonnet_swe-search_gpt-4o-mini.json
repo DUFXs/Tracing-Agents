@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-14017",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "django/db/models/query_utils.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically dissimilar and deal with different functionalities. Code sample 1 is focused on testing operations involving Django's Q and Exists constructs, while code sample 2 is a snippet that appears to be part of an implementation detail for combining Q objects. They do not share a similar structure or purpose within the codebase.\"}"
+}

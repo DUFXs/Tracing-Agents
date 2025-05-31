@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-15022",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "django/contrib/admin/options.py",
+    "ground_truth_patch_file": "django/contrib/admin/options.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but include added, modified, or removed statements. Although the overall logic seems to be similar, the use of different variable names ('search_bits' vs. 'term_queries') and different expressions in some parts indicate a modification in the structure.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-19637",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..e1202b6855\nfrom sympy.core.sympify import kernS\n\ntext = \"(2*x)/(x-1)\"\nexpr = kernS(text)\nprint(expr)\n",
+        "sympy/core/sympify.py": "index a3f1ce2851..924268707f 100644\n     from random import choice\n     from sympy.core.symbol import Symbol\n     hit = False\nkern = None\n     quoted = '\"' in s or \"'\" in s\n     if '(' in s and not quoted:\n         if s.count('(') != s.count(\")\"):\n             while kern in s:\n                 kern += choice(string.ascii_letters + string.digits)\n             s = s.replace(' ', kern)\nhit = True\n\n \n     for i in range(2):\n         try:\n \n # Avoid circular import\n from .basic import Basic\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/sympify.py": "             while kern in s:\n                 kern += choice(string.ascii_letters + string.digits)\n             s = s.replace(' ', kern)\nhit = kern in s\nelse:\nhit = False\n \n     for i in range(2):\n         try:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactic similarity with modifications in statements. Both samples involve similar logic regarding the variable 'kern', but they differ in their exact implementation details and lines of code. For example, the second sample includes an 'else' block that is not present in the first sample, and there are slight differences in variable evaluations for 'hit'.\"}"
+}

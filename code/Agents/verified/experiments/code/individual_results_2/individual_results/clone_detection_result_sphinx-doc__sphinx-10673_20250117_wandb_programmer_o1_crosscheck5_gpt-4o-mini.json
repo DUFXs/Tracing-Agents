@@ -1,0 +1,7 @@
+{
+    "instance_id": "sphinx-doc__sphinx-10673",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "_test_special_docs/_build/html/.buildinfo",
+    "ground_truth_patch_file": "sphinx/directives/other.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to different contexts: the first sample is a build information file used by Sphinx, while the second sample is part of Python code for parsing document content. They have different syntactic structures and serve different purposes within their respective files.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13158",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/query.py": "index 07d6ffd4ca..f87bf46187 100644\n     def none(self):\n         \"\"\"Return an empty QuerySet.\"\"\"\n         clone = self._chain()\nif getattr(clone.query, 'combined_queries', None):\n# For combined queries, we need to create a new empty query\n# without any combinators\nnew_query = clone.query.__class__(clone.query.model)\nnew_query.set_empty()\nclone.query = new_query\nelse:\nclone.query.set_empty()\n         return clone\n \n     ##################################################################\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/sql/query.py": "             obj.annotation_select_mask = None\n         else:\n             obj.annotation_select_mask = self.annotation_select_mask.copy()\nobj.combined_queries = tuple(query.clone() for query in self.combined_queries)\n         # _annotation_select_cache cannot be copied, as doing so breaks the\n         # (necessary) state in which both annotations and\n         # _annotation_select_cache point to the same underlying objects.\n \n     def set_empty(self):\n         self.where.add(NothingNode(), AND)\nfor query in self.combined_queries:\nquery.set_empty()\n \n     def is_empty(self):\n         return any(isinstance(c, NothingNode) for c in self.where.children)\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically dissimilar and do not exhibit similar logic or functionality. Code sample 1 deals with returning an empty QuerySet and combining queries, while code sample 2 relates to managing annotations and query states, which are distinct functionalities in the codebase.\"}"
+}

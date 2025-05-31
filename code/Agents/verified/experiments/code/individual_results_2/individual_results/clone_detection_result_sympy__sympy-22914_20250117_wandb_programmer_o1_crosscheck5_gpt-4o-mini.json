@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-22914",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_min_max_support.py",
+    "ground_truth_patch_file": "sympy/printing/pycode.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and are syntactically dissimilar. Code sample 1 is a complete test script that checks the printing of the Min and Max functions, while code sample 2 contains a fragment defining a dictionary of known functions. They do not share structure, logic, or functionality.\"}"
+}

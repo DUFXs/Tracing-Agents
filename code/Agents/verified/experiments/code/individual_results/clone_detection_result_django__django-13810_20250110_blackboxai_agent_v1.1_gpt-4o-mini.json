@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13810",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/core/handlers/base.py": "index 8e8c3da06a..6cab14e270 100644\n             else:\n                 middleware_is_async = middleware_can_async\n             try:\n# Store original handler state\noriginal_handler = handler\noriginal_is_async = handler_is_async\n\n                 # Adapt handler, if needed.\n                 handler = self.adapt_method_mode(\n                     middleware_is_async, handler, handler_is_async,\n                 )\n                 mw_instance = middleware(handler)\n             except MiddlewareNotUsed as exc:\n# Restore original handler state if middleware is not used\nhandler = original_handler\nhandler_is_async = original_is_async\n                 if settings.DEBUG:\n                     if str(exc):\n                         logger.debug('MiddlewareNotUsed(%r): %s', middleware_path, exc)\n"
+    },
+    "ground_truth_patch": {
+        "django/core/handlers/base.py": "                 middleware_is_async = middleware_can_async\n             try:\n                 # Adapt handler, if needed.\nadapted_handler = self.adapt_method_mode(\n                     middleware_is_async, handler, handler_is_async,\n                     debug=settings.DEBUG, name='middleware %s' % middleware_path,\n                 )\nmw_instance = middleware(adapted_handler)\n             except MiddlewareNotUsed as exc:\n                 if settings.DEBUG:\n                     if str(exc):\n                     else:\n                         logger.debug('MiddlewareNotUsed: %r', middleware_path)\n                 continue\nelse:\nhandler = adapted_handler\n \n             if mw_instance is None:\n                 raise ImproperlyConfigured(\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities with added, modified, or removed statements. For example, there are modifications in variable names and function calls like 'handler' versus 'adapted_handler', as well as differences in the structure of exception handling and logging. This indicates that while the samples share a common functionality, they do not match exactly due to changes in statements and logic.\"}"
+}

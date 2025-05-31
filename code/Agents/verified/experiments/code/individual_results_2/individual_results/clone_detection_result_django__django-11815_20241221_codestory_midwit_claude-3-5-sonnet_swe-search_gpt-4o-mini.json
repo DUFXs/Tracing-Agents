@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-11815",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/migrations/serializer.py",
+    "ground_truth_patch_file": "django/db/migrations/serializer.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and functionality, but they differ in literal values; specifically, the quotes around the enum value's name. In the first sample, single quotes are used, while in the second sample, double quotes are employed. Additionally, there are differences in whitespace and layout, which supports this type classification.\"}"
+}

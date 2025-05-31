@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-24066",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "sympy/physics/units/unitsystem.py",
+    "ground_truth_patch_file": "sympy/physics/units/unitsystem.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they demonstrate syntactic similarity with added statements in Code Sample 2 and changes to the logic, such as the inclusion of a new list comprehension for dimensions. The basic structure is similar, but additional functionality and statements have been introduced, indicating they are not identical.\"}"
+}

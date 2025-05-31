@@ -1,0 +1,7 @@
+{
+    "instance_id": "astropy__astropy-14096",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": ".gitignore",
+    "ground_truth_patch_file": "astropy/coordinates/sky_coordinate.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to entirely different contexts and functionalities. The first sample is a patch related to a `.gitignore` file listing ignored files, while the second sample refers to Python code for a class method related to attributes in a coordinate transformation context. There are no syntactic or functional similarities to establish any form of cloning.\"}"
+}

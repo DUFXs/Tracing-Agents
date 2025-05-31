@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-13135",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 7a8992055..c31911b0b 100644\n \n # Used by mypy\n .mypy_cache/\n.aider/\n",
+        "sklearn/preprocessing/_discretization.py": "index dd969c12b..8cb4c523b 100644\n                 # 1D k-means procedure\n                 km = KMeans(n_clusters=n_bins[jj], init=init, n_init=1)\n                 centers = km.fit(column[:, None]).cluster_centers_[:, 0]\ncenters = np.sort(centers)  # Sort centers to ensure monotonic bin edges\n                 bin_edges[jj] = (centers[1:] + centers[:-1]) * 0.5\n                 bin_edges[jj] = np.r_[col_min, bin_edges[jj], col_max]\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/preprocessing/_discretization.py": "                 # 1D k-means procedure\n                 km = KMeans(n_clusters=n_bins[jj], init=init, n_init=1)\n                 centers = km.fit(column[:, None]).cluster_centers_[:, 0]\n# Must sort, centers may be unsorted even with sorted init\ncenters.sort()\n                 bin_edges[jj] = (centers[1:] + centers[:-1]) * 0.5\n                 bin_edges[jj] = np.r_[col_min, bin_edges[jj], col_max]\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities but have modifications. The first sample includes a comment about sorting the centers to ensure monotonic bin edges, while the second mentions that 'centers may be unsorted even with sorted init' and uses the 'centers.sort()' method instead of assigning sorted centers to 'centers'. This indicates an addition and modification in one of the statements, thus classifying them as type-3 clones.\"}"
+}

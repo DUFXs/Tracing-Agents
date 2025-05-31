@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-3095",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "xarray/core/variable.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are not similar enough in structure or functionality. Code sample 1 is an entire script demonstrating the creation and manipulation of xarray datasets, while code sample 2 is a snippet from a different file dealing with data copying within the context of a class. The logic, structure, and purpose of the two samples differ significantly.\"}"
+}

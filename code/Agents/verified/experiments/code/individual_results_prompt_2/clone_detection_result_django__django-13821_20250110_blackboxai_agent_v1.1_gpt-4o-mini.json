@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13821",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/backends/sqlite3/base.py": "index ab4ea70492..dcff5534e0 100644\n \n \n def check_sqlite_version():\nif Database.sqlite_version_info < (3, 9, 0):\nraise ImproperlyConfigured('SQLite 3.9.0 or later is required (found %s).' % Database.sqlite_version)\n \n \n check_sqlite_version()\n"
+    },
+    "ground_truth_patch": {
+        "django/db/backends/sqlite3/base.py": " \n \n def check_sqlite_version():\nif Database.sqlite_version_info < (3, 9, 0):\nraise ImproperlyConfigured(\n'SQLite 3.9.0 or later is required (found %s).' % Database.sqlite_version\n)\n \n \n check_sqlite_version()\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a function named `check_sqlite_version()` that checks if the SQLite version is less than 3.9.0 and raises an `ImproperlyConfigured` exception if it is, including the found version in the error message. It then calls this function to perform the check. The code in code sample 2 performs the same operations, but the syntax for raising the `ImproperlyConfigured` exception is formatted differently, with the error message split across multiple lines. However, the logic and functionality remain identical.\", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are functionally identical except for differences in whitespace, layout, and literal formatting.\"}"
+}

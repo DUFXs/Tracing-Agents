@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-14539",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index aad550ae53..826d8acebb 100644\n \n # Files generated if figure tests are run\n results\n.aider/\n",
+        "astropy/io/fits/diff.py": "index 100cdf1b8c..cdad5ef591 100644\n                 arrb.dtype, np.floating\n             ):\n                 diffs = where_not_allclose(arra, arrb, rtol=self.rtol, atol=self.atol)\nelif \"P\" in col.format or \"Q\" in col.format:\n# Handle both P and Q variable-length array formats with row-by-row comparison\n                 diffs = (\n                     [\n                         idx\n"
+    },
+    "ground_truth_patch": {
+        "astropy/io/fits/diff.py": "                 arrb.dtype, np.floating\n             ):\n                 diffs = where_not_allclose(arra, arrb, rtol=self.rtol, atol=self.atol)\nelif \"P\" in col.format or \"Q\" in col.format:\n                 diffs = (\n                     [\n                         idx\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in terms of syntax and logic, with the only differences being the surrounding context in the patch that includes comments and whitespace. The actual code block inside 'astropy/io/fits/diff.py' is exactly the same in both samples.\"}"
+}

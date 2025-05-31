@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15569",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/db/models/query_utils.py": "index 0caa165e15..6917820604 100644\n         if lookup_name is None:\n             lookup_name = lookup.lookup_name\n         del cls.class_lookups[lookup_name]\ncls._clear_cached_lookups()\n \n \n def select_related_descend(field, restricted, requested, load_fields, reverse=False):\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..226a952206\nfrom django.db.models import Field\nfrom django.db.models.lookups import Lookup\n\nclass CustomLookup(Lookup):\nlookup_name = 'custom'\n\ndef as_sql(self, compiler, connection):\nreturn '', []\n\n# Create a simple field class that uses RegisterLookupMixin\nclass TestField(Field):\ndef __init__(self):\npass\n\ndef get_internal_type(self):\nreturn 'TextField'\n\ndef main():\n# Register the lookup\nTestField.register_lookup(CustomLookup)\n\n# Get lookups - this will cache the result\ninitial_lookups = TestField.get_lookups()\nprint(\"Initial lookups:\", 'custom' in initial_lookups)\n\n# Unregister the lookup\nTestField._unregister_lookup(CustomLookup)\n\n# Get lookups again - this should not return the unregistered lookup\n# but due to the cache not being cleared, it still does\ncached_lookups = TestField.get_lookups()\nprint(\"Cached lookups after unregister:\", 'custom' in cached_lookups)\n\n# The bug is demonstrated if the above prints True, as the cache wasn't cleared\n\nif __name__ == '__main__':\nmain()\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/query_utils.py": "         if lookup_name is None:\n             lookup_name = lookup.lookup_name\n         del cls.class_lookups[lookup_name]\ncls._clear_cached_lookups()\n \n \n def select_related_descend(field, restricted, requested, load_fields, reverse=False):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout.\"}"
+}

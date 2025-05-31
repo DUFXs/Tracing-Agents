@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-13417",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/db/models/query.py": "index 5049ae4..86d43a6 100644\n             return True\n         if self.query.extra_order_by or self.query.order_by:\n             return True\n# GROUP BY queries aren't ordered unless explicitly specified\nif self.query.group_by is not None:\nreturn False\n         elif self.query.default_ordering and self.query.get_meta().ordering:\n             return True\n         else:\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/query.py": "             return True\n         if self.query.extra_order_by or self.query.order_by:\n             return True\nelif (\nself.query.default_ordering and\nself.query.get_meta().ordering and\n# A default ordering doesn't affect GROUP BY queries.\nnot self.query.group_by\n):\n             return True\n         else:\n             return False\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 checks for ordering conditions in a Django query by evaluating several conditions: it first checks for extra_order_by or order_by, then explicitly handles GROUP BY queries by returning False if group_by is not None, and finally checks for default_ordering combined with meta ordering. The code in code sample 2 performs similar ordering checks but handles the GROUP BY condition differently: instead of having a separate condition for group_by, it incorporates the group_by check into the default_ordering condition as a negative condition.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they perform the same fundamental logic (checking query ordering conditions) but with modified statements. The main difference is in how they handle the GROUP BY condition: Sample 1 uses a separate explicit check 'if self.query.group_by is not None: return False', while Sample 2 incorporates this check as 'not self.query.group_by' within the default_ordering condition. The logic is semantically similar but structured differently, with statements modified and reorganized, which is characteristic of a type-3 clone. Both implementations achieve the same goal but with slightly different syntactic structures.\"\n}"
+}

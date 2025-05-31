@@ -1,0 +1,7 @@
+{
+    "instance_id": "sphinx-doc__sphinx-11445",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "sphinx/util/rst.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different functionalities and have different structures. Code sample 1 is focused on creating documentation and building it using Sphinx, while code sample 2 is related to processing reStructuredText (reST) in the context of Sphinx. They do not share similarities in syntax or purpose.\"}"
+}

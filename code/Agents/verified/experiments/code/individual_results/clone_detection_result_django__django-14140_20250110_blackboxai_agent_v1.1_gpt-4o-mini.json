@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14140",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/query_utils.py": "index ae0f886107..28ffa267df 100644\n         path = '%s.%s' % (self.__class__.__module__, self.__class__.__name__)\n         if path.startswith('django.db.models.query_utils'):\n             path = path.replace('django.db.models.query_utils', 'django.db.models')\nargs, kwargs = tuple(self.children), {}\nif self.connector != self.default:\nkwargs = {'_connector': self.connector}\n         if self.negated:\n             kwargs['_negated'] = True\n         return path, args, kwargs\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/query_utils.py": "         path = '%s.%s' % (self.__class__.__module__, self.__class__.__name__)\n         if path.startswith('django.db.models.query_utils'):\n             path = path.replace('django.db.models.query_utils', 'django.db.models')\nargs = tuple(self.children)\nkwargs = {}\nif self.connector != self.default:\nkwargs['_connector'] = self.connector\n         if self.negated:\n             kwargs['_negated'] = True\n         return path, args, kwargs\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical apart from differences in whitespace and layout. The code structure, content, and logic are unchanged, and the only variations are in how the code is indented and organized.\"}"
+}

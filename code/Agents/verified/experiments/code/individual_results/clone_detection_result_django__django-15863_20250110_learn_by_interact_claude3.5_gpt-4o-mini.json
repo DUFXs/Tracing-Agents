@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15863",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/template/defaultfilters.py": "index 7a5b28d159..181b3fa5f2 100644\n             use_l10n = False\n             arg = arg[:-1] or -1\n     try:\nif isinstance(text, Decimal):\nd = text\nelse:\ninput_val = repr(text)\nd = Decimal(input_val)\n     except InvalidOperation:\n         try:\n             d = Decimal(str(float(text)))\n         except (ValueError, InvalidOperation, TypeError):\n             return \"\"\n\n     try:\n         p = int(arg)\n     except ValueError:\n         return pformat(value)\n     except Exception as e:\n         return \"Error in formatting: %s: %s\" % (e.__class__.__name__, e)\n\n",
+        "reproduce_decimal.py": "new file mode 100644\nindex 0000000000..5d5392a0da\nfrom decimal import Decimal\nfrom django import setup\nfrom django.conf import settings\nfrom django.template import Template, Context\n\nTEMPLATES = [\n{\n'BACKEND': 'django.template.backends.django.DjangoTemplates',\n},\n]\nsettings.configure(TEMPLATES=TEMPLATES)\nsetup()\n\n# Test cases\ntests = [\n('42.12345678901234567890', 20),  # Original case\n('123.456789012345678901', 20),    # Different number\n('0.000000000000000001', 20),      # Very small number\n('9999999999.999999999999999', 15),# Large number\n('1.23', 5),                       # Fewer decimal places than specified\n]\n\nfor value, precision in tests:\nt = Template('{{ value|floatformat:' + str(precision) + ' }}')\nc = Context({'value': Decimal(value)})\nprint(f\"\\nInput: {value}\")\nprint(f\"Output with precision {precision}: {t.render(c)}\")\n\n"
+    },
+    "ground_truth_patch": {
+        "django/template/defaultfilters.py": "             use_l10n = False\n             arg = arg[:-1] or -1\n     try:\ninput_val = str(text)\n         d = Decimal(input_val)\n     except InvalidOperation:\n         try:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity, but they contain modifications. For instance, in code sample 1, the variable 'input_val' is assigned using 'repr(text)', while in code sample 2 it is assigned using 'str(text)'. Additionally, the other surrounding context also suggests that they are variations of the same functionality with added or modified statements.\"}"
+}

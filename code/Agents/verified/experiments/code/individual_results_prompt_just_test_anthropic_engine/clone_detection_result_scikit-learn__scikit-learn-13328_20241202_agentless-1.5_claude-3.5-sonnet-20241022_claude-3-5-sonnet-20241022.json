@@ -1,0 +1,11 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-13328",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sklearn/linear_model/huber.py": "index 774a22b..d3606a0 100644\n         self : object\n         \"\"\"\n         X, y = check_X_y(\nX, y, copy=False, accept_sparse=['csr'], y_numeric=True, dtype=np.float64)\n         if sample_weight is not None:\n             sample_weight = np.array(sample_weight)\n             check_consistent_length(y, sample_weight)\n         residual = np.abs(\n             y - safe_sparse_dot(X, self.coef_) - self.intercept_)\n         self.outliers_ = residual > self.scale_ * self.epsilon\nreturn self\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/linear_model/huber.py": "         self : object\n         \"\"\"\n         X, y = check_X_y(\nX, y, copy=False, accept_sparse=['csr'], y_numeric=True,\ndtype=[np.float64, np.float32])\n         if sample_weight is not None:\n             sample_weight = np.array(sample_weight)\n             check_consistent_length(y, sample_weight)\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 performs input validation and data checking using check_X_y, handles sample weights, and then calculates residuals to identify outliers based on a scale and epsilon threshold. The code in code sample 2 contains only the input validation part, performing check_X_y and sample weight handling.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they share the same initial structure and functionality for input validation (check_X_y and sample weight handling), but code sample 1 contains additional statements for residual calculation and outlier detection that are not present in code sample 2. The common parts are syntactically similar, with a minor difference in the dtype parameter ([np.float64, np.float32] vs np.float64), but code sample 1 has added statements at the end. This matches the definition of a type-3 clone where there are modifications or additions to statements while maintaining some structural similarity.\"\n}"
+}

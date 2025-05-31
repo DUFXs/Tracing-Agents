@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13315",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/forms/models.py",
+    "ground_truth_patch_file": "django/forms/models.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-4\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "sphinx-doc__sphinx-8269",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sphinx/builders/linkcheck.py": "index 8266583..ffbc26f 100644\n                     # Read the whole document and see if #anchor exists\n                     response = requests.get(req_url, stream=True, config=self.app.config,\n                                             auth=auth_info, **kwargs)\nresponse.raise_for_status()  # Check for HTTP errors first\n                     found = check_anchor(response, unquote(anchor))\n \n                     if not found:\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/builders/linkcheck.py": "                     # Read the whole document and see if #anchor exists\n                     response = requests.get(req_url, stream=True, config=self.app.config,\n                                             auth=auth_info, **kwargs)\nresponse.raise_for_status()\n                     found = check_anchor(response, unquote(anchor))\n \n                     if not found:\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples perform the same HTTP request operation. They make a GET request using requests.get() with identical parameters (req_url, stream=True, config=self.app.config, auth=auth_info, and **kwargs). Both then check for HTTP errors using response.raise_for_status() (though sample 1 includes a comment about this), and both check for an anchor in the response using check_anchor() with identical parameters. Finally, both have the same conditional check 'if not found:'.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are identical except for a minor difference in comments. Sample 1 includes the comment '# Check for HTTP errors first' on the raise_for_status() line, while sample 2 doesn't have this comment. All actual code, including variable names, function calls, and control flow, is exactly the same. The only differences are in comments, which is a characteristic of type-1 clones.\"\n}"
+}

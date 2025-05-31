@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-14434",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/backends/base/schema.py": "index ad2f5a7da1..83a6a05e54 100644\n         else:\n             sql = self.sql_create_unique\n         if columns:\ncolumns = self._index_columns(model._meta.db_table, columns, col_suffixes=(), opclasses=opclasses)\n\n         else:\n             columns = Expressions(model._meta.db_table, expressions, compiler, self.quote_value)\n         return Statement(\n             'param_types': ','.join(param_types),\n         }\n         self.execute(sql)\n\n"
+    },
+    "ground_truth_patch": {
+        "django/db/backends/base/schema.py": "             return self.quote_name(self._create_index_name(*args, **kwargs))\n \n         compiler = Query(model, alias_cols=False).get_compiler(connection=self.connection)\ntable = model._meta.db_table\n         if name is None:\nname = IndexName(table, columns, '_uniq', create_unique_name)\n         else:\n             name = self.quote_name(name)\n         if condition or include or opclasses or expressions:\n         if columns:\n             columns = self._index_columns(table, columns, col_suffixes=(), opclasses=opclasses)\n         else:\ncolumns = Expressions(table, expressions, compiler, self.quote_value)\n         return Statement(\n             sql,\ntable=Table(table, self.quote_name),\n             name=name,\n             columns=columns,\n             condition=self._index_condition_sql(condition),\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities but contain added or modified statements. They both deal with the creation of indices in a database schema and involve operations on columns and expressions, yet they are not identical, showcasing some functional differences in the operations performed and the structure of the statements.\"}"
+}

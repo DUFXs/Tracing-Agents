@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-13453",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 1efe03bb1f..cdf2c2b141 100644\n \n .tmp\n pip-wheel-metadata\n.aider/\n",
+        "astropy/io/ascii/html.py": "index 266cf229cc..51e78f6277 100644\n \n         cols = list(table.columns.values())\n \n# Apply formats from data object if available\nif hasattr(self.data, 'formats'):\nfor col in cols:\nif col.info.name in self.data.formats:\ncol.info.format = self.data.formats[col.info.name]\n\n         self.data.header.cols = cols\n \n         if isinstance(self.data.fill_values, tuple):\n"
+    },
+    "ground_truth_patch": {
+        "astropy/io/ascii/html.py": "         cols = list(table.columns.values())\n \n         self.data.header.cols = cols\nself.data.cols = cols\n \n         if isinstance(self.data.fill_values, tuple):\n             self.data.fill_values = [self.data.fill_values]\n \n         self.data._set_fill_values(cols)\nself.data._set_col_formats()\n \n         lines = []\n \n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 gets a list of table columns, applies formats from a data object to those columns if available, and then sets the columns to the data header. The code also includes a check for fill_values being a tuple. The code in code sample 2 also gets a list of table columns, sets them to both the data header and data cols, handles fill_values (converting single tuples to lists), and then calls methods to set fill values and column formats. It also initializes an empty lines list.\", \n\"is_clone\": true, \n\"classification\": \"type-3\", \n\"reasoning\": \"These code samples are type-3 clones because they share the same basic structure and some identical lines (getting columns and setting them to header.cols), but sample 2 has some modified and additional statements. The main differences are: 1) Sample 1 has format application logic that's not in sample 2, 2) Sample 2 has additional operations like setting data.cols and calling _set_col_formats(), and 3) Sample 2 adds the lines = [] initialization. The core functionality is similar but with these modifications and additions, making this a type-3 clone.\"\n}"
+}

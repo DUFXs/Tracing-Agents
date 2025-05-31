@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13012",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/expressions.py": "index c1a76584f0..44254170ac 100644\n     def __repr__(self):\n         return \"{}({})\".format(self.__class__.__name__, self.expression)\n \ndef get_group_by_cols(self, alias=None):\nreturn self.expression.get_group_by_cols(alias=alias)\n\n\n \n class When(Expression):\n     template = 'WHEN %(condition)s THEN %(result)s'\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/expressions.py": "     def get_source_expressions(self):\n         return [self.expression]\n \ndef get_group_by_cols(self, alias=None):\nreturn self.expression.get_group_by_cols(alias=alias)\n\n     def as_sql(self, compiler, connection):\n         return self.expression.as_sql(compiler, connection)\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a method called __repr__ for an Expression class, returning a string representation of the class name and an expression value, along with a method get_group_by_cols that retrieves group by columns from the expression. Also, within the same patch, it defines a class When with a template string for a SQL CASE WHEN condition. On the other hand, code sample 2 defines a method get_source_expressions that returns a list containing an expression instance. It also contains a method as_sql which translates the expression into an SQL representation. However, these two samples share the method get_group_by_cols in common but focus on different aspects of the Expression class.\" \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because although they both relate to methods in class definitions regarding expressions, they contain different methods and functionalities\u2014making them syntactically and functionally distinct.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-12973",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "sklearn/linear_model/least_angle.py",
+    "ground_truth_patch_file": "sklearn/linear_model/least_angle.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in identifier names, literal values, whitespace, layout, and comments. The structure and logic of the functions are the same, with only minor differences in the comments describing parameters.\"}"
+}

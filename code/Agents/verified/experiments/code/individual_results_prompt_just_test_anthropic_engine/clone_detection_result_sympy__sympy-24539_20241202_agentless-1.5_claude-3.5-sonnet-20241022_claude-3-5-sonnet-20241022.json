@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-24539",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/polys/rings.py": "index 8995407..abbcddb 100644\n             return new_ring.from_dict(self, self.ring.domain)\n \n     def as_expr(self, *symbols):\nif not symbols:\n             symbols = self.ring.symbols\nelif len(symbols) != self.ring.ngens:\nraise ValueError(\"not enough symbols, expected %s got %s\" % (self.ring.ngens, len(symbols)))\n \n         return expr_from_dict(self.as_expr_dict(), *symbols)\n \n"
+    },
+    "ground_truth_patch": {
+        "sympy/polys/rings.py": "             return new_ring.from_dict(self, self.ring.domain)\n \n     def as_expr(self, *symbols):\nif not symbols:\n             symbols = self.ring.symbols\nelif len(symbols) != self.ring.ngens:\nraise ValueError(\n\"Wrong number of symbols, expected %s got %s\" %\n(self.ring.ngens, len(symbols))\n)\n \n         return expr_from_dict(self.as_expr_dict(), *symbols)\n \n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples contain a method 'as_expr' that takes a variable number of symbols as arguments. The method checks if symbols were provided, and if not, uses the ring's symbols. It then validates that the number of provided symbols matches the expected number (ring.ngens). If the validation fails, it raises a ValueError with a message. Finally, it returns the result of calling expr_from_dict with the expression dictionary and symbols. The only difference between the samples is in the error message text ('not enough symbols' vs 'Wrong number of symbols') and the formatting of the ValueError message (single line vs multi-line).\",\n\"is_clone\": true,\n\"classification\": \"type-2\",\n\"reasoning\": \"These code samples are type-2 clones because they are identical in structure and functionality, with only minor differences in literal string values (the error message text) and layout (single-line vs multi-line error message). The core logic, control flow, and operations remain exactly the same between both versions. The changes are purely cosmetic and don't affect the functionality of the code.\"\n}"
+}

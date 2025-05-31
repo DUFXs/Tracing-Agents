@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-11578",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 55050f0a3..0172156f9 100644\n .cache\n .pytest_cache/\n _configtest.o.d\n.aider/\n",
+        "sklearn/linear_model/logistic.py": "index e4ea696ce..f392076d0 100644\n         check_input=False, max_squared_sum=max_squared_sum,\n         sample_weight=sample_weight)\n \nlog_reg = LogisticRegression(\nfit_intercept=fit_intercept,\nmulti_class=multi_class,\nsolver=solver,\npenalty=penalty,\ndual=dual,\nintercept_scaling=float(intercept_scaling),\nrandom_state=random_state,\nmax_iter=max_iter,\ntol=tol,\nclass_weight=class_weight)\n \n     # The score method of Logistic Regression has a classes_ attribute.\n     if multi_class == 'ovr':\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/linear_model/logistic.py": "         check_input=False, max_squared_sum=max_squared_sum,\n         sample_weight=sample_weight)\n \nlog_reg = LogisticRegression(multi_class=multi_class)\n \n     # The score method of Logistic Regression has a classes_ attribute.\n     if multi_class == 'ovr':\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity with added or removed statements. Specifically, the second code sample has a different argument in the LogisticRegression instantiation where only 'multi_class' is provided, omitting the other parameters present in the first sample. Thus, while they share a similar structure, they are not identical due to the modifications.\"}"
+}

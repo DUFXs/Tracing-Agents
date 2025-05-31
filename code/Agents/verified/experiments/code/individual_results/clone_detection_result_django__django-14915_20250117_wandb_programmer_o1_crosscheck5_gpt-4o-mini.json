@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14915",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "django/forms/models.py": "index 5dcf923c12..fe88d06e08 100644\n         if isinstance(other, ModelChoiceIteratorValue):\n             other = other.value\n         return self.value == other\ndef __hash__(self):\nreturn hash(self.value)\n\n \n \n class ModelChoiceIterator:\n",
+        "test_unhashable_mciv.py": "new file mode 100644\nindex 0000000000..5aee476393\nimport sys\n\nprint(\"Starting test_unhashable_mciv.py...\")\ntry:\nfrom django.forms.models import ModelChoiceIteratorValue\nexcept ImportError as e:\nprint(\"Unable to import ModelChoiceIteratorValue:\", e)\nsys.exit(2)\n\nvalue = ModelChoiceIteratorValue(value=1, instance=None)\n\ntry:\ntest_set = set()\ntest_set.add(value)\n# If we get here, no TypeError was raised, so it's hashable\nprint(\"SUCCESS: ModelChoiceIteratorValue is now hashable.\")\nsys.exit(0)\nexcept TypeError as e:\n# TypeError means unhashable => bug is present\nprint(\"FAILURE: ModelChoiceIteratorValue raised TypeError:\", e)\nsys.exit(1)\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/models.py": "     def __str__(self):\n         return str(self.value)\n \ndef __hash__(self):\nreturn hash(self.value)\n\n     def __eq__(self, other):\n         if isinstance(other, ModelChoiceIteratorValue):\n             other = other.value\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactic similarity, but there are additional statements and differences in the structure. Specifically, Code sample 2 includes the methods __str__ and __eq__ that are not present in Code sample 1, indicating modifications to the function signatures. While both samples include the __hash__ method and the logic for the equality check (the isinstance check), the first sample is incomplete and does not include the __str__ or __eq__ methods, making it a syntactically similar variant with additional methods.\"}"
+}

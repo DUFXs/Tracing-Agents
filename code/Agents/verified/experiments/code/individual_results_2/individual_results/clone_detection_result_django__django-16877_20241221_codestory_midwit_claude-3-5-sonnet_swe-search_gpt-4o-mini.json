@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-16877",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/template/defaultfilters.py",
+    "ground_truth_patch_file": "django/template/defaultfilters.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but differ in the return statement of the functions. The first sample returns a list of `mark_safe(obj)` while the second returns `conditional_escape(value)`. This suggests that while the structure is similar, there are added or modified statements causing functional differences.\"}"
+}

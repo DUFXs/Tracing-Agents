@@ -1,0 +1,12 @@
+{
+    "instance_id": "psf__requests-1766",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "repro.py": "new file mode 100644\nindex 00000000..0f4917ec\nfrom requests.auth import HTTPDigestAuth\nimport requests\n\n# Mock server that requires digest auth\nurl = \"http://example.com/digest-auth\"\n\n# Create an auth object\nauth = HTTPDigestAuth('user', 'pass')\n\n# Access protected method to test header generation\nauth.chal = {\n'realm': 'test_realm',\n'nonce': '123456',\n'qop': 'auth'\n}\n\n# Generate header\nheader = auth.build_digest_header('GET', url)\nprint(\"Generated header:\", header)\n\n# Verify qop value is unquoted\nif ', qop=auth,' in header:\nprint(\"ERROR: qop value is not quoted\")\nelse:\nprint(\"OK: qop value is properly quoted\")\n",
+        "requests/auth.py": "index a3de123d..b57c2d3a 100644\n         if entdig:\n             base += ', digest=\"%s\"' % entdig\n         if qop:\nbase += ', qop=\"auth\", nc=%s, cnonce=\"%s\"' % (ncvalue, cnonce)\n\n \n         return 'Digest %s' % (base)\n \n             pass\n         r.register_hook('response', self.handle_401)\n         return r\n\n"
+    },
+    "ground_truth_patch": {
+        "requests/auth.py": " \n         A1 = '%s:%s:%s' % (self.username, realm, self.password)\n         A2 = '%s:%s' % (method, path)\n\n         HA1 = hash_utf8(A1)\n         HA2 = hash_utf8(A2)\n \n         if entdig:\n             base += ', digest=\"%s\"' % entdig\n         if qop:\nbase += ', qop=\"auth\", nc=%s, cnonce=\"%s\"' % (ncvalue, cnonce)\n \n         return 'Digest %s' % (base)\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 sets up a mock server that requires HTTP digest authentication, creates an authentication object, and simulates generating a digest authentication header for a GET request, while also checking the format of the generated qop value. In contrast, the code in code sample 2 appears to be part of the logic for constructing the digest authentication header within an internal function or class, focusing more on the hashing of credentials and outputting the final digest. Sample 1 is more about the usage and testing of the digest generation, while Sample 2 is about the underlying implementation of that generation. \", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes within the digest authentication process and cannot be classified under the clone types due to their distinct functionality and context.\"}"
+}

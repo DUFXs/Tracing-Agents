@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14053",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "sklearn/tree/export.py",
+    "ground_truth_patch_file": "sklearn/tree/export.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

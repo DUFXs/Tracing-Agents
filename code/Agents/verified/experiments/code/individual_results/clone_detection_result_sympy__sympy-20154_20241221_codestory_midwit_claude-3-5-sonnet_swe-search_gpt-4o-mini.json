@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-20154",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..7134cb153c\nfrom sympy.utilities.iterables import partitions\n\n# Demonstrate the issue with reusing dictionaries\nprint(\"Original list of partitions:\")\nparts = list(partitions(4))\nprint(parts)\n\n# Show that all dictionaries are the same object\nprint(\"\\nAll dictionaries are the same object:\")\nprint(\"First dictionary:\", parts[0])\nprint(\"Second dictionary:\", parts[1])\nprint(\"Third dictionary:\", parts[2])\n\n# Show that modifying one affects all others\nprint(\"\\nModifying the first dictionary affects all:\")\nparts[0][1] = 10\nprint(\"After modification:\")\nprint(parts)\n\\ No newline at end of file\n",
+        "sympy/utilities/iterables.py": "index dd36dea304..3afb6a952e 100644\n     {2: 1, 4: 1}\n     {3: 2}\n \nEach partition is a new dictionary object:\n \n>>> [p for p in partitions(6, k=2)]  # doctest: +SKIP\n     [{2: 3}, {1: 2, 2: 2}, {1: 4, 2: 1}, {1: 6}]\n \n     References\n     ==========\n         keys.append(r)\n     room = m - q - bool(r)\n     if size:\nyield sum(ms.values()), ms.copy()\n     else:\nyield ms.copy()\n \n     while keys != [1]:\n         # Reuse any 1's.\n             break\n         room -= need\n         if size:\nyield sum(ms.values()), ms.copy()\n         else:\nyield ms.copy()\n \n \n def ordered_partitions(n, m=None, sort=True):\n"
+    },
+    "ground_truth_patch": {
+        "sympy/utilities/iterables.py": "     {2: 1, 4: 1}\n     {3: 2}\n \n     References\n     ==========\n \n         keys.append(r)\n     room = m - q - bool(r)\n     if size:\nyield sum(ms.values()), ms.copy()\n     else:\nyield ms.copy()\n \n     while keys != [1]:\n         # Reuse any 1's.\n             break\n         room -= need\n         if size:\nyield sum(ms.values()), ms.copy()\n         else:\nyield ms.copy()\n \n \n def ordered_partitions(n, m=None, sort=True):\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because one sample contains a complete script demonstrating the use of the `partitions` function from the `sympy.utilities.iterables` module, while the other sample only contains a snippet of the `iterables.py` file, including definitions and internal logic unrelated to the functional aspect of the original script. There is no syntactic or functional similarity sufficient to classify them as clones.\"}"
+}

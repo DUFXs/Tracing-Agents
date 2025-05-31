@@ -1,0 +1,15 @@
+{
+    "instance_id": "django__django-14493",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/contrib/staticfiles/storage.py": "index f957a667b2..18a23b41e9 100644\n \n         paths = {path: paths[path] for path in adjustable_paths}\n \n# Initialize substitutions outside the loop\nsubstitutions = False\n\n         for i in range(self.max_post_process_passes):\n             substitutions = False\n             for name, hashed_name, processed, subst in self._post_process(paths, adjustable_paths, hashed_files):\n \n \n staticfiles_storage = ConfiguredStorage()\n\n",
+        "reproduce.py": "new file mode 100644\nindex 0000000000..4b369f59d9\nfrom django.conf import settings\nfrom django.contrib.staticfiles.storage import ManifestStaticFilesStorage\nfrom django.core.files.base import ContentFile\nimport os\n\n# Configure Django settings\nsettings.configure(\nDEBUG=False,\nSTATIC_URL='/static/',\nSTATIC_ROOT='static_root'\n)\n\nclass MyManifestStaticFilesStorage(ManifestStaticFilesStorage):\nmax_post_process_passes = 0\n\n# Create test directory and file\nos.makedirs('static_root/css', exist_ok=True)\nwith open('static_root/css/style.css', 'w') as f:\nf.write(\"\"\"\nbody {\nbackground: url(\"../img/bg.png\");\n}\n\"\"\")\n\n# Initialize storage\nstorage = MyManifestStaticFilesStorage()\n\n# Simulate collectstatic's behavior\npaths = {\n'css/style.css': (storage, 'css/style.css')\n}\n\nprint(\"Processing files:\")\nfor name, hashed_name, processed in storage.post_process(paths):\nif processed:\nprint(f\"Post-processed '{name}' as '{hashed_name}'\")\n",
+        "static_root/css/style.7049faf800d5.css": "new file mode 100644\nindex 0000000000..e94c0a56e2\n\nbody {\nbackground: url(\"../img/bg.png\");\n}\n",
+        "static_root/css/style.css": "new file mode 100644\nindex 0000000000..e94c0a56e2\n\nbody {\nbackground: url(\"../img/bg.png\");\n}\n",
+        "static_root/staticfiles.json": "new file mode 100644\nindex 0000000000..aa132707b7\n{\"paths\": {\"css/style.css\": \"css/style.7049faf800d5.css\"}, \"version\": \"1.0\"}\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/staticfiles/storage.py": "                 processed_adjustable_paths[name] = (name, hashed_name, processed)\n \n         paths = {path: paths[path] for path in adjustable_paths}\nsubstitutions = False\n \n         for i in range(self.max_post_process_passes):\n             substitutions = False\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout. The core logic and statements in both samples match exactly.\"}"
+}

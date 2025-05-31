@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-9296",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "django/core/paginator.py": "index 1f92da5d4f..3dc9276fce 100644\n                 UnorderedObjectListWarning,\n                 stacklevel=3\n             )\ndef __iter__(self):\nfor page_num in self.page_range:\nyield self.page(page_num)\n\n \n \n class Page(collections.abc.Sequence):\n",
+        "test_paginator_iter.py": "new file mode 100644\nindex 0000000000..59b27f2479\nimport sys\nimport traceback\nfrom django.core.paginator import Paginator\n\ndef main():\ndata = [1, 2, 3, 4]\nprint(\"Test: Creating a Paginator with data of length:\", len(data), \" per_page=2\")\npag = Paginator(data, 2)\nprint(\"Test: Attempting iteration over the Paginator.\")\ncount = 0\ntry:\nfor page in pag:\nprint(\"Test: Page:\", page)\ncount += 1\nprint(\"Test: total pages iterated:\", count)\nif count != 2:\nprint(\"ERROR: Expected 2 pages, got\", count)\nsys.exit(1)\nelse:\nprint(\"SUCCESS: The code is fixed.\")\nsys.exit(0)\nexcept TypeError:\nprint(\"TypeError raised: The code is not fixed.\")\ntraceback.print_exc()\nsys.exit(1)\nexcept Exception:\nprint(\"Unexpected error occurred!\")\ntraceback.print_exc()\nsys.exit(1)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "django/core/paginator.py": "         self.orphans = int(orphans)\n         self.allow_empty_first_page = allow_empty_first_page\n \ndef __iter__(self):\nfor page_number in self.page_range:\nyield self.page(page_number)\n\n     def validate_number(self, number):\n         \"\"\"Validate the given 1-based page number.\"\"\"\n         try:\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 implements a Paginator class in Django that allows iteration over pages of data. It contains a method '__iter__' which iterates over the page range and yields pages. The second code sample includes a partial implementation of a different Paginator class, which includes an initialization method to set orphans and allows an empty first page, and a '__iter__' method that is similar but uses 'page_number' instead of 'page_num'.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because the structure and functionality differ, with the first being a complete implementation facilitating pagination and the second being a partial implementation that includes additional functionality not present in the first.\"}"
+}

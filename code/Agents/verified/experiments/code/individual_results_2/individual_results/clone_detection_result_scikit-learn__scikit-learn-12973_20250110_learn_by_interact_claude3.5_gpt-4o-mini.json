@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-12973",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "reproduce_issue.py",
+    "ground_truth_patch_file": "sklearn/linear_model/least_angle.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and are syntactically dissimilar. The first sample is a complete script that demonstrates the usage of the LassoLarsIC model with specific test cases, while the second sample is a fragment of a function inside a class, specifically related to fitting a model with parameters. They do not share similar structures nor are they functionally equivalent.\"}"
+}

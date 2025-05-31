@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-22714",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index db4a22815e..2450c37630 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/geometry/point.py": "index 73c20334d0..883e66fc9c 100644\n                         'warn' or 'ignore'.'''))\n         if any(coords[dim:]):\n             raise ValueError('Nonzero coordinates cannot be removed.')\n         if not all(isinstance(a, Expr) for a in coords):\n             raise TypeError('Coordinates must be valid SymPy expressions.')\n \n         # pad with zeros appropriately\n         coords = coords[:dim] + (S.Zero,)*(dim - len(coords))\n \n# Only check for imaginary parts in evaluated numbers\nif evaluate:\nif any(a.is_number and im(a) != 0 for a in coords):\nraise ValueError('Imaginary coordinates are not permitted.')\nelse:\n# For unevaluated expressions, only check if they are explicitly imaginary\nif any(a.is_imaginary for a in coords if hasattr(a, 'is_imaginary') and a.is_imaginary):\nraise ValueError('Imaginary coordinates are not permitted.')\n\n         # Turn any Floats into rationals and simplify\n         # any expressions before we instantiate\n         if evaluate:\n"
+    },
+    "ground_truth_patch": {
+        "sympy/geometry/point.py": "                         'warn' or 'ignore'.'''))\n         if any(coords[dim:]):\n             raise ValueError('Nonzero coordinates cannot be removed.')\nif any(a.is_number and im(a).is_zero is False for a in coords):\n             raise ValueError('Imaginary coordinates are not permitted.')\n         if not all(isinstance(a, Expr) for a in coords):\n             raise TypeError('Coordinates must be valid SymPy expressions.')\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have modifications in the expressions and variable checks. Specifically, the condition for raising the ValueError in the second patch is slightly different, as it checks if 'im(a).is_zero is False' instead of 'im(a) != 0', indicating a different way of checking for imaginary values, while both samples are addressing similar logic regarding coordinate validity.\"}"
+}

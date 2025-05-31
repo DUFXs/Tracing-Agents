@@ -1,0 +1,7 @@
+{
+    "instance_id": "pytest-dev__pytest-5631",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": ".gitignore",
+    "ground_truth_patch_file": "src/_pytest/compat.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-25931",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "sklearn/ensemble/_iforest.py",
+    "ground_truth_patch_file": "sklearn/ensemble/_iforest.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-14995",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index aad550ae53..826d8acebb 100644\n \n # Files generated if figure tests are run\n results\n.aider/\n",
+        "astropy/nddata/mixins/ndarithmetic.py": "index 4153dfccb2..744d60df72 100644\n             return deepcopy(operand.mask)\n         elif operand is None:\n             return deepcopy(self.mask)\nelif operand is not None and self.mask is not None and operand.mask is None:\n# If self has mask but operand doesn't, return self's mask\nreturn deepcopy(self.mask)\n         else:\n             # Now lets calculate the resulting mask (operation enforces copy)\n             return handle_mask(self.mask, operand.mask, **kwds)\n"
+    },
+    "ground_truth_patch": {
+        "astropy/nddata/mixins/ndarithmetic.py": "         elif self.mask is None and operand is not None:\n             # Make a copy so there is no reference in the result.\n             return deepcopy(operand.mask)\nelif operand.mask is None:\n             return deepcopy(self.mask)\n         else:\n# Now let's calculate the resulting mask (operation enforces copy)\n             return handle_mask(self.mask, operand.mask, **kwds)\n \n     def _arithmetic_wcs(self, operation, operand, compare_wcs, **kwds):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but include added and modified statements, such as the arrangement of the conditions and the presence of additional comments. There are also some structural differences, but the core logic remains the same.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10844",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 9fa8c09bd..8658f6e50 100644\n .cache\n .pytest_cache/\n _configtest.o.d\n.aider/\n",
+        "sklearn/metrics/cluster/supervised.py": "index a987778ae..987fcd753 100644\n     tk = np.dot(c.data, c.data) - n_samples\n     pk = np.sum(np.asarray(c.sum(axis=0)).ravel() ** 2) - n_samples\n     qk = np.sum(np.asarray(c.sum(axis=1)).ravel() ** 2) - n_samples\n# Avoid overflow by computing sqrt(tk/pk) * sqrt(tk/qk) instead of tk/sqrt(pk*qk)\nif tk == 0. or pk <= 0. or qk <= 0.:\nreturn 0.\nreturn np.sqrt(tk / pk) * np.sqrt(tk / qk)\n \n \n def entropy(labels):\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/metrics/cluster/supervised.py": "     labels_true, labels_pred = check_clusterings(labels_true, labels_pred)\n     n_samples, = labels_true.shape\n \nc = contingency_matrix(labels_true, labels_pred,\nsparse=True).astype(np.int64)\n     tk = np.dot(c.data, c.data) - n_samples\n     pk = np.sum(np.asarray(c.sum(axis=0)).ravel() ** 2) - n_samples\n     qk = np.sum(np.asarray(c.sum(axis=1)).ravel() ** 2) - n_samples\nreturn np.sqrt(tk / pk) * np.sqrt(tk / qk) if tk != 0. else 0.\n \n \n def entropy(labels):\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 initializes and performs a calculation based on a contingency matrix derived from two label sets, `labels_true` and `labels_pred`. It calculates `tk`, `pk`, and `qk`, which relate to pair counts in clustering, and then computes a similarity score through the square root of ratios, returning 0 in certain edge cases. Code sample 2 contains a similar structure but starts by checking the clusterings using the function `check_clusterings` and computes the same `tk`, `pk`, and `qk` values, followed by the similarity score. The main difference is the addition of `check_clusterings` and a variation in the zero-checking condition for `tk` in the return statement. Thus, it is evident that the two samples are nearly identical with slight variations, suggesting a modification rather than a complete re-write. Therefore, it outcomes as a type-3 clone because of added statements.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have similar structure but contain added statements in code sample 2 and modifications in the return statement that check the value of `tk` differently.\"}"
+}

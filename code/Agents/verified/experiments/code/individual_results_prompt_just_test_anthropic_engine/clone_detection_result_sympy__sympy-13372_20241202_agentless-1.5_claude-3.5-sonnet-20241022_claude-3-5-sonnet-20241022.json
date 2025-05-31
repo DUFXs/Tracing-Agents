@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-13372",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/core/evalf.py": "index d47040b..c314605 100644\n             elif re.is_number:\n                 re = re._to_mpmath(prec, allow_ints=False)._mpf_\n                 reprec = prec\nelse:\nraise NotImplementedError\n             if im == 0:\n                 im = None\n                 imprec = None\n             elif im.is_number:\n                 im = im._to_mpmath(prec, allow_ints=False)._mpf_\n                 imprec = prec\nelse:\nraise NotImplementedError\n             r = re, im, reprec, imprec\n         except AttributeError:\n             raise NotImplementedError\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/evalf.py": "             elif re.is_number:\n                 re = re._to_mpmath(prec, allow_ints=False)._mpf_\n                 reprec = prec\nelse:\nraise NotImplementedError\n             if im == 0:\n                 im = None\n                 imprec = None\n             elif im.is_number:\n                 im = im._to_mpmath(prec, allow_ints=False)._mpf_\n                 imprec = prec\nelse:\nraise NotImplementedError\n             r = re, im, reprec, imprec\n         except AttributeError:\n             raise NotImplementedError\n"
+    },
+    "response": "{\n    \"explanation\": \"Both code samples handle complex number conversion in SymPy's evalf.py. The code checks if the real part (re) is a number and converts it to mpmath format with specified precision. Similarly, it handles the imaginary part (im), setting it to None if it's zero, or converting it to mpmath format if it's a number. If either conversion fails, it raises NotImplementedError. Finally, it creates a tuple r containing the real and imaginary parts along with their precision values.\",\n    \"is_clone\": true,\n    \"classification\": \"type-1\",\n    \"reasoning\": \"These code samples are type-1 clones because they are exactly identical, character for character, including whitespace and indentation. The patches show the same code being modified in the same file (sympy/core/evalf.py). There are no differences in layout, whitespace, comments, identifiers, or logic between the two samples.\"\n}"
+}

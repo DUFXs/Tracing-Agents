@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-26323",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "sklearn/compose/_column_transformer.py",
+    "ground_truth_patch_file": "sklearn/compose/_column_transformer.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and logic, except for differences in the order of statements and the placement of a conditional check related to 'remainder'. Additionally, there are slight differences in whitespace and layout.\"}"
+}

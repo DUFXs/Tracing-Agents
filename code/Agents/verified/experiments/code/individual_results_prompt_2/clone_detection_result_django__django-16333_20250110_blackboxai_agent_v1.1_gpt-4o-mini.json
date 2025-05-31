@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16333",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/auth/forms.py": "index d73d1c8495..4c9a4f5556 100644\n         user.set_password(self.cleaned_data[\"password1\"])\n         if commit:\n             user.save()\nself.save_m2m()\n         return user\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/forms.py": "         user.set_password(self.cleaned_data[\"password1\"])\n         if commit:\n             user.save()\nif hasattr(self, \"save_m2m\"):\nself.save_m2m()\n         return user\n \n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 sets a user's password using the provided cleaned data and saves the user object if the commit flag is true. It also calls the method save_m2m() after saving the user. The code in code sample 2 performs similar actions but includes a conditional check using hasattr to ensure that save_m2m() is called only if the method exists before calling it. This adds a layer of safety for potential variations in the context where the code is executed.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar with the addition of a conditional check in code sample 2 for calling save_m2m(). This means there is a modification in the logic that reflects a difference in implementation rather than just a textual or structural difference.\"}"
+}

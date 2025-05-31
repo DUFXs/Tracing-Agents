@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-7336",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 1414052aad..7cf731b132 100644\n \n # Pytest\n v\n.aider/\n",
+        "astropy/units/decorators.py": "index 8bece5a850..92193d262b 100644\n             with add_enabled_equivalencies(self.equivalencies):\n                 return_ = wrapped_function(*func_args, **func_kwargs)\n             if wrapped_signature.return_annotation is not inspect.Signature.empty:\n# Skip conversion for explicitly annotated None returns\nif wrapped_signature.return_annotation is None:\nreturn return_\n                 return return_.to(wrapped_signature.return_annotation)\n             else:\n                 return return_\n"
+    },
+    "ground_truth_patch": {
+        "astropy/units/decorators.py": "             # Call the original function with any equivalencies in force.\n             with add_enabled_equivalencies(self.equivalencies):\n                 return_ = wrapped_function(*func_args, **func_kwargs)\nif wrapped_signature.return_annotation not in (inspect.Signature.empty, None):\n                 return return_.to(wrapped_signature.return_annotation)\n             else:\n                 return return_\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 handles the invocation of a wrapped function while managing equivalencies and checking the return annotation type for processing. Specifically, it skips conversion for explicitly annotated None returns before returning the result, and in cases where the return annotation is not None, it converts the result to the desired type. Meanwhile, the code in code sample 2 also deals with calling the original wrapped function alongside equivalencies, but it checks if the return annotation is specifically not in the tuple of empty and None, and then converts the return accordingly. Importantly, the wording and order of conditions differ slightly, leading to distinct logical flow.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities while having minor modifications in wording and logical conditions.\"}"
+}

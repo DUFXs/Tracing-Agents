@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10908",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 9fa8c09bd..8658f6e50 100644\n .cache\n .pytest_cache/\n _configtest.o.d\n.aider/\n",
+        "sklearn/feature_extraction/text.py": "index 9b1ebd632..4f3117a9d 100644\n     def _validate_vocabulary(self):\n         vocabulary = self.vocabulary\n         if vocabulary is not None:\nif not vocabulary:\nraise ValueError(\"empty vocabulary passed to fit\")\n             if isinstance(vocabulary, set):\n                 vocabulary = sorted(vocabulary)\n             if not isinstance(vocabulary, Mapping):\n                         msg = (\"Vocabulary of size %d doesn't contain index \"\n                                \"%d.\" % (len(vocabulary), i))\n                         raise ValueError(msg)\n             self.fixed_vocabulary_ = True\n             self.vocabulary_ = dict(vocabulary)\n         else:\n \n     def get_feature_names(self):\n         \"\"\"Array mapping from feature integer indices to feature name\"\"\"\nif not hasattr(self, 'vocabulary_'):\nself._validate_vocabulary()\n\n         self._check_vocabulary()\n \n         return [t for t, i in sorted(six.iteritems(self.vocabulary_),\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/feature_extraction/text.py": " \n     def get_feature_names(self):\n         \"\"\"Array mapping from feature integer indices to feature name\"\"\"\nif not hasattr(self, 'vocabulary_'):\nself._validate_vocabulary()\n\n         self._check_vocabulary()\n \n         return [t for t, i in sorted(six.iteritems(self.vocabulary_),\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share similar structures but exhibit significant differences in terms of the complete context from which they are taken. Code sample 2 contains only a portion of the methods and does not include the entire logic present in sample 1, but within the shared snippet, they both call the same function and use similar constructs. The absence of some preceding context makes them syntactically dissimilar, reflecting additional deleted lines in sample 2.\"}"
+}

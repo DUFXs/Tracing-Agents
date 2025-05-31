@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-14053",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/contrib/staticfiles/storage.py",
+    "ground_truth_patch_file": "django/contrib/staticfiles/storage.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they show syntactical similarities with significant changes in logic, variable names, and overall structure, indicating they have been modified and contain added or removed statements.\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-13028",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/db/models/sql/query.py": "index ce18098fd2..7e1cb71ba9 100644\n \n     def check_filterable(self, expression):\n         \"\"\"Raise an error if expression cannot be used in a WHERE clause.\"\"\"\nif isinstance(expression, BaseExpression) and not getattr(expression, 'filterable', True):\n             raise NotSupportedError(\n                 expression.__class__.__name__ + ' is disallowed in the filter '\n                 'clause.'\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/sql/query.py": " \n     def check_filterable(self, expression):\n         \"\"\"Raise an error if expression cannot be used in a WHERE clause.\"\"\"\nif (\nhasattr(expression, 'resolve_expression') and\nnot getattr(expression, 'filterable', True)\n):\n             raise NotSupportedError(\n                 expression.__class__.__name__ + ' is disallowed in the filter '\n                 'clause.'\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have added, modified, and removed statements. For instance, the condition in the if statement has been modified from checking 'isinstance' to checking 'hasattr', which changes the logic significantly.\"}"
+}

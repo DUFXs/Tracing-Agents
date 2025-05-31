@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-12774",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/models/query.py",
+    "ground_truth_patch_file": "django/db/models/query.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share significant structural similarities in their logic and usage but have differences in statement ordering, the introduction of a list comprehension in sample 2, and slight variations in access to model properties.\"}"
+}

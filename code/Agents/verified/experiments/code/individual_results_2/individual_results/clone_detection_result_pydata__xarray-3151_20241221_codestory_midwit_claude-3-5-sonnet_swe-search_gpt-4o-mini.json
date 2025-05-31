@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-3151",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "xarray/core/combine.py",
+    "ground_truth_patch_file": "xarray/core/combine.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactic similarity but have additional statements in the second sample, such as the handling of the monotonically decreasing condition, and the throw of a ValueError when that condition is not met.\"}"
+}

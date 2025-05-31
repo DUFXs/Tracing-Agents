@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-14608",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/forms/formsets.py": "index beca557..540a64e 100644\n         self._non_form_errors.\n         \"\"\"\n         self._errors = []\nself._non_form_errors = self.error_class(error_class='nonform')\n         empty_forms_count = 0\n \n         if not self.is_bound:  # Stop further processing.\n             # Give self.clean() a chance to do cross-form validation.\n             self.clean()\n         except ValidationError as e:\nself._non_form_errors = self.error_class(e.error_list, error_class='nonform')\n \n     def clean(self):\n         \"\"\"\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/formsets.py": "         self._non_form_errors.\n         \"\"\"\n         self._errors = []\nself._non_form_errors = self.error_class(error_class='nonform')\n         empty_forms_count = 0\n \n         if not self.is_bound:  # Stop further processing.\n             # Give self.clean() a chance to do cross-form validation.\n             self.clean()\n         except ValidationError as e:\nself._non_form_errors = self.error_class(\ne.error_list,\nerror_class='nonform'\n)\n \n     def clean(self):\n         \"\"\"\n"
+    },
+    "response": "{\n    \"explanation\": \"Both code samples are from Django's formsets.py and handle form validation errors. They both initialize error lists, set non-form errors with an error class, handle bound form validation, and include a clean() method declaration. The only difference is in the formatting of the error_class assignment - in sample 1 it's on one line, while in sample 2 it's split across multiple lines.\",\n    \"is_clone\": true,\n    \"classification\": \"type-1\",\n    \"reasoning\": \"These code samples are type-1 clones because they are identical in terms of functionality and syntax, with the only difference being in the layout/formatting. Specifically, the line 'self._non_form_errors = self.error_class(e.error_list, error_class='nonform')' in sample 1 is split across multiple lines in sample 2 as 'self._non_form_errors = self.error_class(\\ne.error_list,\\nerror_class='nonform'\\n)'. This is purely a formatting difference, which is characteristic of type-1 clones.\"\n}"
+}

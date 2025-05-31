@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13023",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/fields/__init__.py": "index 0fd69059ee..f2a97b28f0 100644\n         if isinstance(value, float):\n             return self.context.create_decimal_from_float(value)\n         try:\nif isinstance(value, (list, tuple)):\nraise TypeError(\"Lists and tuples cannot be converted to Decimal\")\n             return decimal.Decimal(value)\nexcept (decimal.InvalidOperation, TypeError, ValueError):\n             raise exceptions.ValidationError(\n                 self.error_messages['invalid'],\n                 code='invalid',\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/__init__.py": "             return self.context.create_decimal_from_float(value)\n         try:\n             return decimal.Decimal(value)\nexcept (decimal.InvalidOperation, TypeError, ValueError):\n             raise exceptions.ValidationError(\n                 self.error_messages['invalid'],\n                 code='invalid',\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have syntactical similarities but include additional, modified, or removed statements. Specifically, the code in Sample 1 has a segment checking if the value is a float and another check if it is a list or tuple that raises a TypeError, while Sample 2 omits these checks. Both samples contain similar logic related to creating a decimal and raising a validation error, but the differences in control flow make them type-3 clones.\"}"
+}

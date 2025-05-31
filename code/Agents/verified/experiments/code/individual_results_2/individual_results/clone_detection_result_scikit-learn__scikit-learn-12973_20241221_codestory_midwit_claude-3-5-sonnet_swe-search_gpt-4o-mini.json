@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-12973",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "sklearn/linear_model/least_angle.py",
+    "ground_truth_patch_file": "sklearn/linear_model/least_angle.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical functionally with some differences in the comments and whitespace, as well as in variable names. For example, the explanation of the 'copy_X' parameter differs slightly in its explanation. Additionally, the assignment to 'effective_copy_X' in sample 1 is changed to inline usage of 'copy_X' in sample 2. The overall structure remains the same indicating they are conceptually the same.\"} "
+}

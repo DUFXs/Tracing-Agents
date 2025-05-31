@@ -1,0 +1,11 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14053",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sklearn/tree/export.py": "index 1fe11e596..34cfd3995 100644\n         value_fmt = \"{}{} value: {}\\n\"\n \n     if feature_names:\nfeature_names_ = [feature_names[i] if i != _tree.TREE_UNDEFINED else \"undefined\"\nfor i in tree_.feature]\n     else:\nfeature_names_ = [\"feature_{}\".format(i) if i != _tree.TREE_UNDEFINED else \"undefined\"\nfor i in tree_.feature]\n\n \n     export_text.report = \"\"\n \n \n     print_tree_recurse(0, 1)\n     return export_text.report\n\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/tree/export.py": "         value_fmt = \"{}{} value: {}\\n\"\n \n     if feature_names:\nfeature_names_ = [feature_names[i] if i != _tree.TREE_UNDEFINED\nelse None for i in tree_.feature]\n     else:\n         feature_names_ = [\"feature_{}\".format(i) for i in tree_.feature]\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have added, modified, or removed statements. Specifically, the second sample has a modification with 'else None' instead of 'else \"undefined\"' in the list comprehension and a slight change in whitespace and layout.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-20801",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 0000000000..6d27b20d37\nfrom sympy import S\n\n# Test cases showing the inconsistent behavior\nprint(\"S(0.0) == S.false:\", S(0.0) == S.false)  # Currently True, should be False\nprint(\"S.false == S(0.0):\", S.false == S(0.0))  # Currently False\nprint(\"S(0) == S.false:\", S(0) == S.false)      # Currently False\nprint(\"S.false == S(0):\", S.false == S(0))      # Currently False\n",
+        "sympy/core/numbers.py": "index 79f6a7d165..82b2f6db55 100644\n             other = _sympify(other)\n         except SympifyError:\n             return NotImplemented\n         if isinstance(other, Boolean):\n             return False\nif not self:\nreturn not other\n\n         if other.is_NumberSymbol:\n             if other.is_irrational:\n                 return False\n     numbers.Rational.register(Integer)\n \n _register_classes()\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/numbers.py": "             other = _sympify(other)\n         except SympifyError:\n             return NotImplemented\n         if isinstance(other, Boolean):\n             return False\n         if other.is_NumberSymbol:\n             # the mpf tuples\n             ompf = other._as_mpf_val(self._prec)\n             return bool(mlib.mpf_eq(self._mpf_, ompf))\nif not self:\nreturn not other\n         return False    # Float != non-Number\n \n     def __ne__(self, other):\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they pertain to different parts of the codebase; Code sample 1 includes a test case and two references to S(0.0) and S.false, while Code sample 2 includes implementation details from a specific method that involve different logic and return statements.\"}"
+}

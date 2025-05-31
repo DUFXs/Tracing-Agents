@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-2905",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "xarray/core/variable.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are completely different in content and purpose. The first sample is about setting and testing values in a xarray DataArray and defining a class, while the second sample deals with operations on numpy masked arrays and nested self-described arrays. There are no similarities in structure, identifiers, or functionality between the two.\"}"
+}

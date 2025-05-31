@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-14493",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/contrib/staticfiles/storage.py": "index 94188f6..dbe98ba 100644\n \n         paths = {path: paths[path] for path in adjustable_paths}\n \nsubstitutions = False\n         for i in range(self.max_post_process_passes):\n             substitutions = False\n             for name, hashed_name, processed, subst in self._post_process(paths, adjustable_paths, hashed_files):\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/staticfiles/storage.py": "                 processed_adjustable_paths[name] = (name, hashed_name, processed)\n \n         paths = {path: paths[path] for path in adjustable_paths}\nsubstitutions = False\n \n         for i in range(self.max_post_process_passes):\n             substitutions = False\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 shows a dictionary comprehension to create a new 'paths' dictionary, initializes a 'substitutions' flag, and starts a loop that processes paths with a nested loop for post-processing files. The code in code sample 2 shows processing of adjustable paths, the same dictionary comprehension for 'paths', initialization of the 'substitutions' flag, and the start of the same loop structure.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they share the same core structure (dictionary comprehension, substitutions flag initialization, and loop setup) but have some differences in statements. Sample 1 includes an additional nested loop for post-processing that's not present in sample 2, and sample 2 has a line for processing adjustable paths that's not in sample 1. The overlapping parts are syntactically identical, but there are added/removed statements between the samples, which is characteristic of type-3 clones.\"\n}"
+}

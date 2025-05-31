@@ -1,0 +1,7 @@
+{
+    "instance_id": "pytest-dev__pytest-7324",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "src/_pytest/mark/expression.py",
+    "ground_truth_patch_file": "src/_pytest/mark/expression.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and logic, with differences in identifier names and added comments. For instance, 'RENAME_PREFIX' is replaced by 'IDENT_PREFIX', and the functionality intended with both is similar, handling identifiers in a matching context. The core logic and flow are maintained, reflecting significant similarity with only minor modifications in names and comments.\"}"
+}

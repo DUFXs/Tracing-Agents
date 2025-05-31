@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-8721",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/ext/viewcode.py": "index a7d52a91c..95af2d404 100644\n     if app.builder.name == \"singlehtml\":\n         return\n     if app.builder.name.startswith(\"epub\") and not env.config.viewcode_enable_epub:\n# Clear any existing viewcode modules for epub when disabled\nenv._viewcode_modules.clear()\n         return\n \n     def has_tag(modname: str, fullname: str, docname: str, refname: str) -> bool:\n     env = app.builder.env\n     if not hasattr(env, '_viewcode_modules'):\n         return\n# Skip page generation for epub when viewcode is disabled\nif app.builder.name.startswith(\"epub\") and not env.config.viewcode_enable_epub:\nreturn\n     highlighter = app.builder.highlighter  # type: ignore\n     urito = app.builder.get_relative_uri\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/ext/viewcode.py": "     env = app.builder.env\n     if not hasattr(env, '_viewcode_modules'):\n         return\nif app.builder.name == \"singlehtml\":\nreturn\nif app.builder.name.startswith(\"epub\") and not env.config.viewcode_enable_epub:\nreturn\n     highlighter = app.builder.highlighter  # type: ignore\n     urito = app.builder.get_relative_uri\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 does checks if the application builder is of type 'singlehtml' or if it is an 'epub' and if viewcode for 'epub' is enabled. If the conditions for 'epub' are not satisfied, it clears existing viewcode modules. It also defines a function 'has_tag' that requires the module name and various string parameters. The code in code sample 2 performs the same checks and logic but in a slightly different order and layout, as it starts directly with assigning 'env' and checking its attributes. Both samples eventually lead to the same logic but with variations in structure and order, particularly concerning where the return statements are placed.\",\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples exhibit syntactical similarities but also have differences in the order of statements, which means they add or remove statements compared to each other, classifying them as type-3 clones.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-16819",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/migrations/operations/models.py",
+    "ground_truth_patch_file": "django/db/migrations/operations/models.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have modifications. The handling of the conditions within the 'reduce' method differs in terms of checking the index names and includes different logic. Specifically, 'operation.name.lower()' is used in the first sample while the second sample uses 'operation.name'. Additionally, whitespace and layout variations exist.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-15875",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sympy/core/add.py": "index 83a5f2aedc..7989ef9107 100644\n         if b.is_zero:\n             if not im_or_z and not im:\n                 return True\nreturn None\n         if b.is_zero is False:\n\n             return False\n \n     def _eval_is_odd(self):\n \n from .mul import Mul, _keep_coeff, prod\n from sympy.core.numbers import Rational\n\n",
+        "test_is_zero.py": "new file mode 100644\nindex 0000000000..85acbe78ef\nfrom sympy import I, simplify\n\ne = -2*I + (1 + I)**2\nprint(\"e =\", e)\nprint(\"e.is_zero =\", e.is_zero)\nprint(\"simplify(e).is_zero =\", simplify(e).is_zero)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/add.py": "                 return\n         if z == len(self.args):\n             return True\nif len(nz) == 0 or len(nz) == len(self.args):\n             return None\n         b = self.func(*nz)\n         if b.is_zero:\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 appears to be part of a method from a class that checks if a given number (represented by 'b') is zero, returning True or False based on certain conditions, and includes an additional method '_eval_is_odd'. It imports necessary modules from the sympy library to handle complex numbers and rational numbers, also including a test that prints the values and checks if 'e' (a complex expression involving 'I') is zero. The code in code sample 2 includes a conditional return statement for a method checking a property of 'b.is_zero', which similarly works within a set of arguments. It checks for a length condition on 'self.args' and evaluates if 'b.is_zero' to return values accordingly. The second patch does not show the complete context of what function it belongs to but relates to the concept of checking zero conditions similar to sample 1. \", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar; both involve checking the 'is_zero' property of a variable 'b' in different contexts. However, the second sample includes additional conditions and statements that modify the original structure of 'sample 1'.\"}"
+}

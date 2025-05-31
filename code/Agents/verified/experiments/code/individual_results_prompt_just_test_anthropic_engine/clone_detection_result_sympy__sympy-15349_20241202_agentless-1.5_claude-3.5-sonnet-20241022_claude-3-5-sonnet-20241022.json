@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-15349",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/algebras/quaternion.py": "index 091da2d..7eae8d7 100644\n \n         m10 = 2*s*(q.b*q.c + q.d*q.a)\n         m11 = 1 - 2*s*(q.b**2 + q.d**2)\nm12 = 2*s*(q.c*q.d - q.b*q.a)\n \n         m20 = 2*s*(q.b*q.d - q.c*q.a)\n         m21 = 2*s*(q.c*q.d + q.b*q.a)\n             m33 = 1\n \n             return Matrix([[m00, m01, m02, m03], [m10, m11, m12, m13],\n[m20, m21, m22, m23], [m30, m31, m32, m33]])\n"
+    },
+    "ground_truth_patch": {
+        "sympy/algebras/quaternion.py": " \n         m10 = 2*s*(q.b*q.c + q.d*q.a)\n         m11 = 1 - 2*s*(q.b**2 + q.d**2)\nm12 = 2*s*(q.c*q.d - q.b*q.a)\n \n         m20 = 2*s*(q.b*q.d - q.c*q.a)\n         m21 = 2*s*(q.c*q.d + q.b*q.a)\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 appears to be calculating elements of a transformation matrix using quaternion components (q.a, q.b, q.c, q.d) and a scaling factor s. It includes calculations for matrix elements m10 through m21, and also includes m33=1 and a return statement with a 4x4 matrix construction. The code in code sample 2 contains exactly the same calculations for matrix elements m10 through m21, but doesn't include the m33 assignment or matrix return statement.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they contain the exact same core calculations (m10 through m21), but code sample 1 has additional statements (m33=1 and the matrix return statement) that are not present in code sample 2. This matches the definition of type-3 clones where the code is syntactically similar but has added or removed statements. The fundamental mathematical operations are identical where they overlap, but sample 1 has extra functionality.\"\n}"
+}

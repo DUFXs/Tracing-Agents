@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14141",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..d909a3324\nimport sklearn\n\n# Show current versions information\nsklearn.show_versions()\n\\ No newline at end of file\n",
+        "sklearn/utils/_show_versions.py": "index e5d3141bf..ecba9ec68 100644\n         \"Cython\",\n         \"pandas\",\n         \"matplotlib\",\n\"joblib\",\n     ]\n \n     def get_version(module):\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/utils/_show_versions.py": "         \"Cython\",\n         \"pandas\",\n         \"matplotlib\",\n\"joblib\",\n     ]\n \n     def get_version(module):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and functionality but differ in identifier names and the presence of additional lines in the first sample, as well as whitespace and layout. The first sample includes an import statement and a comment that are not present in the second sample.\"}"
+}

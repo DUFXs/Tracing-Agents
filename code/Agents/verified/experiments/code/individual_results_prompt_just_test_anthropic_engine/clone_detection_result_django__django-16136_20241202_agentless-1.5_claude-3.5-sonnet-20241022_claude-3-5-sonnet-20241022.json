@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-16136",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/views/generic/base.py": "index d6fb4a7..de5f349 100644\n             request.path,\n             extra={\"status_code\": 405, \"request\": request},\n         )\nif self.view_is_async:\nasync def func():\nreturn HttpResponseNotAllowed(self._allowed_methods())\nreturn func()\n         return HttpResponseNotAllowed(self._allowed_methods())\n \n     def options(self, request, *args, **kwargs):\n"
+    },
+    "ground_truth_patch": {
+        "django/views/generic/base.py": "             request.path,\n             extra={\"status_code\": 405, \"request\": request},\n         )\nresponse = HttpResponseNotAllowed(self._allowed_methods())\n\nif self.view_is_async:\n\nasync def func():\nreturn response\n\nreturn func()\nelse:\nreturn response\n \n     def options(self, request, *args, **kwargs):\n         \"\"\"Handle responding to requests for the OPTIONS HTTP verb.\"\"\"\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 handles an HTTP response by returning HttpResponseNotAllowed with allowed methods. If the view is async, it creates an async function to return the response. The code in code sample 2 does essentially the same thing but with a slight modification: it first stores the HttpResponseNotAllowed response in a variable and then returns that variable, either directly in the synchronous case or through an async function in the async case.\", \n\"is_clone\": true, \n\"classification\": \"type-3\", \n\"reasoning\": \"These code samples are type-3 clones because they have the same basic structure and functionality but with minor modifications. The main difference is that sample 2 introduces a temporary variable 'response' to store the HttpResponseNotAllowed result before returning it, and adds an explicit 'else' clause, while sample 1 returns the HttpResponseNotAllowed directly. The core functionality (returning an HttpResponseNotAllowed with allowed methods, handling both async and sync cases) remains the same, but the implementation has slight structural modifications, which is characteristic of type-3 clones.\"\n}"
+}

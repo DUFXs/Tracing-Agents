@@ -1,0 +1,9 @@
+{
+    "instance_id": "django__django-12708",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {},
+    "ground_truth_patch": {
+        "django/db/backends/base/schema.py": "         news = {tuple(fields) for fields in new_index_together}\n         # Deleted indexes\n         for fields in olds.difference(news):\nself._delete_composed_index(\nmodel,\nfields,\n{'index': True, 'unique': False},\nself.sql_delete_index,\n)\n         # Created indexes\n         for field_names in news.difference(olds):\n             fields = [model._meta.get_field(field) for field in field_names]\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 is an empty patch, indicating that it contains no code changes or modifications. In contrast, code sample 2 includes a Python patch that modifies a schema file in Django by implementing two main functionalities: it creates a set of new indexes based on a tuple from `new_index_together` and manages index deletions and creations based on the comparison of old and new indexes. Specifically, it identifies which indexes were deleted and which were created, processing them accordingly.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because code sample 1 contains no code changes at all, while code sample 2 has actual code that performs specific behaviors related to index management in a Django application.\"}"
+}

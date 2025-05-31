@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-23262",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index db4a22815e..2450c37630 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/utilities/lambdify.py": "index da67263b19..110d6b9bf5 100644\n             left, right = \"()\"\n         else:\n             raise NotImplementedError(\"unhandled type: %s, %s\" % (type(arg), arg))\nelements = [_recursive_to_string(doprint, e) for e in arg]\nif isinstance(arg, tuple) and len(elements) == 1:\nreturn left + elements[0] + ',' + right\nreturn left + ', '.join(elements) + right\n     elif isinstance(arg, str):\n         return arg\n     else:\n"
+    },
+    "ground_truth_patch": {
+        "sympy/utilities/lambdify.py": "         return doprint(arg)\n     elif iterable(arg):\n         if isinstance(arg, list):\nleft, right = \"[\", \"]\"\n         elif isinstance(arg, tuple):\nleft, right = \"(\", \",)\"\n         else:\n             raise NotImplementedError(\"unhandled type: %s, %s\" % (type(arg), arg))\n         return left +', '.join(_recursive_to_string(doprint, e) for e in arg) + right\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 captures elements from a given argument and builds a string representation of it. Specifically, it checks for tuples and lists, handling their conversion to strings with appropriate brackets and separating elements with commas. If the argument is a string, it returns it as-is or raises an exception for unsupported types. The code in code sample 2 continues by returning a processed string representation of an iterable argument, especially focusing on lists and tuples, while also including some error handling and invoking another function, 'doprint', to process the argument further.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they handle different parts of string representation functions and differ significantly in structure and logic. Sample 1 includes more cases and refers to raising exceptions, while sample 2 focuses on returning processed output for iterables.\"}"
+}

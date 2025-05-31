@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-22914",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..99af922521\nfrom sympy import symbols, Min, Max, pycode\n\n# Test Min function\na, b = symbols(\"a b\")\nc = Min(a, b)\nprint(\"Testing Min:\")\nprint(pycode(c))\n\n# Test Max function\nd = Max(a, b)\nprint(\"\\nTesting Max:\")\nprint(pycode(d))\n\\ No newline at end of file\n",
+        "sympy/printing/pycode.py": "index 3a72ab606c..b4364113c6 100644\n         else:\n             return name\n \ndef _print_Min(self, expr):\nreturn \"min({})\".format(\", \".join(self._print(arg) for arg in expr.args))\n\ndef _print_Max(self, expr):\nreturn \"max({})\".format(\", \".join(self._print(arg) for arg in expr.args))\n\n     _print_lowergamma = CodePrinter._print_not_supported\n     _print_uppergamma = CodePrinter._print_not_supported\n     _print_fresnelc = CodePrinter._print_not_supported\n"
+    },
+    "ground_truth_patch": {
+        "sympy/printing/pycode.py": " \n _known_functions = {\n     'Abs': 'abs',\n'Min': 'min',\n'Max': 'max',\n }\n _known_functions_math = {\n     'acos': 'acos',\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and contain different content. Code sample 1 mainly tests the Min and Max functions from the SymPy library, while code sample 2 defines known functions with mappings. There are no syntactical similarities that would classify them as clones type-1 through type-4.\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-23534",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/core/symbol.py": "index e6fdcf8..c8260c5 100644\n         return tuple(result)\n     else:\n         for name in names:\nresult.append(symbols(name, cls=cls, **args))\n \n         return type(names)(result)\n \n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/symbol.py": "         return tuple(result)\n     else:\n         for name in names:\nresult.append(symbols(name, cls=cls, **args))\n \n         return type(names)(result)\n \n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples show the same fragment of Python code that appears to be part of a function handling symbol creation in SymPy. The code iterates through a collection of names, appends symbols created with those names (using specified class and arguments) to a result list, and returns the result converted to the same type as the input names collection.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are exactly identical in terms of code content, structure, and functionality. The only difference is in the file metadata line 'index e6fdcf8..c8260c5 100644' present in sample 1 but not in sample 2, which is part of the patch metadata and not the actual code. The actual code portions are completely identical, including whitespace and layout.\"\n}"
+}

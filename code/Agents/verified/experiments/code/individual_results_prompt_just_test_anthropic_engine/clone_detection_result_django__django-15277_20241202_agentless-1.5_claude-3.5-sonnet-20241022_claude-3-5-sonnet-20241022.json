@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-15277",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/db/models/fields/__init__.py": "index 0cf1917..422b890 100644\n     def __init__(self, *args, db_collation=None, **kwargs):\n         super().__init__(*args, **kwargs)\n         self.db_collation = db_collation\nif self.max_length is not None:\nself.validators.append(validators.MaxLengthValidator(self.max_length))\n \n     def check(self, **kwargs):\n         databases = kwargs.get('databases') or []\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/__init__.py": "     def __init__(self, *args, db_collation=None, **kwargs):\n         super().__init__(*args, **kwargs)\n         self.db_collation = db_collation\nif self.max_length is not None:\nself.validators.append(validators.MaxLengthValidator(self.max_length))\n \n     def check(self, **kwargs):\n         databases = kwargs.get('databases') or []\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples show a Django model field initialization method that: 1) Takes variable arguments including a db_collation parameter, 2) Calls the parent class's __init__, 3) Sets the db_collation attribute, 4) Adds a MaxLengthValidator if max_length is set, and 5) Includes a check method that retrieves databases from kwargs. The code is identical in both samples.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are exactly identical in terms of code content, logic, and structure. The only difference appears to be in the patch header information for sample 1 which includes 'index 0cf1917..422b890 100644\\\\n' - this is metadata and not part of the actual code. The actual code content, including whitespace and layout, is exactly the same between both samples.\"\n}"
+}

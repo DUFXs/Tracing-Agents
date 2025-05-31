@@ -1,0 +1,7 @@
+{
+    "instance_id": "sphinx-doc__sphinx-11445",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": ".gitignore",
+    "ground_truth_patch_file": "sphinx/util/rst.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to completely different files and contain distinct code structures and functionality. The first sample contains a patch related to `.gitignore` file modifications, while the second sample involves Python code for a Sphinx utility that deals with reStructuredText processing. They are unrelated in terms of purpose and content.\"}"
+}

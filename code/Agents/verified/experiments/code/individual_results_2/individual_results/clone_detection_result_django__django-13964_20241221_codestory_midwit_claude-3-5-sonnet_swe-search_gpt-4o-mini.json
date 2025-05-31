@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13964",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/models/fields/related_descriptors.py",
+    "ground_truth_patch_file": "django/db/models/base.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically and functionally different. The first sample contains a detailed implementation for tracking primary key changes in related objects, while the second sample addresses a specific condition related to ensuring data integrity when related objects are not saved. There is no structural similarity or common functionality between the two samples.\"}"
+}

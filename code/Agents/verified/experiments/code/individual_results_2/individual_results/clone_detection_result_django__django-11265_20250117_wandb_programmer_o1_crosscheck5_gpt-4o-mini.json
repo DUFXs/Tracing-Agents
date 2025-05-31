@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-11265",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "exclude_filtered_relation_test/__init__.py",
+    "ground_truth_patch_file": "django/db/models/sql/query.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are entirely different in context and content, with no functional or syntactical similarities.\"}"
+}

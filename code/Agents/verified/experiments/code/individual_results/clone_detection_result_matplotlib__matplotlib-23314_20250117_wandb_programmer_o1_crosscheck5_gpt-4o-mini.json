@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-23314",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "lib/mpl_toolkits/mplot3d/axes3d.py": "index 9db44b7994..011507741d 100644\n         return stem_container\n \n     stem3D = stem\ndef set_visible(self, b):\n\"\"\"\nOverride set_visible to also toggle the 3D zaxis and _axis3don.\n\"\"\"\nsuper().set_visible(b)\nif self.zaxis is not None:\nself.zaxis.set_visible(b)\nself._axis3don = b\n\n \n \n def get_test_data(delta=0.05):\n",
+        "test_set_visible_3d.py": "new file mode 100644\nindex 0000000000..bf33198862\nimport sys\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\n\ndef main():\nprint(\"Creating figure with two 3D axes...\")\nfig, (ax1, ax2) = plt.subplots(1, 2, subplot_kw={'projection': '3d'})\nax1.scatter(1, 1, 1)\nax2.scatter(1, 1, 1, c='r')\nprint(\"Calling set_visible(False) on the first Axes3D...\")\nax1.set_visible(False)\n\n# Check if Axes is still flagged as visible\nif ax1.get_visible():\nprint(\"ERROR: ax1 is still marked visible.\")\nsys.exit(1)\n\n# Check zaxis\nif ax1.zaxis is not None and ax1.zaxis.get_visible():\nprint(\"ERROR: ax1.zaxis is still marked visible.\")\nsys.exit(1)\n\nprint(\"Test passed: ax1 is not visible after set_visible(False).\")\nsys.exit(0)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "lib/mpl_toolkits/mplot3d/axes3d.py": " \n     @martist.allow_rasterization\n     def draw(self, renderer):\nif not self.get_visible():\nreturn\n         self._unstale_viewLim()\n \n         # draw the background patch\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain different functionality and logic. The first code sample includes a function related to setting visibility in a 3D axes context, whereas the second sample is a method for drawing, which is a distinct operation. There is no syntactic similarity or functional equivalence between the two snippets.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-16136",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/views/generic/base.py",
+    "ground_truth_patch_file": "django/views/generic/base.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have a modified statement; specifically, the second code sample has an 'else' clause with 'return response' that is not present in the first code sample.\"}"
+}

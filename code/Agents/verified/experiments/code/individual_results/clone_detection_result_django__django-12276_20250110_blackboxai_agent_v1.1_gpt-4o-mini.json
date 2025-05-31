@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12276",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/forms/widgets.py": "index 338d54d72f..c2c5725fd7 100644\n         \"\"\"File input never renders a value.\"\"\"\n         return\n \ndef use_required_attribute(self, initial):\n\"\"\"\nDon't render 'required' if initial data exists.\n\"\"\"\nreturn super().use_required_attribute(initial) and not initial\n\n     def value_from_datadict(self, data, files, name):\n         \"File widgets take data from FILES, not POST\"\n         return files.get(name)\n             return False\n         return upload\n \n     def value_omitted_from_data(self, data, files, name):\n         return (\n             super().value_omitted_from_data(data, files, name) and\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/widgets.py": "     def value_omitted_from_data(self, data, files, name):\n         return name not in files\n \ndef use_required_attribute(self, initial):\nreturn super().use_required_attribute(initial) and not initial\n\n \n FILE_INPUT_CONTRADICTION = object()\n \n             return False\n         return upload\n \n     def value_omitted_from_data(self, data, files, name):\n         return (\n             super().value_omitted_from_data(data, files, name) and\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically dissimilar and contain different implementations of the methods. For instance, sample 1 includes different logic in the `value_omitted_from_data` method, checking against the presence in `files`, while sample 2 checks against `name not in files`. Furthermore, the organization and presence of certain comments and statements vary significantly, indicating they are not similar enough to be classified as clones.\"}"
+}

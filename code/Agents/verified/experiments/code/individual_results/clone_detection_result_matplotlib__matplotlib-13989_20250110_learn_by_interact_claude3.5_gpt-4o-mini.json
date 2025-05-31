@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-13989",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "lib/matplotlib/axes/_axes.py": "index 4b73d52293..5047f37171 100644\n \n         density = bool(density) or bool(normed)\n         if density and not stacked:\nhist_kwargs['density'] = density\n\n \n         # List to store all the top coordinates of the histograms\n         tops = []\n     tricontourf = mtri.tricontourf\n     tripcolor = mtri.tripcolor\n     triplot = mtri.triplot\n\n",
+        "reproduce_hist_bug.py": "new file mode 100644\nindex 0000000000..a61f465ea7\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nnp.random.seed(42)  # For reproducibility\n\n# Test case 1: Original range (0,1)\n_, bins1, _ = plt.hist(np.random.rand(10), \"auto\", range=(0, 1), density=True)\nplt.close()\nprint(f\"Test 1 - range=(0,1): {bins1}\")\n\n# Test case 2: Different range (-1,1)\n_, bins2, _ = plt.hist(np.random.rand(10), \"auto\", range=(-1, 1), density=True)\nplt.close()\nprint(f\"Test 2 - range=(-1,1): {bins2}\")\n\n# Test case 3: With stacked=True (should still work)\n_, bins3, _ = plt.hist([np.random.rand(10), np.random.rand(10)], \"auto\", range=(0, 2), density=True, stacked=True)\nplt.close()\nprint(f\"Test 3 - range=(0,2), stacked=True: {bins3}\")\n\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/axes/_axes.py": " \n         density = bool(density) or bool(normed)\n         if density and not stacked:\nhist_kwargs['density'] = density\n \n         # List to store all the top coordinates of the histograms\n         tops = []\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in functionality and logic, with variations only in whitespace and layout. The actual code logic and content are the same, only the formatting differs.\"}"
+}

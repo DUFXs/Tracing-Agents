@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-11999",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "django/db/models/fields/__init__.py",
+    "ground_truth_patch_file": "django/db/models/fields/__init__.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in the whitespace layout and the use of literal values (specifically the display method name, which is defined in a slightly different way). The method name construction in the second sample has quotes around the expression, while the first sample assigns the value directly. However, the overall functionality and structure are otherwise the same.\"}"
+}

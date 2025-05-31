@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-25747",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "sklearn/utils/_set_output.py",
+    "ground_truth_patch_file": "sklearn/utils/_set_output.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and logic but differ in whitespace, layout, and some identifiers. For instance, the second sample has additional context and returns a DataFrame with an index parameter, which indicates a variation in the logic flow. Overall, they maintain similar functionality and flow but exhibit minor differences in layout and structure.\"}"
+}

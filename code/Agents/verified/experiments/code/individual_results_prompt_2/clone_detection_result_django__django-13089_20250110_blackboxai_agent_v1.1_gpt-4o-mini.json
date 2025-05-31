@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13089",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/core/cache/backends/db.py": "index 33c79c5a14..d54ca3881f 100644\n                 cursor.execute(\n                     connection.ops.cache_key_culling_sql() % table,\n                     [cull_num])\nresult = cursor.fetchone()\nif result:\ncursor.execute(\"DELETE FROM %s \"\n\"WHERE cache_key < %%s\" % table,\n[result[0]])\n \n     def clear(self):\n         db = router.db_for_write(self.cache_model_class)\n"
+    },
+    "ground_truth_patch": {
+        "django/core/cache/backends/db.py": "                 cursor.execute(\n                     connection.ops.cache_key_culling_sql() % table,\n                     [cull_num])\nlast_cache_key = cursor.fetchone()\nif last_cache_key:\ncursor.execute(\n'DELETE FROM %s WHERE cache_key < %%s' % table,\n[last_cache_key[0]],\n)\n \n     def clear(self):\n         db = router.db_for_write(self.cache_model_class)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 executes a SQL command to remove cache entries that have a cache key lower than a certain threshold, specified by the variable `cull_num`, and retrieves the result of the fetching operation. The operation is carried out with the help of a database cursor, and it also includes a definition for a method called `clear()` that identifies the database to be used for cache management. On the other hand, the code in code sample 2 performs a similar function of executing a SQL command to delete cache entries based on a cache key, but it uses a different variable name `last_cache_key` instead of `result`, and it has slight differences in spacing and formatting. Both samples define the same method `clear()`.\",\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in function but differ in variable names (such as `last_cache_key` and `result`), whitespace, and layout.\"}"
+}

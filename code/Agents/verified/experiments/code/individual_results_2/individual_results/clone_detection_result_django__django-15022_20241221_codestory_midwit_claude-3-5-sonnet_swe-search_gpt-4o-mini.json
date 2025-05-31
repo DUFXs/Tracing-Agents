@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-15022",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/contrib/admin/options.py",
+    "ground_truth_patch_file": "django/contrib/admin/options.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity but include added statements in the second sample, such as the modification of the 'search_terms' list to 'term_queries' and the way filtering is constructed with 'models.Q'.\"}"
+}

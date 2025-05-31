@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15930",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/expressions.py": "index 822968ef56..12d362018b 100644\n         template_params = extra_context\n         sql_params = []\n         condition_sql, condition_params = compiler.compile(self.condition)\n# Handle empty condition from negated empty Q objects (e.g. ~Q(pk__in=[]))\nif not condition_sql.strip():\ncondition_sql = \"1=1\"\n         template_params[\"condition\"] = condition_sql\n         sql_params.extend(condition_params)\n         result_sql, result_params = compiler.compile(self.result)\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/expressions.py": "         template_params = extra_context\n         sql_params = []\n         condition_sql, condition_params = compiler.compile(self.condition)\n# Filters that match everything are handled as empty strings in the\n# WHERE clause, but in a CASE WHEN expression they must use a predicate\n# that's always True.\nif condition_sql == \"\":\ncondition_sql, condition_params = compiler.compile(Value(True))\n         template_params[\"condition\"] = condition_sql\n         sql_params.extend(condition_params)\n         result_sql, result_params = compiler.compile(self.result)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 sets up parameters for a SQL query and handles cases where the condition is empty by defaulting to a truth condition (\\\"1=1\\\"). It compiles the condition using a provided compiler and incorporates it into a set of template parameters. The code then extends SQL parameters based on the compiled condition. Conversely, the code in code sample 2 also compiles parameters for a SQL query but includes additional logic for handling predicates in a CASE WHEN expression. Instead of defaulting to true when the condition is empty, it compiles a True value explicitly to ensure it always matches. Both samples deal with constructing SQL queries but differ in logic handling.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they involve different logical handling of an empty SQL condition, making them syntactically dissimilar as well as functionally different.\"}"
+}

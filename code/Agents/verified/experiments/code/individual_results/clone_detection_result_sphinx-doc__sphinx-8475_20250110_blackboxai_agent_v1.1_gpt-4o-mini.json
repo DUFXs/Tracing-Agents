@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-8475",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/builders/linkcheck.py": "index 1dc0337c3..6aaa0ea44 100644\n \n from docutils import nodes\n from docutils.nodes import Node\nfrom requests.exceptions import HTTPError, TooManyRedirects\n \n from sphinx.application import Sphinx\n from sphinx.builders import Builder\n                                                  config=self.app.config, auth=auth_info,\n                                                  **kwargs)\n                         response.raise_for_status()\nexcept (HTTPError, TooManyRedirects):\n                         # retry with GET request if that fails, some servers\n# don't like HEAD requests or have too many redirects\n                         response = requests.get(req_url, stream=True, config=self.app.config,\n                                                 auth=auth_info, **kwargs)\n                         response.raise_for_status()\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/builders/linkcheck.py": " \n from docutils import nodes\n from docutils.nodes import Node\nfrom requests.exceptions import HTTPError, TooManyRedirects\n \n from sphinx.application import Sphinx\n from sphinx.builders import Builder\n                                                  config=self.app.config, auth=auth_info,\n                                                  **kwargs)\n                         response.raise_for_status()\nexcept (HTTPError, TooManyRedirects):\n                         # retry with GET request if that fails, some servers\n                         # don't like HEAD requests.\n                         response = requests.get(req_url, stream=True, config=self.app.config,\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in whitespace, layout, and comments. Both samples contain the same sequence of code with slight differences in comments and whitespace formatting.\"}"
+}

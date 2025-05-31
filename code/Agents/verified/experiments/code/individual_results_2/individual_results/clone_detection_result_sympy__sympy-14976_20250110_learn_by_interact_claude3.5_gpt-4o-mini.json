@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-14976",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "reproduce.py",
+    "ground_truth_patch_file": "sympy/printing/pycode.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain entirely different functionality and syntax. Sample 1 focuses on using symbols and solving an equation with `mpmath`, while Sample 2 is involved in printing rational numbers and working with formats. They do not share any structural similarities or functional equivalence.\"}"
+}

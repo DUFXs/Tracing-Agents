@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14787",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/utils/decorators.py": "index 5c9a5d01c7..28a0c045af 100644\n         # 'func'. Also, wrap method.__get__() in a function because new\n         # attributes can't be set on bound method objects, only on functions.\n         bound_method = partial(method.__get__(self, type(self)))\n# Preserve the original method's attributes on the partial object\nupdate_wrapper(bound_method, method)\n         for dec in decorators:\n             bound_method = dec(bound_method)\n         return bound_method(*args, **kwargs)\n     func.sync_capable = False\n     func.async_capable = True\n     return func\n\n",
+        "reproduce.py": "new file mode 100644\nindex 0000000000..2b0f0bb4c8\nfrom functools import wraps\nfrom django.utils.decorators import method_decorator\n\ndef logger(func):\n@wraps(func)\ndef inner(*args, **kwargs):\ntry:\nresult = func(*args, **kwargs)\nexcept Exception as e:\nresult = str(e)\nfinally:\nprint(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\nreturn inner\n\nclass Test:\n@method_decorator(logger)\ndef hello_world(self):\nreturn \"hello\"\n\nif __name__ == '__main__':\nTest().hello_world()\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/decorators.py": "         # 'self' argument, but it's a closure over self so it can call\n         # 'func'. Also, wrap method.__get__() in a function because new\n         # attributes can't be set on bound method objects, only on functions.\nbound_method = wraps(method)(partial(method.__get__(self, type(self))))\n         for dec in decorators:\n             bound_method = dec(bound_method)\n         return bound_method(*args, **kwargs)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities but with modifications: in the first sample, a partial function is assigned to 'bound_method' using 'partial(method.__get__(self, type(self)))', while in the second sample, it is accomplished using 'wraps(method)(partial(method.__get__(self, type(self))))'. The essence of the functionality and structure remains similar, yet they contain added or altered statements.\"}"
+}

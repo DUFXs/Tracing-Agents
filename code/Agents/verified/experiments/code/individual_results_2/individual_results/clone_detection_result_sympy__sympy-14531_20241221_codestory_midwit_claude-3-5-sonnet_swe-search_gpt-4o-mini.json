@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-14531",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "edge_cases.py",
+    "ground_truth_patch_file": "sympy/printing/str.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve completely different purposes and are from different parts of the sympy library. Code sample 1 contains multiple edge case tests for expressions using the sympy library, while code sample 2 consists of various method implementations related to the printing of mathematical expressions. Their structures, functions, and contexts do not align, making them syntactically and functionally dissimilar.\"}"
+}

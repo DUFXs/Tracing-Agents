@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-24539",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 4413dd4395..7d427243bd 100644\n \n # Files for pyodide test\n pyodide\n.aider/\n",
+        "sympy/polys/rings.py": "index 12bd2fc920..be6e35d06d 100644\n     def as_expr(self, *symbols):\n         if symbols and len(symbols) != self.ring.ngens:\n             raise ValueError(\"not enough symbols, expected %s got %s\" % (self.ring.ngens, len(symbols)))\nelif not symbols:\n             symbols = self.ring.symbols\n \n         return expr_from_dict(self.as_expr_dict(), *symbols)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/polys/rings.py": "             return new_ring.from_dict(self, self.ring.domain)\n \n     def as_expr(self, *symbols):\nif not symbols:\n             symbols = self.ring.symbols\nelif len(symbols) != self.ring.ngens:\nraise ValueError(\n\"Wrong number of symbols, expected %s got %s\" %\n(self.ring.ngens, len(symbols))\n)\n \n         return expr_from_dict(self.as_expr_dict(), *symbols)\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a function `as_expr` that checks the input `symbols`. If `symbols` is not provided or has a different length than `self.ring.ngens`, it raises a ValueError with a specific message. If `symbols` is empty, it assigns `symbols` the value of `self.ring.symbols`. Finally, it returns an expression derived from a dictionary representation of the object. In code sample 2, the same function `as_expr` performs similar checks but with variations in conditions and the error message it raises, which mentions a 'wrong number of symbols'. This structure is visually different due to indentation and layout but retains the same core logic.\", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in logic but differ in identifier names (error message), whitespace, layout, and comments.\"}"
+}

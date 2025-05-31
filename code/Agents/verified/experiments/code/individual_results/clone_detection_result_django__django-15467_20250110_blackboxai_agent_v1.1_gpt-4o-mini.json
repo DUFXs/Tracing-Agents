@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15467",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/options.py": "index 64be087bf1..6d4f2865ab 100644\n                         \"class\": get_ul_class(self.radio_fields[db_field.name]),\n                     }\n                 )\nkwargs[\"empty_label\"] = (kwargs.get(\"empty_label\") or _(\"None\")) if db_field.blank else None\n \n         if \"queryset\" not in kwargs:\n             queryset = self.get_field_queryset(db, db_field, request)\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/options.py": "                         \"class\": get_ul_class(self.radio_fields[db_field.name]),\n                     }\n                 )\nkwargs[\"empty_label\"] = (\nkwargs.get(\"empty_label\", _(\"None\")) if db_field.blank else None\n)\n \n         if \"queryset\" not in kwargs:\n             queryset = self.get_field_queryset(db, db_field, request)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are nearly identical except for differences in whitespace and the modification of the method used to access the 'empty_label' value, which is now a keyword parameter in the second sample, although its default value remains the same. The functional logic is preserved, but there's an alteration in the structure of the call.\"}"
+}

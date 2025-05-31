@@ -1,0 +1,14 @@
+{
+    "instance_id": "django__django-12741",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/core/management/commands/flush.py": "index e8ed3967f7..bc8021cf4e 100644\n \n         if confirm == 'yes':\n             try:\nconnection.ops.execute_sql_flush(sql_list)\n             except Exception as exc:\n                 raise CommandError(\n                     \"Database %s couldn't be flushed. Possible reasons:\\n\"\n",
+        "django/db/backends/base/operations.py": "index 70ac07ae09..f07580c18b 100644\n         \"\"\"\n         raise NotImplementedError('subclasses of BaseDatabaseOperations must provide a sql_flush() method')\n \ndef execute_sql_flush(self, sql_list):\n         \"\"\"Execute a list of SQL statements to flush the database.\"\"\"\nwith transaction.atomic(using=self.connection.alias, savepoint=self.connection.features.can_rollback_ddl):\n             with self.connection.cursor() as cursor:\n                 for sql in sql_list:\n                     cursor.execute(sql)\n"
+    },
+    "ground_truth_patch": {
+        "django/core/management/commands/flush.py": " \n         if confirm == 'yes':\n             try:\nconnection.ops.execute_sql_flush(sql_list)\n             except Exception as exc:\n                 raise CommandError(\n                     \"Database %s couldn't be flushed. Possible reasons:\\n\"\n",
+        "django/db/backends/base/operations.py": "         \"\"\"\n         raise NotImplementedError('subclasses of BaseDatabaseOperations must provide a sql_flush() method')\n \ndef execute_sql_flush(self, sql_list):\n         \"\"\"Execute a list of SQL statements to flush the database.\"\"\"\nwith transaction.atomic(\nusing=self.connection.alias,\nsavepoint=self.connection.features.can_rollback_ddl,\n):\n             with self.connection.cursor() as cursor:\n                 for sql in sql_list:\n                     cursor.execute(sql)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a function for flushing the database, which involves executing a list of SQL statements within a transaction. It checks if the user confirms the flush and handles exceptions appropriately. The code in code sample 2 performs the same database flush operation, but it includes slight differences in the transaction parameters and the layout of the code. The key operations remain the same, but there are variations in whitespace and formatting.\", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are largely identical except for differences in whitespace, layout, and the way arguments are formatted in the transaction block.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-16527",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/contrib/admin/templatetags/admin_modify.py",
+    "ground_truth_patch_file": "django/contrib/admin/templatetags/admin_modify.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity but have modified statements. While they share some common expressions and structures, they differ in terms of the logical grouping and combination of conditions, indicating that statements were modified or rearranged.\"}"
+}

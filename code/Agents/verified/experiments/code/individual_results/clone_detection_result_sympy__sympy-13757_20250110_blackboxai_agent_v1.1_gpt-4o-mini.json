@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-13757",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 13ee70ccae..4b6ee33b52 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/polys/polytools.py": "index d5ac051f63..463fb5241e 100644\n \n     is_commutative = True\n     is_Poly = True\n_op_priority = 20.0  # Higher priority than Expr's 10.0\n \n     def __new__(cls, rep, *gens, **args):\n         \"\"\"Create a new polynomial instance out of something useful. \"\"\"\n     @_sympifyit('g', NotImplemented)\n     def __rmul__(f, g):\n         if not g.is_Poly:\nif g.is_Number:\nreturn f.mul_ground(g)\n# For symbols and expressions, evaluate the product first\nexpr = g * f.as_expr()\n             try:\n# Try to convert the result back to a polynomial\nreturn f.__class__(expr, *f.gens)\nexcept (PolynomialError, GeneratorsError):\n# If conversion fails, return the expression form\nreturn expr\n         return g.mul(f)\n \n     @_sympifyit('n', NotImplemented)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/polys/polytools.py": " \n     is_commutative = True\n     is_Poly = True\n_op_priority = 10.001\n \n     def __new__(cls, rep, *gens, **args):\n         \"\"\"Create a new polynomial instance out of something useful. \"\"\"\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities; however, there are modifications in the values, specifically in the _op_priority variable, where it changes from 20.0 to 10.001. Overall structure and functionality appear consistent, but the differences in statements make them syntactically dissimilar.\"}"
+}

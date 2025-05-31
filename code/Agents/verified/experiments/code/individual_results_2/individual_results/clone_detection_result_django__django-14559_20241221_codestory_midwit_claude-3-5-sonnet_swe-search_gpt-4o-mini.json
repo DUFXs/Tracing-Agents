@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-14559",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/models/query.py",
+    "ground_truth_patch_file": "django/db/models/query.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and functionality, with only a minor difference in the variable name 'rows_matched' in sample 1 and 'rows_updated' in sample 2.\"}"
+}

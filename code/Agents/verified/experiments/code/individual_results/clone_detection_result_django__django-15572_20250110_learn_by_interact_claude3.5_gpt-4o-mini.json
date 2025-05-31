@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15572",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/template/autoreload.py": "index 84c8554165..f81fbf664c 100644\n         if not isinstance(backend, DjangoTemplates):\n             continue\n \nitems.update(\ncwd / to_path(dir) for dir in backend.engine.dirs if dir  # Skip empty directory strings\n)\n\n \n         for loader in backend.engine.template_loaders:\n             if not hasattr(loader, \"get_dirs\"):\n             items.update(\n                 cwd / to_path(directory)\n                 for directory in loader.get_dirs()\nif directory and not is_django_path(directory)  # Skip empty strings\n             )\n     return items\n \n         if template_dir in file_path.parents:\n             reset_loaders()\n             return True\n\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..86614f2e8f\nfrom django.conf import settings\nfrom django.apps import apps\nfrom django.template import engines\nfrom django.template.backends.django import DjangoTemplates\n\n# Configure Django settings\nsettings.configure(\nINSTALLED_APPS=[\n'django.contrib.contenttypes',\n'django.contrib.auth',\n],\nTEMPLATES=[{\n'BACKEND': 'django.template.backends.django.DjangoTemplates',\n'DIRS': [''],  # Empty string in DIRS - this causes the issue\n}]\n)\n\n# Initialize Django\napps.populate(['django.contrib.contenttypes', 'django.contrib.auth'])\n\n# Initialize template engines\nengines.all()\n\n# Import and use the problematic function\nfrom django.template.autoreload import get_template_directories\n\n# Get template directories and print them\ndirs = get_template_directories()\nprint(\"Template directories:\", dirs)\n\n"
+    },
+    "ground_truth_patch": {
+        "django/template/autoreload.py": "         if not isinstance(backend, DjangoTemplates):\n             continue\n \nitems.update(cwd / to_path(dir) for dir in backend.engine.dirs if dir)\n \n         for loader in backend.engine.template_loaders:\n             if not hasattr(loader, \"get_dirs\"):\n             items.update(\n                 cwd / to_path(directory)\n                 for directory in loader.get_dirs()\nif directory and not is_django_path(directory)\n             )\n     return items\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout. The logic and structure of the code are the same.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "matplotlib__matplotlib-24026",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "lib/matplotlib/stackplot.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes, contain different functionality, and have distinct structures. Sample 1 plots data using Matplotlib, while Sample 2 contains parts of a function related to filling between stacks in a plot without resembling the structure or logic of Sample 1.\"}"
+}

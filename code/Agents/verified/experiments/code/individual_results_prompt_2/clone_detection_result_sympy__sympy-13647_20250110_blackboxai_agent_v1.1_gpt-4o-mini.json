@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-13647",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 13ee70ccae..4b6ee33b52 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/matrices/common.py": "index 056d9bc497..4aa75e4d77 100644\n                 return self[i, j]\n             elif pos <= j < pos + other.cols:\n                 return other[i, j - pos]\nreturn self[i, j - other.cols]\n \n         return self._new(self.rows, self.cols + other.cols,\n                          lambda i, j: entry(i, j))\n"
+    },
+    "ground_truth_patch": {
+        "sympy/matrices/common.py": "                 return self[i, j]\n             elif pos <= j < pos + other.cols:\n                 return other[i, j - pos]\nreturn self[i, j - other.cols]\n \n         return self._new(self.rows, self.cols + other.cols,\n                          lambda i, j: entry(i, j))\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 contains an entry from a .gitignore file which ignores certain files and directories related to pytest, and has a segment of Python code that retrieves matrix entries based on specific conditions. The code in code sample 2 contains only the Python code segment that retrieves matrix entries. It is taken from a single file, 'sympy/matrices/common.py', and appears to be identical to the corresponding segment in code sample 1. However, code sample 1 includes additional context (the .gitignore entry) that is not present in code sample 2.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because the Python code segments in both samples are identical except for the additional context in code sample 1. The only difference is the surrounding file structure and context, which does not affect the core code itself.\"}"
+}

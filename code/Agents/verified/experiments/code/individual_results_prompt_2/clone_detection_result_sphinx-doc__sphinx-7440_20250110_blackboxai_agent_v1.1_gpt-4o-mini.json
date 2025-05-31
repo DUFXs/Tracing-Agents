@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-7440",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index b72664183..6b18e164a 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/domains/std.py": "index d820cfe5c..173ef3400 100644\n         term['ids'].append(node_id)\n \n     std = cast(StandardDomain, env.get_domain('std'))\n# Preserve case sensitivity for terms like MySQL vs mysql\nstd.note_object('term', termtext, node_id, location=term)\n \n     # add an index entry too\n     indexnode = addnodes.index()\n         'envvar':  EnvVarXRefRole(),\n         # links to tokens in grammar productions\n         'token':   TokenXRefRole(),\n# links to terms in glossary (case-sensitive)\n'term':    XRefRole(lowercase=False, innernodeclass=nodes.inline,\n                             warn_dangling=True),\n         # links to headings or arbitrary labels\n         'ref':     XRefRole(lowercase=True, innernodeclass=nodes.inline,\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/domains/std.py": "         term['ids'].append(node_id)\n \n     std = cast(StandardDomain, env.get_domain('std'))\nstd.note_object('term', termtext, node_id, location=term)\n \n     # add an index entry too\n     indexnode = addnodes.index()\n         # links to tokens in grammar productions\n         'token':   TokenXRefRole(),\n         # links to terms in glossary\n'term':    XRefRole(innernodeclass=nodes.inline,\n                             warn_dangling=True),\n         # links to headings or arbitrary labels\n         'ref':     XRefRole(lowercase=True, innernodeclass=nodes.inline,\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 is modifying a Python file that presumably pertains to the Sphinx documentation generator, specifically to handle terms indexed by their identifiers, including their links and notes. It involves appending identifiers to a term, casting a standard domain, and defining roles for cross-referencing. The code in code sample 2 essentially accomplishes the same operations as code sample 1, dealing with term indexing and defining links with similar attributes, but contains slight differences in whitespace and some identifier handling. \", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in logic and functionality but differ mainly in whitespace and comment format, with some identifier values slightly altered.\"}"
+}

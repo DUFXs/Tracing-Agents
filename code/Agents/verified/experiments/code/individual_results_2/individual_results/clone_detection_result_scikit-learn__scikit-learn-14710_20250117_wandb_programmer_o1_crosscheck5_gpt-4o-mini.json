@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14710",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py",
+    "ground_truth_patch_file": "sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share similar structures but have different statements and conditions at certain points. Specifically, in sample 1, it checks if the object has a 'classes_' attribute using 'if hasattr(self, 'classes_'):', while sample 2 checks if the object is a classifier using 'if is_classifier(self):'. This change in logic results in a syntactic difference, making them functionally similar but syntactically distinct.\"}"
+}

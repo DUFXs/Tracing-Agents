@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11603",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/aggregates.py": "index da4ff928aa..8b10829eb8 100644\n class Avg(FixDurationInputMixin, NumericOutputFieldMixin, Aggregate):\n     function = 'AVG'\n     name = 'Avg'\nallow_distinct = True\n \n \n class Count(Aggregate):\n class Sum(FixDurationInputMixin, Aggregate):\n     function = 'SUM'\n     name = 'Sum'\nallow_distinct = True\n \n \n class Variance(NumericOutputFieldMixin, Aggregate):\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/aggregates.py": " class Avg(FixDurationInputMixin, NumericOutputFieldMixin, Aggregate):\n     function = 'AVG'\n     name = 'Avg'\nallow_distinct = True\n \n \n class Count(Aggregate):\n class Sum(FixDurationInputMixin, Aggregate):\n     function = 'SUM'\n     name = 'Sum'\nallow_distinct = True\n \n \n class Variance(NumericOutputFieldMixin, Aggregate):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in content and structure but differ only in the whitespace or layout. The only difference is the presence of an additional line character in sample 2 at the beginning, which does not impact the logical flow or functionality of the code.\"}"
+}

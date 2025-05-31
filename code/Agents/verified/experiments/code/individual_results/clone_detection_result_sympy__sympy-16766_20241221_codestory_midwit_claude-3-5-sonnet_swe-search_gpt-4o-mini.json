@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-16766",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..548af07ae2\nfrom sympy import *\n\n# Test case 1: Basic indexed expression\np = IndexedBase(\"p\")\nprint(\"Test case 1 - Single index:\")\nprint(pycode(p[0]))\n\n# Test case 2: Multiple indices\nprint(\"\\nTest case 2 - Multiple indices:\")\nprint(pycode(p[0,1]))\n\n# Test case 3: Expression as index\nx = Symbol('x')\nprint(\"\\nTest case 3 - Expression as index:\")\nprint(pycode(p[x+1]))\n\n# Test case 4: Different base type\nA = MatrixSymbol('A', 3, 3)\nprint(\"\\nTest case 4 - Matrix base:\")\nprint(pycode(A[0,1]))\n\\ No newline at end of file\n",
+        "sympy/printing/pycode.py": "index a3f0310735..2267221afc 100644\n \n class PythonCodePrinter(AbstractPythonCodePrinter):\n \ndef _print_Indexed(self, expr):\nbase, *index = expr.args\nreturn \"{}[{}]\".format(str(base), \", \".join([self._print(ind) for ind in index]))\n\n     def _print_sign(self, e):\n         return '(0.0 if {e} == 0 else {f}(1, {e}))'.format(\n             f=self._module_format('math.copysign'), e=self._print(e.args[0]))\n"
+    },
+    "ground_truth_patch": {
+        "sympy/printing/pycode.py": "         PREC = precedence(expr)\n         return self._operators['not'] + self.parenthesize(expr.args[0], PREC)\n \ndef _print_Indexed(self, expr):\nbase = expr.args[0]\nindex = expr.args[1:]\nreturn \"{}[{}]\".format(str(base), \", \".join([self._print(ind) for ind in index]))\n\n \n for k in PythonCodePrinter._kf:\n     setattr(PythonCodePrinter, '_print_%s' % k, _print_known_func)\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are from different parts of the codebase and have completely different content. The first sample includes print statements and test cases related to indexed expressions, while the second sample contains a portion of the method implementations for printing indexed expressions in a class. They do not have any significant similarity in structure or functionality.\"}"
+}

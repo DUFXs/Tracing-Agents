@@ -1,0 +1,7 @@
+{
+    "instance_id": "pytest-dev__pytest-7236",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "src/_pytest/unittest.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are fundamentally different in structure, content, and purpose. Code sample 1 includes a simple test case setup and a skip decorator for a test, while code sample 2 contains more intricate logic related to test case execution and skipping, with additional functions and class implementations. They serve different roles within a testing framework, showing syntactic and functional dissimilarities.\"}"
+}

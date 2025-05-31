@@ -1,0 +1,13 @@
+{
+    "instance_id": "django__django-13569",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/functions/math.py": "index 304e112225..987a9b4373 100644\n     function = 'RANDOM'\n     arity = 0\n \ndef get_group_by_cols(self):\n# Random() should not be included in GROUP BY\nreturn []\n\n     def as_mysql(self, compiler, connection, **extra_context):\n         return super().as_sql(compiler, connection, function='RAND', **extra_context)\n \n",
+        "django/db/models/sql/compiler.py": "index 04e430a42e..80b7adbe1c 100644\n             for col in cols:\n                 expressions.append(col)\n         for expr, (sql, params, is_ref) in order_by:\n# Skip References to the select clause, as all expressions in the select clause are already part of the group by.\n             if not is_ref:\n                 expressions.extend(expr.get_group_by_cols())\n         having_group_by = self.having.get_group_by_cols() if self.having else ()\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/functions/math.py": "     def as_sqlite(self, compiler, connection, **extra_context):\n         return super().as_sql(compiler, connection, function='RAND', **extra_context)\n \ndef get_group_by_cols(self, alias=None):\nreturn []\n\n \n class Round(Transform):\n     function = 'ROUND'\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share similar structures and functionalities but have added, modified, or removed statements. For example, the first code sample includes the method 'as_mysql' which is similar in purpose to 'as_sqlite' in the second sample, indicating a modification in the function names and potential logic within. Moreover, they both implement the method 'get_group_by_cols', but with slight architectural differences, thus qualifying them as syntactically similar with changes.\"}"
+}

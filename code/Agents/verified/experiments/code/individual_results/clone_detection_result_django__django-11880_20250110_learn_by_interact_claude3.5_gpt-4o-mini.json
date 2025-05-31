@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11880",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/forms/fields.py": "index 03cd8af8d7..cbabdd3b1f 100644\n         memo[id(self)] = result\n         result.widget = copy.deepcopy(self.widget, memo)\n         result.validators = self.validators[:]\nresult.error_messages = copy.deepcopy(self.error_messages, memo)\n         return result\n \n \n\n class CharField(Field):\n     def __init__(self, *, max_length=None, min_length=None, strip=True, empty_value='', **kwargs):\n         self.max_length = max_length\n             except ValueError:\n                 raise ValidationError(self.error_messages['invalid'], code='invalid')\n         return value\n\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..23205074ee\nfrom django.forms import CharField\nimport copy\n\ndef test_error_messages_deepcopy():\n# Create original field\nfield1 = CharField(error_messages={'required': 'Original message'})\n\n# Create a deep copy\nfield2 = copy.deepcopy(field1)\n\n# Modify error message in field2\nfield2.error_messages['required'] = 'Modified message'\n\n# Print both messages to show they are incorrectly shared\nprint(\"Field 1 required message:\", field1.error_messages['required'])\nprint(\"Field 2 required message:\", field2.error_messages['required'])\n\nif __name__ == '__main__':\ntest_error_messages_deepcopy()\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/fields.py": "         result = copy.copy(self)\n         memo[id(self)] = result\n         result.widget = copy.deepcopy(self.widget, memo)\nresult.error_messages = self.error_messages.copy()\n         result.validators = self.validators[:]\n         return result\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar, but there are added and modified statements between them. For example, in sample 1, 'result = copy.deepcopy(self.error_messages, memo)' is modified to 'result.error_messages = self.error_messages.copy()' in sample 2. Additionally, sample 1 has 'result = copy.deepcopy(self.widget, memo)' and the widget copy statement is preserved but the value copy has been altered.\"}"
+}

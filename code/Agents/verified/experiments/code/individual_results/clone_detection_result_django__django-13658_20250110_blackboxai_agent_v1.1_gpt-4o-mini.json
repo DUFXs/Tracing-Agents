@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13658",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/core/management/__init__.py": "index 1ba093e51f..4bfe90e857 100644\n         # Preprocess options to extract --settings and --pythonpath.\n         # These options could affect the commands that are available, so they\n         # must be processed early.\nparser = CommandParser(\nprog=self.prog_name,\nusage='%(prog)s subcommand [options] [args]',\nadd_help=False,\nallow_abbrev=False)\n         parser.add_argument('--settings')\n         parser.add_argument('--pythonpath')\n         parser.add_argument('args', nargs='*')  # catch-all\n"
+    },
+    "ground_truth_patch": {
+        "django/core/management/__init__.py": "         # Preprocess options to extract --settings and --pythonpath.\n         # These options could affect the commands that are available, so they\n         # must be processed early.\nparser = CommandParser(\nprog=self.prog_name,\nusage='%(prog)s subcommand [options] [args]',\nadd_help=False,\nallow_abbrev=False,\n)\n         parser.add_argument('--settings')\n         parser.add_argument('--pythonpath')\n         parser.add_argument('args', nargs='*')  # catch-all\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for slight differences in whitespace and layout. The content and functionality of the code remain unchanged.\"}"
+}

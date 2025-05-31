@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16145",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/core/management/commands/runserver.py": "index 3c39f57e4d..9b66278e5a 100644\n             if not self.port.isdigit():\n                 raise CommandError(\"%r is not a valid port number.\" % self.port)\n             if self.addr:\n# Convert '0' to '0.0.0.0' for consistency with docs\nif self.addr == '0':\nself.addr = '0.0.0.0'\n                 if _ipv6:\n                     self.addr = self.addr[1:-1]\n                     self.use_ipv6 = True\n"
+    },
+    "ground_truth_patch": {
+        "django/core/management/commands/runserver.py": "         shutdown_message = options.get(\"shutdown_message\", \"\")\n         quit_command = \"CTRL-BREAK\" if sys.platform == \"win32\" else \"CONTROL-C\"\n \nif self._raw_ipv6:\naddr = f\"[{self.addr}]\"\nelif self.addr == \"0\":\naddr = \"0.0.0.0\"\nelse:\naddr = self.addr\n\n         if not options[\"skip_checks\"]:\n             self.stdout.write(\"Performing system checks...\\n\\n\")\n             self.check(display_num_errors=True)\n                 \"version\": self.get_version(),\n                 \"settings\": settings.SETTINGS_MODULE,\n                 \"protocol\": self.protocol,\n\"addr\": addr,\n                 \"port\": self.port,\n                 \"quit_command\": quit_command,\n             }\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they exhibit different logic and structure. The first code sample focuses on handling a valid port number and IP address for the server configuration, while the second code sample emphasizes shutdown messages, quitting commands, and checking options. They serve different functionalities and do not share sufficient syntactical similarity or functional equivalence to be classified as clones.\"}"
+}

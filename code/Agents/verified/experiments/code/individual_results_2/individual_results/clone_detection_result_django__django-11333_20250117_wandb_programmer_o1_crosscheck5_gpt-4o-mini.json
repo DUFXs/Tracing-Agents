@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-11333",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/urls/resolvers.py",
+    "ground_truth_patch_file": "django/urls/base.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes within the Django codebase. Sample 1 defines URL resolver functions using caching mechanisms, while Sample 2 is concerned with clearing caches related to callable objects and does not share significant syntactic structure or functionality with Sample 1.\"}"
+}

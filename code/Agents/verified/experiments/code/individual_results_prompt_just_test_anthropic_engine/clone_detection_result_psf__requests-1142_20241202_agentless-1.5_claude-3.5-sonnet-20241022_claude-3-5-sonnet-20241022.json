@@ -1,0 +1,11 @@
+{
+    "instance_id": "psf__requests-1142",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "requests/models.py": "index 0d4482a..610eab0 100644\n         self.body = body\n \n     def prepare_content_length(self, body):\nif body is None:\nreturn\n\n         if hasattr(body, 'seek') and hasattr(body, 'tell'):\n             body.seek(0, 2)\n             self.headers['Content-Length'] = str(body.tell())\n             body.seek(0, 0)\nelse:\n             self.headers['Content-Length'] = str(len(body))\n \n     def prepare_auth(self, auth):\n"
+    },
+    "ground_truth_patch": {
+        "requests/models.py": "         self.body = body\n \n     def prepare_content_length(self, body):\n         if hasattr(body, 'seek') and hasattr(body, 'tell'):\n             body.seek(0, 2)\n             self.headers['Content-Length'] = str(body.tell())\n             body.seek(0, 0)\n         elif body is not None:\n             self.headers['Content-Length'] = str(len(body))\nelif self.method not in ('GET', 'HEAD'):\nself.headers['Content-Length'] = '0'\n \n     def prepare_auth(self, auth):\n         \"\"\"Prepares the given HTTP auth data.\"\"\"\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 is a method that prepares the Content-Length header for an HTTP request. It checks if the body is None, and if not, it either uses seek/tell methods for file-like objects to determine length, or uses len() for other types of bodies. The code in code sample 2 is also a method that prepares the Content-Length header, but it has an additional condition that sets Content-Length to '0' for non-GET/HEAD requests when the body is None.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they share the same basic structure and purpose (preparing Content-Length header), but have some modifications in their logic. The main differences are: 1) Sample 1 handles the None case with an early return, while Sample 2 uses an elif condition, 2) Sample 2 adds an additional condition for handling GET/HEAD requests, setting Content-Length to '0' when body is None. The core functionality remains similar, but statements have been modified and added, which is characteristic of type-3 clones.\"\n}"
+}

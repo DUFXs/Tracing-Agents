@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-14053",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "static_root/admin/css/base.css",
+    "ground_truth_patch_file": "django/contrib/staticfiles/storage.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

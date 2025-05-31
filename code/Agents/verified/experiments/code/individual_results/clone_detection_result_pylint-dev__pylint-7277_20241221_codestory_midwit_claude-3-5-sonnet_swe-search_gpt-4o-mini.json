@@ -1,0 +1,12 @@
+{
+    "instance_id": "pylint-dev__pylint-7277",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "pylint/__init__.py": "index 9f3dd74e6..0ae6676f4 100644\n       if pylint is installed in an editable configuration (as the last item).\n       https://github.com/PyCQA/pylint/issues/4161\n     \"\"\"\n# Only remove the first entry if it's one of the default current directory entries\nfirst_path = sys.path[0]\nif first_path in (\"\", \".\", os.getcwd()):\nsys.path.pop(0)\n     env_pythonpath = os.environ.get(\"PYTHONPATH\", \"\")\n     cwd = os.getcwd()\n     if env_pythonpath.startswith(\":\") and env_pythonpath not in (f\":{cwd}\", \":.\"):\n",
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..d649e2b40\nimport sys\nimport runpy\n\nprint(\"Initial sys.path:\", sys.path)\nsys.path.insert(0, \"something\")\nprint(\"After adding 'something':\", sys.path)\n\ntry:\nrunpy.run_module('pylint', run_name=\"__main__\", alter_sys=True)\nexcept Exception as e:\nprint(\"Error occurred:\", str(e))\n\nprint(\"Final sys.path:\", sys.path)\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "pylint/__init__.py": "       if pylint is installed in an editable configuration (as the last item).\n       https://github.com/PyCQA/pylint/issues/4161\n     \"\"\"\n     cwd = os.getcwd()\nif sys.path[0] in (\"\", \".\", cwd):\nsys.path.pop(0)\nenv_pythonpath = os.environ.get(\"PYTHONPATH\", \"\")\n     if env_pythonpath.startswith(\":\") and env_pythonpath not in (f\":{cwd}\", \":.\"):\n         sys.path.pop(0)\n     elif env_pythonpath.endswith(\":\") and env_pythonpath not in (f\"{cwd}:\", \".:\"):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but include added or modified lines. The first sample includes the condition about the default current directory entries and has specific handling for 'PYTHONPATH', while the second sample alters the logic and addition of conditions related to 'env_pythonpath', making them differ in functionality despite their structural similarities.\"}"
+}

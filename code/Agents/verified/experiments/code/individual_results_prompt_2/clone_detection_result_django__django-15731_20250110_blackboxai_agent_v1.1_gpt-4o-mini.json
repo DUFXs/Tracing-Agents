@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15731",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/manager.py": "index e37e56cd17..b93e123c97 100644\n import copy\n import inspect\nfrom functools import wraps\n from importlib import import_module\n \n from django.db import router\n     @classmethod\n     def _get_queryset_methods(cls, queryset_class):\n         def create_method(name, method):\n@wraps(method)\n             def manager_method(self, *args, **kwargs):\n                 return getattr(self.get_queryset(), name)(*args, **kwargs)\n             return manager_method\n \n         new_methods = {}\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/manager.py": " import copy\n import inspect\nfrom functools import wraps\n from importlib import import_module\n \n from django.db import router\n     @classmethod\n     def _get_queryset_methods(cls, queryset_class):\n         def create_method(name, method):\n@wraps(method)\n             def manager_method(self, *args, **kwargs):\n                 return getattr(self.get_queryset(), name)(*args, **kwargs)\n \n             return manager_method\n \n         new_methods = {}\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 and code sample 2 both consist of similar imports and a class method `_get_queryset_methods` that defines a nested `create_method` function. These make use of `@wraps` from the `functools` module to maintain the metadata of a wrapped method, and they also create a `manager_method` that interacts with a queryset. Both samples contain the same structure and logic with only slight formatting differences.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace, layout, and possibly minor formatting differences. The logic and structure of the code remain unchanged.\"}"
+}

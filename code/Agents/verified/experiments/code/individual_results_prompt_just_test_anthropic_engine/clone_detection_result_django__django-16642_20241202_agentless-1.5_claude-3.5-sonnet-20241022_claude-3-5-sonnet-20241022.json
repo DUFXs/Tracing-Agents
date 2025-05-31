@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-16642",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/http/response.py": "index b918697..85a539b 100644\n                     \"bzip2\": \"application/x-bzip\",\n                     \"gzip\": \"application/gzip\",\n                     \"xz\": \"application/x-xz\",\n\"br\": \"application/x-brotli\",\n\"compress\": \"application/x-compress\",\n                 }.get(encoding, content_type)\n                 self.headers[\"Content-Type\"] = (\n                     content_type or \"application/octet-stream\"\n"
+    },
+    "ground_truth_patch": {
+        "django/http/response.py": "                 # Encoding isn't set to prevent browsers from automatically\n                 # uncompressing files.\n                 content_type = {\n\"br\": \"application/x-brotli\",\n                     \"bzip2\": \"application/x-bzip\",\n\"compress\": \"application/x-compress\",\n                     \"gzip\": \"application/gzip\",\n                     \"xz\": \"application/x-xz\",\n                 }.get(encoding, content_type)\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 defines a dictionary mapping file compression formats (like 'bzip2', 'gzip', 'xz', 'br', 'compress') to their corresponding MIME content types, gets the content type based on the encoding, and sets the Content-Type header. The code in code sample 2 does essentially the same thing, defining the same dictionary mapping compression formats to MIME types, with added comments explaining that encoding isn't set to prevent browsers from automatically uncompressing files.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they contain the exact same dictionary mapping and .get() operation, with only differences in:\n1. Whitespace/layout (different indentation and line ordering of the dictionary entries)\n2. Comments (sample 2 has additional explanatory comments)\n3. Sample 1 has an additional line setting the Content-Type header\nThe core logic and structure of the code is identical, and the differences are only in formatting and comments, which is characteristic of type-1 clones.\"\n}"
+}

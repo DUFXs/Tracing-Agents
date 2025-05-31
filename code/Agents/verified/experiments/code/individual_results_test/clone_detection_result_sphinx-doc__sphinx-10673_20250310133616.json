@@ -1,0 +1,7 @@
+{
+    "instance_id": "sphinx-doc__sphinx-10673",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "sphinx/directives/other.py",
+    "ground_truth_patch_file": "sphinx/environment/adapters/toctree.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

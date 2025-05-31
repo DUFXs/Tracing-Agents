@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-9296",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/core/paginator.py": "index 1f92da5d4f..c0c2c6750a 100644\n         \"\"\"\n         return range(1, self.num_pages + 1)\n \ndef __iter__(self):\n\"\"\"Iterate over the pages in the paginator.\"\"\"\nfor page_num in self.page_range:\nyield self.page(page_num)\n\n     def _check_object_list_is_ordered(self):\n         \"\"\"\n         Warn if self.object_list is unordered (typically a QuerySet).\n"
+    },
+    "ground_truth_patch": {
+        "django/core/paginator.py": "         self.orphans = int(orphans)\n         self.allow_empty_first_page = allow_empty_first_page\n \ndef __iter__(self):\nfor page_number in self.page_range:\nyield self.page(page_number)\n\n     def validate_number(self, number):\n         \"\"\"Validate the given 1-based page number.\"\"\"\n         try:\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and have different logic. The first sample primarily focuses on page iteration and handling of unordered lists, while the second introduces details about orphans and validating the page number. Their functionalities and semantics differ significantly, indicating they are not structurally similar enough to be categorized as clones.\"}"
+}

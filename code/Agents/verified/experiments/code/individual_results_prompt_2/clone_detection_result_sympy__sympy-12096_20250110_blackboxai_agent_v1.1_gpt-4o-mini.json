@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-12096",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 0f8a7d6857..643bd3dbca 100644\n # IPython Notebook Checkpoints\n .ipynb_checkpoints/\n \n.aider/\n",
+        "sympy/core/function.py": "index 1b8005e1d2..3770d122d1 100644\n             func = getattr(mpmath, fname)\n         except (AttributeError, KeyError):\n             try:\nresult = self._imp_(*self.args)\nif isinstance(result, Basic):  # If result is a symbolic expression\nevaluated = result.evalf(prec)\nif evaluated is not None:\nreturn evaluated\nreturn Float(result, prec)\n             except (AttributeError, TypeError, ValueError):\n                 return\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/function.py": "             func = getattr(mpmath, fname)\n         except (AttributeError, KeyError):\n             try:\nreturn Float(self._imp_(*[i.evalf(prec) for i in self.args]), prec)\n             except (AttributeError, TypeError, ValueError):\n                 return\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 attempts to retrieve a function from the `mpmath` library using its name `fname`. It handles exceptions like `AttributeError` and `KeyError`, then proceeds to call the function with its arguments if successful. If the result is of type `Basic`, it evaluates that result to a floating-point number with the specified precision. If any exception occurs, it returns nothing. The code in code sample 2 performs a similar function retrieval and exception handling, but when calling the function, it evaluates each argument in `self.args` before passing it to `_imp_`, and returns the evaluated result wrapped in a `Float`. \", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar, with the primary difference being that code sample 1 calls `self._imp_(*self.args)` directly, while code sample 2 evaluates each element of `self.args` before passing them to `self._imp_`, and this constitutes a modification of the statements.\"}"
+}

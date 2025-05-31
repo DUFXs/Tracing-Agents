@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13158",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/db/models/sql/query.py",
+    "ground_truth_patch_file": "django/db/models/sql/query.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are structurally similar, with differences in identifier names and some additional statements in the second sample, but they share the same functional structure and logic.\"}"
+}

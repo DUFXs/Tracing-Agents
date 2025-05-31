@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-24149",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 7d0e549e01..ec3b38b71a 100644\n lib/matplotlib/backends/web_backend/package-lock.json\n \n LICENSE/LICENSE_QHULL\n.aider/\n",
+        "lib/matplotlib/axes/_axes.py": "index fdac0f3560..3a61e89e14 100644\n             # wrap numpy arrays.\n             try:\n                 x0 = cbook._safe_first_finite(x0)\nexcept (TypeError, IndexError, KeyError, StopIteration):\n                 pass\n \n             try:\n                 x = cbook._safe_first_finite(xconv)\nexcept (TypeError, IndexError, KeyError, StopIteration):\n                 x = xconv\n \n             delist = False\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/axes/_axes.py": "                 x0 = cbook._safe_first_finite(x0)\n             except (TypeError, IndexError, KeyError):\n                 pass\nexcept StopIteration:\n# this means we found no finite element, fall back to first\n# element unconditionally\nx0 = cbook.safe_first_element(x0)\n \n             try:\n                 x = cbook._safe_first_finite(xconv)\n             except (TypeError, IndexError, KeyError):\n                 x = xconv\nexcept StopIteration:\n# this means we found no finite element, fall back to first\n# element unconditionally\nx = cbook.safe_first_element(xconv)\n \n             delist = False\n             if not np.iterable(dx):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share a similar structure and logic but have modifications, such as added or removed statements, specifically relating to how the exceptions are handled and the comments present in the code.\"}"
+}

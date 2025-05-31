@@ -1,0 +1,11 @@
+{
+    "instance_id": "sphinx-doc__sphinx-9591",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sphinx/domains/python.py": "index e8330e81c..7861da39e 100644\n \n         typ = self.options.get('type')\n         if typ:\nannotations = _parse_annotation(typ, self.env)\nsignode += addnodes.desc_annotation(typ, '', nodes.Text(': '), *annotations)\n \n         return fullname, prefix\n \n\n     def get_signature_prefix(self, sig: str) -> str:\n         prefix = []\n         if 'abstractmethod' in self.options:\n         'parallel_read_safe': True,\n         'parallel_write_safe': True,\n     }\n\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/domains/python.py": " \n         typ = self.options.get('type')\n         if typ:\nannotations = _parse_annotation(typ, self.env)\nsignode += addnodes.desc_annotation(typ, '', nodes.Text(': '), *annotations)\n \n         return fullname, prefix\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout. The content and logic of the code remain the same, with no changes in identifiers or actual coding elements.\"}"
+}

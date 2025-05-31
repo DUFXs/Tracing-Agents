@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14053",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 73feb51e7..0dceba0b7 100644\n sklearn/utils/seq_dataset.pyx\n sklearn/utils/seq_dataset.pxd\n sklearn/linear_model/sag_fast.pyx\n.aider/\n",
+        "sklearn/tree/export.py": "index 1fe11e596..01afeffe5 100644\n         value_fmt = \"{}{} value: {}\\n\"\n \n     if feature_names:\n# Safely create feature names list handling out of range indices\nfeature_names_ = []\nfor i in tree_.feature:\nif i == _tree.TREE_UNDEFINED or i < 0 or i >= len(feature_names):\nfeature_names_.append(\"undefined\")\nelse:\nfeature_names_.append(feature_names[i])\n     else:\n         feature_names_ = [\"feature_{}\".format(i) for i in tree_.feature]\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/tree/export.py": "         value_fmt = \"{}{} value: {}\\n\"\n \n     if feature_names:\nfeature_names_ = [feature_names[i] if i != _tree.TREE_UNDEFINED\nelse None for i in tree_.feature]\n     else:\n         feature_names_ = [\"feature_{}\".format(i) for i in tree_.feature]\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have added or modified statements. The key difference is that in the second sample, the line where feature names are added to the list has been modified to use a list comprehension with a conditional expression, while in the first sample, a more verbose if-else structure is used.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-16886",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..4b92cc4018\nfrom sympy.crypto.crypto import decode_morse, encode_morse\n\n# Test both encoding and decoding of \"1\" in Morse code\nnumber = \"1\"\nmorse = \".----\"  # Correct Morse code for \"1\"\n\nprint(\"Testing Morse code encoding and decoding:\")\nprint(f\"1. Encoding the number '{number}':\")\nencoded = encode_morse(number)\nprint(f\"Result: {encoded}\")\n\nprint(f\"\\n2. Decoding the Morse code '{morse}':\")\ndecoded = decode_morse(morse)\nprint(f\"Result: {decoded}\")\n\n# Verify that encoding and decoding are consistent\nprint(\"\\n3. Verifying encode/decode consistency:\")\nprint(f\"Original number: {number}\")\nprint(f\"Encoded to Morse: {encoded}\")\nprint(f\"Decoded back: {decode_morse(encoded)}\")\nprint(f\"Consistent: {number == decode_morse(encoded)}\")\n\\ No newline at end of file\n",
+        "sympy/crypto/crypto.py": "index ca552191c0..0c556b6efb 100644\n     \"..-\": \"U\", \"...-\": \"V\",\n     \".--\": \"W\", \"-..-\": \"X\",\n     \"-.--\": \"Y\", \"--..\": \"Z\",\n\"-----\": \"0\", \".----\": \"1\",\n     \"..---\": \"2\", \"...--\": \"3\",\n     \"....-\": \"4\", \".....\": \"5\",\n     \"-....\": \"6\", \"--...\": \"7\",\n"
+    },
+    "ground_truth_patch": {
+        "sympy/crypto/crypto.py": "     \"..-\": \"U\", \"...-\": \"V\",\n     \".--\": \"W\", \"-..-\": \"X\",\n     \"-.--\": \"Y\", \"--..\": \"Z\",\n\"-----\": \"0\", \".----\": \"1\",\n     \"..---\": \"2\", \"...--\": \"3\",\n     \"....-\": \"4\", \".....\": \"5\",\n     \"-....\": \"6\", \"--...\": \"7\",\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because Code Sample 1 contains a complete script for testing Morse code encoding and decoding, while Code Sample 2 includes only a portion of a dictionary from the Morse code implementation, lacking any complete structure or function.\"}"
+}

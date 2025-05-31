@@ -1,0 +1,12 @@
+{
+    "instance_id": "psf__requests-5414",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index de61154e..95bcbc85 100644\n dist\n \n /.mypy_cache/\n.aider/\n",
+        "requests/models.py": "index e7d292d5..38993cb3 100644\n         try:\n             scheme, auth, host, port, path, query, fragment = parse_url(url)\n         except LocationParseError as e:\n# Handle all cases of invalid labels (empty, consecutive dots, etc.)\nif any(x in str(e).lower() for x in ['label empty', 'too long']):\nraise InvalidURL(\"URL has an invalid label.\")\n             raise InvalidURL(*e.args)\n \n# Additional validation for the host\nif host:\nif '..' in host or host.startswith('.') or host.endswith('.'):\nraise InvalidURL(\"URL has an invalid label.\")\n\n         if not scheme:\n             error = (\"Invalid URL {0!r}: No schema supplied. Perhaps you meant http://{0}?\")\n             error = error.format(to_native_string(url, 'utf8'))\n"
+    },
+    "ground_truth_patch": {
+        "requests/models.py": "                 host = self._get_idna_encoded_host(host)\n             except UnicodeError:\n                 raise InvalidURL('URL has an invalid label.')\nelif host.startswith((u'*', u'.')):\n             raise InvalidURL('URL has an invalid label.')\n \n         # Carefully reconstruct the network location\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 is parsing a URL and handling exceptions for invalid labels, raising an InvalidURL exception if there are issues with the URL components such as an empty label or invalid format. It also includes additional validation for the host portion of the URL. Conversely, in code sample 2, the code is checking the host after it has been processed for international domain names and is raising an InvalidURL exception if the host starts with certain invalid characters. Both samples deal with URL validation but handle different aspects of it.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they involve different stages and aspects of URL validation, with no syntactic or structural similarities, thus they are functionally distinct.\"}"
+}

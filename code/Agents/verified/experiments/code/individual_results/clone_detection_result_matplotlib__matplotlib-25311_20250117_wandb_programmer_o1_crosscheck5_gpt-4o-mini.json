@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-25311",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "lib/matplotlib/offsetbox.py": "index 1dee8a23d9..19d9626e6e 100644\n \n     def finalize_offset(self):\n         pass\ndef __getstate__(self):\nstate = self.__dict__.copy()\n# Remove unpicklable references\nstate.pop('canvas', None)\nstate.pop('cids', None)\nreturn state\ndef __setstate__(self, state):\nself.__dict__.update(state)\n# After unpickling, the user would need to call set_draggable again\n# if they want to re-enable interactive dragging callbacks.\nself.canvas = None\nself.cids = []\n\n\n \n \n class DraggableOffsetBox(DraggableBase):\n",
+        "test_pickle_draggable.py": "new file mode 100644\nindex 0000000000..b7b1761d16\nimport sys\nimport pickle\nimport matplotlib\nmatplotlib.use(\"Agg\")  # Use a non-GUI backend for testing\nimport matplotlib.pyplot as plt\n\ndef main():\nprint(\"Creating figure with draggable legend\")\nfig, ax = plt.subplots()\nax.plot([0,1,2],[1,2,3], label=\"Test line\")\nleg = ax.legend()\nleg.set_draggable(True)\nprint(\"Attempting to pickle figure...\")\ntry:\npickle.dumps(fig)\nexcept Exception as e:\nprint(\"Pickle failed with error:\", e)\nsys.exit(1)\nprint(\"Pickle succeeded without error.\")\nsys.exit(0)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/offsetbox.py": "         if not ref_artist.pickable():\n             ref_artist.set_picker(True)\n         self.got_artist = False\n         self._use_blit = use_blit and self.canvas.supports_blit\n         self.cids = [\n             self.canvas.callbacks._connect_picklable(\n                 'button_release_event', self.on_release),\n         ]\n \n# A property, not an attribute, to maintain picklability.\ncanvas = property(lambda self: self.ref_artist.figure.canvas)\n\n     def on_motion(self, evt):\n         if self._check_still_parented() and self.got_artist:\n             dx = evt.x - self.mouse_x\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain different functionality and do not share structure. The first sample defines methods related to pickling and initialization of a draggable offset, while the second sample includes code focused on event handling and picking without a clear equivalence to the methods in the first sample. Therefore, they are syntactically dissimilar and functionally not equivalent.\"}"
+}

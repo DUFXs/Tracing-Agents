@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16139",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/auth/forms.py": "index b3cfc6723c..2408de97e0 100644\n     def __init__(self, *args, **kwargs):\n         super().__init__(*args, **kwargs)\n         password = self.fields.get(\"password\")\nif password and self.instance.pk:\npassword.help_text = password.help_text.format(f\"../../{self.instance.pk}/password/\")\n         user_permissions = self.fields.get(\"user_permissions\")\n         if user_permissions:\n             user_permissions.queryset = user_permissions.queryset.select_related(\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/forms.py": "         super().__init__(*args, **kwargs)\n         password = self.fields.get(\"password\")\n         if password:\npassword.help_text = password.help_text.format(\nf\"../../{self.instance.pk}/password/\"\n)\n         user_permissions = self.fields.get(\"user_permissions\")\n         if user_permissions:\n             user_permissions.queryset = user_permissions.queryset.select_related(\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in whitespace and layout. The logical flow and functionality remain the same regardless of slight variations in indentation and blank lines.\"}"
+}

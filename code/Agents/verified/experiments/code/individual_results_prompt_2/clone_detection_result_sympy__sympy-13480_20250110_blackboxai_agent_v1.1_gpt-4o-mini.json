@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-13480",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 13ee70ccae..4b6ee33b52 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/functions/elementary/hyperbolic.py": "index 2a4555d919..5fbb73c786 100644\n                 x, m = _peeloff_ipi(arg)\n                 if m:\n                     cothm = coth(m)\nif cothm is S.ComplexInfinity:\n                         return coth(x)\n                     else: # cothm == 0\n                         return tanh(x)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/functions/elementary/hyperbolic.py": "                 x, m = _peeloff_ipi(arg)\n                 if m:\n                     cothm = coth(m)\nif cothm is S.ComplexInfinity:\n                         return coth(x)\n                     else: # cothm == 0\n                         return tanh(x)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 is a patch that includes the modification of a file related to testing data for pytest, along with the function from 'sympy/functions/elementary/hyperbolic.py' that processes some hyperbolic functions. Specifically, it handles a case involving the 'coth' function based on a variable 'm'. On the other hand, code sample 2 includes only the portion from 'sympy/functions/elementary/hyperbolic.py' without the surrounding context of the '.gitignore' changes. The hyperbolic function logic is exactly the same in both samples.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in functionality and content except for the additional context in the first sample regarding the '.gitignore' patch.\"}"
+}

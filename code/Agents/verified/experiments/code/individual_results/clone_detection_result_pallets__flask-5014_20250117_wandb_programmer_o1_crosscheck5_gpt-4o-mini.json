@@ -1,0 +1,12 @@
+{
+    "instance_id": "pallets__flask-5014",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "src/flask/blueprints.py": "index eb50585d..2f7bb68e 100644\n             root_path=root_path,\n         )\n \nif not name:\nraise ValueError(\"Blueprint name must not be empty.\")\n\n         if \".\" in name:\n             raise ValueError(\"'name' may not contain a dot '.' character.\")\n \n \n     def make_setup_state(\n         self, app: \"Flask\", options: dict, first_registration: bool = False\n) -> \"BlueprintSetupState\":\n         \"\"\"Creates an instance of :meth:`~flask.blueprints.BlueprintSetupState`\n         object that is later passed to the register callback functions.\n         Subclasses can override this to return a subclass of the setup state.\n \n             extend(self.before_request_funcs, app.before_request_funcs)\n             extend(self.after_request_funcs, app.after_request_funcs)\nextend(self.teardown_request_funcs, app.teardown_request_funcs)\n             extend(self.url_default_functions, app.url_default_functions)\n             extend(self.url_value_preprocessors, app.url_value_preprocessors)\n             extend(self.template_context_processors, app.template_context_processors)\n             lambda s: s.app.url_default_functions.setdefault(None, []).append(f)\n         )\n         return f\n\n",
+        "test_empty_blueprint_name.py": "new file mode 100644\nindex 00000000..2e4f964a\n#!/usr/bin/env python\nimport sys\nprint(\"Running test_empty_blueprint_name.py\")\n\ntry:\nfrom flask import Blueprint\nbp = Blueprint(\"\", __name__)\nprint(\"No error was raised for empty blueprint name. Test FAIL (problem not fixed).\")\nsys.exit(1)\nexcept ValueError as e:\nprint(\"ValueError raised as expected for empty blueprint name. Test PASS (problem fixed).\")\nsys.exit(0)\n"
+    },
+    "ground_truth_patch": {
+        "src/flask/blueprints.py": "             root_path=root_path,\n         )\n \nif not name:\nraise ValueError(\"'name' may not be empty.\")\n\n         if \".\" in name:\n             raise ValueError(\"'name' may not contain a dot '.' character.\")\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace, layout, and comments. The two code samples contain the same code logic regarding error handling for the blueprint name while the only variations are related to additional whitespace and formatting.\"}"
+}

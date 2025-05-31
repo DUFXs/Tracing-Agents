@@ -1,0 +1,7 @@
+{
+    "instance_id": "pytest-dev__pytest-7490",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "src/_pytest/skipping.py",
+    "ground_truth_patch_file": "src/_pytest/skipping.py",
+    "response": "{\"is_clone\": false, \"classification\": \"none\"}"
+}

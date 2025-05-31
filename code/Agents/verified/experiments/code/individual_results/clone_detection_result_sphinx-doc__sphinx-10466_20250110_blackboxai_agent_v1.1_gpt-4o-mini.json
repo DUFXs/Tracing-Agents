@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-10466",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/builders/gettext.py": "index e8bc547b7..320032fb7 100644\n     \"\"\"An entry of translatable message.\"\"\"\n     def __init__(self, text: str, locations: List[Tuple[str, int]], uuids: List[str]):\n         self.text = text\n# Deduplicate locations while preserving order\nself.locations = list(dict.fromkeys(locations))\n         self.uuids = uuids\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/builders/gettext.py": " \n     def __iter__(self) -> Generator[Message, None, None]:\n         for message in self.messages:\npositions = sorted(set((source, line) for source, line, uuid\nin self.metadata[message]))\n             uuids = [uuid for source, line, uuid in self.metadata[message]]\n             yield Message(message, positions, uuids)\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are syntactically and semantically different. The first code sample defines a class initializer with specific parameters and logic for deduplicating a list, while the second code sample defines an iterator method that yields messages based on a collection. The methods serve different purposes and have different logic, making them functionally distinct.\"}"
+}

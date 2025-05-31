@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12308",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/utils.py": "index e4ddc8f017..59144d37d7 100644\n         return formats.number_format(value)\n     elif isinstance(field, models.FileField) and value:\n         return format_html('<a href=\"{}\">{}</a>', value.url, value)\nelif isinstance(field, models.JSONField):\ntry:\nreturn field.get_prep_value(value)\nexcept (TypeError, ValueError):\nreturn display_for_value(value, empty_value_display)\n     else:\n         return display_for_value(value, empty_value_display)\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/utils.py": "         return formats.number_format(value)\n     elif isinstance(field, models.FileField) and value:\n         return format_html('<a href=\"{}\">{}</a>', value.url, value)\nelif isinstance(field, models.JSONField) and value:\ntry:\nreturn field.get_prep_value(value)\nexcept TypeError:\nreturn display_for_value(value, empty_value_display)\n     else:\n         return display_for_value(value, empty_value_display)\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have some syntactical differences such as the presence of 'and value' in the second code sample's elif clause, and the exception types in the try-except blocks are slightly different (TypeError in the second sample only, compared to TypeError and ValueError in the first sample). Overall, they share a similar structure and logic while having added, modified, or removed statements.\"}"
+}

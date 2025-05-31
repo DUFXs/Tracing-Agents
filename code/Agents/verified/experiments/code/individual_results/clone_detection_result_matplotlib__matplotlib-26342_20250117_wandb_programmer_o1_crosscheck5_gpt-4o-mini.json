@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-26342",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "lib/matplotlib/contour.py": "index 3f84250b64..0ddb0a72ed 100644\n                 linestyles=[self.get_linestyles()[idx % len(self.get_linestyles())]],\n             ):\n                 super().draw(renderer)\ndef set_paths(self, new_paths):\n\"\"\"\nProvide a clean way to replace the paths on this ContourSet.\n\"\"\"\nself._paths = new_paths\nself.changed()\n\n \n \n @_docstring.dedent_interpd\n",
+        "test_set_paths.py": "new file mode 100644\nindex 0000000000..81a78e5fd7\n#!/usr/bin/env python3\n\nimport sys\nimport matplotlib.pyplot as plt\nimport numpy as np\n\ndef main():\nprint(\"Starting test_set_paths...\")\nx = np.linspace(0, 10, 10)\ny = np.linspace(0, 2, 5)\nX, Y = np.meshgrid(x, y)\nZ = np.sin(X) + np.cos(Y)\nfig, ax = plt.subplots()\ncs = ax.contour(X, Y, Z)\ntry:\nprint(\"Attempting cs.set_paths([])...\")\ncs.set_paths([])\nprint(\"SUCCESS: cs.set_paths([]) call worked. Exiting with 0.\")\nsys.exit(0)\nexcept Exception as exc:\nprint(\"FAILURE: cs.set_paths([]) call threw an exception.\")\nprint(\"Exception type:\", type(exc).__name__)\nprint(\"Exception message:\", str(exc))\nsys.exit(1)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/collections.py": "         return self._paths\n \n     def set_paths(self, paths):\nself._paths = paths\nself.stale = True\n \n     def get_transforms(self):\n         return self._transforms\n         self.set_sizes(sizes)\n         self.stale = True\n \n     def get_paths(self):\n         return self._paths\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they do not share significant syntactic or functional similarity. The first code sample deals with a specific method set_paths in a contour context, while the second sample contains methods related to paths and transformations in collections. The structure and functionality of the methods appear to serve different purposes, indicating they are not clones by any definition.\"}"
+}

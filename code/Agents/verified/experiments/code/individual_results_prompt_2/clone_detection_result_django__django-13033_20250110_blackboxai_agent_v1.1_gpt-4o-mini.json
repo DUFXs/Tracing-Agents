@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13033",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/sql/compiler.py": "index abbb1e37cb..bec1e795be 100644\n         field, targets, alias, joins, path, opts, transform_function = self._setup_joins(pieces, opts, alias)\n \n         # If we get to this point and the field is a relation to another model,\n# append the default ordering for that model unless:\n# - it is the pk shortcut\n# - it is the attribute name of the field\n# - it is a self-referential foreign key and we're ordering by _id field\nif (field.is_relation and opts.ordering and \ngetattr(field, 'attname', None) != name and \nname != 'pk' and\nnot (name.endswith('_id') and field.remote_field.model == field.model)):\n             # Firstly, avoid infinite loops.\n             already_seen = already_seen or set()\n             join_tuple = tuple(getattr(self.query.alias_map[j], 'join_cols', None) for j in joins)\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/sql/compiler.py": "# If we get to this point and the field is a relation to another model,\n# append the default ordering for that model unless it is the pk\n# shortcut or the attribute name of the field that is specified.\nif (\n    field.is_relation\n    and opts.ordering\n    and getattr(field, \"attname\", None) != pieces[-1]\n    and name != \"pk\"\n):\n    # Firstly, avoid infinite loops.\n    already_seen = already_seen or set()\n    join_tuple = tuple(\n        getattr(self.query.alias_map[j], \"join_cols\", None) for j in joins\n    )\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 checks if a field is a relation to another model and if certain conditions are met regarding ordering and naming; if so, it avoids infinite loops by handling joins accordingly. In code sample 2, the code also performs similar checks about whether a field is a relational field and its attributes in order to manage ordering, but the construction is more compact, using different formatting and naming conventions.\", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in whitespace, layout, and identifiers; `pieces[-1]` in code sample 2 is an identifier change from `name` in code sample 1.\"}"
+}

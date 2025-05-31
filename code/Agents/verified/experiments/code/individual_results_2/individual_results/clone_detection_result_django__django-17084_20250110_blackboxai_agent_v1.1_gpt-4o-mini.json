@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-17084",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "django/db/models/sql/query.py",
+    "ground_truth_patch_file": "django/db/models/sql/query.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in identifier names, literal values, whitespace, layout, and comments. Specifically, the second code sample modifies the boolean literal in the 'getattr' call from 'False' to 'True', which qualifies it as a type-2 clone.\"}"
+}

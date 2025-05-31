@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11880",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/forms/fields.py": "index 03cd8af8d7..4cc3133ca0 100644\n         memo[id(self)] = result\n         result.widget = copy.deepcopy(self.widget, memo)\n         result.validators = self.validators[:]\nresult.error_messages = copy.deepcopy(self.error_messages, memo)\n         return result\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/fields.py": "         result = copy.copy(self)\n         memo[id(self)] = result\n         result.widget = copy.deepcopy(self.widget, memo)\nresult.error_messages = self.error_messages.copy()\n         result.validators = self.validators[:]\n         return result\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar, but there are differences in the statements: Sample 1 uses 'result.error_messages = copy.deepcopy(self.error_messages, memo)' while Sample 2 has 'result.error_messages = self.error_messages.copy()'. This indicates a modification in how 'error_messages' is handled.\"}"
+}

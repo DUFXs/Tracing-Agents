@@ -1,0 +1,12 @@
+{
+    "instance_id": "pydata__xarray-2905",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 5f02700d..e6a14f92 100644\n Icon*\n \n .ipynb_checkpoints\n.aider/\n",
+        "xarray/core/variable.py": "index 45553eb9..1058f88c 100644\n     if isinstance(data, timedelta):\n         data = np.timedelta64(getattr(data, \"value\", data), \"ns\")\n \n# Only extract .values from known array-like types\nif isinstance(data, (pd.DataFrame, pd.Series)):\ndata = data.values\nelif isinstance(data, Variable):\ndata = data.data\nelif hasattr(data, '__array__') and not isinstance(data, (np.ndarray, np.generic)):\n# Handle array-like objects that implement __array__\ndata = np.asarray(data)\n\n     if isinstance(data, np.ma.MaskedArray):\n         mask = np.ma.getmaskarray(data)\n         if mask.any():\n"
+    },
+    "ground_truth_patch": {
+        "xarray/core/variable.py": "         data = np.timedelta64(getattr(data, \"value\", data), \"ns\")\n \n     # we don't want nested self-described arrays\nif isinstance(data, (pd.Series, pd.Index, pd.DataFrame)):\ndata = data.values\n \n     if isinstance(data, np.ma.MaskedArray):\n         mask = np.ma.getmaskarray(data)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 checks if the variable 'data' is of type 'timedelta' and converts it to a NumPy timedelta64 object. Then, it checks if the 'data' is an instance of known array-like types such as pandas DataFrame or Series, and extracts the underlying values. If it's a Variable, it extracts the data, or if it has an '__array__' method but is not a plain NumPy array, it converts it to a NumPy array. It also checks if 'data' is a masked array and extracts the mask if any elements are masked. The code in code sample 2 performs a similar check for 'data', ensuring it is converted to a NumPy timedelta64. It also checks for the presence of self-described nested arrays but specifically excludes 'self-described arrays' in relation to pandas types. Finally, it includes a check for masked arrays just like the first sample.\", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are functionally similar with variations in comments and some identifier names (e.g., 'pd.Series' vs. 'pd.Index'), while maintaining the same structure and logic.\"}"
+}

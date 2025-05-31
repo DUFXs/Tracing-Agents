@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15499",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/migrations/operations/models.py": "index 90fc31bee5..b69c431971 100644\n                     managers=self.managers,\n                 ),\n             ]\nelif (\nisinstance(operation, AlterModelManagers)\nand self.name_lower == operation.name_lower\n):\nreturn [\nCreateModel(\nself.name,\nfields=self.fields,\noptions=self.options,\nbases=self.bases,\nmanagers=operation.managers,\n),\n]\n         elif (\n             isinstance(operation, FieldOperation)\n             and self.name_lower == operation.model_name_lower\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/operations/models.py": "                     managers=self.managers,\n                 ),\n             ]\nelif (\nisinstance(operation, AlterModelManagers)\nand self.name_lower == operation.name_lower\n):\nreturn [\nCreateModel(\nself.name,\nfields=self.fields,\noptions=self.options,\nbases=self.bases,\nmanagers=operation.managers,\n),\n]\n         elif (\n             isinstance(operation, AlterTogetherOptionOperation)\n             and self.name_lower == operation.name_lower\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but differ in the specific operations being checked. In the first sample, the check is against FieldOperation, while the second sample checks for AlterTogetherOptionOperation. The structure and context are similar, but there are added or modified statements, making them not identical.\"}"
+}

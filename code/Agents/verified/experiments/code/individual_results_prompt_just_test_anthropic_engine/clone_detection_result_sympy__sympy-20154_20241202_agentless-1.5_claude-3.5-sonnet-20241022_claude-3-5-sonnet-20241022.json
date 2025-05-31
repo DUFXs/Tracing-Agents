@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-20154",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sympy/utilities/iterables.py": "index aef37ab..de0c2d7 100644\n         keys.append(r)\n     room = m - q - bool(r)\n     if size:\nyield sum(ms.values()), ms.copy()\n     else:\nyield ms.copy()\n \n     while keys != [1]:\n         # Reuse any 1's.\n             break\n         room -= need\n         if size:\nyield sum(ms.values()), ms.copy()\n         else:\nyield ms.copy()\n \n \n def ordered_partitions(n, m=None, sort=True):\n"
+    },
+    "ground_truth_patch": {
+        "sympy/utilities/iterables.py": "     {2: 1, 4: 1}\n     {3: 2}\n \n     References\n     ==========\n \n         keys.append(r)\n     room = m - q - bool(r)\n     if size:\nyield sum(ms.values()), ms.copy()\n     else:\nyield ms.copy()\n \n     while keys != [1]:\n         # Reuse any 1's.\n             break\n         room -= need\n         if size:\nyield sum(ms.values()), ms.copy()\n         else:\nyield ms.copy()\n \n \n def ordered_partitions(n, m=None, sort=True):\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples contain identical code that appears to be part of a function that generates partitions. The code manipulates a collection using keys and room variables, yielding either a sum of values and a copy of 'ms' or just a copy of 'ms' depending on a 'size' parameter. Both samples end with the same function declaration for 'ordered_partitions'. The only difference is that sample 2 includes some additional documentation/comments at the beginning showing example outputs and a 'References' section.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they contain exactly the same code with identical identifiers, operations, and logic. The only difference between them is that sample 2 includes additional documentation comments at the beginning. Type-1 clones are defined as being identical except for differences in whitespace, layout, and comments, which is exactly what we see here. The actual functional code portions are byte-for-byte identical.\"\n}"
+}

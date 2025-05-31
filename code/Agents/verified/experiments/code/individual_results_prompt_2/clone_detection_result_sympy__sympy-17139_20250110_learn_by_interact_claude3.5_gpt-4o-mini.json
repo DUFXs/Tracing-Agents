@@ -1,0 +1,13 @@
+{
+    "instance_id": "sympy__sympy-17139",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 0000000000..7833cec4c9\nfrom sympy import *\nx = Symbol('x')\nprint(simplify(cos(x)**I))\n",
+        "sympy/simplify/fu.py": "index ad1130ef96..b4ac874238 100644\n         if not (rv.is_Pow and rv.base.func == f):\n             return rv\n \nif not rv.exp.is_extended_real:\nreturn rv\n         if (rv.exp < 0) == True:\n             return rv\n\n         if (rv.exp > max) == True:\n             return rv\n         if rv.exp == 2:\n         return expr\n     else:\n         return TR8(expand_mul(TRpower(expr)))\n\n",
+        "test_cases.py": "new file mode 100644\nindex 0000000000..af25f2d95d\nfrom sympy import *\nx = Symbol('x')\n# Test with negative real exponent\nprint(\"cos(x)**(-2) =\", simplify(cos(x)**(-2)))\n# Test with complex number with real and imaginary parts\nprint(\"cos(x)**(2+3*I) =\", simplify(cos(x)**(2+3*I)))\n# Test with purely imaginary number\nprint(\"cos(x)**I =\", simplify(cos(x)**I))\n"
+    },
+    "ground_truth_patch": {
+        "sympy/simplify/fu.py": "         # change is not going to allow a simplification as far as I can tell.\n         if not (rv.is_Pow and rv.base.func == f):\n             return rv\nif not rv.exp.is_real:\nreturn rv\n \n         if (rv.exp < 0) == True:\n             return rv\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 contains a Python script that imports the sympy library, defines a symbol 'x', and performs simplifications on trigonometric and complex expressions using the simplify function. Additionally, it includes test cases for the simplify function on various expressions with real and complex exponents. The code in code sample 2, also part of the sympy library, seems to handle simplification logic, specifically checking if a certain expression is a power and returning an expression based on certain conditions related to real exponents. However, it lacks the context of the surrounding code or test cases that code sample 1 has.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes within the sympy library, focus on different aspects of the simplification process, and do not share similar structure or content that fits the clone definitions provided.\"}"
+}

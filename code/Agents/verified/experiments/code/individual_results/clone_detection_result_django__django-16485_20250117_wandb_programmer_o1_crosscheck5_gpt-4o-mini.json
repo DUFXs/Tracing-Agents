@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16485",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "django/template/defaultfilters.py": "index 23c3a08c67..64a9147666 100644\n     units = len(tupl[1])\n     units += -tupl[2] if m else tupl[2]\n     prec = abs(p) + units + 1\nif prec < 1:\nprec = 1\n     # Avoid conversion to scientific notation by accessing `sign`, `digits`,\n     # and `exponent` from Decimal.as_tuple() directly.\n     rounded_d = d.quantize(exp, ROUND_HALF_UP, Context(prec=prec))\n     )\n \n \n\n @register.filter(is_safe=True)\n @stringfilter\n def iriencode(value):\n",
+        "test_floatformat_bug.py": "new file mode 100644\nindex 0000000000..4a442f70b5\nimport sys\nfrom decimal import Decimal\n\nfrom django.conf import settings\nimport django\n\n# Minimal settings, required because floatformat calls Django's formatting utilities.\nif not settings.configured:\nsettings.configure(\nUSE_I18N=True,\nLANGUAGE_CODE=\"en-us\",\nSECRET_KEY=\"secretkey\",\n)\ndjango.setup()\n\nfrom django.template.defaultfilters import floatformat\n\ndef main():\nprint(\"Testing floatformat('0.00', 0) with settings configured...\")\nsuccess = True\ntry:\nres1 = floatformat('0.00', 0)\nres2 = floatformat(Decimal('0.00'), 0)\nprint(f\"res1 = {res1}\")\nprint(f\"res2 = {res2}\")\n# Expect \"0\" for both calls.\nif res1 != \"0\" or res2 != \"0\":\nprint(f\"**Unexpected result**: res1={res1}, res2={res2}, expected '0'\")\nsuccess = False\nexcept Exception as e:\nprint(f\"Exception occurred: {e}\")\nsuccess = False\n\nsys.exit(0 if success else 1)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "django/template/defaultfilters.py": "     except (ValueError, OverflowError, InvalidOperation):\n         return input_val\n \nif not m and p <= 0:\n         return mark_safe(\n             formats.number_format(\n                 \"%d\" % (int(d)),\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they focus on different aspects of handling data. The first code sample handles the formatting of floating-point numbers, involving quantization of decimals, while the second code sample relates to exception handling in different conditions for numeric input. They are not identical or functionally equivalent in their focus or their operations.\"}"
+}

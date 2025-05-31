@@ -1,0 +1,12 @@
+{
+    "instance_id": "psf__requests-2317",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 9fcc6c3d..6cbd92d8 100644\n \n t2.py\n dist\n.aider/\n",
+        "requests/sessions.py": "index d701ff2e..adcfbac7 100644\n             If Tuple, ('cert', 'key') pair.\n         \"\"\"\n \nmethod = to_native_string(method)\n \n         # Create the Request.\n         req = Request(\n"
+    },
+    "ground_truth_patch": {
+        "requests/sessions.py": " from datetime import datetime\n \n from .auth import _basic_auth_str\nfrom .compat import cookielib, OrderedDict, urljoin, urlparse\n from .cookies import (\n     cookiejar_from_dict, extract_cookies_to_jar, RequestsCookieJar, merge_cookies)\n from .models import Request, PreparedRequest, DEFAULT_REDIRECT_LIMIT\n             If Tuple, ('cert', 'key') pair.\n         \"\"\"\n \nmethod = to_native_string(method)\n \n         # Create the Request.\n         req = Request(\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are functionally identical except for differences in their identified import statements and whitespace, and the literal values related to imported modules. The core functionality represented in both samples appears the same, focusing on creating a request and handling security certificates.\"}"
+}

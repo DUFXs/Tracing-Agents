@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-7166",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 1414052aad..7cf731b132 100644\n \n # Pytest\n v\n.aider/\n",
+        "astropy/utils/misc.py": "index de3fb01d18..b683a8be24 100644\n                 not key.startswith('_'))\n \n         for key, val in dct.items():\nif not is_public_member(key):\ncontinue\n\nif isinstance(val, property):\n# For properties, check if the property itself has no docstring\nif val.__doc__ is None:\nfor base in cls.__mro__[1:]:\nsuper_prop = getattr(base, key, None)\nif isinstance(super_prop, property) and super_prop.__doc__ is not None:\n# Create a new property with the inherited docstring\nnew_prop = property(\nfget=val.fget,\nfset=val.fset,\nfdel=val.fdel,\ndoc=super_prop.__doc__\n)\n# Replace the original property with the new one\nsetattr(cls, key, new_prop)\nbreak\nelif inspect.isfunction(val) and val.__doc__ is None:\n                 for base in cls.__mro__[1:]:\n                     super_method = getattr(base, key, None)\n                     if super_method is not None:\n"
+    },
+    "ground_truth_patch": {
+        "astropy/utils/misc.py": " A \"grab bag\" of relatively small general-purpose utilities that don't have\n a clear module/package to live in.\n \"\"\"\n import abc\n import contextlib\n import difflib\n from collections import defaultdict, OrderedDict\n \n \n __all__ = ['isiterable', 'silence', 'format_exception', 'NumpyRNGContext',\n            'find_api_page', 'is_path_hidden', 'walk_skip_hidden',\n            'JsonCustomEncoder', 'indent', 'InheritDocstrings',\n                 not key.startswith('_'))\n \n         for key, val in dct.items():\nif ((inspect.isfunction(val) or inspect.isdatadescriptor(val)) and\nis_public_member(key) and\nval.__doc__ is None):\n                 for base in cls.__mro__[1:]:\n                     super_method = getattr(base, key, None)\n                     if super_method is not None:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are nearly identical in code structure and logic but have differences in identifier names and spacing. Both samples contain similar loops and function calls, but the way they are presented and a few identifiers differ, reflecting variations in comments and whitespace.\"}"
+}

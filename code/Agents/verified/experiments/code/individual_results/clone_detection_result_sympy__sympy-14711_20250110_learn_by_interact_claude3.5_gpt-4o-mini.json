@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-14711",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..27791f1fb9\nfrom sympy.physics.vector import ReferenceFrame, Vector\nfrom sympy import symbols\n\nN = ReferenceFrame('N')\nprint(\"\\nTest Case 1: Original issue\")\nprint(\"Attempting to sum vectors...\")\nresult1 = sum([N.x, (0 * N.x)])\nprint(\"Result:\", result1)\n\nprint(\"\\nTest Case 2: Multiple zeros\")\nprint(\"Attempting to sum vectors with multiple zeros...\")\nresult2 = sum([N.x, (0 * N.x), (0 * N.x)])\nprint(\"Result:\", result2)\n\nprint(\"\\nTest Case 3: Zero vector only\")\nprint(\"Attempting to sum zero vectors only...\")\nresult3 = sum([(0 * N.x), (0 * N.x)])\nprint(\"Result:\", result3)\n\n",
+        "sympy/physics/vector/vector.py": "index a048ee57f1..3561ee667d 100644\n \n     def __add__(self, other):\n         \"\"\"The add operator for Vector. \"\"\"\nif other == 0:\nreturn self\n         other = _check_vector(other)\n         return Vector(self.args + other.args)\n \n     if not isinstance(other, Vector):\n         raise TypeError('A Vector must be supplied')\n     return other\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/physics/vector/vector.py": " \n     def __add__(self, other):\n         \"\"\"The add operator for Vector. \"\"\"\nif other == 0:\nreturn self\n         other = _check_vector(other)\n         return Vector(self.args + other.args)\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to different contexts; the first sample includes test cases for summing vectors while the second sample contains a method definition for adding vectors. They serve different purposes and do not share a syntactical similarity beyond being within the same module.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-14309",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index aad550ae53..826d8acebb 100644\n \n # Files generated if figure tests are run\n results\n.aider/\n",
+        "astropy/io/fits/connect.py": "index 4b6150f4ac..132d57fd6d 100644\n             (\".fits\", \".fits.gz\", \".fit\", \".fit.gz\", \".fts\", \".fts.gz\")\n         ):\n             return True\n# If no fileobj or filepath match, and args is empty, it's not a FITS file\nif not args:\nreturn False\n     return isinstance(args[0], (HDUList, TableHDU, BinTableHDU, GroupsHDU))\n"
+    },
+    "ground_truth_patch": {
+        "astropy/io/fits/connect.py": "         fileobj.seek(pos)\n         return sig == FITS_SIGNATURE\n     elif filepath is not None:\nreturn filepath.lower().endswith(\n             (\".fits\", \".fits.gz\", \".fit\", \".fit.gz\", \".fts\", \".fts.gz\")\n)\n     return isinstance(args[0], (HDUList, TableHDU, BinTableHDU, GroupsHDU))\n \n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 checks if a given argument matches certain criteria for being a FITS file, particularly how it handles file paths and the types of objects being passed in. It evaluates if no arguments are provided, returning false, suggesting that if no file object or filepath is found, it concludes the absence of a FITS file. Code sample 2 also deals with evaluating file paths, particularly the conditions under which certain file extensions are considered valid, and includes similar logic in the return statement regarding an argument's type. However, there are notable differences in how the conditions are structured and which specific checks are implemented. The spacing and indentation differ as well, and some logical pathways may have been altered slightly, indicating they are not identical despite the underlying logic. Therefore, they are not clones of one another.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they have different structures, slight variations in logical flow, and formatting differences that lead to distinction in behavior.\"}"
+}

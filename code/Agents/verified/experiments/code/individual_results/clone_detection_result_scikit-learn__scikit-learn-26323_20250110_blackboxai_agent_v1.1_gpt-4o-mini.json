@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-26323",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index f4601a156..644f6a772 100644\n \n # Default JupyterLite content\n jupyterlite_contents\n.aider/\n",
+        "sklearn/compose/_column_transformer.py": "index 4eddd12b1..0d61d1121 100644\n         for trans in transformers:\n             _safe_set_output(trans, transform=transform)\n \n# Handle remainder if it's an estimator\nif (hasattr(self, \"remainder\") and \nself.remainder not in {\"passthrough\", \"drop\"}):\n_safe_set_output(self.remainder, transform=transform)\n\n# Handle fitted remainder if exists\nif (hasattr(self, \"_remainder\") and \nhasattr(self._remainder, \"transform\")):\n_safe_set_output(self._remainder[1], transform=transform)\n\n         return self\n \n     def get_params(self, deep=True):\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/compose/_column_transformer.py": "             Estimator instance.\n         \"\"\"\n         super().set_output(transform=transform)\n\n         transformers = (\n             trans\n             for _, trans, _ in chain(\n         for trans in transformers:\n             _safe_set_output(trans, transform=transform)\n \nif self.remainder not in {\"passthrough\", \"drop\"}:\n_safe_set_output(self.remainder, transform=transform)\n\n         return self\n \n     def get_params(self, deep=True):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity, but there are added and possibly modified comments and statements present in the second sample that are not in the first sample.\"}"
+}

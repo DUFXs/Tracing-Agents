@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14915",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/forms/models.py": "index 5dcf923c12..7e29e59b56 100644\n         self.value = value\n         self.instance = instance\n \ndef __hash__(self):\nreturn hash(self.value)\n\ndef __eq__(self, other):\nif isinstance(other, ModelChoiceIteratorValue):\nreturn self.value == other.value\nreturn self.value == other\n\n     def __str__(self):\n         return str(self.value)\n \n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..2020cebc3a\nfrom django.forms.models import ModelChoiceIteratorValue\n\n# Create a test instance\nvalue = ModelChoiceIteratorValue(1, \"test_instance\")\n\n# Try to use it in a dictionary lookup\nshow_fields = {1: ['first_name', 'last_name']}\n\ntry:\n# This will raise TypeError: unhashable type: 'ModelChoiceIteratorValue'\nif value in show_fields:\nprint(\"Found in dictionary\")\nexcept TypeError as e:\nprint(f\"Error occurred as expected: {e}\")\n\n# However, this works fine with a list\nallowed_values = [1, 2]\nif value in allowed_values:\nprint(\"Found in list\")\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/models.py": "     def __str__(self):\n         return str(self.value)\n \ndef __hash__(self):\nreturn hash(self.value)\n\n     def __eq__(self, other):\n         if isinstance(other, ModelChoiceIteratorValue):\n             other = other.value\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines methods for a class related to the `ModelChoiceIteratorValue` in Django, focusing on hash generation and comparison between instances. It also includes testing logic for handling errors when using an instance of this class in a dictionary. The code sample 2 only includes the definition of the `__str__`, `__hash__`, and `__eq__` methods for the same class, likely making the string representation and equality check clearer. Therefore, both code samples feature methods of the same class but serve different purposes. Code sample 1 includes additional logic for instantiation and error handling, while code sample 2 strictly provides method definitions.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different functionalities; one is a method implementation while the other includes test logic.\"}"
+}

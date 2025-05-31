@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-15731",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/db/models/manager.py": "index 768c26e..fb0b003 100644\n     @classmethod\n     def _get_queryset_methods(cls, queryset_class):\n         def create_method(name, method):\nfrom functools import wraps\n@wraps(method)\n             def manager_method(self, *args, **kwargs):\n                 return getattr(self.get_queryset(), name)(*args, **kwargs)\n             return manager_method\n \n         new_methods = {}\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/manager.py": " import copy\n import inspect\nfrom functools import wraps\n from importlib import import_module\n \n from django.db import router\n     @classmethod\n     def _get_queryset_methods(cls, queryset_class):\n         def create_method(name, method):\n@wraps(method)\n             def manager_method(self, *args, **kwargs):\n                 return getattr(self.get_queryset(), name)(*args, **kwargs)\n \n             return manager_method\n \n         new_methods = {}\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples contain a classmethod '_get_queryset_methods' that creates wrapper methods for queryset operations. The method creates a new function 'create_method' that wraps the original queryset method using functools.wraps decorator. This wrapper method, 'manager_method', gets the queryset and calls the original method with the provided arguments. The only difference between the samples is that sample 2 includes additional import statements at the top (import copy, inspect, import_module, and django.db router).\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they contain identical code with the same functionality, variable names, and structure. The only differences are in the layout (additional import statements in sample 2) and whitespace. The core functionality of _get_queryset_methods, create_method, and manager_method remains exactly the same between both samples. The additional imports in sample 2 don't affect the actual implementation of the methods shown.\"\n}"
+}

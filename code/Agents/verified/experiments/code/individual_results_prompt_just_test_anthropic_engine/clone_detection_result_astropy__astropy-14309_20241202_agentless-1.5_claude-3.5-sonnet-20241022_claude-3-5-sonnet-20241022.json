@@ -1,0 +1,11 @@
+{
+    "instance_id": "astropy__astropy-14309",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "astropy/io/fits/connect.py": "index c5ff3cd..caf7f05 100644\n             (\".fits\", \".fits.gz\", \".fit\", \".fit.gz\", \".fts\", \".fts.gz\")\n         ):\n             return True\nreturn len(args) > 0 and isinstance(args[0], (HDUList, TableHDU, BinTableHDU, GroupsHDU))\n \n \n def _decode_mixins(tbl):\n"
+    },
+    "ground_truth_patch": {
+        "astropy/io/fits/connect.py": "         fileobj.seek(pos)\n         return sig == FITS_SIGNATURE\n     elif filepath is not None:\nreturn filepath.lower().endswith(\n             (\".fits\", \".fits.gz\", \".fit\", \".fit.gz\", \".fts\", \".fts.gz\")\n)\n     return isinstance(args[0], (HDUList, TableHDU, BinTableHDU, GroupsHDU))\n \n \n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 checks if a file has a FITS extension (.fits, .fits.gz, etc.) and verifies if the first argument is an instance of specific FITS-related classes (HDUList, TableHDU, BinTableHDU, or GroupsHDU). While the code in code sample 2 does three things: checks a file signature by seeking to a position, checks if a filepath ends with FITS extensions, and verifies if the first argument is an instance of the same FITS-related classes.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they share similar functionality in checking FITS file extensions and instance types, but have some modifications. Sample 2 has additional functionality (file signature checking) and slightly different structure with an elif condition, but the core logic for extension checking and instance type verification is the same. The differences are primarily in added statements and modified control flow, which is characteristic of type-3 clones.\"\n}"
+}

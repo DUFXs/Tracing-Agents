@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11999",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/models/fields/__init__.py": "index ee45bb941e..94eb16768b 100644\n             if not getattr(cls, self.attname, None):\n                 setattr(cls, self.attname, self.descriptor_class(self))\n         if self.choices is not None:\ndisplay_method_name = 'get_%s_display' % self.name\nif not hasattr(cls, display_method_name):\nsetattr(cls, display_method_name,\npartialmethod(cls._get_FIELD_display, field=self))\n\n \n     def get_filter_kwargs_for_object(self, obj):\n         \"\"\"\n \n     def rel_db_type(self, connection):\n         return SmallIntegerField().db_type(connection=connection)\n\n",
+        "reproduce.py": "new file mode 100644\nindex 0000000000..8740951e85\nimport os\nos.environ.setdefault('DJANGO_SETTINGS_MODULE', 'reproduce_settings')\n\nfrom django.conf import settings\nfrom django.apps import AppConfig\n\nif not settings.configured:\nsettings.configure(\nDATABASES={'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': ':memory:'}},\nINSTALLED_APPS=['django.contrib.contenttypes'],\nMIDDLEWARE=[],\nUSE_TZ=False,\n)\n\n# Create a custom app\nclass ReproduceConfig(AppConfig):\nname = 'reproduce'\n\nimport django\ndjango.setup()\n\nfrom django.db import models\n\nclass FooBar(models.Model):\nclass Meta:\napp_label = 'reproduce'\n\nfoo_bar = models.CharField(\"foo\", max_length=10, choices=[(1, 'foo'), (2, 'bar')])\n\ndef __str__(self):\nreturn self.get_foo_bar_display()\n\ndef get_foo_bar_display(self):\nreturn \"something\"\n\n# Create instance and test\nobj = FooBar(foo_bar=1)\nprint(\"Result:\", obj.__str__())\nprint(\"Expected: something\")\n\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/__init__.py": "             if not getattr(cls, self.attname, None):\n                 setattr(cls, self.attname, self.descriptor_class(self))\n         if self.choices is not None:\nif not hasattr(cls, 'get_%s_display' % self.name):\nsetattr(\ncls,\n'get_%s_display' % self.name,\npartialmethod(cls._get_FIELD_display, field=self),\n)\n \n     def get_filter_kwargs_for_object(self, obj):\n         \"\"\"\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout, with no changes in identifiers or literal values.\"}"
+}

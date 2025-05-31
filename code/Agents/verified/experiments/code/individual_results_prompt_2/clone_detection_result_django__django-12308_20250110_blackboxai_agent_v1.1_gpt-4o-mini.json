@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12308",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/utils.py": "index e4ddc8f017..59144d37d7 100644\n         return formats.number_format(value)\n     elif isinstance(field, models.FileField) and value:\n         return format_html('<a href=\"{}\">{}</a>', value.url, value)\nelif isinstance(field, models.JSONField):\ntry:\nreturn field.get_prep_value(value)\nexcept (TypeError, ValueError):\nreturn display_for_value(value, empty_value_display)\n     else:\n         return display_for_value(value, empty_value_display)\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/utils.py": "         return formats.number_format(value)\n     elif isinstance(field, models.FileField) and value:\n         return format_html('<a href=\"{}\">{}</a>', value.url, value)\nelif isinstance(field, models.JSONField) and value:\ntry:\nreturn field.get_prep_value(value)\nexcept TypeError:\nreturn display_for_value(value, empty_value_display)\n     else:\n         return display_for_value(value, empty_value_display)\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a function that formats certain types of fields in a Django application, including FileField and JSONField, and handles cases where the values may cause exceptions. It specifies how to return formatted output based on the type of field provided. The code in code sample 2 performs a similar function, but with a slight modification to the condition for JSONField to also check if the value is present. Both samples return similar formatted values for FileField while handling exceptions appropriately.\", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in logic and structure but differ slightly in the way they handle conditions (i.e., the check for the presence of a value in JSONField) and potentially differ in whitespace and comments.\"}"
+}

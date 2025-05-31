@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13741",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/auth/forms.py": "index b9eb33329f..f74057f042 100644\n \n     def __init__(self, *args, **kwargs):\n         kwargs.setdefault(\"required\", False)\n# Force disabled=True regardless of input\nkwargs[\"disabled\"] = True\n         super().__init__(*args, **kwargs)\n \n     def bound_data(self, data, initial):\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/forms.py": " \n     def __init__(self, *args, **kwargs):\n         kwargs.setdefault(\"required\", False)\nkwargs.setdefault('disabled', True)\n         super().__init__(*args, **kwargs)\n \n \n class UsernameField(forms.CharField):\n     def to_python(self, value):\n         if user_permissions:\n             user_permissions.queryset = user_permissions.queryset.select_related('content_type')\n \n \n class AuthenticationForm(forms.Form):\n     \"\"\"\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they have different function signatures and additional classes/methods that do not exist in the other sample, making them syntactically dissimilar and functionally not equivalent.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14608",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/forms/formsets.py": "index a89c35599f..5e8c99694f 100644\n         \"\"\"\n         if self._non_form_errors is None:\n             self.full_clean()\nreturn self._non_form_errors or self.error_class(error_class='nonform')\n \n     @property\n     def errors(self):\n         self._non_form_errors.\n         \"\"\"\n         self._errors = []\nself._non_form_errors = self.error_class(error_class='nonform')\n         empty_forms_count = 0\n \n         if not self.is_bound:  # Stop further processing.\n             # Give self.clean() a chance to do cross-form validation.\n             self.clean()\n         except ValidationError as e:\nself._non_form_errors = self.error_class(e.error_list, error_class='nonform')\n \n     def clean(self):\n         \"\"\"\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/formsets.py": "         self._non_form_errors.\n         \"\"\"\n         self._errors = []\nself._non_form_errors = self.error_class(error_class='nonform')\n         empty_forms_count = 0\n \n         if not self.is_bound:  # Stop further processing.\n             # Give self.clean() a chance to do cross-form validation.\n             self.clean()\n         except ValidationError as e:\nself._non_form_errors = self.error_class(\ne.error_list,\nerror_class='nonform'\n)\n \n     def clean(self):\n         \"\"\"\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines methods for managing non-form errors and validation within a Django formset in a way that indicates it performs error handling and form validation. It includes logic to clean the form and manage errors if they occur during validation. The second code sample contains a similar structure where it also deals with non-form errors and has the same method for cleaning the form, but it presents the code slightly differently, focusing on the assignment of the non-form errors. Both code samples share the same functionality related to handling errors and form validation, but they also differ in layout and some specific coding constructs.\",\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but differ in the arrangement and possibly the presence of statements.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15382",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/expressions.py": "index 81f8f79c71..94d120ae80 100644\n         return clone\n \n     def as_sql(self, compiler, connection, template=None, **extra_context):\ntry:\nquery = self.query.exists(using=connection.alias)\nsql, params = super().as_sql(\ncompiler,\nconnection,\ntemplate=template,\nquery=query,\n**extra_context,\n)\nif self.negated:\nsql = 'NOT {}'.format(sql)\nreturn sql, params\nexcept EmptyResultSet:\n# For empty querysets:\n# - If negated (~Exists), return True (1=1)\n# - If not negated (Exists), return False (1=0)\nif self.negated:\nreturn '(1 = 1)', []\nreturn '(1 = 0)', []\n \n     def select_format(self, compiler, sql, params):\n         # Wrap EXISTS() with a CASE WHEN expression if a database backend\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/expressions.py": " \n     def as_sql(self, compiler, connection, template=None, **extra_context):\n         query = self.query.exists(using=connection.alias)\ntry:\nsql, params = super().as_sql(\ncompiler,\nconnection,\ntemplate=template,\nquery=query,\n**extra_context,\n)\nexcept EmptyResultSet:\nif self.negated:\nreturn '', ()\nraise\n         if self.negated:\n             sql = 'NOT {}'.format(sql)\n         return sql, params\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but contain added, modified, or removed statements. For example, in Code Sample 1, the else branch to handle negated conditions is fully specified with true and false returns, while in Code Sample 2, the return for negated conditions is simplified, leading to functional differences.\"}"
+}

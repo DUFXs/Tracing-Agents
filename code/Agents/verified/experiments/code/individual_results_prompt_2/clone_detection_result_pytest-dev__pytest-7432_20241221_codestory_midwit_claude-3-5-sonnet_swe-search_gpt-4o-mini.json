@@ -1,0 +1,12 @@
+{
+    "instance_id": "pytest-dev__pytest-7432",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..c9f8706b1\nimport pytest\n\n@pytest.mark.skip\ndef test_skip_location() -> None:\nassert 0\n\\ No newline at end of file\n",
+        "src/_pytest/skipping.py": "index 7bd975e5a..8140299dd 100644\n         else:\n             rep.longrepr = \"Unexpected success\"\n         rep.outcome = \"failed\"\nelif not item.config.option.runxfail and call.excinfo and isinstance(call.excinfo.value, xfail.Exception):\n         assert call.excinfo.value.msg is not None\n         rep.wasxfail = \"reason: \" + call.excinfo.value.msg\n         rep.outcome = \"skipped\"\nelif not item.config.option.runxfail and not rep.skipped and xfailed:\n         if call.excinfo:\n             raises = xfailed.raises\n             if raises is not None and not isinstance(call.excinfo.value, raises):\n             else:\n                 rep.outcome = \"passed\"\n                 rep.wasxfail = xfailed.reason\n\n# Handle skip location reporting regardless of runxfail\nif (\n         item._store.get(skipped_by_mark_key, True)\n         and rep.skipped\n         and type(rep.longrepr) is tuple\n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/skipping.py": "             else:\n                 rep.outcome = \"passed\"\n                 rep.wasxfail = xfailed.reason\n\nif (\n         item._store.get(skipped_by_mark_key, True)\n         and rep.skipped\n         and type(rep.longrepr) is tuple\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a pytest test function that is marked to be skipped, asserting a condition that is expected to fail, which seems to test the skipping mechanism of pytest. Meanwhile, code sample 2 consists of a portion of the implementation from the pytest library related to handling outcomes (like 'passed' or 'skipped') based on certain conditions during test execution. There is no complete similarity in functionality or structure, as one is a test case while the other is part of the internal pytest logic.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes; one is a test function while the other is part of the library's execution handling, making them syntactically and functionally dissimilar.\"}"
+}

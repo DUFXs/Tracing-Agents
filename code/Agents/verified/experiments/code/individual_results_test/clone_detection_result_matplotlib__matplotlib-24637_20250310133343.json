@@ -1,0 +1,7 @@
+{
+    "instance_id": "matplotlib__matplotlib-24637",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_gid_annotationbbox.py",
+    "ground_truth_patch_file": "lib/matplotlib/offsetbox.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

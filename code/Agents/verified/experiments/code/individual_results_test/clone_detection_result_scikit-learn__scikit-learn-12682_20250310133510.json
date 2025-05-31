@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-12682",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "dev_scripts/test_sparse_coder_max_iter.py",
+    "ground_truth_patch_file": "examples/decomposition/plot_sparse_coding.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-3\"}"
+}

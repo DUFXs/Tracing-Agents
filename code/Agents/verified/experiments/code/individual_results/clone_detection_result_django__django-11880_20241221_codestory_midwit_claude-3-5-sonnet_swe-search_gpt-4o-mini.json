@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-11880",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..2f90bc7231\nfrom django.conf import settings\nfrom django.apps import apps\n\nsettings.configure(\nINSTALLED_APPS=[],\nUSE_I18N=False,\nUSE_L10N=False,\nUSE_TZ=False,\n)\napps.ready = True\n\nfrom django.forms import Form, CharField\n\nclass ProfileForm(Form):\nname = CharField()\n\n# Create two instances of the same form\nform1 = ProfileForm()\nform2 = ProfileForm()\n\n# Modify error message in form1\nform1.fields['name'].error_messages['required'] = 'Custom error for form1'\n\n# Print error messages from both forms to show they share the same dictionary\nprint(\"Form1 required error:\", form1.fields['name'].error_messages['required'])\nprint(\"Form2 required error:\", form2.fields['name'].error_messages['required'])\n# They should be different but will be the same due to shallow copy\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/fields.py": "         result = copy.copy(self)\n         memo[id(self)] = result\n         result.widget = copy.deepcopy(self.widget, memo)\nresult.error_messages = self.error_messages.copy()\n         result.validators = self.validators[:]\n         return result\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they have different functionality and contexts. Code sample 1 defines a form and adjusts its error messages, while code sample 2 is focused on the copying of instances in a different context related to deep and shallow copying. The structures and purposes of the code are different.\"}"
+}

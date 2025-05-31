@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14915",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/forms/models.py": "index 5dcf923c12..359fa49022 100644\n             other = other.value\n         return self.value == other\n \ndef __hash__(self):\nreturn hash(self.value)\n\n \n class ModelChoiceIterator:\n     def __init__(self, field):\n         form_class._meta.fields is not None or\n         form_class._meta.exclude is not None\n     )\n\n",
+        "repro.py": "new file mode 100644\nindex 0000000000..726e151ee1\nfrom django.forms.models import ModelChoiceIteratorValue\n\n# Create a test instance\nvalue = ModelChoiceIteratorValue(1, \"test_instance\")\n\n# Create a dictionary with fields to show\nshow_fields = {1: ['first_name', 'last_name']}\n\n# Try to use the value as a dictionary key (this should fail)\ntry:\nif value in show_fields:\nprint(\"Found fields:\", show_fields[value])\nexcept TypeError as e:\nprint(\"Error:\", e)\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/models.py": "     def __str__(self):\n         return str(self.value)\n \ndef __hash__(self):\nreturn hash(self.value)\n\n     def __eq__(self, other):\n         if isinstance(other, ModelChoiceIteratorValue):\n             other = other.value\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 is primarily focused on a model choice iterator for Django forms, which includes a method to check equality between instances and the ability to hash them. It also includes some code for testing the functionality of this iterator with a dictionary. Code sample 2 focuses on another method, __str__, which converts the object representation to a string and checks for equality between instances. Both code samples are dealing with the same class functionalities, specifically concerning equality checks and string representations. However, they contain different methods and serve different purposes within the class context.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they implement different methods within the same class but do not show any similarity in terms of structure or implementation other than the shared class context.\"}"
+}

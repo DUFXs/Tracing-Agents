@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-15382",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "django/db/models/expressions.py",
+    "ground_truth_patch_file": "django/db/models/expressions.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they contain similar logic and structure but differ in the handling of the `EmptyResultSet` exception and the return behavior. In sample 1, the logic for handling the negation of the SQL string is preserved, whereas sample 2 exhibits a different approach to the exception handling and return values.\"}"
+}

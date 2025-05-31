@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13670",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "django/utils/dateformat.py": "index afd36d79e0..0682982ee6 100644\n \n     def y(self):\n         \"Year, 2 digits; e.g. '99'\"\nreturn \"%02d\" % (self.data.year % 100)\n\n \n     def Y(self):\n         \"Year, 4 digits; e.g. '1999'\"\n",
+        "test_dateformat_y_bug.py": "new file mode 100644\nindex 0000000000..7992995b41\n#!/usr/bin/env python3\nimport sys\nimport datetime\nfrom django.utils import dateformat\n\ndef main():\nprint(\"Running test script for dateformat.y() bug (using date object)...\")\n\ntest_date = datetime.date(123, 4, 5)\nexpected = \"23\"\n\nprint(f\"Test date: {test_date.isoformat()} => expected '{expected}'\")\ngot = dateformat.format(test_date, \"y\")\nprint(f\"Got: '{got}'\")\n\nif got == expected:\nprint(\"PASS. The bug is fixed.\")\nsys.exit(0)\nelse:\nprint(\"FAIL. The bug is present.\")\nsys.exit(1)\n\nif __name__ == '__main__':\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/dateformat.py": "         return self.data.isocalendar()[1]\n \n     def y(self):\n\"\"\"Year, 2 digits with leading zeros; e.g. '99'.\"\"\"\nreturn '%02d' % (self.data.year % 100)\n \n     def Y(self):\n         \"Year, 4 digits; e.g. '1999'\"\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they contain identical logic and functionality but differ in the formatting of comments and string literals. The logic for the method 'y()' is consistent across both samples, but there are slight variations in comments and quotes used, which aligns with the definition of type-2 clones.\"}"
+}

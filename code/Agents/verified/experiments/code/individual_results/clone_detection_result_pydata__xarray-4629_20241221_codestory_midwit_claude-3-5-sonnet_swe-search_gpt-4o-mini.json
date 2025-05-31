@@ -1,0 +1,12 @@
+{
+    "instance_id": "pydata__xarray-4629",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 00000000..e4d69628\nimport xarray as xr\n\n# Create two datasets with different attributes\nxds1 = xr.Dataset(attrs={'a':'b'})\nxds2 = xr.Dataset(attrs={'a':'c'})\n\n# Print initial state\nprint(\"Initial state:\")\nprint(f\"a1: {xds1.a}, a2: {xds2.a}\")\n\n# Merge datasets with combine_attrs='override'\nxds3 = xr.merge([xds1, xds2], combine_attrs='override')\n\n# Print state after merge\nprint(\"\\nAfter merge:\")\nprint(f\"a1: {xds1.a}, a2: {xds2.a}, a3: {xds3.a}\")\n\n# Modify merged dataset's attribute\nxds3.attrs['a'] = 'd'\n\n# Print final state to show the issue\nprint(\"\\nAfter modifying xds3:\")\nprint(f\"a1: {xds1.a}, a2: {xds2.a}, a3: {xds3.a}\")\n\\ No newline at end of file\n",
+        "xarray/core/merge.py": "index ca4e29b6..dff00804 100644\n     if combine_attrs == \"drop\":\n         return {}\n     elif combine_attrs == \"override\":\nreturn dict(variable_attrs[0])\n     elif combine_attrs == \"no_conflicts\":\n         result = dict(variable_attrs[0])\n         for attrs in variable_attrs[1:]:\n"
+    },
+    "ground_truth_patch": {
+        "xarray/core/merge.py": "     if combine_attrs == \"drop\":\n         return {}\n     elif combine_attrs == \"override\":\nreturn dict(variable_attrs[0])\n     elif combine_attrs == \"no_conflicts\":\n         result = dict(variable_attrs[0])\n         for attrs in variable_attrs[1:]:\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they represent different parts of a codebase. The first sample contains an entire script that creates and manipulates datasets using the xarray library, while the second sample contains only a portion of a method from a different file (`merge.py`) dealing with merging datasets. They lack any structural or functional similarity that would suggest they are clones.\"}"
+}

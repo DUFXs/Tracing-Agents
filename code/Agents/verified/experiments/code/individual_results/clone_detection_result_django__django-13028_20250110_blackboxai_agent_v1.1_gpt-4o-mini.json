@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13028",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/sql/query.py": "index ce18098fd2..891d25b36d 100644\n \n     def check_filterable(self, expression):\n         \"\"\"Raise an error if expression cannot be used in a WHERE clause.\"\"\"\n# Skip filterable check for model instances\nif hasattr(expression, '_meta'):\nreturn\n         if not getattr(expression, 'filterable', True):\n             raise NotSupportedError(\n                 expression.__class__.__name__ + ' is disallowed in the filter '\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/sql/query.py": " \n     def check_filterable(self, expression):\n         \"\"\"Raise an error if expression cannot be used in a WHERE clause.\"\"\"\nif (\nhasattr(expression, 'resolve_expression') and\nnot getattr(expression, 'filterable', True)\n):\n             raise NotSupportedError(\n                 expression.__class__.__name__ + ' is disallowed in the filter '\n                 'clause.'\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity but have modifications in the logic and structure, such as the addition of a condition in the second sample where it checks for both 'hasattr(expression, \\'resolve_expression\\')' and 'not getattr(expression, \\'filterable\\', True)'. Additionally, there are changes in the indentation and layout, which contribute to their distinction.\"}"
+}

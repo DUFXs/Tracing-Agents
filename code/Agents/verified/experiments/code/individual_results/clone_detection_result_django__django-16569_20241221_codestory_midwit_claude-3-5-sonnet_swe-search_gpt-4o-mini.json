@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16569",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/forms/formsets.py": "index 235aaf844c..02d040ee03 100644\n                     required=False,\n                     widget=self.get_ordering_widget(),\n                 )\nif self.can_delete and (self.can_delete_extra or (index is not None and index < initial_form_count)):\n             form.fields[DELETION_FIELD_NAME] = BooleanField(\n                 label=_(\"Delete\"),\n                 required=False,\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..dd4d7c79f0\n#!/usr/bin/env python3\nimport os\nimport django\nfrom django import forms\n\nclass MyForm(forms.Form):\nmy_field = forms.CharField()\n\nif __name__ == \"__main__\":\nsettings_file = os.path.splitext(os.path.basename(__file__))[0]\ndjango.conf.settings.configure(\nDEBUG=True,\nMIDDLEWARE_CLASSES=[],\nROOT_URLCONF=settings_file,\n)\ndjango.setup()\nMyFormSet = forms.formset_factory(\nform=MyForm,\ncan_delete=True,\ncan_delete_extra=False,\n)\nmy_formset = MyFormSet(\ninitial=None,\n)\nprint(my_formset.empty_form)\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/formsets.py": "                     required=False,\n                     widget=self.get_ordering_widget(),\n                 )\nif self.can_delete and (\nself.can_delete_extra or (index is not None and index < initial_form_count)\n):\n             form.fields[DELETION_FIELD_NAME] = BooleanField(\n                 label=_(\"Delete\"),\n                 required=False,\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout. The second sample has variations in indentation and line breaks around the condition and the widget configuration, but the actual code logic is the same.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-14711",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "sympy/physics/vector/vector.py": "index a048ee57f1..919e932cd8 100644\n \n     def __add__(self, other):\n         \"\"\"The add operator for Vector. \"\"\"\nif other == 0:\nreturn self\n         other = _check_vector(other)\n         return Vector(self.args + other.args)\n\n \n     def __and__(self, other):\n         \"\"\"Dot product of two vectors.\n",
+        "test_vector_add0.py": "new file mode 100644\nindex 0000000000..9f7bf41513\nimport sys\nfrom sympy.physics.vector import ReferenceFrame\n\ndef main():\nprint(\"Testing sum([N.x, 0*N.x])\")\nN = ReferenceFrame(\"N\")\ntry:\nv = sum([N.x, 0*N.x])\n# If no exception, check if it's exactly N.x\nif v == N.x:\nprint(\"BUG FIX VERIFIED: sum returned N.x (no exception).\")\nsys.exit(0)\nelse:\nprint(f\"WRONG RESULT: sum returned {v}, expected N.x.\")\nsys.exit(1)\nexcept Exception as e:\nprint(\"BUG STILL PRESENT: sum raised exception:\", e)\nsys.exit(1)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "sympy/physics/vector/vector.py": " \n     def __add__(self, other):\n         \"\"\"The add operator for Vector. \"\"\"\nif other == 0:\nreturn self\n         other = _check_vector(other)\n         return Vector(self.args + other.args)\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout. The logic and content of the `__add__` method are the same, with only minor differences in indentation and placement of whitespace.\"}"
+}

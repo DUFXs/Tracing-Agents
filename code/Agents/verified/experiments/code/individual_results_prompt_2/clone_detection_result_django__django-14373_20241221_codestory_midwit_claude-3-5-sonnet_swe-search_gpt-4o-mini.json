@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14373",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/utils/dateformat.py": "index 38e89c47bb..baa5df94e3 100644\n         return '%02d' % (self.data.year % 100)\n \n     def Y(self):\n\"Year, 4 digits with leading zeros; e.g. '1999', '0123'\"\nreturn '%04d' % self.data.year\n \n     def z(self):\n         \"\"\"Day of the year, i.e. 1 to 366.\"\"\"\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..0a3c734de0\nfrom django.utils.dateformat import DateFormat\nimport datetime\n\n# Test with a year less than 1000\ndate = datetime.date(year=123, month=1, day=1)\ndf = DateFormat(date)\nresult = df.Y()\n\nprint(f\"Year formatting for 123 CE: {result}\")\nprint(f\"Expected: 0123\")\nprint(f\"Got:      {result}\")\nprint(f\"Is properly zero-padded: {len(str(result)) == 4}\")\n\n# Also test with year 0\ndate = datetime.date(year=1, month=1, day=1)\ndf = DateFormat(date)\nresult = df.Y()\n\nprint(f\"\\nYear formatting for 1 CE: {result}\")\nprint(f\"Expected: 0001\")\nprint(f\"Got:      {result}\")\nprint(f\"Is properly zero-padded: {len(str(result)) == 4}\")\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/dateformat.py": "         return '%02d' % (self.data.year % 100)\n \n     def Y(self):\n\"\"\"Year, 4 digits with leading zeros; e.g. '1999'.\"\"\"\nreturn '%04d' % self.data.year\n \n     def z(self):\n         \"\"\"Day of the year, i.e. 1 to 366.\"\"\"\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 returns formatted year as two and four digits, and includes methods to format the year and compute the day of the year, while the code in code sample 2 similarly contains these methods but lacks any additional context or usage that is present in sample 1. The second sample focuses solely on method definitions without the surrounding context. \", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace, layout, and comments.\"}"
+}

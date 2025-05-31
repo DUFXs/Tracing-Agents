@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-13989",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index c74e7438a3..22af3b49eb 100644\n #########################\n \n jquery-ui-*/\n.aider/\n",
+        "lib/matplotlib/axes/_axes.py": "index 4b73d52293..1900f32233 100644\n \n         density = bool(density) or bool(normed)\n         if density and not stacked:\nhist_kwargs['density'] = density\n# Keep the range if it was set earlier\nif bin_range is not None:\nhist_kwargs['range'] = bin_range\n \n         # List to store all the top coordinates of the histograms\n         tops = []\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/axes/_axes.py": " \n         density = bool(density) or bool(normed)\n         if density and not stacked:\nhist_kwargs['density'] = density\n \n         # List to store all the top coordinates of the histograms\n         tops = []\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 does the following: it checks if a variable 'density' is set to True, either directly or through another variable 'normed'. If both are true and the variable 'stacked' is not true, it assigns the value of 'density' to 'hist_kwargs['density']'. It also checks if 'bin_range' is not None, in which case it assigns it to 'hist_kwargs['range']'. Finally, it initializes an empty list called 'tops' to store the top coordinates of the histograms. In code sample 2, the logic is identical to that of code sample 1 but is presented with slightly different whitespace, especially with the line breaks and the space before the start of the code. However, the structure and functionality are the same.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout.\"}"
+}

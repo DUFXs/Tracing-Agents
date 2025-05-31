@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12308",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/contrib/admin/utils.py": "index e4ddc8f017..5e280f370f 100644\n         return formats.number_format(value)\n     elif isinstance(field, models.FileField) and value:\n         return format_html('<a href=\"{}\">{}</a>', value.url, value)\nelif isinstance(field, models.JSONField) and value:\ntry:\nreturn field.get_prep_value(value)\nexcept TypeError:\nreturn display_for_value(value, empty_value_display)\n     else:\n         return display_for_value(value, empty_value_display)\n \n \n\n def display_for_value(value, empty_value_display, boolean=False):\n     from django.contrib.admin.templatetags.admin_list import _boolean_icon\n \n             verbose_field_name = field_name\n         changed_field_labels.append(str(verbose_field_name))\n     return changed_field_labels\n\n",
+        "reproduce_json.py": "new file mode 100644\nindex 0000000000..9030c292b1\nfrom django.contrib.admin.utils import display_for_field\nfrom django.db import models\nimport json\n\n# Create a sample JSONField\nclass SampleJSONField(models.JSONField):\ndef __init__(self):\nsuper().__init__()\n\n# Create test data\nfield = SampleJSONField()\ntest_value = {\"foo\": \"bar\"}\n\n# Test display_for_field function\nresult = display_for_field(test_value, field, empty_value_display='-empty-')\nprint(f\"Current output: {result}\")\nprint(f\"Expected output: {json.dumps(test_value)}\")\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/utils.py": "         return formats.number_format(value)\n     elif isinstance(field, models.FileField) and value:\n         return format_html('<a href=\"{}\">{}</a>', value.url, value)\nelif isinstance(field, models.JSONField) and value:\ntry:\nreturn field.get_prep_value(value)\nexcept TypeError:\nreturn display_for_value(value, empty_value_display)\n     else:\n         return display_for_value(value, empty_value_display)\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and layout.\"}"
+}

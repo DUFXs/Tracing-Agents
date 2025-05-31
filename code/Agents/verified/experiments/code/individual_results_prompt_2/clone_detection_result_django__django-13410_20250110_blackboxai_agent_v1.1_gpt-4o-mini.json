@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13410",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/core/files/locks.py": "index c46b00b905..4938347ea7 100644\n             return True\n     else:\n         def lock(f, flags):\ntry:\nfcntl.flock(_fd(f), flags)\nreturn True\nexcept OSError:\nreturn False\n \n         def unlock(f):\ntry:\nfcntl.flock(_fd(f), fcntl.LOCK_UN)\nreturn True\nexcept OSError:\nreturn False\n"
+    },
+    "ground_truth_patch": {
+        "django/core/files/locks.py": "             return True\n     else:\n         def lock(f, flags):\ntry:\nfcntl.flock(_fd(f), flags)\nreturn True\nexcept BlockingIOError:\nreturn False\n \n         def unlock(f):\nfcntl.flock(_fd(f), fcntl.LOCK_UN)\nreturn True\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines two functions, 'lock' and 'unlock', which handle file locking using 'fcntl.flock'. The 'lock' function attempts to lock a file descriptor with specified flags and returns True if successful or False if an OSError occurs. Similarly, the 'unlock' function attempts to unlock the file descriptor and returns True upon success or False on an OSError. In code sample 2, the same 'lock' and 'unlock' functions are implemented with slight differences; specifically, the 'lock' function will return False on a BlockingIOError instead of a generic OSError, and the code for the 'unlock' function has removed the exception handling for OSError.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have differences in the exception handling and the statements within the functions.\"}"
+}

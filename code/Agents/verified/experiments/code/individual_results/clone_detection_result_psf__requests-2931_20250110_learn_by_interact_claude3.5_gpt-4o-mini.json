@@ -1,0 +1,12 @@
+{
+    "instance_id": "psf__requests-2931",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 00000000..b35a03ed\nimport requests\nrequests.put(\"http://httpbin.org/put\", data=u\"\u00f6\u00f6\u00f6\".encode(\"utf-8\"))\n",
+        "requests/models.py": "index 9c624d3c..5a37e343 100644\n                 (body, content_type) = self._encode_files(files, data)\n             else:\n                 if data:\nif isinstance(data, bytes):\nbody = data\nelse:\nbody = self._encode_params(data)\n                     if isinstance(data, basestring) or hasattr(data, 'read'):\n                         content_type = None\n                     else:\n             return self.raw.close()\n \n         return self.raw.release_conn()\n\n"
+    },
+    "ground_truth_patch": {
+        "requests/models.py": "         \"\"\"\n \n         if isinstance(data, (str, bytes)):\nreturn data\n         elif hasattr(data, 'read'):\n             return data\n         elif hasattr(data, '__iter__'):\n             if isinstance(fragment, str):\n                 fragment = fragment.encode('utf-8')\n \nif isinstance(params, (str, bytes)):\nparams = to_native_string(params)\n\n         enc_params = self._encode_params(params)\n         if enc_params:\n             if query:\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they exhibit syntactical dissimilarities without any apparent functional equivalence. Code sample 1 contains an HTTP PUT request using `requests.put`, whereas code sample 2 lacks this structure and instead seems to focus on encoding data and handling strings and bytes. The context and functionality of the code are different.\"}"
+}

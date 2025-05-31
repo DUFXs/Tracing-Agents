@@ -1,0 +1,7 @@
+{
+    "instance_id": "matplotlib__matplotlib-26291",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_inset_axes_output.png",
+    "ground_truth_patch_file": "lib/mpl_toolkits/axes_grid1/inset_locator.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

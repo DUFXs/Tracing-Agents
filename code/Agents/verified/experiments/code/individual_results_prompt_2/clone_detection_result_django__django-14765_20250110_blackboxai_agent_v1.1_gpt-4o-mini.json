@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14765",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/migrations/state.py": "index 088f5c41f0..0cfcf3c1c2 100644\n     def __init__(self, models=None, real_apps=None):\n         self.models = models or {}\n         # Apps to include from main registry, usually unmigrated ones\nif real_apps is not None:\nassert isinstance(real_apps, set), \"real_apps must be a set, got %s\" % type(real_apps)\nself.real_apps = real_apps\n         else:\n             self.real_apps = set()\n         self.is_delayed = False\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/state.py": "     def __init__(self, models=None, real_apps=None):\n         self.models = models or {}\n         # Apps to include from main registry, usually unmigrated ones\nif real_apps is None:\nreal_apps = set()\n         else:\nassert isinstance(real_apps, set)\nself.real_apps = real_apps\n         self.is_delayed = False\n         # {remote_model_key: {model_key: [(field_name, field)]}}\n         self.relations = None\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines an __init__ method that initializes an object with models optional argument and a second argument real_apps that defaults to None. It checks if real_apps is not None and asserts that it should be a set before assigning it to the instance. If real_apps is None, it initializes self.real_apps to an empty set. The flag is_delayed is also initialized to False. \\n\\nIn code sample 2, the __init__ method is similar but has a slightly different conditional handling for real_apps. It also assigns an empty set to real_apps if it is None, but does not perform the assert check immediately after, and the code includes an additional comment and variable self.relations, which is initialized to None, which is not present in the first code sample.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have syntactical similarities but differing control flow and added statements, specifically regarding the handling of real_apps and the presence of self.relations.\"}"
+}

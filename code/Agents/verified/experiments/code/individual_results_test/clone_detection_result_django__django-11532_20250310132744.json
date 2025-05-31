@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-11532",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "django/core/mail/message.py",
+    "ground_truth_patch_file": "django/utils/html.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

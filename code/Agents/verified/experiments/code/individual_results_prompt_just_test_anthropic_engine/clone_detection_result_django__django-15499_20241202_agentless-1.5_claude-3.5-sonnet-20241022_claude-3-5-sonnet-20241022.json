@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-15499",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/db/migrations/operations/models.py": "index 111e13a..15feeaf 100644\n                     managers=self.managers,\n                 ),\n             ]\nelif (\nisinstance(operation, AlterModelManagers)\nand self.name_lower == operation.name_lower\n):\nreturn [\nCreateModel(\nself.name,\nfields=self.fields,\noptions=self.options,\nbases=self.bases,\nmanagers=operation.managers,\n),\n]\n         elif (\n             isinstance(operation, FieldOperation)\n             and self.name_lower == operation.model_name_lower\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/operations/models.py": "                     managers=self.managers,\n                 ),\n             ]\nelif (\nisinstance(operation, AlterModelManagers)\nand self.name_lower == operation.name_lower\n):\nreturn [\nCreateModel(\nself.name,\nfields=self.fields,\noptions=self.options,\nbases=self.bases,\nmanagers=operation.managers,\n),\n]\n         elif (\n             isinstance(operation, AlterTogetherOptionOperation)\n             and self.name_lower == operation.name_lower\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 appears to be part of a Django migration operation that handles model changes. It contains conditional logic that checks for different types of operations (AlterModelManagers and FieldOperation) and creates a new model based on certain conditions. The code in code sample 2 is very similar but differs in the last condition where it checks for AlterTogetherOptionOperation instead of FieldOperation.\", \n\"is_clone\": true, \n\"classification\": \"type-3\", \n\"reasoning\": \"These code samples are type-3 clones because they share most of their structure and syntax, with the main difference being in the last condition where one checks for 'FieldOperation' and the other for 'AlterTogetherOptionOperation'. The code structure, flow, and most of the logic remains identical, but there's a modified statement at the end. Both snippets handle model operations in Django migrations, just with slightly different operation types. The modification is minimal but changes the behavior, making this a type-3 clone rather than type-1 or type-2.\"}"
+}

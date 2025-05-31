@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-23534",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index db4a22815e..2450c37630 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/core/symbol.py": "index f4a555c13f..2aca8bab27 100644\n         return tuple(result)\n     else:\n         for name in names:\nresult.append(symbols(name, cls=cls, **args))\n \n         return type(names)(result)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/symbol.py": "         return tuple(result)\n     else:\n         for name in names:\nresult.append(symbols(name, cls=cls, **args))\n \n         return type(names)(result)\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 includes a file modification patch for two files: a .gitignore file and 'sympy/core/symbol.py'. The .gitignore file specifies files related to pytest, while the 'sympy/core/symbol.py' snippet appears to involve a function that is processing symbols and appending them to a result. The code in code sample 2 only includes a portion of the patch for 'sympy/core/symbol.py' with the same function logic but lacks the .gitignore modification. There are no differing identifiers or literal values in the shared snippet.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because the code in both samples is identical except for the surrounding context provided in the patch, which includes the additional .gitignore data in code sample 1.\"}"
+}

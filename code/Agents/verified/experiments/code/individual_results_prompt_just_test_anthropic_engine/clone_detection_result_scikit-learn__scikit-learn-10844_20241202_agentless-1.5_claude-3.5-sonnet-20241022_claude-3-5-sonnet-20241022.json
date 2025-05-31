@@ -1,0 +1,11 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10844",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sklearn/metrics/cluster/supervised.py": "index a5624b4..5454538 100644\n     tk = np.dot(c.data, c.data) - n_samples\n     pk = np.sum(np.asarray(c.sum(axis=0)).ravel() ** 2) - n_samples\n     qk = np.sum(np.asarray(c.sum(axis=1)).ravel() ** 2) - n_samples\nreturn np.sqrt(tk / pk) * np.sqrt(tk / qk) if tk != 0. else 0.\n \n \n def entropy(labels):\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/metrics/cluster/supervised.py": "     labels_true, labels_pred = check_clusterings(labels_true, labels_pred)\n     n_samples, = labels_true.shape\n \nc = contingency_matrix(labels_true, labels_pred,\nsparse=True).astype(np.int64)\n     tk = np.dot(c.data, c.data) - n_samples\n     pk = np.sum(np.asarray(c.sum(axis=0)).ravel() ** 2) - n_samples\n     qk = np.sum(np.asarray(c.sum(axis=1)).ravel() ** 2) - n_samples\nreturn np.sqrt(tk / pk) * np.sqrt(tk / qk) if tk != 0. else 0.\n \n \n def entropy(labels):\n"
+    },
+    "response": "{\n    \"explanation\": \"The code in code sample 1 performs calculations for what appears to be a clustering metric, computing tk, pk, and qk values using a contingency matrix 'c' and returning a normalized score. The code in code sample 2 does the same calculations but includes additional preprocessing steps to check and prepare the input labels (labels_true and labels_pred) and explicitly creates the contingency matrix before performing the same calculations.\",\n    \"is_clone\": true,\n    \"classification\": \"type-3\",\n    \"reasoning\": \"These code samples are type-3 clones because they share the same core computational logic (the calculation of tk, pk, qk and the final return statement are identical), but code sample 2 includes additional preparatory statements at the beginning (checking clusterings and creating the contingency matrix). This fits the definition of a type-3 clone where statements have been added but the core functionality remains syntactically similar. The main difference is that sample 2 shows the setup code that creates the contingency matrix 'c' that sample 1 uses directly.\"\n}"
+}

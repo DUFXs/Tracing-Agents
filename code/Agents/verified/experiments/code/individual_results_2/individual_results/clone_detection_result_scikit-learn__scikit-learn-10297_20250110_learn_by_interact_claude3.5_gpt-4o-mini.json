@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10297",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "sklearn/linear_model/ridge.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and are written in different contexts. The first sample is a script that fits a Ridge Classifier model, while the second sample is part of the documentation and implementation details for the Ridge Classifier itself. Despite some usage of similar terms, the two samples do not share structural similarities or represent the same logic.\"}"
+}

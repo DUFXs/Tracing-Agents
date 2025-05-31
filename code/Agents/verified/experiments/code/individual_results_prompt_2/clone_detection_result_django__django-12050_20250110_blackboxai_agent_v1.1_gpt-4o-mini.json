@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-12050",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/sql/query.py": "index ea51912e8b..90475d6fb9 100644\n                         ))\n                 else:\n                     resolved_values.append(sub_value)\nvalue = type(value)(resolved_values)\n         return value\n \n     def solve_lookup_type(self, lookup):\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/sql/query.py": "         elif isinstance(value, (list, tuple)):\n             # The items of the iterable may be expressions and therefore need\n             # to be resolved independently.\nreturn type(value)(\nself.resolve_lookup_value(sub_value, can_reuse, allow_joins, simple_col)\nfor sub_value in value\n)\n         return value\n \n     def solve_lookup_type(self, lookup):\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 handles the case where a value is a sub-iterable and prepares to resolve sub-values for each item in that iterable. It appends resolved values into a list and ultimately returns a new instance of the type of the original value constructed from the resolved values. Meanwhile, code sample 2 also performs a similar operation by checking if the value is of list or tuple type, indicates that items within the iterable may need separate resolution, and returns a new instance of the type of the original value constructed from the resolved sub-values, but it has a slightly different structure in presentation. The essential logic is similar.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity but vary in statement structure, indicating added or modified syntax without changing the overall functionality.\"}"
+}

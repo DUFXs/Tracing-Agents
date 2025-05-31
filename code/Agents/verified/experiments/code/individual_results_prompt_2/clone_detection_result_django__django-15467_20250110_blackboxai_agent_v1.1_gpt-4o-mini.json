@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15467",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/options.py": "index 64be087bf1..6d4f2865ab 100644\n                         \"class\": get_ul_class(self.radio_fields[db_field.name]),\n                     }\n                 )\nkwargs[\"empty_label\"] = (kwargs.get(\"empty_label\") or _(\"None\")) if db_field.blank else None\n \n         if \"queryset\" not in kwargs:\n             queryset = self.get_field_queryset(db, db_field, request)\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/options.py": "                         \"class\": get_ul_class(self.radio_fields[db_field.name]),\n                     }\n                 )\nkwargs[\"empty_label\"] = (\nkwargs.get(\"empty_label\", _(\"None\")) if db_field.blank else None\n)\n \n         if \"queryset\" not in kwargs:\n             queryset = self.get_field_queryset(db, db_field, request)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a class with a specified empty label for a field based on whether the field can be blank or not, and retrieves the queryset if it is not provided in the kwargs. The code in code sample 2 performs the same functionality but has a slight change in how the empty label is obtained using a different syntax for the same logic.\", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in functionality but differ in the syntax used for the empty label retrieval, as well as some differences in whitespace.\"}"
+}

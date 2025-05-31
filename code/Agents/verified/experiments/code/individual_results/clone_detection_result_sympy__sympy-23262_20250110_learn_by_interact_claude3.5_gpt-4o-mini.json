@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-23262",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sympy/utilities/lambdify.py": "index da67263b19..5d9ecf6201 100644\n             left, right = \"()\"\n         else:\n             raise NotImplementedError(\"unhandled type: %s, %s\" % (type(arg), arg))\nelements = [_recursive_to_string(doprint, e) for e in arg]\njoined = ', '.join(elements)\n# Add trailing comma for single-element tuples\nif isinstance(arg, tuple) and len(arg) == 1:\njoined += ','\nreturn left + joined + right\n     elif isinstance(arg, str):\n         return arg\n     else:\n             symfunc should be either a string or\n             an UndefinedFunction instance.'''))\n     return symfunc\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/utilities/lambdify.py": "         return doprint(arg)\n     elif iterable(arg):\n         if isinstance(arg, list):\nleft, right = \"[\", \"]\"\n         elif isinstance(arg, tuple):\nleft, right = \"(\", \",)\"\n         else:\n             raise NotImplementedError(\"unhandled type: %s, %s\" % (type(arg), arg))\n         return left +', '.join(_recursive_to_string(doprint, e) for e in arg) + right\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have similar structures but differ in content and added statements. The first sample includes additional functionality such as handling single-element tuples and returning an UndefinedFunction, which is not present in the second sample. The changes suggest that both snippets belong to the same logical construct but have diverged in implementation.\"}"
+}

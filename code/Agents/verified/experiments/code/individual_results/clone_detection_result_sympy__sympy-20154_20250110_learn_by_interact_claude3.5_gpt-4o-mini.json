@@ -1,0 +1,11 @@
+{
+    "instance_id": "sympy__sympy-20154",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sympy/utilities/iterables.py": "index dd36dea304..d1f540e0f9 100644\n         keys.append(r)\n     room = m - q - bool(r)\n     if size:\nyield sum(ms.values()), ms.copy()\n     else:\nyield ms.copy()\n\n \n     while keys != [1]:\n         # Reuse any 1's.\n             break\n         room -= need\n         if size:\nyield sum(ms.values()), ms.copy()\n         else:\nyield ms.copy()\n \n \n def ordered_partitions(n, m=None, sort=True):\n         except StopIteration:\n             pending -= 1\n             nexts = itertools.cycle(itertools.islice(nexts, pending))\n\n\n\n"
+    },
+    "ground_truth_patch": {
+        "sympy/utilities/iterables.py": "     {2: 1, 4: 1}\n     {3: 2}\n \n     References\n     ==========\n \n         keys.append(r)\n     room = m - q - bool(r)\n     if size:\nyield sum(ms.values()), ms.copy()\n     else:\nyield ms.copy()\n \n     while keys != [1]:\n         # Reuse any 1's.\n             break\n         room -= need\n         if size:\nyield sum(ms.values()), ms.copy()\n         else:\nyield ms.copy()\n \n \n def ordered_partitions(n, m=None, sort=True):\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for the addition of some whitespace and the presence of a comment in the second sample that is not present in the first.\"}"
+}

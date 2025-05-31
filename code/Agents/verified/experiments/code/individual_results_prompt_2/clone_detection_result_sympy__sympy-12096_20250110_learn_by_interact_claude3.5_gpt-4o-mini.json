@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-12096",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "sympy/core/function.py": "index 1b8005e1d2..eadec529eb 100644\n             func = getattr(mpmath, fname)\n         except (AttributeError, KeyError):\n             try:\nresult = self._imp_(*[arg.evalf(prec) for arg in self.args])\nif hasattr(result, 'evalf'):\nreturn result.evalf(prec)\nreturn Float(result, prec)\n             except (AttributeError, TypeError, ValueError):\n                 return\n \n \n \n from sympy.core.symbol import Dummy, Symbol\n\n",
+        "test_evalf.py": "new file mode 100644\nindex 0000000000..52f2731fdd\nfrom sympy.utilities.lambdify import implemented_function\nf = implemented_function('f', lambda x: x ** 2)\ng = implemented_function('g', lambda x: 2 * x)\n\nprint(\"f(2).evalf() =\", f(2).evalf())\nprint(\"g(2).evalf() =\", g(2).evalf())\nprint(\"f(g(2)).evalf() =\", f(g(2)).evalf())\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/function.py": "             func = getattr(mpmath, fname)\n         except (AttributeError, KeyError):\n             try:\nreturn Float(self._imp_(*[i.evalf(prec) for i in self.args]), prec)\n             except (AttributeError, TypeError, ValueError):\n                 return\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 involves the handling of exceptions while attempting to use a mathematical function from the mpmath library, and it evaluates the results of mathematical expressions for the given arguments. If an exception occurs during the function call, it handles it appropriately. The code sample also imports necessary components from the sympy library but it's not complete as it doesn't show a full function. In code sample 2, the code is a simplified version that also handles exceptions and evaluates the results of a function, but it uses 'Float' directly for the result returned and does not include the surrounding context. Both samples implement similar error handling and evaluation logic, but code sample 2 is more compact and slightly modifies the evaluation process by directly returning a Float object.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar with modifications to the statements, particularly in how the results are returned and the handling of arguments.\"}"
+}

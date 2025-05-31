@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-12304",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/template/base.py": "index 7efc45356c..f970401b75 100644\n                 if callable(current):\n                     if getattr(current, 'do_not_call_in_templates', False):\n                         pass\nelif isinstance(current, type) and issubclass(current, Enum):\n# Don't call enumeration types in templates\npass\n                     elif getattr(current, 'alters_data', False):\n                         current = context.template.engine.string_if_invalid\n                     else:\n                         try:  # method call (assuming no args required)\n\n                             current = current()\n                         except TypeError:\n                             signature = inspect.signature(current)\n                 return kwargs\n             del bits[:1]\n     return kwargs\n\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/enums.py": "         # that is passed in as \"self\" as the value to use when looking up the\n         # label in the choices.\n         cls.label = property(lambda self: cls._value2label_map_.get(self.value))\ncls.do_not_call_in_templates = True\n         return enum.unique(cls)\n \n     def __contains__(cls, member):\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines behavior for handling callable objects in Django templates, checking if they're callable or if they belong to a specific Enum class. It also includes logic to handle cases where the callable cannot be executed and returns keyword arguments. The code in code sample 2, on the other hand, deals with defining a property on an enum class, specifically a property that returns a label from a mapping based on the enum's value. It also includes a special flag to signal that the enum should not be called in templates. Overall, the two code samples are quite different in their functionality and syntax, reflecting different purposes in the Django framework.\" \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes within the Django framework and differ significantly in functionality, structure, and logic.\"}"
+}

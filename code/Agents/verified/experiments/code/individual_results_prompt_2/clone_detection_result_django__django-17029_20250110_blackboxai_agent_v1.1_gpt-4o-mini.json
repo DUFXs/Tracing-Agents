@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-17029",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 6a67c6eb28..cd0195a6d7 100644\n tests/.coverage*\n build/\n tests/report/\n.aider/\n",
+        "django/apps/registry.py": "index 0683f3ad3c..481dd1fc86 100644\n         # Call expire cache on each model. This will purge\n         # the relation tree and the fields cache.\n         self.get_models.cache_clear()\nself.get_swappable_settings_name.cache_clear()\n         if self.ready:\n             # Circumvent self.get_models() to prevent that the cache is refilled.\n             # This particularly prevents that an empty value is cached while cloning.\n"
+    },
+    "ground_truth_patch": {
+        "django/apps/registry.py": " \n         This is mostly used in tests.\n         \"\"\"\nself.get_swappable_settings_name.cache_clear()\n         # Call expire cache on each model. This will purge\n         # the relation tree and the fields cache.\n         self.get_models.cache_clear()\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 clears caches for model settings and relations. It contains comments explaining the functionality of the cache expiration process. The first function call clears the cache for all models, while the second clears the cache for swappable settings. In code sample 2, the purpose is similar, as it also calls the same two methods for clearing caches. However, it has additional comments about its usage in tests. Overall, both snippets deal with cache management, focusing on clearing different caches to prevent stale data, but they have different comments and formatting.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but contain some differences in context, layout, and additional comments.\"}"
+}

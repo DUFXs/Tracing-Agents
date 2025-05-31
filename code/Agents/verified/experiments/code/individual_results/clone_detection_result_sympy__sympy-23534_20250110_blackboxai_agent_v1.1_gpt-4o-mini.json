@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-23534",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index db4a22815e..2450c37630 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/core/symbol.py": "index f4a555c13f..2aca8bab27 100644\n         return tuple(result)\n     else:\n         for name in names:\nresult.append(symbols(name, cls=cls, **args))\n \n         return type(names)(result)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/symbol.py": "         return tuple(result)\n     else:\n         for name in names:\nresult.append(symbols(name, cls=cls, **args))\n \n         return type(names)(result)\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for minor differences in whitespace. The second sample is simply a portion of the first sample without any added or removed content.\"}"
+}

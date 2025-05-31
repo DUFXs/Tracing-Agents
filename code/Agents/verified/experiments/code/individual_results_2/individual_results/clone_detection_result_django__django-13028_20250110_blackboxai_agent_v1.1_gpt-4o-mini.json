@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13028",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "django/db/models/sql/query.py",
+    "ground_truth_patch_file": "django/db/models/sql/query.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities but contain added and modified statements. In Sample 2, there is an additional condition in the if statement checking for `resolve_expression`, and the structure of the condition is altered, making it syntactically similar yet modified, which qualifies as a type-3 clone.\"}"
+}

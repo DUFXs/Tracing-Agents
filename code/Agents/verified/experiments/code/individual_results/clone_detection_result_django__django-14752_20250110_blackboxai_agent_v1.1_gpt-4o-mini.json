@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14752",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/admin/views/autocomplete.py": "index 3903e4c98c..3bec068339 100644\n     paginate_by = 20\n     admin_site = None\n \ndef serialize_result(self, obj, to_field_name):\n\"\"\"\nConvert the provided object into a dictionary for the response.\nOverride this method to add custom attributes to results.\n\"\"\"\nreturn {\n'id': str(getattr(obj, to_field_name)),\n'text': str(obj),\n}\n\n     def get(self, request, *args, **kwargs):\n         \"\"\"\n         Return a JsonResponse with search results of the form:\n         context = self.get_context_data()\n         return JsonResponse({\n             'results': [\nself.serialize_result(obj, to_field_name)\n                 for obj in context['object_list']\n             ],\n             'pagination': {'more': context['page_obj'].has_next()},\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/admin/views/autocomplete.py": " \n     def get(self, request, *args, **kwargs):\n         \"\"\"\nReturn a JsonResponse with search results as defined in\nserialize_result(), by default:\n         {\n             results: [{id: \"123\" text: \"foo\"}],\n             pagination: {more: true}\n         context = self.get_context_data()\n         return JsonResponse({\n             'results': [\nself.serialize_result(obj, to_field_name)\n                 for obj in context['object_list']\n             ],\n             'pagination': {'more': context['page_obj'].has_next()},\n         })\n \ndef serialize_result(self, obj, to_field_name):\n\"\"\"\nConvert the provided model object to a dictionary that is added to the\nresults list.\n\"\"\"\nreturn {'id': str(getattr(obj, to_field_name)), 'text': str(obj)}\n\n     def get_paginator(self, *args, **kwargs):\n         \"\"\"Use the ModelAdmin's paginator.\"\"\"\n         return self.model_admin.get_paginator(self.request, *args, **kwargs)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but contain added, modified, or removed statements. For example, the second code sample includes the `get_paginator` method, which does not exist in the first code sample, indicating a difference in functionality while retaining similar structure and logic in the remaining code.\"}"
+}

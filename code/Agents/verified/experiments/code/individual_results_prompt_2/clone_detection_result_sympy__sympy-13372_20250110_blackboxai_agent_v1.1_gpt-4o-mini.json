@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-13372",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 13ee70ccae..4b6ee33b52 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/core/evalf.py": "index 72a5fbae52..f34908710a 100644\n             elif re.is_number:\n                 re = re._to_mpmath(prec, allow_ints=False)._mpf_\n                 reprec = prec\nelse:\nraise NotImplementedError\n             if im == 0:\n                 im = None\n                 imprec = None\n             elif im.is_number:\n                 im = im._to_mpmath(prec, allow_ints=False)._mpf_\n                 imprec = prec\nelse:\nraise NotImplementedError\n             r = re, im, reprec, imprec\n         except AttributeError:\n             raise NotImplementedError\n"
+    },
+    "ground_truth_patch": {
+        "sympy/core/evalf.py": "             elif re.is_number:\n                 re = re._to_mpmath(prec, allow_ints=False)._mpf_\n                 reprec = prec\nelse:\nraise NotImplementedError\n             if im == 0:\n                 im = None\n                 imprec = None\n             elif im.is_number:\n                 im = im._to_mpmath(prec, allow_ints=False)._mpf_\n                 imprec = prec\nelse:\nraise NotImplementedError\n             r = re, im, reprec, imprec\n         except AttributeError:\n             raise NotImplementedError\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 contains a snippet involving conditional evaluations of a variable 're' and 'im', where it checks if these variables are numbers. Depending on their state, it converts them into a different format using the method '_to_mpmath' associated with the specified precision. It also raises a NotImplementedError if certain attributes are not present, indicating the function can handle complex numbers. The code in code sample 2 includes exactly the same snippet of code as code sample 1, without any alterations in terms of whitespace, comments, or structure.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for their context in the provided patches, which does not affect the code itself.\"}"
+}

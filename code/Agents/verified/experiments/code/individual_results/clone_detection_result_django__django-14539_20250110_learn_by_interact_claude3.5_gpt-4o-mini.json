@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-14539",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/utils/html.py": "index 3bc02b8dd3..57ede0b3b5 100644\n             middle_unescaped = html.unescape(middle)\n             stripped = middle_unescaped.rstrip(TRAILING_PUNCTUATION_CHARS)\n             if middle_unescaped != stripped:\n# Count the number of trailing chars by comparing with rstrip\ntrailing_chars = len(middle_unescaped) - len(stripped)\n# Remove the same number of chars from the original string\nmiddle, trail_piece = middle[:-trailing_chars], middle[-trailing_chars:]\ntrail = trail_piece + trail\n                 trimmed_something = True\n\n         return lead, middle, trail\n \n     def is_email_simple(value):\n     klass.__str__ = lambda self: mark_safe(klass_str(self))\n     klass.__html__ = lambda self: str(self)\n     return klass\n\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/html.py": "             middle_unescaped = html.unescape(middle)\n             stripped = middle_unescaped.rstrip(TRAILING_PUNCTUATION_CHARS)\n             if middle_unescaped != stripped:\npunctuation_count = len(middle_unescaped) - len(stripped)\ntrail = middle[-punctuation_count:] + trail\nmiddle = middle[:-punctuation_count]\n                 trimmed_something = True\n         return lead, middle, trail\n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities but have modified statements. For example, the variable names and the structure of the string slicing and concatenation differ, indicating changes in implementation while maintaining overall logical behavior.\"}"
+}

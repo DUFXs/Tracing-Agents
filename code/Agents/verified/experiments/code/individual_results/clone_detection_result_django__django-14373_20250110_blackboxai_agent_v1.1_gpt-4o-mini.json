@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14373",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/utils/dateformat.py": "index 38e89c47bb..ba60fdc506 100644\n \n     def Y(self):\n         \"Year, 4 digits; e.g. '1999'\"\nreturn f\"{self.data.year:04d}\"\n \n     def z(self):\n         \"\"\"Day of the year, i.e. 1 to 366.\"\"\"\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/dateformat.py": "         return '%02d' % (self.data.year % 100)\n \n     def Y(self):\n\"\"\"Year, 4 digits with leading zeros; e.g. '1999'.\"\"\"\nreturn '%04d' % self.data.year\n \n     def z(self):\n         \"\"\"Day of the year, i.e. 1 to 366.\"\"\"\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-4\", \"reasoning\": \"These code samples are functionally equivalent but syntactically dissimilar. Both samples implement methods to return the year in a specific format, but the way they format the return values differs. The first uses an f-string for formatting, while the second uses the percentage formatting method. Despite the syntax differences, the functionality remains the same.\"}"
+}

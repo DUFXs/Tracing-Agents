@@ -1,0 +1,12 @@
+{
+    "instance_id": "astropy__astropy-7336",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "astropy/units/decorators.py": "index 8bece5a850..b82feb0274 100644\n             with add_enabled_equivalencies(self.equivalencies):\n                 return_ = wrapped_function(*func_args, **func_kwargs)\n             if wrapped_signature.return_annotation is not inspect.Signature.empty:\n# Skip unit conversion for None returns (e.g., from constructors)\nif return_ is None:\nreturn None\n                 return return_.to(wrapped_signature.return_annotation)\n             else:\n                 return return_\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..cc943f0261\nimport astropy.units as u\n\n\nclass PoC(object):\n\n@u.quantity_input\ndef __init__(self, voltage: u.V) -> None:\npass\n\n\nif __name__ == '__main__':\npoc = PoC(1.*u.V)\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "astropy/units/decorators.py": "             # Call the original function with any equivalencies in force.\n             with add_enabled_equivalencies(self.equivalencies):\n                 return_ = wrapped_function(*func_args, **func_kwargs)\nif wrapped_signature.return_annotation not in (inspect.Signature.empty, None):\n                 return return_.to(wrapped_signature.return_annotation)\n             else:\n                 return return_\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have modifications in the conditions and some comments. For example, in code sample 2, the condition for checking `wrapped_signature.return_annotation` is modified to include `None`, while in code sample 1 it checks specifically for `inspect.Signature.empty`. The structure and flow are similar, but there are changes in logic and comments.\"}"
+}

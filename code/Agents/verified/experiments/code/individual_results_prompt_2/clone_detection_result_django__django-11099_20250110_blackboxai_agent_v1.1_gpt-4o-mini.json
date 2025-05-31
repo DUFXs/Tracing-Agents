@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11099",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/auth/validators.py": "index b4878cfd45..1304f20a60 100644\n \n @deconstructible\n class ASCIIUsernameValidator(validators.RegexValidator):\nregex = r'\\A[\\w.@+-]+\\Z'\n     message = _(\n         'Enter a valid username. This value may contain only English letters, '\n         'numbers, and @/./+/-/_ characters.'\n \n @deconstructible\n class UnicodeUsernameValidator(validators.RegexValidator):\nregex = r'\\A[\\w.@+-]+\\Z'\n     message = _(\n         'Enter a valid username. This value may contain only letters, '\n         'numbers, and @/./+/-/_ characters.'\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/validators.py": " \n @deconstructible\n class ASCIIUsernameValidator(validators.RegexValidator):\nregex = r'^[\\w.@+-]+\\Z'\n     message = _(\n         'Enter a valid username. This value may contain only English letters, '\n         'numbers, and @/./+/-/_ characters.'\n \n @deconstructible\n class UnicodeUsernameValidator(validators.RegexValidator):\nregex = r'^[\\w.@+-]+\\Z'\n     message = _(\n         'Enter a valid username. This value may contain only letters, '\n         'numbers, and @/./+/-/_ characters.'\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines two username validators: ASCIIUsernameValidator and UnicodeUsernameValidator, both inheriting from validators.RegexValidator. The ASCIIUsernameValidator uses a regex to allow specific characters, and the associated message prompts the user on valid username formats. The UnicodeUsernameValidator has a similar structure but its intention is to cater to Unicode characters in usernames. In code sample 2, the same two validators are defined with similar structures, but the regex pattern differs slightly (it uses '^' at the start) yet retains the same overall functionality and messages.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but differ in the regex pattern used to validate usernames.\"}"
+}

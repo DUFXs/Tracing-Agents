@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-25122",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 0b7970f882..402961124f 100644\n lib/matplotlib/backends/web_backend/package-lock.json\n \n LICENSE/LICENSE_QHULL\n.aider/\n",
+        "lib/matplotlib/mlab.py": "index 3552904c3d..b90c7ada60 100644\n             result /= (np.abs(window)**2).sum()\n         else:\n             # In this case, preserve power in the segment, not amplitude\nresult /= window.sum()**2\n \n     t = np.arange(NFFT/2, len(x) - NFFT/2 + 1, NFFT - noverlap)/Fs\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/mlab.py": "     elif mode == 'psd':\n         result = np.conj(result) * result\n     elif mode == 'magnitude':\nresult = np.abs(result) / window.sum()\n     elif mode == 'angle' or mode == 'phase':\n         # we unwrap the phase later to handle the onesided vs. twosided case\n         result = np.angle(result)\n     elif mode == 'complex':\nresult /= window.sum()\n \n     if mode == 'psd':\n \n             result /= Fs\n             # Scale the spectrum by the norm of the window to compensate for\n             # windowing loss; see Bendat & Piersol Sec 11.5.2.\nresult /= (window**2).sum()\n         else:\n             # In this case, preserve power in the segment, not amplitude\nresult /= window.sum()**2\n \n     t = np.arange(NFFT/2, len(x) - NFFT/2 + 1, NFFT - noverlap)/Fs\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 processes results by dividing them by the sum of a window function to maintain a certain power level in the output segment. It also prepares a time array based on the FFT parameters. Code sample 2 is more complex, handling different modes ('psd', 'magnitude', 'angle', 'complex') with conditional logic to perform various operations on the result, including scaling by the window sum and adjusting for windowing loss. Both samples share a common structure in manipulating the 'result' variable and the time array, but the second sample includes additional functionalities specific to mode handling.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities but the second code sample has additional statements and conditions based on different modes, thus altering their structures.\"}"
+}

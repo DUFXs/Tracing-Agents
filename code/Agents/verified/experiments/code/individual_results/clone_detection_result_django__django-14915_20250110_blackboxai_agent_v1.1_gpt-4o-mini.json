@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14915",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/forms/models.py": "index 5dcf923c12..0c91ecf11f 100644\n             other = other.value\n         return self.value == other\n \ndef __hash__(self):\nreturn hash(self.value)\n\n\n \n class ModelChoiceIterator:\n     def __init__(self, field):\n"
+    },
+    "ground_truth_patch": {
+        "django/forms/models.py": "     def __str__(self):\n         return str(self.value)\n \ndef __hash__(self):\nreturn hash(self.value)\n\n     def __eq__(self, other):\n         if isinstance(other, ModelChoiceIteratorValue):\n             other = other.value\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share similar methods and structure but contain different statements, specifically in terms of how they represent the methods and return values. They both define methods related to a class but differ in how they approach the logic and actual method definitions.\"}"
+}

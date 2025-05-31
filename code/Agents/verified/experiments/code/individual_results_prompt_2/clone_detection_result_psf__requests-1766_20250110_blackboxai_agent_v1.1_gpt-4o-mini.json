@@ -1,0 +1,12 @@
+{
+    "instance_id": "psf__requests-1766",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 60eb6c67..c72ef58b 100644\n t.py\n \n t2.py\n.aider/\n",
+        "requests/auth.py": "index a3de123d..48416e5f 100644\n         if entdig:\n             base += ', digest=\"%s\"' % entdig\n         if qop:\nbase += ', qop=\"auth\", nc=%s, cnonce=\"%s\"' % (ncvalue, cnonce)\n \n         return 'Digest %s' % (base)\n"
+    },
+    "ground_truth_patch": {
+        "requests/auth.py": " \n         A1 = '%s:%s:%s' % (self.username, realm, self.password)\n         A2 = '%s:%s' % (method, path)\n\n         HA1 = hash_utf8(A1)\n         HA2 = hash_utf8(A2)\n \n         if entdig:\n             base += ', digest=\"%s\"' % entdig\n         if qop:\nbase += ', qop=\"auth\", nc=%s, cnonce=\"%s\"' % (ncvalue, cnonce)\n \n         return 'Digest %s' % (base)\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 is part of a larger code base that appears to be managing HTTP Digest Authentication and includes conditional statements that modify a base string to include authentication parameters. The code addition mentions `if entdig`, which appends a digest value, and another condition checks for `qop` to add more parameters. The return statement then formats the final string with the parameters. In code sample 2, the focus is on preparing the A1 and A2 strings necessary for authentication calculations using the username, realm, password, etc., and then it also modifies the base string in a similar manner based on the same conditions regarding `entdig` and `qop`, returning the final format as well. Both samples handle authentication but have different initializations for the A1 and A2 calculations, highlighting they are both used in the same context, but have contextual differences.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because sample 1 includes additional setup for the A1 and A2 variables, which are missing in sample 2. They share segment functionality, but the starting context is dissimilar, indicating a Type-4 clone rather than any of the Type-1, Type-2, or Type-3 relationships.\"}"
+}

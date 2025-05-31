@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11790",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/contrib/auth/forms.py": "index a0cfed0995..f0f235903f 100644\n \n         # Set the max length and label for the \"username\" field.\n         self.username_field = UserModel._meta.get_field(UserModel.USERNAME_FIELD)\nmax_length = self.username_field.max_length or 254\nself.fields['username'].max_length = max_length\nself.fields['username'].widget.attrs['maxlength'] = max_length\n         if self.fields['username'].label is None:\n             self.fields['username'].label = capfirst(self.username_field.verbose_name)\n"
+    },
+    "ground_truth_patch": {
+        "django/contrib/auth/forms.py": " \n         # Set the max length and label for the \"username\" field.\n         self.username_field = UserModel._meta.get_field(UserModel.USERNAME_FIELD)\nusername_max_length = self.username_field.max_length or 254\nself.fields['username'].max_length = username_max_length\nself.fields['username'].widget.attrs['maxlength'] = username_max_length\n         if self.fields['username'].label is None:\n             self.fields['username'].label = capfirst(self.username_field.verbose_name)\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 sets the maximum length for a 'username' field in a form by fetching the max length from the UserModel. It assigns this max length to both the field's max length property and its widget attributes. If the label for the 'username' field is None, it assigns a verbose name as the label. The code in code sample 2 performs the same operation but uses a different variable name ('username_max_length') for storing the maximum length instead of 'max_length'. The operations and logic are identical between the two samples.\", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in logic while differing only in the identifier names and whitespace.\"}"
+}

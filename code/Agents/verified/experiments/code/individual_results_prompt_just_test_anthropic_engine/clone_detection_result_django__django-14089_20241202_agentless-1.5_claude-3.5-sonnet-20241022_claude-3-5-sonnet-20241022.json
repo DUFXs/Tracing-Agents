@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-14089",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/utils/datastructures.py": "index d3f62c3..6c7a927 100644\n\n import copy\n from collections.abc import Mapping\n \n     def __len__(self):\n         return len(self.dict)\n \ndef __reversed__(self):\nreturn reversed(self.dict)\n\n \n class MultiValueDictKeyError(KeyError):\n     pass\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/datastructures.py": "     def __iter__(self):\n         return iter(self.dict)\n \ndef __reversed__(self):\nreturn reversed(self.dict)\n\n     def __contains__(self, item):\n         return item in self.dict\n \n"
+    },
+    "response": "{\n\"explanation\": \"Code sample 1 contains several method implementations for a class: __len__() which returns the length of self.dict, __reversed__() which returns a reversed iterator of self.dict, and defines a custom exception class MultiValueDictKeyError. Code sample 2 contains different method implementations: __iter__() which returns an iterator of self.dict, __reversed__() which returns a reversed iterator of self.dict, and __contains__() which checks if an item exists in self.dict.\",\n\"is_clone\": false,\n\"classification\": \"N/A\",\n\"reasoning\": \"These code samples are not clones because they implement different methods with different functionalities, with the exception of the __reversed__() method which appears identically in both samples. While both samples appear to be from the same file and operate on self.dict, they serve different purposes: sample 1 handles length operations and defines an exception, while sample 2 handles iteration and membership testing. The only overlapping code is the __reversed__() method, but this alone doesn't make the entire samples clones of each other.\"\n}"
+}

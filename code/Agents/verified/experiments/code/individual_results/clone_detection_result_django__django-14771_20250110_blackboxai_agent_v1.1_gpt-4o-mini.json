@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-14771",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/utils/autoreload.py": "index cc65c043ab..3cecef5936 100644\n     py_script = Path(sys.argv[0])\n \n     args = [sys.executable] + ['-W%s' % o for o in sys.warnoptions]\n# Add -X options\nargs.extend('-X%s' % opt if val is True else '-X%s=%s' % (opt, val)\nfor opt, val in getattr(sys, '_xoptions', {}).items())\n     # __spec__ is set when the server was started with the `-m` option,\n     # see https://docs.python.org/3/reference/import.html#main-spec\n     # __spec__ may not exist, e.g. when running in a Conda env.\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/autoreload.py": "     py_script = Path(sys.argv[0])\n \n     args = [sys.executable] + ['-W%s' % o for o in sys.warnoptions]\nif sys.implementation.name == 'cpython':\nargs.extend(\nf'-X{key}' if value is True else f'-X{key}={value}'\nfor key, value in sys._xoptions.items()\n)\n     # __spec__ is set when the server was started with the `-m` option,\n     # see https://docs.python.org/3/reference/import.html#main-spec\n     # __spec__ may not exist, e.g. when running in a Conda env.\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but exhibit differences, including the addition of a conditional check (if sys.implementation.name == 'cpython':) in the second sample, which modifies the logic of the extension of arguments.\"}"
+}

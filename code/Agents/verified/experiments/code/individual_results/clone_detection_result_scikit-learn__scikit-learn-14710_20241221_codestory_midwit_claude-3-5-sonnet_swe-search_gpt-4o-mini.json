@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-14710",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..68c6e6433\nimport numpy as np\nfrom sklearn.experimental import enable_hist_gradient_boosting  # noqa\nfrom sklearn.ensemble import HistGradientBoostingClassifier\n\n# Set random seed for reproducibility\nnp.random.seed(42)\n\nX = np.random.randn(100, 10)\ny = np.array(['x'] * 50 + ['y'] * 50, dtype=object)\ngbrt = HistGradientBoostingClassifier(n_iter_no_change=10)\ngbrt.fit(X, y)\n\\ No newline at end of file\n",
+        "sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py": "index ad6a5a8ca..3170e4000 100644\n \n         Scores are computed on validation data or on training data.\n         \"\"\"\nif hasattr(self, 'classes_'):\ny_small_train = self.classes_[y_small_train.astype(int)]\n         self.train_score_.append(\n             self.scorer_(self, X_binned_small_train, y_small_train)\n         )\n \n         if self._use_validation_data:\nif hasattr(self, 'classes_'):\ny_val = self.classes_[y_val.astype(int)]\n             self.validation_score_.append(\n                 self.scorer_(self, X_binned_val, y_val)\n             )\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py": " \n         Scores are computed on validation data or on training data.\n         \"\"\"\nif is_classifier(self):\ny_small_train = self.classes_[y_small_train.astype(int)]\n         self.train_score_.append(\n             self.scorer_(self, X_binned_small_train, y_small_train)\n         )\n \n         if self._use_validation_data:\nif is_classifier(self):\ny_val = self.classes_[y_val.astype(int)]\n             self.validation_score_.append(\n                 self.scorer_(self, X_binned_val, y_val)\n             )\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-4\", \"reasoning\": \"These code samples are type-4 clones because they are syntactically dissimilar but functionally equivalent. The second sample uses 'is_classifier(self)' instead of checking for 'classes_', but both sections are part of the validation logic for handling training scores and validation scores, which leads to the same end functionality.\"}"
+}

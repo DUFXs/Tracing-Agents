@@ -1,0 +1,12 @@
+{
+    "instance_id": "pydata__xarray-2905",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 5f02700d..e6a14f92 100644\n Icon*\n \n .ipynb_checkpoints\n.aider/\n",
+        "xarray/core/variable.py": "index 45553eb9..1058f88c 100644\n     if isinstance(data, timedelta):\n         data = np.timedelta64(getattr(data, \"value\", data), \"ns\")\n \n# Only extract .values from known array-like types\nif isinstance(data, (pd.DataFrame, pd.Series)):\ndata = data.values\nelif isinstance(data, Variable):\ndata = data.data\nelif hasattr(data, '__array__') and not isinstance(data, (np.ndarray, np.generic)):\n# Handle array-like objects that implement __array__\ndata = np.asarray(data)\n\n     if isinstance(data, np.ma.MaskedArray):\n         mask = np.ma.getmaskarray(data)\n         if mask.any():\n"
+    },
+    "ground_truth_patch": {
+        "xarray/core/variable.py": "         data = np.timedelta64(getattr(data, \"value\", data), \"ns\")\n \n     # we don't want nested self-described arrays\nif isinstance(data, (pd.Series, pd.Index, pd.DataFrame)):\ndata = data.values\n \n     if isinstance(data, np.ma.MaskedArray):\n         mask = np.ma.getmaskarray(data)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in the comments and certain identifier names (e.g., 'pd.DataFrame', 'pd.Series', 'pd.Index' in Sample 2 while Sample 1 has 'pd.DataFrame' and 'pd.Series' with a different comment).\"}"
+}

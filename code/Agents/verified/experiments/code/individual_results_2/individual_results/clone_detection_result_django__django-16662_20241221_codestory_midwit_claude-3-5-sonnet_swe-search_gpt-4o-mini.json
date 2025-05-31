@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-16662",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/migrations/writer.py",
+    "ground_truth_patch_file": "django/db/migrations/writer.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar with modifications in the way import statements are grouped and sorted. While they accomplish the same goal of sorting and organizing imports, the second code sample uses a different sorting mechanism, suggesting changes in the logic or structure of how imports are processed.\"}"
+}

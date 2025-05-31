@@ -1,0 +1,12 @@
+{
+    "instance_id": "pytest-dev__pytest-7205",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..c403353b3\nimport pytest\n\n@pytest.mark.parametrize('data', [b'Hello World'])\ndef test_data(data):\npass\n\\ No newline at end of file\n",
+        "src/_pytest/setuponly.py": "index c9cc589ff..9fc218a3e 100644\n import pytest\nfrom _pytest._io.saferepr import saferepr\n \n \n def pytest_addoption(parser):\n             tw.write(\" (fixtures used: {})\".format(\", \".join(deps)))\n \n     if hasattr(fixturedef, \"cached_param\"):\ntw.write(\"[{}]\".format(saferepr(fixturedef.cached_param)))\n \n     tw.flush()\n \n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/setuponly.py": " import pytest\nfrom _pytest._io.saferepr import saferepr\n \n \n def pytest_addoption(parser):\n             tw.write(\" (fixtures used: {})\".format(\", \".join(deps)))\n \n     if hasattr(fixturedef, \"cached_param\"):\ntw.write(\"[{}]\".format(saferepr(fixturedef.cached_param, maxsize=42)))\n \n     tw.flush()\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 introduces a new file `reproduce_error.py` containing a parameterized test using `pytest`, which simply takes a byte string as data and does nothing in the test body. Meanwhile, code sample 2 extends the existing `src/_pytest/setuponly.py` file, containing a function that adds command-line options to `pytest`, and writes information about fixtures used. The key difference is that sample 2 includes an additional argument 'maxsize=42' for the `saferepr` function call, modifying its behavior.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they operate in different contexts and have different functionalities, with sample 1 being a standalone test and sample 2 modifying the behavior of existing code.\"}"
+}

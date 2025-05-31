@@ -1,0 +1,11 @@
+{
+    "instance_id": "psf__requests-1921",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "requests/sessions.py": "index 4ec0f7c..5db7d84 100644\n     merged_setting = dict_class(to_key_val_list(session_setting))\n     merged_setting.update(to_key_val_list(request_setting))\n \n# Remove keys that are set to None in either session or request settings\nfor (k, v) in list(merged_setting.items()):\n         if v is None:\n             del merged_setting[k]\n \n"
+    },
+    "ground_truth_patch": {
+        "requests/sessions.py": "         if v is None:\n             del merged_setting[k]\n \nmerged_setting = dict((k, v) for (k, v) in merged_setting.items() if v is not None)\n\n     return merged_setting\n \n \n"
+    },
+    "response": "{\n    \"explanation\": \"The code in code sample 1 initializes a merged_setting dictionary and updates it with request settings, then iterates through the items to remove any key-value pairs where the value is None. The code in code sample 2 shows the end of the same None-value removal loop and then creates a new dictionary comprehension that accomplishes the same task (filtering out None values) in a different way.\",\n    \"is_clone\": true,\n    \"classification\": \"type-3\",\n    \"reasoning\": \"These code samples are type-3 clones because they both accomplish the same task of removing None values from a dictionary, but use different syntactical approaches. Sample 1 uses an iterative approach with a for loop and del statement, while sample 2 includes both this approach and adds a dictionary comprehension that achieves the same result. The addition of the dictionary comprehension makes this a type-3 clone, as it's a modified version of the same logic with added statements but maintaining similar functionality.\"\n}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-13480",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..77a8aa6af1\nfrom sympy import *\n\ndef test_coth_log_tan():\nx = Symbol('x')\ne = coth(log(tan(x)))\n\n# Test various problematic values\nproblematic_values = [2, 3, 5, 6, 8, 9, 11, 12, 13, 15, 18]\n\nprint(\"Testing substitutions:\")\nfor val in problematic_values:\ntry:\nresult = e.subs(x, val)\nprint(f\"x = {val}: {result}\")\nexcept Exception as exc:\nprint(f\"x = {val}: ERROR - {str(exc)}\")\n\nif __name__ == \"__main__\":\ntest_coth_log_tan()\n\\ No newline at end of file\n",
+        "sympy/functions/elementary/hyperbolic.py": "index 2a4555d919..5fbb73c786 100644\n                 x, m = _peeloff_ipi(arg)\n                 if m:\n                     cothm = coth(m)\nif cothm is S.ComplexInfinity:\n                         return coth(x)\n                     else: # cothm == 0\n                         return tanh(x)\n"
+    },
+    "ground_truth_patch": {
+        "sympy/functions/elementary/hyperbolic.py": "                 x, m = _peeloff_ipi(arg)\n                 if m:\n                     cothm = coth(m)\nif cothm is S.ComplexInfinity:\n                         return coth(x)\n                     else: # cothm == 0\n                         return tanh(x)\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they belong to different contexts. The first sample is a new file defining a test function (`test_coth_log_tan`) with multiple statements and a loop, while the second sample consists solely of a segment from the `hyperbolic.py` file and does not relate to the function defined in the first sample. There are no syntactic or functional similarities that could categorize them as clones.\"}"
+}

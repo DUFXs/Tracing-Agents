@@ -1,0 +1,12 @@
+{
+    "instance_id": "pylint-dev__pylint-6903",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index d80760956..392fc4a84 100644\n .pytest_cache/\n .mypy_cache/\n .benchmarks/\n.aider/\n",
+        "pylint/lint/run.py": "index a7e5d5574..acb48d03e 100644\n         with open(\"/sys/fs/cgroup/cpu/cpu.cfs_period_us\", encoding=\"utf-8\") as file:\n             cpu_period = int(file.read().rstrip())\n         # Divide quota by period and you should get num of allotted CPU to the container, rounded down if fractional.\n# Ensure at least 1 CPU is returned\navail_cpu = max(1, int(cpu_quota / cpu_period))\n     elif Path(\"/sys/fs/cgroup/cpu/cpu.shares\").is_file():\n         with open(\"/sys/fs/cgroup/cpu/cpu.shares\", encoding=\"utf-8\") as file:\n             cpu_shares = int(file.read().rstrip())\n         # For AWS, gives correct value * 1024.\n# Ensure at least 1 CPU is returned\navail_cpu = max(1, int(cpu_shares / 1024))\n     return avail_cpu\n"
+    },
+    "ground_truth_patch": {
+        "pylint/lint/run.py": "             cpu_shares = int(file.read().rstrip())\n         # For AWS, gives correct value * 1024.\n         avail_cpu = int(cpu_shares / 1024)\n\n# In K8s Pods also a fraction of a single core could be available\n# As multiprocessing is not able to run only a \"fraction\" of process\n# assume we have 1 CPU available\nif avail_cpu == 0:\navail_cpu = 1\n\n     return avail_cpu\n \n \n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-4\", \"reasoning\": \"These code samples are type-4 clones because they perform similar logic regarding CPU allocation but are syntactically dissimilar. The second code sample does not contain the initial logic for reading from the CPU period file and has a different structure in how it handles the case for available CPU. They provide functionally equivalent outcomes related to CPU allocation but through different syntactical constructs.\"}"
+}

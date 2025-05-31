@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16082",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/db/models/expressions.py": "index 5e3c7cab82..cbf4fd8296 100644\n             Combinable.SUB,\n             Combinable.MUL,\n             Combinable.DIV,\nCombinable.MOD,\n         )\n     },\n     # Bitwise operators.\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/expressions.py": "             Combinable.SUB,\n             Combinable.MUL,\n             Combinable.DIV,\nCombinable.MOD,\n         )\n     },\n     # Bitwise operators.\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for the differences in whitespace and layout associated with the additional content in the first sample. The core content within both samples remains the same.\"}"
+}

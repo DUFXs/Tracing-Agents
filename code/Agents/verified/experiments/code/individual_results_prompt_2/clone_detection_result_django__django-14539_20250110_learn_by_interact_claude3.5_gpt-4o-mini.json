@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-14539",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/utils/html.py": "index 3bc02b8dd3..57ede0b3b5 100644\n             middle_unescaped = html.unescape(middle)\n             stripped = middle_unescaped.rstrip(TRAILING_PUNCTUATION_CHARS)\n             if middle_unescaped != stripped:\n# Count the number of trailing chars by comparing with rstrip\ntrailing_chars = len(middle_unescaped) - len(stripped)\n# Remove the same number of chars from the original string\nmiddle, trail_piece = middle[:-trailing_chars], middle[-trailing_chars:]\ntrail = trail_piece + trail\n                 trimmed_something = True\n\n         return lead, middle, trail\n \n     def is_email_simple(value):\n     klass.__str__ = lambda self: mark_safe(klass_str(self))\n     klass.__html__ = lambda self: str(self)\n     return klass\n\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/html.py": "             middle_unescaped = html.unescape(middle)\n             stripped = middle_unescaped.rstrip(TRAILING_PUNCTUATION_CHARS)\n             if middle_unescaped != stripped:\npunctuation_count = len(middle_unescaped) - len(stripped)\ntrail = middle[-punctuation_count:] + trail\nmiddle = middle[:-punctuation_count]\n                 trimmed_something = True\n         return lead, middle, trail\n \n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 processes a string called 'middle' that has potential trailing punctuation. It first unescapes the HTML entities in 'middle', then removes trailing punctuation and compares the original and stripped strings to detect how many characters were removed. It finally modifies the 'middle' string and prepares a 'trail' string with the removed trailing characters. The second code sample performs similar operations but uses different variable names and slightly alters the order of operations. It also calculates the length of trailing punctuation but uses 'punctuation_count' instead of 'trailing_chars', and constructs the 'trail' string differently. \", \"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in logic and structure but differ in identifier names and the order of statements.\"}"
+}

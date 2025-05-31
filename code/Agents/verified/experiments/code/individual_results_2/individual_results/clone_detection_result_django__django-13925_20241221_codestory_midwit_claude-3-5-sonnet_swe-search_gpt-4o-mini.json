@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13925",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "django/db/models/base.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and have dissimilar structures. Code sample 1 is a complete script defining a number of Django models and includes a checking function, while code sample 2 is a small snippet from a Django core file that checks for specific properties of a primary key. They don't share syntactic similarity or functional equivalence.\"}"
+}

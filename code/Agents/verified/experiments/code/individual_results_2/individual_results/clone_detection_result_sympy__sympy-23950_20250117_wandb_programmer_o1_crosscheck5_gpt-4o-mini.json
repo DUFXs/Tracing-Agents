@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-23950",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "sympy/sets/contains.py",
+    "ground_truth_patch_file": "sympy/sets/contains.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace and comments. The second code sample omits the docstring present in the first sample, but the functional code itself and all identifiers are the same.\"}"
+}

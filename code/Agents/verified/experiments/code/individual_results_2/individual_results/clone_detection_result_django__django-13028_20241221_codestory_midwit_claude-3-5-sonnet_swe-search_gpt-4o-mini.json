@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13028",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "django/db/models/sql/query.py",
+    "ground_truth_patch_file": "django/db/models/sql/query.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but contain modifications. The first sample uses 'isinstance' to check if 'expression' is a 'BaseExpression', while the second sample uses 'hasattr' to check for the presence of the 'resolve_expression' attribute. This constitutes a modification in logic while the overall structure remains similar.\"}"
+}

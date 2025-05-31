@@ -1,0 +1,7 @@
+{
+    "instance_id": "matplotlib__matplotlib-22871",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "lib/matplotlib/dates.py",
+    "ground_truth_patch_file": "lib/matplotlib/dates.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-3\"}"
+}

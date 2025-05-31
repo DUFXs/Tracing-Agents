@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-14765",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/migrations/state.py": "index 088f5c41f0..06dab4f74e 100644\n     def __init__(self, models=None, real_apps=None):\n         self.models = models or {}\n         # Apps to include from main registry, usually unmigrated ones\nif real_apps is not None:\nassert isinstance(real_apps, set), \"real_apps must be a set\"\nself.real_apps = real_apps\n         else:\n             self.real_apps = set()\n         self.is_delayed = False\n\n         # {remote_model_key: {model_key: [(field_name, field)]}}\n         self.relations = None\n \n             (self.bases == other.bases) and\n             (self.managers == other.managers)\n         )\n\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/state.py": "     def __init__(self, models=None, real_apps=None):\n         self.models = models or {}\n         # Apps to include from main registry, usually unmigrated ones\nif real_apps is None:\nreal_apps = set()\n         else:\nassert isinstance(real_apps, set)\nself.real_apps = real_apps\n         self.is_delayed = False\n         # {remote_model_key: {model_key: [(field_name, field)]}}\n         self.relations = None\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in functionality and structure, except for differences in identifier names and the layout of certain statements. The first sample has additional lines and checks regarding the 'real_apps' variable which is simplified in the second sample. Despite this difference, they present the same logic of handling the inputs.\"}"
+}

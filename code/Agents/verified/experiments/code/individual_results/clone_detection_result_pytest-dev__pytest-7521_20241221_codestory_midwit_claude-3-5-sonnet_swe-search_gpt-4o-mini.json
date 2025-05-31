@@ -1,0 +1,12 @@
+{
+    "instance_id": "pytest-dev__pytest-7521",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..2fdcef614\nimport pytest\n\ndef test_cafd_includes_carriage_return(capfd):\nprint('Greetings from DOS', end='\\r')\nout, err = capfd.readouterr()\nassert out.endswith('\\r')\n\nif __name__ == '__main__':\npytest.main([__file__])\n\\ No newline at end of file\n",
+        "src/_pytest/capture.py": "index 3f9c60fb9..a1f6d985d 100644\n                 encoding=\"utf-8\",\n                 errors=\"replace\",\n                 write_through=True,\nnewline=''  # Preserve original line endings\n             )\n             if targetfd in patchsysdict:\n                 self.syscapture = SysCapture(targetfd, self.tmpfile)\n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/capture.py": "                 TemporaryFile(buffering=0),  # type: ignore[arg-type]\n                 encoding=\"utf-8\",\n                 errors=\"replace\",\nnewline=\"\",\n                 write_through=True,\n             )\n             if targetfd in patchsysdict:\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are from different contexts. The first code sample is a complete test function using pytest, while the second code sample is a partial implementation of a capture functionality in the pytest library. They are syntactically and functionally different, and do not share similarity in purpose or content.\"}"
+}

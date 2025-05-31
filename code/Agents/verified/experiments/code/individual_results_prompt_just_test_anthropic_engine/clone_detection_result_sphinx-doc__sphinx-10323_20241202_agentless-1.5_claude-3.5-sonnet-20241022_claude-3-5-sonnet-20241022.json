@@ -1,0 +1,11 @@
+{
+    "instance_id": "sphinx-doc__sphinx-10323",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "sphinx/directives/code.py": "index 2bf31d0..acff924 100644\n                        self.start_filter,\n                        self.end_filter,\n                        self.lines_filter,\nself.dedent_filter,\n                        self.prepend_filter,\nself.append_filter]\n             lines = self.read_file(self.filename, location=location)\n             for func in filters:\n                 lines = func(lines, location=location)\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/directives/code.py": "                        self.start_filter,\n                        self.end_filter,\n                        self.lines_filter,\nself.dedent_filter,\n                        self.prepend_filter,\nself.append_filter]\n             lines = self.read_file(self.filename, location=location)\n             for func in filters:\n                 lines = func(lines, location=location)\n"
+    },
+    "response": "{\n    \"explanation\": \"Both code samples show identical Python code that defines a list of filter functions (start_filter, end_filter, lines_filter, dedent_filter, prepend_filter, append_filter), reads a file using read_file method with a location parameter, and then applies each filter function to the lines sequentially. The code appears to be part of a file processing pipeline in Sphinx's code directive implementation.\",\n    \"is_clone\": true,\n    \"classification\": \"type-1\",\n    \"reasoning\": \"These code samples are type-1 clones because they are exactly identical, containing the same code with the same whitespace, layout, and even file path ('sphinx/directives/code.py'). The only difference is in the patch format representation where sample 1 includes 'index 2bf31d0..acff924 100644' in the header, which is metadata about the patch itself and not part of the actual code.\"\n}"
+}

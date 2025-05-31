@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-14373",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/utils/dateformat.py": "index 38cb1c1..98b904c 100644\n \n     def Y(self):\n         \"Year, 4 digits; e.g. '1999'\"\nreturn '%04d' % self.data.year\n \n     def z(self):\n         \"\"\"Day of the year, i.e. 1 to 366.\"\"\"\n"
+    },
+    "ground_truth_patch": {
+        "django/utils/dateformat.py": "         return '%02d' % (self.data.year % 100)\n \n     def Y(self):\n\"\"\"Year, 4 digits with leading zeros; e.g. '1999'.\"\"\"\nreturn '%04d' % self.data.year\n \n     def z(self):\n         \"\"\"Day of the year, i.e. 1 to 366.\"\"\"\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 shows a method Y() that formats a year as a 4-digit number with leading zeros (e.g., '1999') using the format string '%04d'. The code in code sample 2 shows the same Y() method with identical functionality, just with a slightly different docstring ('Year, 4 digits' vs 'Year, 4 digits with leading zeros').\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they contain identical code with only differences in comments (docstring). Both implement the Y() method using exactly the same logic and format string '%04d' % self.data.year to format the year as a 4-digit number. The only difference is in the docstring description, which is considered a comment difference. All other code, including the variable names, literal values, and logic structure, remains exactly the same.\"\n}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "sympy__sympy-23824",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": "sympy/physics/hep/gamma_matrices.py",
+    "ground_truth_patch_file": "sympy/physics/hep/gamma_matrices.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share similar logical operations and structure but have modified statements and different approaches in how they process indices and expressions.\"}"
+}

@@ -1,0 +1,11 @@
+{
+    "instance_id": "psf__requests-1724",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "requests/sessions.py": "index e1a79e6..955167a 100644\n         \"\"\"\n         # Create the Request.\n         req = Request(\nmethod = str(method).upper(),\n             url = url,\n             headers = headers,\n             files = files,\n"
+    },
+    "ground_truth_patch": {
+        "requests/sessions.py": " from collections import Mapping\n from datetime import datetime\n \nfrom .compat import cookielib, OrderedDict, urljoin, urlparse, urlunparse, builtin_str\n from .cookies import cookiejar_from_dict, extract_cookies_to_jar, RequestsCookieJar\n from .models import Request, PreparedRequest\n from .hooks import default_hooks, dispatch_hook\n         :param cert: (optional) if String, path to ssl client cert file (.pem).\n             If Tuple, ('cert', 'key') pair.\n         \"\"\"\n\nmethod = builtin_str(method)\n\n         # Create the Request.\n         req = Request(\n             method = method.upper(),\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 creates a Request object with parameters including method (converted to uppercase), url, headers, and files. The code in code sample 2 includes import statements and docstring, followed by converting a method to builtin_str and creating a Request object with the method parameter in uppercase.\",\n\"is_clone\": true,\n\"classification\": \"type-2\",\n\"reasoning\": \"These code samples are type-2 clones because they both create a Request object with a method parameter converted to uppercase. The core functionality is identical, but there are differences in how the method is processed before being passed to the Request constructor (str(method).upper() vs method.upper() where method is already converted to builtin_str). The differences are in identifier names and the way the string conversion is handled, but the underlying logic and structure remain the same. Both samples are performing the same operation of creating a Request object with an uppercase method parameter.\"\n}"
+}

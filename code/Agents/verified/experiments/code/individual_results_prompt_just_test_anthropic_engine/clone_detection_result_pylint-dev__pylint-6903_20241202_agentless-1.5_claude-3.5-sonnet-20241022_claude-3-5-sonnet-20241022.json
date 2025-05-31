@@ -1,0 +1,11 @@
+{
+    "instance_id": "pylint-dev__pylint-6903",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "pylint/lint/run.py": "index aabf0aa..0d255e2 100644\n         with open(\"/sys/fs/cgroup/cpu/cpu.shares\", encoding=\"utf-8\") as file:\n             cpu_shares = int(file.read().rstrip())\n         # For AWS, gives correct value * 1024.\n# Ensure at least 1 CPU is returned when shares are available\navail_cpu = max(1, int(cpu_shares / 1024))\n     return avail_cpu\n \n \n"
+    },
+    "ground_truth_patch": {
+        "pylint/lint/run.py": "             cpu_shares = int(file.read().rstrip())\n         # For AWS, gives correct value * 1024.\n         avail_cpu = int(cpu_shares / 1024)\n\n# In K8s Pods also a fraction of a single core could be available\n# As multiprocessing is not able to run only a \"fraction\" of process\n# assume we have 1 CPU available\nif avail_cpu == 0:\navail_cpu = 1\n\n     return avail_cpu\n \n \n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 reads CPU shares from a cgroup file, calculates available CPUs by dividing cpu_shares by 1024, and ensures at least 1 CPU is returned using max(1, int(cpu_shares/1024)). The code in code sample 2 performs a similar calculation but handles the case differently: it first calculates available CPUs, then explicitly checks if the result is 0 and sets it to 1 if so, particularly noting this is for K8s Pods where a fraction of a core might be available.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they perform the same fundamental operation (calculating available CPUs from cpu_shares) but with slightly modified statements. While sample 1 uses max(1, int(cpu_shares/1024)), sample 2 uses an explicit if-condition to achieve the same result. The core functionality is the same, but the implementation approach differs slightly. Both ensure at least 1 CPU is returned, just through different syntactic structures. The comments also indicate they're addressing similar scenarios (AWS in sample 1, K8s in sample 2) but with slightly different considerations.\"\n}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-10844",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "sklearn/metrics/cluster/supervised.py",
+    "ground_truth_patch_file": "sklearn/metrics/cluster/supervised.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in terms of functionality and logic, differing only in whitespace and layout. The logic for calculating 'tk', 'pk', and 'qk' as well as the 'entropy' function is the same. The difference in the lines related to processing 'labels_true' and 'labels_pred' does not affect their core logic, and comments are not present in the shared logic sections.\"}"
+}

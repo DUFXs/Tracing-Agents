@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-12143",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "django/contrib/admin/options.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and are not similar enough in their structure or functionality. The first sample is implementing a test for pattern matching using a specific model in Django, while the second sample is part of Django's internal functionality dealing with primary keys in a request, featuring very different context and logic.\"}"
+}

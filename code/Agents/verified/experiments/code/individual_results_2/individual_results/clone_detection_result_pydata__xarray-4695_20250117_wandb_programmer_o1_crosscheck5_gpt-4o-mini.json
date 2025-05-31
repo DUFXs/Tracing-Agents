@@ -1,0 +1,7 @@
+{
+    "instance_id": "pydata__xarray-4695",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "xarray/core/dataarray.py",
+    "ground_truth_patch_file": "xarray/core/dataarray.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in the literal value 'indexers=key' in Code sample 1 and 'key' in Code sample 2. The rest of the code, including whitespace and comments, is the same.\"}"
+}

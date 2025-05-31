@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-17087",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 6a67c6eb28..cd0195a6d7 100644\n tests/.coverage*\n build/\n tests/report/\n.aider/\n",
+        "django/db/migrations/serializer.py": "index d88cda6e20..127acb94ee 100644\n         ):\n             klass = self.value.__self__\n             module = klass.__module__\n# Use __qualname__ to get the full nested path\nclass_path = klass.__qualname__\nreturn \"%s.%s.%s\" % (module, class_path, self.value.__name__), {\n                 \"import %s\" % module\n             }\n         # Further error checking\n"
+    },
+    "ground_truth_patch": {
+        "django/db/migrations/serializer.py": "         ):\n             klass = self.value.__self__\n             module = klass.__module__\nreturn \"%s.%s.%s\" % (module, klass.__qualname__, self.value.__name__), {\n                 \"import %s\" % module\n             }\n         # Further error checking\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure with the exception of the identifier name 'klass.__qualname__' in sample 1 which is changed to 'klass.__qualname__' in sample 2. Additionally, there are minor differences in whitespace, but the overall functionality and structure remain the same.\"}"
+}

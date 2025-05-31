@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-14672",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch_file": ".gitignore",
+    "ground_truth_patch_file": "django/db/models/fields/reverse_related.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-5\"}"
+}

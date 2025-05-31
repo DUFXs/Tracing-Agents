@@ -1,0 +1,7 @@
+{
+    "instance_id": "astropy__astropy-14539",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "astropy/io/fits/diff.py",
+    "ground_truth_patch_file": "astropy/io/fits/diff.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-4\", \"reasoning\": \"These code samples are functionally equivalent but syntactically dissimilar. The second code sample appears to be a partial section of the first sample, possibly omitting some previous lines and declarations that are essential for full context. However, the core functionality and comparison logic remain the same, indicating functional equivalence.\"}"
+}

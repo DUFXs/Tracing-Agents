@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-16082",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "django/db/models/expressions.py": "index 5e3c7cab82..d64b342ee4 100644\n             Combinable.SUB,\n             Combinable.MUL,\n             Combinable.DIV,\nCombinable.MOD,  # Add MOD operator for mixed numeric types\n         )\n     },\n     # Bitwise operators.\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..a4cbdee12b\nfrom decimal import Decimal\nfrom django.db.models import F, Value\nfrom django.db.models.expressions import CombinedExpression\nfrom django.db.models import fields\n\n# Create a decimal value with explicit output field\ndecimal_value = Value(Decimal('10.5'), output_field=fields.DecimalField())\n# Create an integer value with explicit output field\ninteger_value = Value(5, output_field=fields.IntegerField())\n\n# Try to perform MOD operation between decimal and integer\nmod_result = decimal_value % integer_value\nprint(f\"MOD result output field type: {type(mod_result.output_field)}\")\n\n# Show that other operations like addition work correctly with mixed types\nadd_result = decimal_value + integer_value\nprint(f\"Addition result output field type: {type(add_result.output_field)}\")\n\n# The issue is that MOD operation doesn't properly resolve to DecimalField\n# when mixing Decimal and Integer types, unlike other operations\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/expressions.py": "             Combinable.SUB,\n             Combinable.MUL,\n             Combinable.DIV,\nCombinable.MOD,\n         )\n     },\n     # Bitwise operators.\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they represent different code segments. The first code sample is a complete script that includes functionality for creating decimal and integer values and performing operations on them, while the second code sample is only a fragment of the first code sample that contains only the setup of mathematical operations with no functional code. Therefore, they do not share the same structure or logic, and thus cannot be classified as clones.\"}"
+}

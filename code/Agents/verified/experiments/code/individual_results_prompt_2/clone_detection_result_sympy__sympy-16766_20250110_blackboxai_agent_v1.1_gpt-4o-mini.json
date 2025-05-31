@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-16766",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index fdcc1cabf1..3fbed863dc 100644\n \n # pytest related data file for slow tests\n .ci/durations.log\n.aider/\n",
+        "sympy/printing/pycode.py": "index a3f0310735..b94970cae2 100644\n     def _print_NoneToken(self, arg):\n         return 'None'\n \ndef _print_IndexedBase(self, expr):\nreturn self._print(expr.label)\n\ndef _print_Indexed(self, expr):\nbase, *indices = expr.args\nreturn \"{}[{}]\".format(self._print(base), \", \".join(self._print(ind) for ind in indices))\n\n\n \n class PythonCodePrinter(AbstractPythonCodePrinter):\n"
+    },
+    "ground_truth_patch": {
+        "sympy/printing/pycode.py": "         PREC = precedence(expr)\n         return self._operators['not'] + self.parenthesize(expr.args[0], PREC)\n \ndef _print_Indexed(self, expr):\nbase = expr.args[0]\nindex = expr.args[1:]\nreturn \"{}[{}]\".format(str(base), \", \".join([self._print(ind) for ind in index]))\n\n \n for k in PythonCodePrinter._kf:\n     setattr(PythonCodePrinter, '_print_%s' % k, _print_known_func)\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a couple of functions within a class that deal with printing specific types of expressions in a symbolic mathematics library (SymPy). The functions notably include _print_NoneToken which returns the string 'None' and _print_Indexed which formats base and index arguments for printing. Code sample 2, on the other hand, is also part of the same library and includes functions for handling print operations, specifically for indexed expressions as well, but it appears to contain different logic and statements, including some variable assignments for precedence in expression formatting. Additionally, it\u2019s defining methods dynamically based on a list of keys. Thus, while they deal with similar data structures, their implementations differ significantly in logic and syntax.\", \"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they contain different functions, logic, and syntax which distinguishes them as separate implementations, rather than similar or identical code.\"}"
+}

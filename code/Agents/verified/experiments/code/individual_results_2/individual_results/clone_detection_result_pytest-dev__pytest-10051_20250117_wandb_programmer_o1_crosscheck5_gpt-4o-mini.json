@@ -1,0 +1,7 @@
+{
+    "instance_id": "pytest-dev__pytest-10051",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "src/_pytest/logging.py",
+    "ground_truth_patch_file": "src/_pytest/logging.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they contain similar structures but with added, modified, or removed statements. For example, in Code Sample 2, there is an additional logging stream handler variable defined, and the way the records are managed (e.g., with calls to 'clear()') differs in how they are invoked or used. This indicates that while they share a common functionality and syntax, they have variations that classify them as type-3 clones.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-15315",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/db/models/fields/__init__.py": "index 88c9ca9f28..c781625cb5 100644\n         return NotImplemented\n \n     def __hash__(self):\nreturn hash(self.creation_counter)\n\n \n     def __deepcopy__(self, memodict):\n         # We don't have to deepcopy very much here, since most things are not\n \n     def rel_db_type(self, connection):\n         return SmallIntegerField().db_type(connection=connection)\n\n",
+        "reproduce_bug.py": "new file mode 100644\nindex 0000000000..86e1fa9987\nfrom django.conf import settings\nsettings.configure()\n\nimport django\ndjango.setup()\n\nfrom django.db import models\n\ndef test_hash_stability():\nf = models.CharField(max_length=200)\nd = {f: 1}\nprint(f\"Initial hash of f: {hash(f)}\")\nprint(f\"Initial f.__dict__:\", f.__dict__)\n\nclass Book(models.Model):\ntitle = f\nclass Meta:\napp_label = '_test'\n\nprint(f\"Hash of f after assignment: {hash(f)}\")\nprint(f\"f.__dict__ after assignment:\", f.__dict__)\nprint(f\"Is f still in d? {f in d}\")\nassert f in d\n\n# Try to create another model using the same field\nclass AnotherBook(models.Model):\nname = f\nclass Meta:\napp_label = '_test'\n\nprint(f\"Hash of f after second assignment: {hash(f)}\")\nprint(f\"Is f still in d? {f in d}\")\nassert f in d\n\ntest_hash_stability()\n\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/fields/__init__.py": "         return NotImplemented\n \n     def __hash__(self):\nreturn hash(self.creation_counter)\n \n     def __deepcopy__(self, memodict):\n         # We don't have to deepcopy very much here, since most things are not\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for differences in whitespace, layout, and comments. The differences noted are limited to the formatting and the presence of comments, while the core code logic remains the same.\"}"
+}

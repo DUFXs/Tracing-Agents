@@ -1,0 +1,7 @@
+{
+    "instance_id": "matplotlib__matplotlib-23412",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "test_patch_offset_dash.py",
+    "ground_truth_patch_file": "lib/matplotlib/patches.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they come from different contexts and serve different purposes. Code sample 1 defines a complete script for rendering and validating dash offsets using Matplotlib, while code sample 2 is a small snippet from a different part of the Matplotlib library that involves a function dealing with visibility and drawing paths, lacking any substantial overlap or similarity in logic or intent.\"}"
+}

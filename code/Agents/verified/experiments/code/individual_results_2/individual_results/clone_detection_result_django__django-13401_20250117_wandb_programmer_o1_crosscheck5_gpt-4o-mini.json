@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13401",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "django/db/models/fields/__init__.py",
+    "ground_truth_patch_file": "django/db/models/fields/__init__.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have similar syntactical structures but differ in some statements and the arrangement of conditions. For example, the way the comparisons are made and how the models are handled in the __eq__ and __lt__ methods are different, indicating they have been modified or statements altered.\"}"
+}

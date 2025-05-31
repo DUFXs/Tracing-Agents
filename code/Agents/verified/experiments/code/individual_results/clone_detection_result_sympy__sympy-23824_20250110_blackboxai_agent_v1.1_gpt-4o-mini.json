@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-23824",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 4413dd4395..7d427243bd 100644\n \n # Files for pyodide test\n pyodide\n.aider/\n",
+        "sympy/physics/hep/gamma_matrices.py": "index 23284e4a92..61a0cd3b2d 100644\n     # power of two factor, as described in Kahane's paper:\n     resulting_coeff *= 2**(number_of_contractions)\n \n# If `first_dum_pos` is not zero, it means that there are leading free gamma\n     # matrices in front of `expression`, so multiply by them:\n# Iterate in reverse to maintain original left-to-right order\nfor i in reversed(range(0, first_dum_pos)):\n         [ri.insert(0, free_pos[i]) for ri in resulting_indices]\n \n     resulting_expr = S.Zero\n"
+    },
+    "ground_truth_patch": {
+        "sympy/physics/hep/gamma_matrices.py": " \n     # If `first_dum_pos` is not zero, it means that there are trailing free gamma\n     # matrices in front of `expression`, so multiply by them:\nresulting_indices = list( free_pos[0:first_dum_pos] + ri for ri in resulting_indices )\n \n     resulting_expr = S.Zero\n     for i in resulting_indices:\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarities but also show modifications in the statements, particularly in the handling of the `resulting_indices` and how the comment lengths and descriptions differ.\"}"
+}

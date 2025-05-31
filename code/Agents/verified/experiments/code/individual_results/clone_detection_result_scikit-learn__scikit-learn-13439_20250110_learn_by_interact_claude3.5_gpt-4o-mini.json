@@ -1,0 +1,14 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-13439",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "reproduce.py": "new file mode 100644\nindex 000000000..f291b5993\nfrom sklearn import svm\nfrom sklearn.datasets import samples_generator\nfrom sklearn.feature_selection import SelectKBest\nfrom sklearn.feature_selection import f_regression\nfrom sklearn.pipeline import Pipeline\n\n# generate some data to play with\nX, y = samples_generator.make_classification(\nn_informative=5, n_redundant=0, random_state=42)\n\nanova_filter = SelectKBest(f_regression, k=5)\nclf = svm.SVC(kernel='linear')\npipe = Pipeline([('anova', anova_filter), ('svc', clf)])\n\nprint(len(pipe))  # This should raise TypeError\n",
+        "sklearn/pipeline.py": "index 7eaf9a46f..eae786021 100644\n         # check if first estimator expects pairwise input\n         return getattr(self.steps[0][1], '_pairwise', False)\n \ndef __len__(self):\n\"\"\"Returns the length of the Pipeline\"\"\"\nreturn len(self.steps)\n\n \n def _name_estimators(estimators):\n     \"\"\"Generate names for estimators.\"\"\"\n         raise TypeError('Unknown keyword arguments: \"{}\"'\n                         .format(list(kwargs.keys())[0]))\n     return FeatureUnion(_name_estimators(transformers), n_jobs=n_jobs)\n\n",
+        "test_empty.py": "new file mode 100644\nindex 000000000..486e8e9ed\nfrom sklearn.pipeline import Pipeline\n\npipe = Pipeline([])\nprint(len(pipe))\n",
+        "test_single.py": "new file mode 100644\nindex 000000000..5209b7352\nfrom sklearn import svm\nfrom sklearn.pipeline import Pipeline\n\nclf = svm.SVC(kernel='linear')\npipe = Pipeline([('svc', clf)])\nprint(len(pipe))\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/pipeline.py": "             if trans is not None and trans != 'passthrough':\n                 yield idx, name, trans\n \ndef __len__(self):\n\"\"\"\nReturns the length of the Pipeline\n\"\"\"\nreturn len(self.steps)\n\n     def __getitem__(self, ind):\n         \"\"\"Returns a sub-pipeline or a single esimtator in the pipeline\n \n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they refer to different pieces of code. The first sample includes parts of a new file with a focus on classification using SVM and a pipeline, while the second sample is a segment from the pipeline definition that doesn't relate to the first patch's functionality. They do not share syntactic similarities or functional equivalences, and thus do not qualify as any type of clone.\"}"
+}

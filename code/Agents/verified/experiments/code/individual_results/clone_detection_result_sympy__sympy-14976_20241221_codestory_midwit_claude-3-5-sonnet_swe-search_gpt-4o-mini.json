@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-14976",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..1eff27d1bb\nfrom sympy import *\nx = Symbol('x')\neqn = Eq(rf(18,x), 77 + S(1)/3)\nf = lambdify(x, eqn.lhs - eqn.rhs, 'mpmath')\nprint(\"Generated function source:\")\nprint(\"------------------------\")\nimport inspect\nprint(inspect.getsource(f))\n\nprint(\"\\nTesting precision with nsolve:\")\nprint(\"-----------------------------\")\nx0 = nsolve(eqn, Float('1.5', 64), prec=64)\nresult = rf(18, x0).evalf(64)\nprint(f\"Result: {result}\")\nprint(f\"Expected: {(77 + S(1)/3).evalf(64)}\")\nprint(f\"Difference: {abs(result - (77 + S(1)/3).evalf(64))}\")\n\\ No newline at end of file\n",
+        "sympy/printing/pycode.py": "index d06901425d..f59da3e5c6 100644\n         args = str(tuple(map(int, e._mpf_)))\n         return '{func}({args})'.format(func=self._module_format('mpmath.mpf'), args=args)\n \ndef _print_Rational(self, e):\n# Convert rational numbers to high-precision mpmath format\nreturn '{func}({p})/{func}({q})'.format(\nfunc=self._module_format('mpmath.mpf'),\np=str(e.p),\nq=str(e.q))\n\n \n     def _print_uppergamma(self, e):\n         return \"{0}({1}, {2}, {3})\".format(\n"
+    },
+    "ground_truth_patch": {
+        "sympy/printing/pycode.py": "         return '{func}({args})'.format(func=self._module_format('mpmath.mpf'), args=args)\n \n \ndef _print_Rational(self, e):\nreturn '{0}({1})/{0}({2})'.format(\nself._module_format('mpmath.mpf'),\ne.p,\ne.q,\n)\n\n     def _print_uppergamma(self, e):\n         return \"{0}({1}, {2}, {3})\".format(\n             self._module_format('mpmath.gammainc'),\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they have structural similarities but differ in specific implementations. The second sample modifies the return statement of the `_print_Rational` method, changing the way rational numbers are represented compared to the first sample. Additionally, both samples contain parts of the same classes and methods, indicating overall syntactical similarity with alterations.\"}"
+}

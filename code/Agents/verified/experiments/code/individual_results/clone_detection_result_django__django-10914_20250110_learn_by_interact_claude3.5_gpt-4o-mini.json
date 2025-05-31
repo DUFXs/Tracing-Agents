@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-10914",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch": {
+        "django/conf/global_settings.py": "index acee9887d2..63fe2c83d9 100644\n \n # The numeric mode to set newly-uploaded files to. The value should be a mode\n # you'd pass directly to os.chmod; see https://docs.python.org/library/os.html#files-and-directories.\nFILE_UPLOAD_PERMISSIONS = 0o644\n \n # The numeric mode to assign to newly-created directories, when uploading files.\n\n # The value should be a mode as you'd pass to os.chmod;\n # see https://docs.python.org/library/os.html#files-and-directories.\n FILE_UPLOAD_DIRECTORY_PERMISSIONS = None\n SECURE_REDIRECT_EXEMPT = []\n SECURE_SSL_HOST = None\n SECURE_SSL_REDIRECT = False\n\n\n"
+    },
+    "ground_truth_patch": {
+        "django/conf/global_settings.py": "# The numeric mode to set newly-uploaded files to. The value should be a mode\n# you'd pass directly to os.chmod; see https://docs.python.org/library/os.html#files-and-directories.\nFILE_UPLOAD_PERMISSIONS = 0o644\n\n# The numeric mode to assign to newly-created directories, when uploading files.\n# The value should be a mode as you'd pass to os.chmod;\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in code functionality but differ in whitespace and layout. The second sample does not include the lines for 'FILE_UPLOAD_DIRECTORY_PERMISSIONS', 'SECURE_REDIRECT_EXEMPT', 'SECURE_SSL_HOST', and 'SECURE_SSL_REDIRECT', but the existing lines are formatted similarly with variations in the whitespace between the comments and code.\"}"
+}

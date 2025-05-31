@@ -1,0 +1,7 @@
+{
+    "instance_id": "pytest-dev__pytest-5631",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "src/_pytest/compat.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are fundamentally different in functionality and context. The first sample involves testing with a mock patch in a unit test setup, while the second sample is part of a patching functionality for identifying function argument names. The code structure, purpose, and module context differ significantly, leading to no syntactical or functional similarity.\"}"
+}

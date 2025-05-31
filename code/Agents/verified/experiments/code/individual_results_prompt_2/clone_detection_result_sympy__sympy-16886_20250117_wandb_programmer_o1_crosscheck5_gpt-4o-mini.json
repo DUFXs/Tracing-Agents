@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-16886",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "sympy/crypto/crypto.py": "index ca552191c0..0c556b6efb 100644\n     \"..-\": \"U\", \"...-\": \"V\",\n     \".--\": \"W\", \"-..-\": \"X\",\n     \"-.--\": \"Y\", \"--..\": \"Z\",\n\"-----\": \"0\", \".----\": \"1\",\n     \"..---\": \"2\", \"...--\": \"3\",\n     \"....-\": \"4\", \".....\": \"5\",\n     \"-....\": \"6\", \"--...\": \"7\",\n",
+        "test_morse_issue.py": "new file mode 100644\nindex 0000000000..212ff29b8d\nimport sys\nfrom sympy.crypto.crypto import decode_morse\n\ndef main():\nprint(\"Testing that decode_morse('.----') decodes to '1'...\")\ndecoded = decode_morse(\".----\")\nprint(f\"Decoded string: {decoded}\")\nexpected = \"1\"\nprint(f\"Expected string: {expected}\")\nif decoded != expected:\nprint(\"FAIL: decode_morse('.----') != '1'\")\nsys.exit(1)\nprint(\"PASS: decode_morse('.----') == '1'\")\nsys.exit(0)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "sympy/crypto/crypto.py": "     \"..-\": \"U\", \"...-\": \"V\",\n     \".--\": \"W\", \"-..-\": \"X\",\n     \"-.--\": \"Y\", \"--..\": \"Z\",\n\"-----\": \"0\", \".----\": \"1\",\n     \"..---\": \"2\", \"...--\": \"3\",\n     \"....-\": \"4\", \".....\": \"5\",\n     \"-....\": \"6\", \"--...\": \"7\",\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 defines a mapping of Morse code to corresponding alphanumeric characters, while code sample 2 contains the same mapping but is a more concise representation of it without additional context. Sample 1 also includes a complete testing routine that prints results and checks the decoding of a Morse code string. Sample 2 solely lists the Morse code mappings without the test functionality.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical in terms of the Morse code mapping but differ in the presence of additional whitespace, layout, and comments, with sample 1 including a testing function that is absent in sample 2.\"}"
+}

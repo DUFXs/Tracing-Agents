@@ -1,0 +1,11 @@
+{
+    "instance_id": "django__django-13028",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "django/db/models/sql/query.py": "index a6a3e97..994a0bd 100644\n \n     def check_filterable(self, expression):\n         \"\"\"Raise an error if expression cannot be used in a WHERE clause.\"\"\"\nif not getattr(expression, '_filterable', True):\n             raise NotSupportedError(\n                 expression.__class__.__name__ + ' is disallowed in the filter '\n                 'clause.'\n"
+    },
+    "ground_truth_patch": {
+        "django/db/models/sql/query.py": " \n     def check_filterable(self, expression):\n         \"\"\"Raise an error if expression cannot be used in a WHERE clause.\"\"\"\nif (\nhasattr(expression, 'resolve_expression') and\nnot getattr(expression, 'filterable', True)\n):\n             raise NotSupportedError(\n                 expression.__class__.__name__ + ' is disallowed in the filter '\n                 'clause.'\n"
+    },
+    "response": "{\n\"explanation\": \"The code in code sample 1 defines a method 'check_filterable' that checks if an expression can be used in a WHERE clause by looking for a '_filterable' attribute on the expression and raises a NotSupportedError if the expression is not filterable. The code in code sample 2 defines the same method but adds an additional check for 'resolve_expression' attribute and uses 'filterable' instead of '_filterable' as the attribute name.\",\n\"is_clone\": true,\n\"classification\": \"type-3\",\n\"reasoning\": \"These code samples are type-3 clones because they have the same basic structure and purpose (checking if an expression is filterable and raising an error if not), but sample 2 has modified statements with an additional condition (checking for 'resolve_expression') and a slightly different attribute name ('filterable' vs '_filterable'). The core functionality remains similar, but there are syntactic modifications beyond just identifier names or whitespace changes.\"\n}"
+}

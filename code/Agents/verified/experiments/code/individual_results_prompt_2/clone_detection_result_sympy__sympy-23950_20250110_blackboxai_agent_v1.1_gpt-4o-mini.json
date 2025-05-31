@@ -1,0 +1,12 @@
+{
+    "instance_id": "sympy__sympy-23950",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 4413dd4395..7d427243bd 100644\n \n # Files for pyodide test\n pyodide\n.aider/\n",
+        "sympy/sets/contains.py": "index b2d4268d12..dfeb02b518 100644\n             isinstance(i, (Eq, Ne))])\n \n     def as_set(self):\n\"\"\"\nReturns the set that this Contains object is checking membership in.\n\nExamples\n========\n\n>>> from sympy import Contains, Symbol, Reals\n>>> x = Symbol('x')\n>>> Contains(x, Reals).as_set()\nReals\n\"\"\"\nreturn self.args[1]\n"
+    },
+    "ground_truth_patch": {
+        "sympy/sets/contains.py": "             isinstance(i, (Eq, Ne))])\n \n     def as_set(self):\nreturn self.args[1]\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 includes a method named 'as_set' that returns the second argument from 'self.args' in a Contains object in SymPy, along with a docstring that describes the method and includes an example usage. Code sample 2 contains a similar snippet, which looks like part of the same function, but it is missing the docstring and example usage from code sample 1.\", \"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but one sample has added docstrings and examples that the other sample does not.\"}"
+}

@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-14349",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "django/core/validators.py",
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they serve different purposes and functions within the Django framework. The first sample is a test function designed to validate URLs using the `URLValidator`, while the second sample contains part of the internal implementation of the `URLValidator` class itself. They differ significantly in structure, context, and functionality.\"}"
+}

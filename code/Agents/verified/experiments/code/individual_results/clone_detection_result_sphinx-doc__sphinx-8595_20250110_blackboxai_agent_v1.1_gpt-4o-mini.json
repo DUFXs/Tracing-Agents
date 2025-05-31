@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-8595",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 8d33409d5..2f86c1c51 100644\n utils/regression_test.js\n \n node_modules/\n.aider/\n",
+        "sphinx/ext/autodoc/__init__.py": "index d85d79617..87a1457f4 100644\n     def get_object_members(self, want_all: bool) -> Tuple[bool, ObjectMembers]:\n         members = self.get_module_members()\n         if want_all:\nif self.__all__ is None:\n# No __all__ defined, document all members\n                 return True, list(members.values())\n             else:\n# If __all__ is defined (empty or not), only document members in __all__\nmember_list = []\n                 for member in members.values():\nif member.__name__ in (self.__all__ or []):\nmember_list.append(member)\nreturn False, member_list\n         else:\n             memberlist = self.options.members or []\n             ret = []\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/ext/autodoc/__init__.py": "     def get_object_members(self, want_all: bool) -> Tuple[bool, ObjectMembers]:\n         members = self.get_module_members()\n         if want_all:\nif self.__all__ is None:\n                 # for implicit module members, check __module__ to avoid\n                 # documenting imported objects\n                 return True, list(members.values())\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they are syntactically similar but have added, modified, or removed statements. The first code sample contains additional logic and statements not present in the second code sample.\"}"
+}

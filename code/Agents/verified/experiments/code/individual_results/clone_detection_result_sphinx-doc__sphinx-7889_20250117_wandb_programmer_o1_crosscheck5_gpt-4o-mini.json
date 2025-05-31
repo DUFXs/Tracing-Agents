@@ -1,0 +1,12 @@
+{
+    "instance_id": "sphinx-doc__sphinx-7889",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch": {
+        "sphinx/ext/autodoc/mock.py": "index 98a3a3a96..cb7d91db6 100644\n \n def _make_subclass(name: str, module: str, superclass: Any = _MockObject,\n                    attributes: Any = None) -> Any:\n# Convert name to string if it's not already\nif not isinstance(name, str):\nname = getattr(name, '__name__', str(name))\n\n     attrs = {'__module__': module, '__display_name__': module + '.' + name}\n     attrs.update(attributes or {})\n     return type(name, (superclass,), attrs)\n \n \n\n class _MockModule(ModuleType):\n     \"\"\"Used by autodoc_mock_imports.\"\"\"\n     __file__ = os.devnull\n",
+        "test_generic_typevar_repro.py": "new file mode 100644\nindex 000000000..d879fe6fc\nimport sys\nimport traceback\nimport typing\n# Import the function directly\nfrom sphinx.ext.autodoc.mock import _make_subclass\n\ndef main():\nprint(\"Step 1: Create a TypeVar T...\")\nT = typing.TypeVar(\"T\")\n\nprint(\"Step 2: Call _make_subclass with the TypeVar (bug triggers if we get a TypeError).\")\ntry:\ntest_obj = _make_subclass(T, \"some_module\")\nprint(\"No error was raised. The bug is presumably fixed.\")\nprint(\"Created subclass object:\", test_obj)\nsys.exit(0)\nexcept TypeError as e:\nprint(\"We got a TypeError, indicating the bug is NOT fixed.\")\ntraceback.print_exc()\nsys.exit(1)\nexcept Exception as ex:\nprint(\"We got some unexpected exception, also indicating a problem.\")\ntraceback.print_exc()\nsys.exit(1)\n\nif __name__ == \"__main__\":\nmain()\n"
+    },
+    "ground_truth_patch": {
+        "sphinx/ext/autodoc/mock.py": "     def __mro_entries__(self, bases: Tuple) -> Tuple:\n         return (self.__class__,)\n \ndef __getitem__(self, key: Any) -> \"_MockObject\":\nreturn _make_subclass(str(key), self.__display_name__, self.__class__)()\n \n     def __getattr__(self, key: str) -> \"_MockObject\":\n         return _make_subclass(key, self.__display_name__, self.__class__)()\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they perform different functionalities and contain different methods (_make_subclass in the first sample and methods related to MRO in the second sample). The first sample contains code related to creating subclasses, while the second sample is concerned with attribute access mechanisms, thus they are syntactically and functionally distinct.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "psf__requests-5414",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 00000000..5ebc7e77\nimport requests\n\ndef test_url(url):\ntry:\nresponse = requests.get(url)\nexcept Exception as e:\nprint(f\"Testing URL: {url}\")\nprint(f\"Error type: {type(e).__name__}\")\nprint(f\"Error message: {str(e)}\")\nprint()\n\n# Test cases\ntest_url(\"http://.example.com\")  # Original case\ntest_url(\"http://..example.com\")  # Double dot\ntest_url(\"http://example..com\")  # Double dot in middle\ntest_url(\"http://example.com.\")  # Trailing dot\n\\ No newline at end of file\n",
+        "requests/models.py": "index e7d292d5..3dc80b4b 100644\n     def _get_idna_encoded_host(host):\n         import idna\n \n# Check for empty labels in the host\nif '..' in host or host.startswith('.') or host.endswith('.'):\nraise UnicodeError\n\n         try:\n             host = idna.encode(host, uts46=True).decode('utf-8')\n         except idna.IDNAError:\n \n         # Support for unicode domain names and paths.\n         try:\n# Check for invalid URL patterns before parsing\nif '://' in url:\nhost = url.split('://', 1)[1].split('/', 1)[0]\nif '..' in host or host.startswith('.') or host.endswith('.'):\nraise InvalidURL('URL has an invalid label.')\n\n             scheme, auth, host, port, path, query, fragment = parse_url(url)\nexcept (LocationParseError, UnicodeError) as e:\nraise InvalidURL('URL has an invalid label.')\n \n         if not scheme:\n             error = (\"Invalid URL {0!r}: No schema supplied. Perhaps you meant http://{0}?\")\n"
+    },
+    "ground_truth_patch": {
+        "requests/models.py": "                 host = self._get_idna_encoded_host(host)\n             except UnicodeError:\n                 raise InvalidURL('URL has an invalid label.')\nelif host.startswith((u'*', u'.')):\n             raise InvalidURL('URL has an invalid label.')\n \n         # Carefully reconstruct the network location\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they are from different contexts and serve different purposes. Code sample 1 is a function that tests URLs for errors, while code sample 2 is a portion of a different function that deals with encoding hosts. They have different structures and functionalities, making them syntactically dissimilar.\"}"
+}

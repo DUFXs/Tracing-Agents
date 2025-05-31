@@ -1,0 +1,12 @@
+{
+    "instance_id": "pydata__xarray-2905",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 00000000..52b8b7b9\nimport xarray as xr\nimport numpy as np\n\n# Create test arrays\ngood_indexed, bad_indexed = xr.DataArray([None]), xr.DataArray([None])\n\n# Define a class with values property\nclass HasValues(object):\nvalues = 5\n\n# Test assignments\ngood_indexed.loc[{'dim_0': 0}] = set()\nbad_indexed.loc[{'dim_0': 0}] = HasValues()\n\n# Print results\nprint(\"Good indexed values:\", good_indexed.values)\nprint(\"Bad indexed values:\", bad_indexed.values)\nprint(\"Bad indexed values type:\", type(bad_indexed.values[0]))\n\n# Expected: bad_indexed.values should contain HasValues instance\n# Actual: contains array(5) instead\n\\ No newline at end of file\n",
+        "xarray/core/variable.py": "index 45553eb9..53c45ce2 100644\n     if isinstance(data, timedelta):\n         data = np.timedelta64(getattr(data, \"value\", data), \"ns\")\n \n# we don't want nested self-described arrays, but we should preserve objects\n# that have a values property but are not array-like\nif hasattr(data, \"__array__\") or isinstance(data, (np.ndarray, pd.Index)):\ndata = getattr(data, \"values\", data)\n# otherwise keep the original object even if it has a values property\n \n     if isinstance(data, np.ma.MaskedArray):\n         mask = np.ma.getmaskarray(data)\n"
+    },
+    "ground_truth_patch": {
+        "xarray/core/variable.py": "         data = np.timedelta64(getattr(data, \"value\", data), \"ns\")\n \n     # we don't want nested self-described arrays\nif isinstance(data, (pd.Series, pd.Index, pd.DataFrame)):\ndata = data.values\n \n     if isinstance(data, np.ma.MaskedArray):\n         mask = np.ma.getmaskarray(data)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they share similar structure and logic but differ in the specific conditions and object types being checked. The first sample checks if data has a __array__ property or is an instance of np.ndarray or pd.Index, while the second sample checks if data is an instance of pd.Series, pd.Index, or pd.DataFrame, representing modifications in the conditional checks along with possible changes in the surrounding code layout.\"}"
+}

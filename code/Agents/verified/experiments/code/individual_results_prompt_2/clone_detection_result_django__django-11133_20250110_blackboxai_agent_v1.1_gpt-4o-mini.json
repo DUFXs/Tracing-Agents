@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-11133",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/http/response.py": "index 6a84e193ba..a9ede09dd9 100644\n         # Handle string types -- we can't rely on force_bytes here because:\n         # - Python attempts str conversion first\n         # - when self._charset != 'utf-8' it re-encodes the content\nif isinstance(value, (bytes, memoryview)):\n             return bytes(value)\n         if isinstance(value, str):\n             return bytes(value.encode(self.charset))\n"
+    },
+    "ground_truth_patch": {
+        "django/http/response.py": "         # Handle string types -- we can't rely on force_bytes here because:\n         # - Python attempts str conversion first\n         # - when self._charset != 'utf-8' it re-encodes the content\nif isinstance(value, (bytes, memoryview)):\n             return bytes(value)\n         if isinstance(value, str):\n             return bytes(value.encode(self.charset))\n"
+    },
+    "response": "{\"explanation\": \"The code in code sample 1 contains a patch for a file 'django/http/response.py' that handles string types for byte conversion, along with additional information indicating ignored file paths in '.gitignore'. Code sample 2 contains a similar patch for the same file and the same functionality regarding string types, but it lacks the '.gitignore' information present in code sample 1.\", \"is_clone\": true, \"classification\": \"type-1\", \"reasoning\": \"These code samples are type-1 clones because they are identical except for the additional context in the patch of code sample 1, specifically the '.gitignore' file entry.\"}"
+}

@@ -1,0 +1,12 @@
+{
+    "instance_id": "pytest-dev__pytest-7490",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "reproduce_error.py": "new file mode 100644\nindex 000000000..e1d30df0c\nimport pytest\n\ndef test_xfail_test(request):\nmark = pytest.mark.xfail(reason=\"xfail\")\nrequest.node.add_marker(mark)\nassert 0\n\\ No newline at end of file\n",
+        "src/_pytest/skipping.py": "index 335e10996..a81e1e425 100644\n def pytest_runtest_makereport(item: Item, call: CallInfo[None]):\n     outcome = yield\n     rep = outcome.get_result()\n# Re-evaluate xfail marks to catch dynamically added ones\nif call.when == \"call\":\nitem._store[xfailed_key] = evaluate_xfail_marks(item)\n     xfailed = item._store.get(xfailed_key, None)\n     # unittest special case, see setting of unexpectedsuccess_key\n     if unexpectedsuccess_key in item._store and rep.when == \"call\":\n"
+    },
+    "ground_truth_patch": {
+        "src/_pytest/skipping.py": " \n @hookimpl(tryfirst=True)\n def pytest_runtest_setup(item: Item) -> None:\n     skipped = evaluate_skip_marks(item)\nitem._store[skipped_by_mark_key] = skipped is not None\n     if skipped:\n         skip(skipped.reason)\n \nitem._store[xfailed_key] = xfailed = evaluate_xfail_marks(item)\nif xfailed and not item.config.option.runxfail and not xfailed.run:\nxfail(\"[NOTRUN] \" + xfailed.reason)\n \n \n @hookimpl(hookwrapper=True)\n     if xfailed is None:\n         item._store[xfailed_key] = xfailed = evaluate_xfail_marks(item)\n \nif xfailed and not item.config.option.runxfail and not xfailed.run:\nxfail(\"[NOTRUN] \" + xfailed.reason)\n \n     yield\n \n# The test run may have added an xfail mark dynamically.\nxfailed = item._store.get(xfailed_key, None)\nif xfailed is None:\nitem._store[xfailed_key] = xfailed = evaluate_xfail_marks(item)\n\n \n @hookimpl(hookwrapper=True)\n def pytest_runtest_makereport(item: Item, call: CallInfo[None]):\n"
+    },
+    "response": "{\"is_clone\": false, \"classification\": \"N/A\", \"reasoning\": \"These code samples are not clones because they exhibit significant syntactical and functional differences. Code sample 1 contains a test function that specifically sets an xfail marker and asserts a failure, while code sample 2 involves skipping tests and managing xfail marks in a different context with different logic structures. The logic, purpose, and statements in both samples differ, indicating a distinct functionality rather than a clone relationship.\"}"
+}

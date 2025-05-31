@@ -1,0 +1,11 @@
+{
+    "instance_id": "matplotlib__matplotlib-26113",
+    "agent": "20241202_agentless-1.5_claude-3.5-sonnet-20241022",
+    "agent_patch": {
+        "lib/matplotlib/axes/_axes.py": "index 0510462..5273775 100644\n             if mincnt is None:\n                 mincnt = 0\n             accum = np.array(\n[reduce_C_function(acc) if len(acc) >= mincnt else np.nan\n                  for Cs_at_i in [Cs_at_i1, Cs_at_i2]\n                  for acc in Cs_at_i[1:]],  # [1:] drops out-of-range points.\n                 float)\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/axes/_axes.py": "             if mincnt is None:\n                 mincnt = 0\n             accum = np.array(\n[reduce_C_function(acc) if len(acc) >= mincnt else np.nan\n                  for Cs_at_i in [Cs_at_i1, Cs_at_i2]\n                  for acc in Cs_at_i[1:]],  # [1:] drops out-of-range points.\n                 float)\n"
+    },
+    "response": "{\n\"explanation\": \"Both code samples perform the same operation: They check if mincnt is None and set it to 0 if true, then create a numpy array using a list comprehension. The list comprehension applies reduce_C_function to accumulator values (acc) from Cs_at_i1 and Cs_at_i2 if the length of acc is greater than or equal to mincnt, otherwise returns np.nan. The [1:] slice is used to drop out-of-range points, and the result is converted to float type.\",\n\"is_clone\": true,\n\"classification\": \"type-1\",\n\"reasoning\": \"These code samples are type-1 clones because they are exactly identical, including whitespace, layout, and comments. The only difference is in how they are presented in the patch format (the first sample has some additional metadata 'index 0510462..5273775 100644' in the patch header), but the actual code content is completely identical.\"\n}"
+}

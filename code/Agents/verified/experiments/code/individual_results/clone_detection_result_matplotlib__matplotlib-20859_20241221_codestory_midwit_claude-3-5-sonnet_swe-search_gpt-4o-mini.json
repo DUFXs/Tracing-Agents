@@ -1,0 +1,12 @@
+{
+    "instance_id": "matplotlib__matplotlib-20859",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch": {
+        "lib/matplotlib/legend.py": "index 44ab024698..01de340404 100644\n         \"\"\"\n         # local import only to avoid circularity\n         from matplotlib.axes import Axes\nfrom matplotlib.figure import Figure, FigureBase\n \n         super().__init__()\n \n             self.isaxes = True\n             self.axes = parent\n             self.set_figure(parent.figure)\nelif isinstance(parent, (Figure, FigureBase)):\n             self.isaxes = False\n             self.set_figure(parent)\n         else:\nraise TypeError(\"Legend needs either Axes or Figure/FigureBase as parent\")\n         self.parent = parent\n \n         self._loc_used_default = loc is None\n",
+        "reproduce_error.py": "new file mode 100644\nindex 0000000000..8de34e1abd\nimport matplotlib.pyplot as plt\n\nsubfig = plt.figure().subfigures()\nax = subfig.subplots()\nax.plot([0, 1, 2], [0, 1, 2], label=\"test\")\nsubfig.legend()\nplt.show()\n\\ No newline at end of file\n"
+    },
+    "ground_truth_patch": {
+        "lib/matplotlib/legend.py": "         \"\"\"\n         # local import only to avoid circularity\n         from matplotlib.axes import Axes\nfrom matplotlib.figure import FigureBase\n \n         super().__init__()\n \n             self.isaxes = True\n             self.axes = parent\n             self.set_figure(parent.figure)\nelif isinstance(parent, FigureBase):\n             self.isaxes = False\n             self.set_figure(parent)\n         else:\nraise TypeError(\n\"Legend needs either Axes or FigureBase as parent\"\n)\n         self.parent = parent\n \n         self._loc_used_default = loc is None\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactic similarities but have modified statements. Specifically, the condition in the `elif` statement in sample 2 is slightly different, as it only checks for `FigureBase` instead of both `Figure` and `FigureBase`. Additionally, the error message in the `raise TypeError` line has been altered in its formatting across the two samples.\"}"
+}

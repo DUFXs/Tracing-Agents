@@ -1,0 +1,12 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-13328",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 73feb51e7..0dceba0b7 100644\n sklearn/utils/seq_dataset.pyx\n sklearn/utils/seq_dataset.pxd\n sklearn/linear_model/sag_fast.pyx\n.aider/\n",
+        "sklearn/linear_model/huber.py": "index 65c686400..d3606a09e 100644\n         self : object\n         \"\"\"\n         X, y = check_X_y(\nX, y, copy=False, accept_sparse=['csr'], y_numeric=True, dtype=np.float64)\n         if sample_weight is not None:\n             sample_weight = np.array(sample_weight)\n             check_consistent_length(y, sample_weight)\n"
+    },
+    "ground_truth_patch": {
+        "sklearn/linear_model/huber.py": "         self : object\n         \"\"\"\n         X, y = check_X_y(\nX, y, copy=False, accept_sparse=['csr'], y_numeric=True,\ndtype=[np.float64, np.float32])\n         if sample_weight is not None:\n             sample_weight = np.array(sample_weight)\n             check_consistent_length(y, sample_weight)\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for a difference in the literal value used for the dtype parameter. In sample 1, dtype is set to np.float64, while in sample 2, it is set to a list containing both np.float64 and np.float32. Other than this difference, the code structure, layouts, and comments are the same.\"}"
+}

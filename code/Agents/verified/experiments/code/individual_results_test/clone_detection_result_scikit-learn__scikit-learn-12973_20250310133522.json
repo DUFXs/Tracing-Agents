@@ -1,0 +1,7 @@
+{
+    "instance_id": "scikit-learn__scikit-learn-12973",
+    "agent": "20241221_codestory_midwit_claude-3-5-sonnet_swe-search",
+    "agent_patch_file": "reproduce_error.py",
+    "ground_truth_patch_file": "sklearn/linear_model/least_angle.py",
+    "response": "{\"is_clone\": false, \"classification\": \"type-4\"}"
+}

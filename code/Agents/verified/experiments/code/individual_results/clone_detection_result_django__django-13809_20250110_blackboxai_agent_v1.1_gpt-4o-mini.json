@@ -1,0 +1,12 @@
+{
+    "instance_id": "django__django-13809",
+    "agent": "20250110_blackboxai_agent_v1.1",
+    "agent_patch": {
+        ".gitignore": "index 238fb3a200..521baaa795 100644\n tests/.coverage\n build/\n tests/report/\n.aider/\n",
+        "django/core/management/commands/runserver.py": "index d9fb088350..fa7ff9e491 100644\n             '--noreload', action='store_false', dest='use_reloader',\n             help='Tells Django to NOT use the auto-reloader.',\n         )\nparser.add_argument(\n'--skip-checks', action='store_true',\nhelp='Skip system checks and migrations check.',\n)\n \n     def execute(self, *args, **options):\n         if options['no_color']:\n         shutdown_message = options.get('shutdown_message', '')\n         quit_command = 'CTRL-BREAK' if sys.platform == 'win32' else 'CONTROL-C'\n \nif not options.get('skip_checks', False):\nself.stdout.write(\"Performing system checks...\\n\\n\")\nself.check(display_num_errors=True)\n# Need to check migrations here, so can't use the\n# requires_migrations_check attribute.\nself.check_migrations()\n         now = datetime.now().strftime('%B %d, %Y - %X')\n         self.stdout.write(now)\n         self.stdout.write((\n"
+    },
+    "ground_truth_patch": {
+        "django/core/management/commands/runserver.py": "             '--noreload', action='store_false', dest='use_reloader',\n             help='Tells Django to NOT use the auto-reloader.',\n         )\nparser.add_argument(\n'--skip-checks', action='store_true',\nhelp='Skip system checks.',\n)\n \n     def execute(self, *args, **options):\n         if options['no_color']:\n         shutdown_message = options.get('shutdown_message', '')\n         quit_command = 'CTRL-BREAK' if sys.platform == 'win32' else 'CONTROL-C'\n \nif not options['skip_checks']:\nself.stdout.write('Performing system checks...\\n\\n')\nself.check(display_num_errors=True)\n         # Need to check migrations here, so can't use the\n         # requires_migrations_check attribute.\n         self.check_migrations()\n"
+    },
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical in structure and functionality, but differ in certain literal values and formatting. Specifically, in the help messages, the language slightly varies, which does not change the functionality but indicates a difference in literal values. Additionally, there are variations in whitespace and indentation.\"}"
+}

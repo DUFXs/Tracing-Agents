@@ -1,0 +1,7 @@
+{
+    "instance_id": "django__django-13658",
+    "agent": "20250110_learn_by_interact_claude3.5",
+    "agent_patch_file": "django/core/management/__init__.py",
+    "ground_truth_patch_file": "django/core/management/__init__.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-2\", \"reasoning\": \"These code samples are type-2 clones because they are identical except for differences in whitespace and layout. The first code sample has the parameters of the `CommandParser` on a single line, while the second sample has them spread across multiple lines, but both versions implement the same functionality without differences in identifiers or logic.\"}"
+}

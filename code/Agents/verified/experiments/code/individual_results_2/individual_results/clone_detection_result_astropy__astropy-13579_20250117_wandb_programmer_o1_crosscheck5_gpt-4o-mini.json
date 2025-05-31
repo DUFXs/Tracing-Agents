@@ -1,0 +1,7 @@
+{
+    "instance_id": "astropy__astropy-13579",
+    "agent": "20250117_wandb_programmer_o1_crosscheck5",
+    "agent_patch_file": "astropy/wcs/wcsapi/wrappers/sliced_wcs.py",
+    "ground_truth_patch_file": "astropy/wcs/wcsapi/wrappers/sliced_wcs.py",
+    "response": "{\"is_clone\": true, \"classification\": \"type-3\", \"reasoning\": \"These code samples are type-3 clones because they exhibit syntactical similarity but have variations in how certain statements are structured and a slight difference in function logic. For example, Sample 2 introduces the variable 'sliced_out_world_coords' and changes how world coordinates are updated, indicating added or modified statements while maintaining overall functionality.\"}"
+}
