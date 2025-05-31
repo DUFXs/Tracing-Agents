@@ -1,4 +1,8 @@
 # Tracing-Agents
+## :package: Artifacts for Reproducibility
+To support replication and further research, we provide all necessary artifacts to reproduce our results. This includes access to our **preprocessed data**, such as standardized patch formats, as well as **scripts to replicate our evaluation pipeline**.
+Due to GitHub's file size limitations, the original raw agent logs and outputs are hosted externally. [See here](https://github.com/swe-bench/experiments)
+
 
 ## :diamond_shape_with_a_dot_inside: Venn Diagram Breakdown: Agent Solving Abilities
 These diagrams illustrate how different agents overlap in their ability to solve issues across human-annotated difficulty categories.
