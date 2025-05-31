@@ -2,9 +2,11 @@
 
 ## :diamond_shape_with_a_dot_inside: Venn Diagram Breakdown: Agent Solving Abilities
 These diagrams illustrate how different agents overlap in their ability to solve issues across human-annotated difficulty categories.
-### :diamond_shape_with_a_dot_inside: Figure 1: Overall Agent Overlap
+### :diamond_shape_with_a_dot_inside: Figure 1: Easy Issue Agent Overlap
 ![Easy Issue Overlap](figs/less15mins.png)
+### :diamond_shape_with_a_dot_inside: Figure 1: Moderate Issue Agent Overlap
 ![Moderate Issue Overlap](figs/no_legend_15mins-1h.png)
+### :diamond_shape_with_a_dot_inside: Figure 1: Hard Issue Agent Overlap
 ![Hard Issue Overlap](figs/no_legend_1-4hours.png)
 
 ## :paperclip: Supplemental Material
